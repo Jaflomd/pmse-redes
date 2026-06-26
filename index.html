@@ -396,30 +396,30 @@ const NETS = [
 const SCORES = {
  1:[
   {it:'Conciencia', a:['estupor/coma o delirium hipoactivo','obnubilación','vigilia clara','hiperalerta sin compromiso','hipervigilancia con interferencia / delirium hiperactivo'], flag:'fluctuación → delirium'},
-  {it:'Alerta', a:['hipoarousal (latencia >5s, somnolencia)',null,'proporcional',null,'hiperarousal sostenido (no se mantiene sentado, taquilalia)']}
+  {it:'Alerta', a:['hipoarousal: somnoliento, latencia >5 s, se duerme en entrevista','enlentecido: latencia 2–5 s, requiere reorientación','alerta proporcional, atiende sin esfuerzo','hiperalerta leve: reactivo/inquieto pero redirigible','hiperarousal sostenido: no se mantiene sentado, taquilalia, no redirigible']}
  ],
  2:[
-  {it:'Sueño y ritmo circadiano', a:['hipersomnia / insomnio severo con disfunción',null,'6–9 h reparador, fase alineada',null,'insomnio severo <4 h / fase muy retrasada o sundowning']},
-  {it:'Apetito', a:['restricción severa (<500 kcal/ARFID, ↓peso >10%)',null,'estable',null,'atracón / pica / purga']},
-  {it:'Libido', a:['alibido / anhedonia sexual',null,'proporcional al baseline',null,'hipersexualidad / parafilia con daño']}
+  {it:'Sueño y ritmo circadiano', a:['hipersomnia marcada (>10 h) o somnolencia diurna invalidante','tendencia a dormir de más / despertar difícil, leve','6–9 h reparador, fase alineada','insomnio leve o fase algo retrasada, sin disfunción diurna','insomnio severo <4 h / ↓necesidad de sueño / fase muy retrasada o sundowning']},
+  {it:'Apetito', a:['restricción severa (<500 kcal/ARFID) o ↓peso >10%','apetito/ingesta por debajo de lo habitual','apetito e ingesta estables','apetito aumentado / picoteo, sin atracón','atracón / pica / purga']},
+  {it:'Libido', a:['alibido / anhedonia sexual completa','deseo sexual reducido respecto al baseline','libido proporcional al baseline','deseo sexual aumentado, sin daño','hipersexualidad / parafilia con daño o pérdida de control']}
  ],
  3:[
-  {it:'Expresividad emocional', a:['nada (embotamiento, cara inmóvil)',null,'proporcional y congruente',null,'teatralidad (sobreactuación histriónica/maníaca)'], flag:'[incongruente] = paratimia; cruzar red 6 (hipomimia)'},
-  {it:'Afiliación', a:['hostilidad sostenida (→ antagonismo)',null,'calidez proporcional',null,'afiliación excesiva / fusión idealizadora']},
-  {it:'Dominancia', a:['sumisión extrema',null,'rapport colaborativo',null,'dominancia franca (controla, descalifica)']},
-  {it:'Patrón de personalidad', a:['patrón rígido (no cambia P1×P2)',null,'flexibilidad proporcional',null,'oscilación impredecible (TLP)']}
+  {it:'Expresividad emocional', a:['embotamiento: cara inmóvil, prosodia plana, sin gestos','expresividad reducida: rango estrecho, hipomimia leve','expresión proporcional y congruente','expresividad intensa pero congruente','teatralidad: sobreactuación histriónica/maníaca o incongruente'], flag:'[incongruente] = paratimia; cruzar red 6 (hipomimia)'},
+  {it:'Afiliación', a:['hostilidad sostenida / antagonismo activo','frialdad / retraimiento, escaso calor interpersonal','calidez y reciprocidad proporcionales','búsqueda de cercanía aumentada, apropiada','afiliación excesiva / fusión idealizadora / desinhibición social']},
+  {it:'Dominancia', a:['sumisión extrema: cede siempre, no sostiene posición','tendencia sumisa / deferente, poca iniciativa','rapport colaborativo, asertividad proporcional','dominante/asertivo marcado, aún colaborativo','dominancia franca: controla, descalifica, no cede']},
+  {it:'Patrón de personalidad', a:['patrón rígido extremo: invariante al contexto','rigidez moderada: repertorio interpersonal estrecho','flexibilidad proporcional al contexto','variabilidad aumentada según situación, adaptativa','oscilación impredecible e inestable (p. ej. TLP)']}
  ],
  4:[
-  {it:'Ánimo', a:['depresión (todo vivido como no-logro)',null,'eutímico (rastrea outcomes)',null,'euforia/manía desacoplada del logro']},
-  {it:'Amenaza', a:['hiporespuesta defensiva',null,'proporcional, recupera',null,'pánico activo / worry multidominio sostenido'], flag:'[agudo] (amígdala) vs [sostenido] (BNST)'}
+  {it:'Ánimo', a:['depresión: todo vivido como no-logro, anhedonia del ánimo','ánimo bajo / subdepresivo, reactividad conservada','eutímico: rastrea outcomes, reactivo proporcional','ánimo elevado/expansivo leve, aún reactivo','euforia/manía desacoplada del logro o disforia sostenida']},
+  {it:'Amenaza', a:['hiporespuesta defensiva: no registra amenaza real','ansiedad/reactividad por debajo de lo esperable','respuesta de amenaza proporcional, recupera','ansiedad/hipervigilancia elevada, redirigible','pánico activo o worry multidominio sostenido, no redirigible'], flag:'[agudo] (amígdala) vs [sostenido] (BNST)'}
  ],
  5:[
-  {it:'Motivación / drive (wanting + vigor)', a:['avolición / anergia (sin deseo ni empuje)',null,'motivación y vigor proporcionales',null,'craving / hipermotivación con hiperactivación'], flag:'une wanting (incentive salience) + vigor (esfuerzo) — brazo dopaminérgico; espec [wanting]/[vigor]'},
-  {it:'Tono hedónico (liking)', a:['anhedonia consumatoria',null,'disfrute proporcional',null,'hiperhedonia']},
-  {it:'Frustración (frustrative nonreward)', a:['indiferencia al no-logro',null,'proporcional, recupera','frustración fásica (non-reward)','irritabilidad tónica basal'], flag:'movida desde red 4 (recluta estriado ventral)'}
+  {it:'Motivación / drive (wanting + vigor)', a:['avolición / anergia: sin deseo ni empuje, no inicia','motivación/energía reducida, inicia con esfuerzo','motivación y vigor proporcionales a metas','empuje/energía aumentados, productivos','craving / hipermotivación con hiperactivación'], flag:'une wanting (incentive salience) + vigor (esfuerzo) — brazo dopaminérgico; espec [wanting]/[vigor]'},
+  {it:'Tono hedónico (liking)', a:['anhedonia consumatoria: no disfruta nada','placer atenuado / disfrute reducido','disfrute proporcional','disfrute intensificado, apropiado','hiperhedonia (placer desregulado)']},
+  {it:'Frustración (frustrative nonreward)', a:['indiferencia al no-logro: no reacciona a obstáculos','tolerancia aumentada / poca reactividad','frustración proporcional, recupera','frustración fásica (non-reward), reactiva al obstáculo','irritabilidad tónica basal, sin gatillo'], flag:'movida desde red 4 (recluta estriado ventral)'}
  ],
  6:[
-  {it:'Velocidad psicomotriz', a:['retardo (latencia >5s, AVD afectadas)',null,'proporcional',null,'agitación / taquilalia']},
+  {it:'Velocidad psicomotriz', a:['retardo: latencia >5 s, AVD afectadas, bradicinesia','enlentecimiento leve: movimientos/habla algo lentos','velocidad proporcional','aceleración leve: inquieto, habla rápida redirigible','agitación / taquilalia, no redirigible']},
   {it:'Parakinesia', note:'<b>3 subtipos, cada uno 0/−1/−2</b> (ventana: entrevista o últimos 7 días). <b>Iterativa</b>: 0 ausente · −1 sutil/intermitente · −2 recurrente/difícil de interrumpir (estereotipias, perseveraciones, verbigeración, ecolalia). <b>Odd/bizarra</b>: 0 proporcional · −1 gesto/postura rara breve · −2 bizarra clara o sostenida (mannerisms, grimacing, posturas raras). <b>Volicional/automática</b>: 0 agencia motora normal · −1 leve/ambiguo · −2 claro/reproducible (obediencia automática, mitgehen/mitmachen, ambitendencia, flexibilidad cérea, catalepsia, grasp reflex).'},
   {it:'Tics', a:['marcados (frecuentes/casi continuos, complejos, no suprimibles, con interferencia)','leves (ocasionales, simples, suprimibles)','ausentes',null,null], note:'<b>Unidireccional 0/−1/−2</b> anclado en YGTSS (frecuencia · intensidad · complejidad · supresibilidad · interferencia). Espec [motor]/[vocal-fónico] · [simple]/[complejo].'},
   {it:'Síntomas extrapiramidales', a:[null,null,'ausentes','leves','marcados'], note:'<b>Unidireccional 0/+1/+2.</b> Incluye acatisia. Anclas: Simpson-Angus (parkinsonismo) · BARS (acatisia) · AIMS (discinesia). Espec [parkinsonismo]/[acatisia]/[discinesia]/[distonía].'},
@@ -427,29 +427,29 @@ const SCORES = {
  ],
  7:[
   {it:'Contenido del pensamiento', scale04:['Normal','Idea fija o preocupación','Obsesiones o rumiaciones','Idea sobrevalorada o creencia inusual','Delusión'], flag:'escala dimensional de convicción 0→4 (sustituye −2/+2 para este ítem)'},
-  {it:'Integración sensorial', a:['atenuación perceptiva (desrealización)',null,'calibrado','anómalo / PLE / hipervigilancia','alucinación formada (incl. voces)'], flag:'cruzar F7.testing (juicio de realidad)'},
-  {it:'Interocepción', a:['hipo-interocepción / alexisomia (no registra señales corporales, negación somática)',null,'interocepción calibrada',null,'hiper-interocepción / somatización (amplificación, ansiedad por la salud, pánico interoceptivo)'], flag:'subsume somatización; 3 dimensiones Garfinkel 2015 (precisión/sensibilidad/conciencia)'},
-  {it:'Nocicepción', a:['hipoalgesia / asimbolia al dolor',null,'proporcional',null,'dolor desproporcionado / central / catastrofizado']},
-  {it:'Regulación atencional', a:['saliencia aberrante (atención capturada por lo irrelevante, no filtra)',null,'asignación calibrada (atiende lo relevante, suelta lo irrelevante)',null,'sobre-fijación / "sticky" (hiperfoco perseverativo)'], flag:'frontera con Metacontrol (red 8): aquí gating bottom-up, allá control top-down'}
+  {it:'Integración sensorial', a:['atenuación perceptiva (desrealización, hipoestesia)','distorsión perceptiva sutil / hipersensibilidad','percepción calibrada','anómalo: PLE, ilusiones, hipervigilancia perceptiva','alucinación formada (incl. voces)'], flag:'cruzar F7.testing (juicio de realidad)'},
+  {it:'Interocepción', a:['hipo-interocepción / alexisomia: no registra señales corporales','conciencia corporal reducida','interocepción calibrada','sensibilidad somática aumentada / vigilancia leve','hiper-interocepción / somatización (amplificación, pánico interoceptivo)'], flag:'subsume somatización; 3 dimensiones Garfinkel 2015 (precisión/sensibilidad/conciencia)'},
+  {it:'Nocicepción', a:['hipoalgesia / asimbolia al dolor','umbral de dolor elevado / poca reactividad','percepción del dolor proporcional','sensibilidad al dolor aumentada / hiperalgesia leve','dolor desproporcionado / central / catastrofizado']},
+  {it:'Regulación atencional', a:['saliencia aberrante: atención capturada por lo irrelevante','distractibilidad leve / filtra con esfuerzo','asignación calibrada (atiende lo relevante, suelta lo irrelevante)','foco algo pegajoso / cuesta desenganchar','sobre-fijación / "sticky" (hiperfoco perseverativo)'], flag:'frontera con Metacontrol (red 8): aquí gating bottom-up, allá control top-down'}
  ],
  8:[
-  {it:'Metacontrol cognitivo', a:['déficit (distractibilidad, perseveración)',null,'proporcional',null,'sobre-control (hiperfoco rígido)']},
-  {it:'Monitoreo del error', a:['hipomonitoreo / jumping-to-conclusions',null,'calibrado',null,'hipermonitoreo / not-just-right']},
+  {it:'Metacontrol cognitivo', a:['déficit: distractibilidad, perseveración, no sostiene set','control reducido: lapsos, requiere esfuerzo','control cognitivo proporcional','control elevado/esforzado, algo rígido','sobre-control: hiperfoco rígido, no cambia set']},
+  {it:'Monitoreo del error', a:['hipomonitoreo / jumping-to-conclusions: no detecta error','detección de error reducida','monitoreo calibrado','hipermonitoreo leve / chequeo aumentado','hipermonitoreo / not-just-right: dudas y checking']},
   {it:'Pruebas neurocognitivas', note:'<b>Batería bedside, 5 pruebas (cada una 0/−1/−2 hacia déficit):</b><table><thead><tr><th>Prueba</th><th>0 (normal)</th><th>−1 (leve)</th><th>−2 (déficit)</th></tr></thead><tbody><tr><td>Fluencia semántica (animales)</td><td>≥18</td><td>12–17</td><td>&lt;12</td></tr><tr><td>Digit span</td><td>6F / 4B</td><td>5F / 3B</td><td>≤4F / ≤2B</td></tr><tr><td>TMT oral (Trail Making)</td><td>A&lt;30s, B&lt;75s</td><td>ratio B/A &gt;3.0</td><td>B&gt;180s</td></tr><tr><td>Clock Drawing</td><td>normal</td><td>error menor</td><td>errores graves</td></tr><tr><td>3-Word Recall</td><td>3/3 libre</td><td>2/3 con cues</td><td>≤1/3 libre</td></tr></tbody></table>'}
  ],
  9:[
-  {it:'Experiencia del pensamiento', a:['bloqueo / vacío (Gedankenabreißen)',null,'flujo proporcional',null,'presión / crowding (Gedankendrängen)']},
-  {it:'Experiencia vivida', a:['desrealización/despersonalización + discontinuidad biográfica',null,'realidad y continuidad',null,'Wahnstimmung + narrativa sobre-significada']},
-  {it:'Experiencia del yo (agencia)', a:['pasividad (inserción/robo/influencia)',null,'self como fuente',null,'hiper-agencia (control activo, omnipotencia del pensamiento)'], flag:'espec ipseicos [hiperreflexividad]/[despersonalización]'},
-  {it:'Mentalización', a:['hipomentalización (falla ToM)',null,'proporcional',null,'hipermentalización (lectura paranoide)']},
-  {it:'Autoevaluación', a:['culpa / autodescalificación nuclear (mala valoración de sí)',null,'autoevaluación calibrada / proporcional',null,'autoevaluación grandiosa / sobrevalorada']},
-  {it:'Simulación a futuro', a:['colapso del horizonte temporal',null,'proyección proporcional',null,'hiper-prospección catastrófica/grandiosa'], flag:'−2 = bandera de suicidio'}
+  {it:'Experiencia del pensamiento', a:['bloqueo / vacío (Gedankenabreißen), pobreza marcada','enlentecimiento / empobrecimiento del flujo','flujo de pensamiento proporcional','aceleración leve del pensar','presión / crowding (Gedankendrängen)']},
+  {it:'Experiencia vivida', a:['desrealización/despersonalización + discontinuidad biográfica','extrañeza/irrealidad leve, continuidad conservada','realidad y continuidad del vivir','intensificación/sobre-significación leve del entorno','Wahnstimmung + narrativa sobre-significada']},
+  {it:'Experiencia del yo (agencia)', a:['pasividad: inserción/robo/influencia, no es fuente','sentido de agencia reducido / extrañeza del yo','self como fuente de sus actos y pensamientos','agencia aumentada / hiperreflexividad leve','hiper-agencia: control activo, omnipotencia del pensamiento'], flag:'espec ipseicos [hiperreflexividad]/[despersonalización]'},
+  {it:'Mentalización', a:['hipomentalización: falla de ToM, no infiere estados ajenos','mentalización reducida / literal','mentalización proporcional','hipermentalización leve / sobre-interpreta intenciones','hipermentalización: lectura paranoide de intenciones']},
+  {it:'Autoevaluación', a:['culpa / autodescalificación nuclear (mala valoración de sí)','autovaloración negativa / inseguridad','autoevaluación calibrada / proporcional','autovaloración positiva elevada','autoevaluación grandiosa / sobrevalorada']},
+  {it:'Simulación a futuro', a:['colapso del horizonte temporal (sin futuro)','prospección reducida / pesimista','proyección a futuro proporcional','prospección optimista aumentada','hiper-prospección catastrófica o grandiosa'], flag:'−2 = bandera de suicidio'}
  ],
  10:[
-  {it:'Regulación metacognitiva', a:['no usa el autoconocimiento para corregirse (insight pobre / anosognosia)',null,'ajusta conducta según su autoconocimiento (insight operativo)',null,'sobre-regulación (rumia metacognitiva, hiperreflexividad paralizante / CAS de Wells)'], flag:'aquí se lee el insight clínico (decisión 15)'},
-  {it:'Organización conductual', a:['desorganización (conducta caótica + discurso incoherente)',null,'organizado, dirigido a metas',null,'sobre-rigidez (estereotipias, rituales, discurso monográfico)'], flag:'espec [conductual]/[discurso]'},
+  {it:'Regulación metacognitiva', a:['no usa el autoconocimiento para corregirse (insight pobre / anosognosia)','insight parcial: reconoce algo pero corrige poco','ajusta conducta según su autoconocimiento (insight operativo)','metacognición aumentada / autoexamen frecuente','sobre-regulación: rumia metacognitiva, hiperreflexividad paralizante (CAS de Wells)'], flag:'aquí se lee el insight clínico (decisión 15)'},
+  {it:'Organización conductual', a:['desorganización: conducta caótica + discurso incoherente','organización reducida / secuenciación pobre','organizado, dirigido a metas','orden/estructura aumentados, algo rígidos','sobre-rigidez: estereotipias, rituales, discurso monográfico'], flag:'espec [conductual]/[discurso]'},
   {it:'Regulación emocional', a:['sub-regulación / desregulación (afecto desbordado, labilidad)','reducida','modula el afecto adaptativamente','sobre-control leve','sobre-regulación (supresión excesiva, constricción afectiva)']},
-  {it:'Approach–evitación', a:['evitación experiencial severa',null,'flexibilidad psicológica',null,'approach desinhibido (riesgo sin freno)']},
+  {it:'Approach–evitación', a:['evitación experiencial severa: evita todo malestar','evitación aumentada / cautela excesiva','flexibilidad psicológica (approach/evitación según valor)','approach aumentado / busca novedad sin gran riesgo','approach desinhibido: riesgo sin freno']},
   {it:'Riesgo a sí mismo / otros', note:'<b>Módulo (no bipolar), del intake bMSE</b> — 3 ejes con variables extrínsecas → señal de riesgo (VIGILAR / crítico). <b>Suicidio → 3ST (Klonsky &amp; May):</b> plan · acceso a medios letales · intento previo · desesperanza · red de soporte · + variabilidad temporal reciente. <b>Heteroagresión → BVC (Brøset):</b> agitación auditiva · amenazas verbales · ataque a objetos (24h) · + historia de violencia · sustancias activas. <b>Negligencia:</b> autocuidado · actividades útiles · relaciones · insight. Modulador transversal: <b>rechazo de ayuda</b> (pasivo/activo).'}
  ]
 };
