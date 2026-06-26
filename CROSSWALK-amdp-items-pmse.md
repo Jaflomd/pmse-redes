@@ -1,17 +1,20 @@
 # Crosswalk AMDP (9ª ed., 154 ítems) → ítems pMSE
 
-> Cada ítem AMDP asignado a UN ítem pMSE. Mapeo por 6 subagentes + revisión de panel de 3 expertos (2026-06-26).
+> Mapeo por 6 subagentes + revisión de panel de 3 expertos (2026-06-26). Conciencia=vigilia/nivel, Alerta=arousal.
 
 ## Red 1
 
-**Conciencia** — _sin ítem AMDP directo_
-
-**Alerta** (3):
+**Conciencia** (2):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
 | 001 | Vigilancia disminuida | O | alta |
 | 002 | Obnubilación de la consciencia | O | alta |
+
+**Alerta** (1):
+
+| AMDP | Ítem | ds | conf |
+|---|---|---|---|
 | 105 | Cansancio | SO | alta |
 
 ## Red 2
