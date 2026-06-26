@@ -1,9 +1,6 @@
 # Crosswalk AMDP (9ª ed., 154 ítems) → ítems pMSE
 
-> Cada ítem AMDP asignado a UN ítem pMSE. Mapeo por 6 subagentes leyendo las definiciones AMDP (2026-06-26).
-> `ds` = data source AMDP (S=referido / O=observado / SO=ambos). `conf` = confianza del mapeo.
-
-**Cobertura:** 154/154 ítems AMDP mapeados · 5 ítems pMSE sin ítem AMDP directo.
+> Cada ítem AMDP asignado a UN ítem pMSE. Mapeo por 6 subagentes + revisión de panel de 3 expertos (2026-06-26).
 
 ## Red 1
 
@@ -50,11 +47,13 @@
 
 ## Red 3
 
-**Expresividad emocional** (4):
+**Expresividad emocional** (6):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
+| 038 | Dinámica delirante | SO | media |
 | 061 | Afecto aplanado | O | alta |
+| 070 | Quejumbrería | SO | media |
 | 076 | Paratimia (afecto incongruente) | O | alta |
 | 079 | Rigidez afectiva | O | alta |
 | 086 | Histrionismo | O | media |
@@ -106,13 +105,12 @@
 |---|---|---|---|
 | 060 | Sentimiento de pérdida de sentimientos | S | alta |
 
-**Frustración** (3):
+**Frustración** (2):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
 | 068 | Irritabilidad | SO | alta |
 | 069 | Inquietud interior | S | alta |
-| 070 | Quejumbrería | SO | media |
 
 ## Red 6
 
@@ -165,7 +163,6 @@
 | 035 | Ideas delirantes repentinas | S | alta |
 | 036 | Ideas delirantes | S | alta |
 | 037 | Delirios sistematizados | SO | alta |
-| 038 | Dinámica delirante | SO | media |
 | 039 | Delirios de referencia | S | alta |
 | 040 | Delirios de persecución | S | alta |
 | 041 | Delirios de celos | S | alta |
@@ -174,6 +171,7 @@
 | 044 | Delirios hipocondríacos | S | alta |
 | 045 | Delirios de grandiosidad | S | alta |
 | 046 | Otros delirios | S | alta |
+| 074 | Sentimientos de empobrecimiento | S | media |
 | ZP03 | Ideas de referencia | S | alta |
 | ZP10 | Ideas sobrevaloradas | S | alta |
 
@@ -240,6 +238,8 @@
 |---|---|---|---|
 | 030 | Pensamientos obsesivos | S | alta |
 
+**Control inhibitorio** — _sin ítem AMDP directo_
+
 **Pruebas neurocognitivas** (8):
 
 | AMDP | Ítem | ds | conf |
@@ -294,14 +294,13 @@
 
 **Mentalización** — _sin ítem AMDP directo_
 
-**Autoevaluación** (6):
+**Autoevaluación** (5):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
 | 071 | Sentimientos de insuficiencia | S | alta |
 | 072 | Autoestima exagerada | S | alta |
 | 073 | Sentimientos de culpa | S | alta |
-| 074 | Sentimientos de empobrecimiento | S | media |
 | ZP08 | Trastorno de la imagen corporal | S | alta |
 | ZP09 | Sentimientos de vergüenza | S | alta |
 
