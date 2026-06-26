@@ -116,6 +116,21 @@
     .scell::before{content:attr(data-lvl);font-weight:800;margin-right:7px;color:var(--accent)}
   }
 
+  /* collapsible sections */
+  details.sec{border:1px solid var(--line);border-radius:12px;margin:12px 0;background:var(--panel2)}
+  details.sec>summary{cursor:pointer;list-style:none;padding:11px 14px;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:700;color:var(--accent2);display:flex;align-items:center;gap:9px;user-select:none}
+  details.sec>summary::-webkit-details-marker{display:none}
+  details.sec>summary::before{content:'\25B8';font-size:11px;color:var(--muted);transition:transform .15s}
+  details.sec[open]>summary::before{transform:rotate(90deg)}
+  details.sec>summary:hover{background:var(--panel)}
+  details.sec .sec-body{padding:2px 14px 14px}
+  details.sec .sec-body>table{margin-top:4px}
+  .muted-note{color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:12px}
+  .toggle-all{margin-top:4px;font:inherit;font-size:12px;cursor:pointer;background:var(--panel2);
+    color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 9px;text-align:left;width:100%}
+  .toggle-all:hover{background:var(--chip)}
+
   /* synthesis */
   .synth{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;
     box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:14px}
@@ -167,6 +182,7 @@
       <div class="controls">
         <label><input type="checkbox" id="diToggle" checked> Mostrar capa de acceso en DI</label>
         <label><input type="checkbox" id="onlyHigh"> Solo fortaleza ALTA</label>
+        <button id="toggleAll" type="button" class="toggle-all">Expandir / colapsar todo</button>
       </div>
       <h4 style="margin-top:12px">Resumen</h4>
       <a href="#sintesis"><span class="n">Σ</span><span class="nm">Síntesis & hallazgos</span></a>
@@ -477,7 +493,7 @@ function scoreHTML(n){
     if(r.note) extra += `<div class="snote">${r.note}</div>`;
     return `<div class="scrow"><div class="it">${r.it}</div>${cells}</div>${extra}`;
   }).join('');
-  return `<div class="score"><div class="section-h">Escala de puntuación · −2 → +2 <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">(0 = calibrado/sano; ambos polos son patológicos)</span></div>${head}${body}</div>`;
+  return `<details class="sec" open><summary>Escala de puntuación · −2 → +2 <span class="muted-note">(0 = calibrado/sano; ambos polos patológicos)</span></summary><div class="sec-body">${head}${body}</div></details>`;
 }
 
 // ---------- mapeo nosológico (HiTOP clusters sourced + DSM-5 count + escalas) ----------
@@ -556,8 +572,8 @@ function nmapHTML(n){
   const rd = RDOC[n] || '—';
   const body = rows.map(r=>`<tr><td><b>${r.it}</b></td><td>${r.hitop||'—'}${r.esp?` <span class="tag" style="background:var(--accent2)">esp: ${r.esp}</span>`:''}</td><td class="frt" style="text-align:center">${r.dsm5}</td><td>${r.esc}</td></tr>`).join('');
   const orphan = ORPHAN[n] ? `<div class="snote" style="border-color:var(--falta)">${ORPHAN[n]}</div>` : '';
-  return `<div class="score"><div class="section-h" style="color:var(--accent2)">Mapeo nosológico · HiTOP · DSM-5 · escalas <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">— Dominio RDoC: <b style="color:var(--ink)">${rd}</b></span></div>
-  <table><thead><tr><th>Ítem</th><th>HiTOP (clusters empíricos)</th><th title="nº de síntomas DSM-5 mapeados">DSM-5</th><th>Escalas clave</th></tr></thead><tbody>${body}</tbody></table>${orphan}</div>`;
+  return `<details class="sec"><summary style="color:var(--accent2)">Mapeo nosológico · HiTOP · DSM-5 · escalas <span class="muted-note">— Dominio RDoC: <b style="color:var(--ink)">${rd}</b></span></summary><div class="sec-body">
+  <table><thead><tr><th>Ítem</th><th>HiTOP (clusters empíricos)</th><th title="nº de síntomas DSM-5 mapeados">DSM-5</th><th>Escalas clave</th></tr></thead><tbody>${body}</tbody></table>${orphan}</div></details>`;
 }
 
 // ---------- crosswalk AMDP (9ª ed., 154 ítems) → ítems pMSE ----------
@@ -626,8 +642,8 @@ function amdpHTML(n){
   const rows = AMDP[n]; if(!rows) return '';
   const tot = rows.reduce((s,r)=>s+r.n,0);
   const body = rows.map(r=>`<tr><td><b>${r.it}</b></td><td class="frt" style="text-align:center">${r.n||'—'}</td><td>${r.n? r.a : '<span style="color:var(--muted)">sin ítem AMDP directo</span>'}</td></tr>`).join('');
-  return `<div class="score"><div class="section-h" style="color:var(--accent2)">Ítems AMDP (9ª ed.) → este nodo <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">— ${tot} de 154</span></div>
-  <table><thead><tr><th>Ítem pMSE</th><th>n</th><th>Ítems AMDP que mapean aquí</th></tr></thead><tbody>${body}</tbody></table></div>`;
+  return `<details class="sec"><summary style="color:var(--accent2)">Ítems AMDP (9ª ed.) → este nodo <span class="muted-note">— ${tot} de 154</span></summary><div class="sec-body">
+  <table><thead><tr><th>Ítem pMSE</th><th>n</th><th>Ítems AMDP que mapean aquí</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
 }
 
 // ---------- síntomas DSM-5 (código ZMQRF + etiqueta corta ES) → nodo pMSE ----------
@@ -696,8 +712,8 @@ function dsmHTML(n){
   const rows = DSM[n]; if(!rows) return '';
   const tot = rows.reduce((s,r)=>s+r.n,0);
   const body = rows.map(r=>`<tr><td><b>${r.it}</b></td><td class="frt" style="text-align:center">${r.n||'—'}</td><td>${r.n? r.d : '<span style="color:var(--muted)">sin síntoma DSM-5</span>'}</td></tr>`).join('');
-  return `<div class="score"><div class="section-h" style="color:var(--accent)">Síntomas DSM-5 → este nodo <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">— ${tot} síntomas (código ZMQRF + etiqueta)</span></div>
-  <table><thead><tr><th>Ítem pMSE</th><th>n</th><th>Síntomas DSM-5 que mapean aquí</th></tr></thead><tbody>${body}</tbody></table></div>`;
+  return `<details class="sec"><summary style="color:var(--accent)">Síntomas DSM-5 → este nodo <span class="muted-note">— ${tot} síntomas (código ZMQRF + etiqueta)</span></summary><div class="sec-body">
+  <table><thead><tr><th>Ítem pMSE</th><th>n</th><th>Síntomas DSM-5 que mapean aquí</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
 }
 
 // ---------- render ----------
@@ -744,14 +760,14 @@ NETS.forEach(net=>{
 
     <div class="di-note"><b>Acceso en DI:</b> ${net.di}</div>
 
-    <div class="section-h">Evidencia de existencia</div>
-    <ul class="ev">${net.ev.map(([t,s])=>`<li>${t}<br><span class="src">— ${s}</span></li>`).join('')}</ul>
+    <details class="sec" open><summary>Evidencia de existencia</summary><div class="sec-body">
+    <ul class="ev">${net.ev.map(([t,s])=>`<li>${t}<br><span class="src">— ${s}</span></li>`).join('')}</ul></div></details>
 
-    <div class="section-h">Mapeo · fenómeno → sustrato → fuente</div>
+    <details class="sec" open><summary>Mapeo · fenómeno → sustrato → fuente</summary><div class="sec-body">
     <table>
       <thead><tr><th>Ítem</th><th>Sustrato</th><th>Fuente</th><th>Fortaleza</th></tr></thead>
       <tbody>${net.map.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td class="frt">${frtTag(r[3])}</td></tr>`).join('')}</tbody>
-    </table>
+    </table></div></details>
 
     ${scoreHTML(net.n)}
 
@@ -761,10 +777,9 @@ NETS.forEach(net=>{
 
     ${amdpHTML(net.n)}
 
-    <div class="gaps">
-      <div class="section-h">Huecos & fronteras</div>
+    <details class="sec"><summary style="color:var(--prelim)">Huecos & fronteras</summary><div class="sec-body gaps">
       <ul>${net.gaps.map(g=>`<li>${g}</li>`).join('')}</ul>
-    </div>
+    </div></details>
   `;
   main.appendChild(el);
 });
@@ -828,6 +843,11 @@ document.getElementById('onlyHigh').addEventListener('change',e=>{
   document.querySelectorAll('#tocList a').forEach(l=>{
     l.style.display = (!on || l.dataset.strength==='ALTA') ? '' : 'none';
   });
+});
+document.getElementById('toggleAll').addEventListener('click',()=>{
+  const ds=document.querySelectorAll('details.sec');
+  const anyClosed=[...ds].some(d=>!d.open);
+  ds.forEach(d=>d.open=anyClosed);
 });
 </script>
 </body>
