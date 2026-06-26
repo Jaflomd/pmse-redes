@@ -211,7 +211,9 @@
       <b>Mapeo nosológico.</b> La columna <b>HiTOP</b> muestra los clusters empíricos del instrumento
       (Table S1), asignados síntoma por síntoma — son datos sourced, no inferencias. El tag
       <span class="tag" style="background:var(--accent2)">esp</span> indica el espectro HiTOP de nivel
-      superior <i>solo</i> donde el crosswalk de escalas lo declara explícitamente. La columna
+      superior (asignación clínica a la jerarquía HiTOP, 2026-06-26). <b>10 nodos van marcados «fuera de
+      HiTOP»</b> — arousal, motor y cognición ejecutiva que HiTOP no modela: es la cobertura diferencial
+      del pMSE. La columna
       <b>DSM-5</b> es el nº de síntomas mapeados a ese ítem. Los conteos de la red 10 ya incluyen la
       reasignación (2026-06-26) de los 29 síntomas de Control inhibitorio.
     </div>
@@ -570,10 +572,57 @@ const NMAP = {
  ]
 };
 
+const SPECTRUM = {
+ 'Conciencia':'fuera de HiTOP · arousal',
+ 'Alerta':'fuera de HiTOP · arousal',
+ 'Sueño y ritmo circadiano':'Internalizing (transdiagnóstico)',
+ 'Apetito e ingesta':'Eating Pathology',
+ 'Libido':'Sexual Problems',
+ 'Expresividad emocional':'Detachment',
+ 'Afiliación':'Detachment',
+ 'Dominancia':'Antagonistic Ext.',
+ 'Patrón de personalidad':'todos los espectros',
+ 'Ánimo':'Internalizing · Distress',
+ 'Amenaza':'Internalizing · Fear',
+ 'Motivación / drive (wanting + vigor)':'Detachment (−) / Mania (+)',
+ 'Tono hedónico (liking)':'Detachment · anhedonia',
+ 'Frustración (frustrative nonreward)':'Antagonistic Ext.',
+ 'Velocidad psicomotriz':'fuera de HiTOP · motor',
+ 'Parakinesia':'fuera de HiTOP · motor',
+ 'Tics':'fuera de HiTOP · motor',
+ 'Síntomas extrapiramidales':'fuera de HiTOP · motor/iatrogénico',
+ 'Signos neurológicos blandos':'fuera de HiTOP · neurológico',
+ 'Contenido del pensamiento':'Thought Disorder',
+ 'Integración sensorial':'Thought Disorder',
+ 'Interocepción':'Somatoform',
+ 'Nocicepción':'Somatoform',
+ 'Regulación atencional':'Disinhibited Ext. · distractib.',
+ 'Metacontrol cognitivo':'fuera de HiTOP · cognición',
+ 'Monitoreo del error':'Internalizing · Fear/OCD',
+ 'Control inhibitorio':'Disinhibited Ext.',
+ 'Pruebas neurocognitivas':'fuera de HiTOP · cognición',
+ 'Experiencia del pensamiento':'Thought Disorder',
+ 'Experiencia vivida':'Thought Disorder · disociación',
+ 'Experiencia del yo':'Thought Disorder',
+ 'Mentalización':'Detachment',
+ 'Autoevaluación':'Internalizing · Distress',
+ 'Simulación a futuro':'Internalizing · Distress',
+ 'Regulación metacognitiva':'fuera de HiTOP · metacognición',
+ 'Organización conductual':'Thought Disorder · disorg.',
+ 'Regulación emocional':'Internalizing / Disinhibited Ext.',
+ 'Approach–evitación':'Internalizing · Fear / Disinhibited',
+ 'Riesgo':'Disinhibited Ext.',
+};
+
 function nmapHTML(n){
   const rows = NMAP[n]; if(!rows) return '';
   const rd = RDOC[n] || '—';
-  const body = rows.map(r=>`<tr><td><b>${r.it}</b></td><td>${r.hitop||'—'}${r.esp?` <span class="tag" style="background:var(--accent2)">esp: ${r.esp}</span>`:''}</td><td class="frt" style="text-align:center">${r.dsm5}</td><td>${r.esc}</td></tr>`).join('');
+  const body = rows.map(r=>{
+    const sp = SPECTRUM[r.it] !== undefined ? SPECTRUM[r.it] : r.esp;
+    const out = sp && sp.indexOf('fuera')===0;
+    const spTag = sp ? ` <span class="tag" style="background:${out?'var(--chip)':'var(--accent2)'};color:${out?'var(--muted)':'#0a0d12'}">${out?sp:'esp: '+sp}</span>` : '';
+    return `<tr><td><b>${r.it}</b></td><td>${r.hitop||'—'}${spTag}</td><td class="frt" style="text-align:center">${r.dsm5}</td><td>${r.esc}</td></tr>`;
+  }).join('');
   const orphan = ORPHAN[n] ? `<div class="snote" style="border-color:var(--falta)">${ORPHAN[n]}</div>` : '';
   return `<details class="sec"><summary style="color:var(--accent2)">Mapeo nosológico · HiTOP · DSM-5 · escalas <span class="muted-note">— Dominio RDoC: <b style="color:var(--ink)">${rd}</b></span></summary><div class="sec-body">
   <table><thead><tr><th>Ítem</th><th>HiTOP (clusters empíricos)</th><th title="nº de síntomas DSM-5 mapeados">DSM-5</th><th>Escalas clave</th></tr></thead><tbody>${body}</tbody></table>${orphan}</div></details>`;
@@ -826,7 +875,7 @@ synth.innerHTML=`
   <div class="section-h" style="margin-top:18px">Cobertura nosológica (crosswalks)</div>
   <ul class="ev">
     <li><b>DSM-5:</b> 331 síntomas únicos del instrumento → <b>317 mapeados a nodo (96%)</b>, mostrados síntoma por síntoma en cada red. GAP: eje de adicción (uso/tolerancia/abstinencia) + bajo peso corporal — fuera del pMSE. <span class="src">— Table S1, abn0001125</span></li>
-    <li><b>HiTOP:</b> clusters empíricos mapeados <b>por síntoma</b> (nivel fino, sourced); espectros de nivel superior (Detachment, Antagonismo, Distress, Thought Disorder, Disinhibición…) solo en algunos ítems vía crosswalk de escalas — cobertura parcial a nivel espectro.</li>
+    <li><b>HiTOP:</b> clusters empíricos por síntoma (sourced) + <b>espectro de nivel superior en los 38 nodos</b>: <b>28 dentro de HiTOP</b> (Internalizing/Distress·Fear, Thought Disorder, Detachment, Antagonistic/Disinhibited Externalizing, Somatoform, Eating, Sexual) y <b>10 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva) — la cobertura diferencial del pMSE.</li>
     <li><b>RDoC:</b> colapso 10 redes → 6 dominios (ver dominio por red arriba). Huecos que el pMSE cubre y RDoC no: contenido/juicio de realidad, fenomenología del yo, nocicepción, regulación/insight.</li>
     <li><b>Escalas clínicas:</b> cada ítem cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc. (crosswalk de escalas).</li>
     <li><b>AMDP (9ª ed.):</b> los <b>154 ítems</b> mapeados ítem-por-ítem al nodo pMSE (ver tabla "Ítems AMDP" por red). 5 ítems pMSE quedan sin AMDP directo: <b>Conciencia, Dominancia, Patrón de personalidad, Tics, Mentalización</b> — AMDP no modela ToM, rasgos de personalidad ni tics (y obnubilación se asignó a Alerta).</li>
