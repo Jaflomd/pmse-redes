@@ -1,6 +1,6 @@
 # Crosswalk AMDP (9ª ed., 154 ítems) → ítems pMSE
 
-> Mapeo por 6 subagentes + revisión de panel de 3 expertos (2026-06-26). Conciencia=vigilia/nivel, Alerta=arousal.
+> Mapeo por 6 subagentes + panel de 3 expertos + revisión de crosswalk. Conciencia=vigilia, Alerta=arousal.
 
 ## Red 1
 
@@ -82,13 +82,14 @@
 | 066 | Euforia | SO | alta |
 | 067 | Disforia | SO | alta |
 
-**Amenaza** (4):
+**Amenaza** (5):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
 | 027 | Suspicacia | SO | alta |
 | 029 | Fobias | S | alta |
 | 065 | Ansiedad | SO | alta |
+| 069 | Inquietud interior | S | alta |
 | ZP01 | Crisis de angustia | SO | alta |
 
 ## Red 5
@@ -108,12 +109,11 @@
 |---|---|---|---|
 | 060 | Sentimiento de pérdida de sentimientos | S | alta |
 
-**Frustración** (2):
+**Frustración** (1):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
 | 068 | Irritabilidad | SO | alta |
-| 069 | Inquietud interior | S | alta |
 
 ## Red 6
 
@@ -178,7 +178,7 @@
 | ZP03 | Ideas de referencia | S | alta |
 | ZP10 | Ideas sobrevaloradas | S | alta |
 
-**Integración sensorial** (7):
+**Integración sensorial** (6):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
@@ -188,7 +188,6 @@
 | 050 | Alucinaciones visuales | S | alta |
 | 051 | Alucinaciones corporales | S | alta |
 | 052 | Alucinaciones olfativas y gustativas | S | alta |
-| 131 | Síntomas de conversión | SO | media |
 
 **Interocepción** (17):
 
@@ -283,7 +282,7 @@
 | 053 | Desrealización | S | alta |
 | 059 | Perplejidad | O | media |
 
-**Experiencia del yo** (6):
+**Experiencia del yo** (7):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
@@ -292,6 +291,7 @@
 | 056 | Robo del pensamiento | S | alta |
 | 057 | Inserción del pensamiento | S | alta |
 | 058 | Otros sentimientos de influencia ajena | S | alta |
+| 131 | Síntomas de conversión | SO | media |
 | ZP06 | Sonorización del pensamiento | S | alta |
 
 **Mentalización** — _sin ítem AMDP directo_
