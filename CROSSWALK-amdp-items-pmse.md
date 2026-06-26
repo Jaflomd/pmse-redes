@@ -255,7 +255,7 @@
 
 ## Red 9
 
-**Experiencia del pensamiento** (11):
+**Experiencia del pensamiento** (10):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
@@ -268,7 +268,6 @@
 | 022 | Fuga de ideas | O | alta |
 | 023 | Pensamiento tangencial | O | alta |
 | 024 | Bloqueo del pensamiento | SO | alta |
-| 026 | Neologismos | O | media |
 | ZP02 | Aceleración del pensamiento | S | alta |
 
 **Experiencia vivida** (5):
@@ -312,18 +311,20 @@
 
 ## Red 10
 
-**Regulación metacognitiva** (2):
+**Regulación metacognitiva** (3):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
 | 097 | Ausencia de sentimiento de enfermedad | S | alta |
 | 098 | Falta de conciencia de enfermedad | S | alta |
+| 099 | Falta de cooperación | SO | media |
 
-**Organización conductual** (4):
+**Organización conductual** (5):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
 | 025 | Incoherencia/Descarrilamiento | O | alta |
+| 026 | Neologismos | O | media |
 | 032 | Acciones compulsivas | S | alta |
 | 100 | Necesidad de cuidados | SO | media |
 | ZP04 | Desorganización | O | alta |
@@ -344,11 +345,10 @@
 | ZP05 | Comportamiento intrusivo | O | media |
 | ZP07 | Impulsividad | SO | alta |
 
-**Riesgo** (4):
+**Riesgo** (3):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
 | 094 | Agresividad | SO | alta |
 | 095 | Conducta suicida | SO | alta |
 | 096 | Autolesiones | SO | alta |
-| 099 | Falta de cooperación | SO | media |

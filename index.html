@@ -442,7 +442,7 @@ const SCORES = {
   {it:'Parakinesia', note:'<b>3 subtipos, cada uno 0/−1/−2</b> (ventana: entrevista o últimos 7 días). <b>Iterativa</b>: 0 ausente · −1 sutil/intermitente · −2 recurrente/difícil de interrumpir (estereotipias, perseveraciones, verbigeración, ecolalia). <b>Odd/bizarra</b>: 0 proporcional · −1 gesto/postura rara breve · −2 bizarra clara o sostenida (mannerisms, grimacing, posturas raras). <b>Volicional/automática</b>: 0 agencia motora normal · −1 leve/ambiguo · −2 claro/reproducible (obediencia automática, mitgehen/mitmachen, ambitendencia, flexibilidad cérea, catalepsia, grasp reflex).'},
   {it:'Tics', a:['marcados (frecuentes/casi continuos, complejos, no suprimibles, con interferencia)','leves (ocasionales, simples, suprimibles)','ausentes',null,null], note:'<b>Unidireccional 0/−1/−2</b> anclado en YGTSS (frecuencia · intensidad · complejidad · supresibilidad · interferencia). Espec [motor]/[vocal-fónico] · [simple]/[complejo].'},
   {it:'Síntomas extrapiramidales', a:[null,null,'ausentes','leves','marcados'], note:'<b>Unidireccional 0/+1/+2.</b> Incluye acatisia. Anclas: Simpson-Angus (parkinsonismo) · BARS (acatisia) · AIMS (discinesia). Espec [parkinsonismo]/[acatisia]/[discinesia]/[distonía].'},
-  {it:'Signos neurológicos blandos', a:[null,null,'ausentes','sutiles (1–2 signos)','marcados (múltiples dominios)'], note:'<b>Unidireccional 0/+1/+2.</b>'}
+  {it:'Signos neurológicos blandos', a:[null,null,'ausentes','sutiles (1–2 signos)','marcados (múltiples dominios)'], note:'<b>Unidireccional 0/+1/+2.</b> Especificador <b>[autonómico]</b> para signos vegetativos (sialorrea, seborrea, sudoración) — AMDP 110, 123.'}
  ],
  7:[
   {it:'Contenido del pensamiento', scale04:['Normal','Idea fija o preocupación','Obsesiones o rumiaciones','Idea sobrevalorada o creencia inusual','Delusión'], flag:'escala dimensional de convicción 0→4 (sustituye −2/+2 para este ítem)'},
@@ -675,7 +675,7 @@ const AMDP = {
   {it:'Pruebas neurocognitivas', n:8, a:'005 Desorientación temporal · 006 Desorientación espacial · 007 Desorientación situacional · 008 Desorientación autopsíquica · 011 Memoria de fijación alterada · 012 Memoria a largo plazo alterada · 013 Confabulación · ZP11 Afasia anómica'}
  ],
  9:[
-  {it:'Experiencia del pensamiento', n:11, a:'015 Pensamiento inhibido · 017 Pensamiento circunstancial · 018 Pensamiento restringido · 019 Pensamiento perseverativo · 020 Rumiación · 021 Pensamiento acelerado · 022 Fuga de ideas · 023 Pensamiento tangencial · 024 Bloqueo del pensamiento · 026 Neologismos · ZP02 Aceleración del pensamiento'},
+  {it:'Experiencia del pensamiento', n:10, a:'015 Pensamiento inhibido · 017 Pensamiento circunstancial · 018 Pensamiento restringido · 019 Pensamiento perseverativo · 020 Rumiación · 021 Pensamiento acelerado · 022 Fuga de ideas · 023 Pensamiento tangencial · 024 Bloqueo del pensamiento · ZP02 Aceleración del pensamiento'},
   {it:'Experiencia vivida', n:5, a:'004 Expansión de la consciencia · 014 Paramnesias · 033 Humor delirante · 053 Desrealización · 059 Perplejidad'},
   {it:'Experiencia del yo', n:6, a:'054 Despersonalización · 055 Difusión del pensamiento · 056 Robo del pensamiento · 057 Inserción del pensamiento · 058 Otros sentimientos de influencia ajena · ZP06 Sonorización del pensamiento'},
   {it:'Mentalización', n:0, a:'—'},
@@ -683,11 +683,11 @@ const AMDP = {
   {it:'Simulación a futuro', n:1, a:'064 Desesperanza'}
  ],
  10:[
-  {it:'Regulación metacognitiva', n:2, a:'097 Ausencia de sentimiento de enfermedad · 098 Falta de conciencia de enfermedad'},
-  {it:'Organización conductual', n:4, a:'025 Incoherencia/Descarrilamiento · 032 Acciones compulsivas · 100 Necesidad de cuidados · ZP04 Desorganización'},
+  {it:'Regulación metacognitiva', n:3, a:'097 Ausencia de sentimiento de enfermedad · 098 Falta de conciencia de enfermedad · 099 Falta de cooperación'},
+  {it:'Organización conductual', n:5, a:'025 Incoherencia/Descarrilamiento · 026 Neologismos · 032 Acciones compulsivas · 100 Necesidad de cuidados · ZP04 Desorganización'},
   {it:'Regulación emocional', n:3, a:'075 Ambivalencia · 077 Labilidad afectiva · 078 Incontinencia afectiva'},
   {it:'Approach-evitación', n:3, a:'031 Impulsos compulsivos · ZP05 Comportamiento intrusivo · ZP07 Impulsividad'},
-  {it:'Riesgo', n:4, a:'094 Agresividad · 095 Conducta suicida · 096 Autolesiones · 099 Falta de cooperación'}
+  {it:'Riesgo', n:3, a:'094 Agresividad · 095 Conducta suicida · 096 Autolesiones'}
  ],
 };
 
