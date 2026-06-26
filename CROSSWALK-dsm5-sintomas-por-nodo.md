@@ -314,6 +314,13 @@
 
 - `ZMQRF_92` Pensamientos/impulsos intrusivos
 
+**Control inhibitorio** (4):
+
+- `ZMQRF_194` Impulsividad generalizada
+- `ZMQRF_279` Respuestas impulsivas prematuras
+- `ZMQRF_280` Dificultad para esperar turno
+- `ZMQRF_281` Interrupción de conversaciones
+
 **Pruebas neurocognitivas** (3):
 
 - `ZMQRF_271` Olvidos en actividades cotidianas
@@ -381,12 +388,9 @@
 - `ZMQRF_60` Discurso desorganizado/ilógico
 - `ZMQRF_61` Conducta inapropiada o pueril
 
-**Regulación emocional** (16):
+**Regulación emocional** (13):
 
 - `ZMQRF_163` Negativa ante figuras de autoridad
-- `ZMQRF_279` Respuestas impulsivas prematuras
-- `ZMQRF_280` Dificultad para esperar turno
-- `ZMQRF_281` Interrupción de conversaciones
 - `ZMQRF_282` Uso no autorizado de objetos ajenos
 - `ZMQRF_315` Estallidos verbales de ira
 - `ZMQRF_324` Sentimiento de desbordamiento
@@ -400,11 +404,10 @@
 - `ZMQRF_654` Habla excesiva inapropiada
 - `ZMQRF_73` Cambios de humor bruscos
 
-**Approach-evitación** (18):
+**Approach-evitación** (17):
 
 - `ZMQRF_106` Evitación de recuerdos traumáticos
 - `ZMQRF_107` Evitación de disparadores traumáticos
-- `ZMQRF_194` Impulsividad generalizada
 - `ZMQRF_255` Huida para evitar responsabilidades
 - `ZMQRF_325` Sensación de pérdida de control
 - `ZMQRF_329` Negativa/resistencia a salir

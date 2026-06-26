@@ -358,7 +358,7 @@ const NETS = [
  },
  {n:8, name:'Red frontoparietal — control ejecutivo',
   onto:'Red de conectividad funcional (multiple-demand / fronto-parietal control network).',
-  items:['Metacontrol cognitivo','Monitoreo del error','Pruebas neurocognitivas'], strength:'ALTA', access:'perf',
+  items:['Metacontrol cognitivo','Monitoreo del error','Control inhibitorio','Pruebas neurocognitivas'], strength:'ALTA', access:'perf',
   ev:[
     ['Déficit de control cognitivo transdiagnóstico en la multiple-demand network.','McTeague, Goodkind & Etkin 2016 (PMC5107153) [library]'],
     ['Sustrato común dACC/ínsula a través de trastornos (monitoreo del error, ERN).','Goodkind et al. 2015 (PMC4791058) [library]'],
@@ -367,6 +367,7 @@ const NETS = [
   map:[
     ['Metacontrol cognitivo','FPN / multiple-demand network','McTeague 2016 [library]','alta'],
     ['Monitoreo del error','dACC / dmPFC (ERN)','Goodkind 2015 [library]','alta'],
+    ['Control inhibitorio','IFG derecho–preSMA–STN (vía hiperdirecta) / FPN','McTeague 2016 [library]','alta'],
     ['Pruebas neurocognitivas','DLPFC + parietal (MCCB)','NC-neurocognitive [library]','alta']
   ],
   gaps:['Frontera con red 10: metacontrol = capacidad ejecutiva medible (FPN); regulación = aplicación del control a través de dominios (integrativa).'],
@@ -451,6 +452,7 @@ const SCORES = {
  8:[
   {it:'Metacontrol cognitivo', a:['déficit: distractibilidad, perseveración, no sostiene set','control reducido: lapsos, requiere esfuerzo','control cognitivo proporcional','control elevado/esforzado, algo rígido','sobre-control: hiperfoco rígido, no cambia set']},
   {it:'Monitoreo del error', a:['hipomonitoreo / jumping-to-conclusions: no detecta error','detección de error reducida','monitoreo calibrado','hipermonitoreo leve / chequeo aumentado','hipermonitoreo / not-just-right: dudas y checking']},
+  {it:'Control inhibitorio', a:['desinhibición: actúa sin frenar, blurting, interrumpe, no espera turno','inhibición reducida: impulsividad ocasional, frena con lentitud','frena la respuesta prepotente proporcionalmente','inhibición aumentada / cautela motora leve','sobre-inhibición: freezing conductual, lentitud marcada para iniciar'], flag:'inhibición de respuesta (Go/No-Go · Stroop · Stop-Signal); el freno motor/verbal ≠ dirección (Approach-evitación) ni daño (Riesgo)'},
   {it:'Pruebas neurocognitivas', note:'<b>Batería bedside, 5 pruebas (cada una 0/−1/−2 hacia déficit):</b><table><thead><tr><th>Prueba</th><th>0 (normal)</th><th>−1 (leve)</th><th>−2 (déficit)</th></tr></thead><tbody><tr><td>Fluencia semántica (animales)</td><td>≥18</td><td>12–17</td><td>&lt;12</td></tr><tr><td>Digit span</td><td>6F / 4B</td><td>5F / 3B</td><td>≤4F / ≤2B</td></tr><tr><td>TMT oral (Trail Making)</td><td>A&lt;30s, B&lt;75s</td><td>ratio B/A &gt;3.0</td><td>B&gt;180s</td></tr><tr><td>Clock Drawing</td><td>normal</td><td>error menor</td><td>errores graves</td></tr><tr><td>3-Word Recall</td><td>3/3 libre</td><td>2/3 con cues</td><td>≤1/3 libre</td></tr></tbody></table>'}
  ],
  9:[
@@ -504,7 +506,7 @@ const RDOC = {
   10:'— (regulación: hueco de RDoC)'
 };
 const ORPHAN = {
-  10:'<b>✓ Reasignación de Control inhibitorio</b> (29 síntomas DSM-5, 2026-06-26): Reckless risk-taking (7)+Antisocial (2) → <b>Riesgo</b> · Substance use (6) → <b>Motivación/drive</b> · Verbal impulsivity (4)+Oppositional (2)+Inconsiderate (2)+Inappropriate (1)+Difficulty waiting (1)+Hostility (1) → <b>Regulación emocional</b> · Compulsions (2)+Perseveration (1) → <b>Approach–evitación</b>. Conteos DSM-5 ya actualizados arriba (suma = 29; cobertura intacta).'
+  10:'<b>✓ Reasignación de Control inhibitorio</b> (29 síntomas DSM-5, 2026-06-26): Reckless risk-taking (7)+Antisocial (2) → <b>Riesgo</b> · Substance use (6) → <b>Motivación/drive</b> · Verbal impulsivity (4)+Oppositional (2)+Inconsiderate (2)+Inappropriate (1)+Difficulty waiting (1)+Hostility (1) → <b>Regulación emocional</b> · Compulsions (2)+Perseveration (1) → <b>Approach–evitación</b>. Conteos DSM-5 ya actualizados (suma = 29; cobertura intacta). <b>Actualización:</b> la <b>capacidad</b> de inhibición (response inhibition) se reintrodujo como ítem ejecutivo en la <b>red 8 (CEN)</b>; 4 síntomas de impulsividad motora/verbal (blurting, no esperar turno, interrumpir, impulsividad) se movieron allí.'
 };
 const NMAP = {
  1:[
@@ -548,6 +550,7 @@ const NMAP = {
  8:[
   {it:'Metacontrol cognitivo', hitop:'Cognitive difficulties', dsm5:11, esc:'MCCB (WM/Vigilance/Reasoning) · PANSS cognitivo'},
   {it:'Monitoreo del error', hitop:'Intrusive obsessions', dsm5:1, esc:'Y-BOCS Obsessions · OCI-R Checking · PID-5 Rigid Perfect.'},
+  {it:'Control inhibitorio', hitop:'Verbal impulsivity · Reckless impulsivity', dsm5:4, esc:'Stroop · Go/No-Go · Stop-Signal (SSRT) · PID-5 Impulsivity', esp:'Disinhibición'},
   {it:'Pruebas neurocognitivas', hitop:'Cognitive difficulties · Cognitive sympt. (trauma)', dsm5:3, esc:'MCCB (7 dominios) · MoCA/MMSE'}
  ],
  9:[
@@ -561,8 +564,8 @@ const NMAP = {
  10:[
   {it:'Regulación metacognitiva', hitop:'Perseveration / fear of dyscontrol', dsm5:1, esc:'PANSS G12 Insight · EASE s4 · MCCB Reasoning'},
   {it:'Organización conductual', hitop:'Disorganised thought · Perfectionism · Verbal impulsivity', dsm5:10, esc:'SANS Alogia/Avol. · PANSS N6 · SAPS FTD · NES Sequencing', esp:'Thought Disorder'},
-  {it:'Regulación emocional', hitop:'Emotional lability · Verbal impulsivity · Oppositional · Hostility · Depressed mood', dsm5:16, esc:'MCCB Reasoning · PID-5 Disinhibition · PANSS N5'},
-  {it:'Approach–evitación', hitop:'Agoraphobia · Avoidance · Compulsions · Perseveration', dsm5:18, esc:'CAINS/BNSS MAP-Antic. · STAI Trait · PID-5 Anxiousness/Detach.'},
+  {it:'Regulación emocional', hitop:'Emotional lability · Oppositional · Hostility · Depressed mood', dsm5:13, esc:'MCCB Reasoning · PID-5 Disinhibition · PANSS N5'},
+  {it:'Approach–evitación', hitop:'Agoraphobia · Avoidance · Compulsions · Perseveration', dsm5:17, esc:'CAINS/BNSS MAP-Antic. · STAI Trait · PID-5 Anxiousness/Detach.'},
   {it:'Riesgo', hitop:'Suicidality · Reckless risk-taking · Antisocial · Physical aggression', dsm5:20, esc:'MADRS 10 / HAM-D 3 · PANSS G14/P7 · PID-5 Risk-Taking', esp:'Disinhibición'}
  ]
 };
@@ -619,6 +622,7 @@ const AMDP = {
  8:[
   {it:'Metacontrol cognitivo', n:2, a:'009 Apercepción alterada · 010 Concentración alterada'},
   {it:'Monitoreo del error', n:1, a:'030 Pensamientos obsesivos'},
+  {it:'Control inhibitorio', n:0, a:'—'},
   {it:'Pruebas neurocognitivas', n:8, a:'005 Desorientación temporal · 006 Desorientación espacial · 007 Desorientación situacional · 008 Desorientación autopsíquica · 011 Memoria de fijación alterada · 012 Memoria a largo plazo alterada · 013 Confabulación · ZP11 Afasia anómica'}
  ],
  9:[
@@ -689,6 +693,7 @@ const DSM = {
  8:[
   {it:'Metacontrol cognitivo', n:11, d:'ZMQRF_267 Errores por descuido · ZMQRF_268 Mente ausente en conversación · ZMQRF_269 No sigue instrucciones hasta el final · ZMQRF_270 No termina tareas asignadas · ZMQRF_361 Mente en blanco · ZMQRF_46 Dificultad para sostener atención · ZMQRF_47 Dificultad para organizar tareas · ZMQRF_537 Incapacidad de concentrarse prolongadamente · ZMQRF_579 Dificultad para tomar decisiones · ZMQRF_677 Dificultad inusual para pensar o concentrarse · ZMQRF_70 Dificultad para pensar o concentrarse'},
   {it:'Monitoreo del error', n:1, d:'ZMQRF_92 Pensamientos/impulsos intrusivos'},
+  {it:'Control inhibitorio', n:4, d:'ZMQRF_194 Impulsividad generalizada · ZMQRF_279 Respuestas impulsivas prematuras · ZMQRF_280 Dificultad para esperar turno · ZMQRF_281 Interrupción de conversaciones'},
   {it:'Pruebas neurocognitivas', n:3, d:'ZMQRF_271 Olvidos en actividades cotidianas · ZMQRF_48 Pérdida de objetos necesarios · ZMQRF_573 Amnesia de evento traumático'}
  ],
  9:[
@@ -702,8 +707,8 @@ const DSM = {
  10:[
   {it:'Regulación metacognitiva', n:1, d:'ZMQRF_93 Supresión de pensamientos intrusivos'},
   {it:'Organización conductual', n:10, d:'ZMQRF_293 Habla acelerada con cambios de tema · ZMQRF_495 Rigidez conductual perseverativa · ZMQRF_496 Fijación obsesiva incontrolable · ZMQRF_513 Conducta percibida como extraña · ZMQRF_543 Intolerancia a la imperfección · ZMQRF_544 Perfeccionismo persistente · ZMQRF_545 Necesidad de orden rígido · ZMQRF_568 Exigencia de perfección absoluta · ZMQRF_60 Discurso desorganizado/ilógico · ZMQRF_61 Conducta inapropiada o pueril'},
-  {it:'Regulación emocional', n:16, d:'ZMQRF_163 Negativa ante figuras de autoridad · ZMQRF_279 Respuestas impulsivas prematuras · ZMQRF_280 Dificultad para esperar turno · ZMQRF_281 Interrupción de conversaciones · ZMQRF_282 Uso no autorizado de objetos ajenos · ZMQRF_315 Estallidos verbales de ira · ZMQRF_324 Sentimiento de desbordamiento · ZMQRF_377 Llanto fácil · ZMQRF_433 Discusiones con figuras de autoridad · ZMQRF_49 Verborrea aumentada · ZMQRF_494 Labilidad emocional por estímulos menores · ZMQRF_541 Descuido de bienes propios y ajenos · ZMQRF_586 Emociones impredecibles/fluctuantes · ZMQRF_596 Desobediencia/negativismo · ZMQRF_654 Habla excesiva inapropiada · ZMQRF_73 Cambios de humor bruscos'},
-  {it:'Approach-evitación', n:18, d:'ZMQRF_106 Evitación de recuerdos traumáticos · ZMQRF_107 Evitación de disparadores traumáticos · ZMQRF_194 Impulsividad generalizada · ZMQRF_255 Huida para evitar responsabilidades · ZMQRF_325 Sensación de pérdida de control · ZMQRF_329 Negativa/resistencia a salir · ZMQRF_332 Negativa a dormir fuera de casa · ZMQRF_333 Necesidad de presencia para dormir · ZMQRF_414 Comer en aislamiento · ZMQRF_574 Evitación de esfuerzo cognitivo sostenido · ZMQRF_585 Evitación de situaciones sociales · ZMQRF_587 Evitación de atención médica · ZMQRF_682 Compulsiones reductoras de ansiedad · ZMQRF_83 Evitación fóbica · ZMQRF_86 Evitación de situaciones de pánico · ZMQRF_88 Evitación agorafóbica · ZMQRF_89 Dependencia de acompañante en situaciones fóbicas · ZMQRF_94 Compulsiones ante pensamiento intrusivo'},
+  {it:'Regulación emocional', n:13, d:'ZMQRF_163 Negativa ante figuras de autoridad · ZMQRF_282 Uso no autorizado de objetos ajenos · ZMQRF_315 Estallidos verbales de ira · ZMQRF_324 Sentimiento de desbordamiento · ZMQRF_377 Llanto fácil · ZMQRF_433 Discusiones con figuras de autoridad · ZMQRF_49 Verborrea aumentada · ZMQRF_494 Labilidad emocional por estímulos menores · ZMQRF_541 Descuido de bienes propios y ajenos · ZMQRF_586 Emociones impredecibles/fluctuantes · ZMQRF_596 Desobediencia/negativismo · ZMQRF_654 Habla excesiva inapropiada · ZMQRF_73 Cambios de humor bruscos'},
+  {it:'Approach-evitación', n:17, d:'ZMQRF_106 Evitación de recuerdos traumáticos · ZMQRF_107 Evitación de disparadores traumáticos · ZMQRF_255 Huida para evitar responsabilidades · ZMQRF_325 Sensación de pérdida de control · ZMQRF_329 Negativa/resistencia a salir · ZMQRF_332 Negativa a dormir fuera de casa · ZMQRF_333 Necesidad de presencia para dormir · ZMQRF_414 Comer en aislamiento · ZMQRF_574 Evitación de esfuerzo cognitivo sostenido · ZMQRF_585 Evitación de situaciones sociales · ZMQRF_587 Evitación de atención médica · ZMQRF_682 Compulsiones reductoras de ansiedad · ZMQRF_83 Evitación fóbica · ZMQRF_86 Evitación de situaciones de pánico · ZMQRF_88 Evitación agorafóbica · ZMQRF_89 Dependencia de acompañante en situaciones fóbicas · ZMQRF_94 Compulsiones ante pensamiento intrusivo'},
   {it:'Riesgo', n:20, d:'ZMQRF_112 Conductas autodestructivas · ZMQRF_164 Deseos de venganza/daño a otros · ZMQRF_165 Inicio de peleas físicas · ZMQRF_166 Robo encubierto · ZMQRF_303 Pensamientos sobre la muerte · ZMQRF_435 Amenazas/intimidación a otros · ZMQRF_437 Daño físico deliberado a otros · ZMQRF_503 Ideación de muerte por inutilidad · ZMQRF_539 Actuar sin evaluar consecuencias · ZMQRF_540 Decisiones imprudentes incontrolables · ZMQRF_546 Conductas peligrosas sin límites · ZMQRF_547 Búsqueda activa de riesgo · ZMQRF_548 Conducta insegura deliberada · ZMQRF_550 Intento de suicidio · ZMQRF_551 Plan suicida específico · ZMQRF_588 Destrucción deliberada de propiedad ajena · ZMQRF_678 Agresión física al perder control · ZMQRF_68 Conductas imprudentes de alto riesgo · ZMQRF_71 Ideación suicida sin plan · ZMQRF_72 Agresión física a personas/objetos'}
  ],
 };
@@ -826,7 +831,7 @@ synth.innerHTML=`
     <li><b>Escalas clínicas:</b> cada ítem cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc. (crosswalk de escalas).</li>
     <li><b>AMDP (9ª ed.):</b> los <b>154 ítems</b> mapeados ítem-por-ítem al nodo pMSE (ver tabla "Ítems AMDP" por red). 5 ítems pMSE quedan sin AMDP directo: <b>Conciencia, Dominancia, Patrón de personalidad, Tics, Mentalización</b> — AMDP no modela ToM, rasgos de personalidad ni tics (y obnubilación se asignó a Alerta).</li>
     <li style="color:var(--accent2)"><b>Auditoría aplicada (2026-06-26):</b> revisión crítica de la distribución. Corrección mayor — <b>Mentalización</b> estaba sobrecargada de Antagonismo (17→3): 11 síntomas de manipulación/engaño movidos a <b>Dominancia</b> (6→17), 3 de suspicacia a <b>Amenaza</b>. Más 8 reasignaciones de coherencia AMDP↔DSM (despersonalización, imagen corporal, obsesiones, desapego social…). Detalle en <code>AUDITORIA-distribucion-amdp-dsm-2026-06-26.md</code>.</li>
-    <li style="color:var(--alta)"><b>✓ Resuelto:</b> los 29 síntomas DSM-5 de Control inhibitorio se reasignaron (2026-06-26) a Riesgo (+9), Regulación emocional (+11), Motivación/drive (+6) y Approach–evitación (+3). Cobertura DSM-5 intacta.</li>
+    <li style="color:var(--alta)"><b>✓ Resuelto:</b> los 29 síntomas DSM-5 de Control inhibitorio se reasignaron (2026-06-26) a Riesgo (+9), Regulación emocional (+11), Motivación/drive (+6) y Approach–evitación (+3). Cobertura DSM-5 intacta. <b>Control inhibitorio reintroducido</b> en la red 8 (CEN) como inhibición de respuesta (eje −2 desinhibición ↔ +2 sobre-inhibición); 4 síntomas de impulsividad motora/verbal reubicados allí.</li>
   </ul>
 `;
 main.appendChild(synth);
