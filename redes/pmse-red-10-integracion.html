@@ -163,8 +163,11 @@
     .layout{display:block}
     .net,.synth{box-shadow:none;break-inside:avoid;border-color:#ccc}
   }
+  .home-btn{position:fixed;left:18px;bottom:18px;z-index:60;background:var(--accent);color:#0a0d12;
+    font-weight:700;font-size:13px;padding:9px 15px;border-radius:10px;text-decoration:none;box-shadow:var(--shadow);display:none}
+  .home-btn:hover{filter:brightness(1.08)}
   /* single-red embed */
-  body.single header.top, body.single nav.toc, body.single #ovwrap, body.single #sintesis, body.single footer{display:none}
+  body.single header.top, body.single nav.toc, body.single #ovwrap, body.single #sintesis, body.single footer, body.single .home-btn{display:none}
   body.single .layout{grid-template-columns:1fr;padding:18px 0}
   body.single .net{margin:0}
 </style>
@@ -807,7 +810,7 @@ NETS.filter(o=>o.n===10).forEach(net=>{
   const a = ACCESS[net.access];
   // TOC
   const link=document.createElement('a');
-  link.href='#net'+net.n;
+  link.href='#red-'+net.n;
   link.dataset.strength = net.strength;
   link.innerHTML = `<span class="n">${net.n}</span><span class="nm">${net.name.replace(/ —.*/,'')}</span>
     <span class="dot" style="background:${STRENGTH[net.strength].c}" title="${net.strength}"></span>`;
@@ -863,7 +866,7 @@ if(ov){
   ov.innerHTML = NETS.filter(o=>o.n===10).map(net=>{
     const a=ACCESS[net.access];
     return `<div class="ov-card">
-      <div class="ov-head"><a href="#net${net.n}"><span class="ov-n">${net.n}</span> ${net.name.replace(/ —.*/,'')}</a>
+      <div class="ov-head"><a href="#red-${net.n}"><span class="ov-n">${net.n}</span> ${net.name.replace(/ —.*/,'')}</a>
         <span class="strength" style="background:${STRENGTH[net.strength].c};font-size:9px;padding:2px 7px">${net.strength}</span></div>
       <div class="ov-acc"><span style="width:8px;height:8px;border-radius:50%;background:${a.dot};display:inline-block"></span>${a.txt}</div>
       <div class="ov-items">${net.items.map(i=>`<span class=\"pill item\">${i}</span>`).join('')}</div>
@@ -936,6 +939,32 @@ document.getElementById('toggleAll').addEventListener('click',()=>{
   const anyClosed=[...ds].some(d=>!d.open);
   ds.forEach(d=>d.open=anyClosed);
 });
+
+// ---------- router por páginas ----------
+function pmseRoute(){
+  if(document.body.classList.contains('single')) return;
+  const m=(location.hash.match(/^#red-(\d+)/));
+  const nets=[...document.querySelectorAll('main .net')];
+  const ov=document.getElementById('ovwrap'), syn=document.getElementById('sintesis');
+  const nav=document.querySelector('nav.toc'), layout=document.querySelector('.layout');
+  const hb=document.getElementById('homeBtn');
+  if(m){
+    const id='net'+m[1];
+    nets.forEach(c=>c.style.display=(c.id===id)?'':'none');
+    if(ov)ov.style.display='none'; if(syn)syn.style.display='none';
+    if(nav)nav.style.display=''; if(layout)layout.style.gridTemplateColumns='';
+    if(hb)hb.style.display='';
+  } else {
+    nets.forEach(c=>c.style.display='none');
+    if(ov)ov.style.display=''; if(syn)syn.style.display='';
+    if(nav)nav.style.display='none'; if(layout)layout.style.gridTemplateColumns='1fr';
+    if(hb)hb.style.display='none';
+  }
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',pmseRoute);
+pmseRoute();
 </script>
+<a id="homeBtn" href="#home" class="home-btn">← Inicio</a>
 </body>
 </html>
