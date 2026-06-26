@@ -233,7 +233,7 @@
 </div>
 
 <div class="wrap" id="ovwrap" style="padding-top:18px">
-  <details class="sec" open><summary>Mapa del instrumento — 38 ítems en 10 redes</summary><div class="sec-body"><div id="overview"></div></div></details>
+  <details class="sec" open><summary>Mapa del instrumento — 37 ítems en 10 redes</summary><div class="sec-body"><div id="overview"></div></div></details>
 </div>
 
 <div class="wrap">
@@ -335,20 +335,19 @@ const NETS = [
  },
  {n:3, name:'Red social subcortical',
   onto:'Circuito subcortical (Social Behavior Network de Newman): hipotálamo medial/preóptica, septum lateral, amígdala extendida/BNST, PAG; oxitocina/vasopresina. Distinto de la red de mentalización cortical (red 9) — la distinción de las "dos redes sociales".',
-  items:['Expresividad emocional','Afiliación','Dominancia','Patrón de personalidad'], strength:'MODERADA-ALTA', access:'obs',
+  items:['Expresividad emocional','Afiliación','Dominancia'], strength:'ALTA', access:'obs',
   ev:[
     ['Afiliación/apego recluta circuitería estriatal/de recompensa; receptores de oxitocina en NAc predicen conducta afiliativa/prosocial (red prosocial: ínsula, cingulado, NAc).','Pintos Lobo 2023; Hazani J Neurosci 2025 (PubMed)'],
     ['Neuronas de oxitocina organizan el desarrollo de la "social decision-making network" y la respuesta a estímulos sociales.','Nunes J Neurosci 2021 (PubMed)'],
-    ['<b>Expresividad — doble sistema facial:</b> disociación automático-voluntaria; pérdida de inervación facial voluntaria con la emocional involuntaria preservada → vías separadas (aferentes subcorticales al núcleo motor facial).','Eblen, Weller & Dichgans Eur Arch Psychiatry 1992 (PubMed)']
+    ['<b>Expresividad — doble sistema facial:</b> disociación automático-voluntaria; pérdida de inervación facial voluntaria con la emocional involuntaria preservada → vías separadas (aferentes subcorticales al núcleo motor facial).','Eblen, Weller & Dichgans Eur Arch Psychiatry 1992 (PubMed)'],
+    ['<b>Dominancia — sustrato de jerarquía social (cerrado por búsqueda PubMed):</b> el rmPFC rastrea y actualiza dinámicamente el estatus de dominancia (tDCS causal); el estriado ventral codifica victorias y derrotas; amígdala e hipocampo codifican el rango de forma dominio-general. Circuito subcortical homólogo en macacos (amígdala–hipotálamo–septum/estriado–rafe).','Ligneul Curr Biol 2016; Kumaran Neuron 2016; Zink Neuron 2008; Noonan PLoS Biol 2014 (PubMed)']
   ],
   map:[
     ['Afiliación','Oxitocina en NAc + red prosocial (ínsula/cingulado/NAc)','Hazani 2025; Nunes 2021 (PubMed)','alta'],
-    ['Dominancia','SBN (agencia social)','Pendiente — jerarquía social específica','preliminar'],
-    ['Patrón de personalidad','Circumplejo interpersonal (afiliación × dominancia)','inferencia de los dos ejes','preliminar'],
+    ['Dominancia','rmPFC/mPFC (actualiza estatus) + estriado ventral (victorias/derrotas) + amígdala/hipocampo (rango); homólogo subcortical en primates (amígdala–hipotálamo–septum/estriado–rafe)','Ligneul 2016; Kumaran 2016; Zink 2008; Noonan 2014 (PubMed)','alta'],
     ['Expresividad emocional','Doble vía motora facial (emocional vs voluntaria; multi-red con red 6)','Eblen 1992 (PubMed)','alta']
   ],
-  gaps:['Pendiente — Sustrato específico de jerarquía/dominancia social (más allá de afiliación).',
-        'Subió a MODERADA-ALTA tras búsqueda dirigida (afiliación y expresividad ahora con evidencia directa).'],
+  gaps:['Subió a ALTA: los tres ítems (afiliación, expresividad, dominancia) tienen sustrato neural directo verificado (PubMed).'],
   di:'Expresividad, afiliación y dominancia son <b>conductas observables</b> en la interacción — accesible en DI.'
  },
  {n:4, name:'Red frontolímbica — generación de afecto (valencia negativa)',
@@ -486,8 +485,7 @@ const SCORES = {
  3:[
   {it:'Expresividad emocional', a:['afecto embotado → aplanado (cara inmóvil, prosodia plana, sin gestos)','afecto restringido / constreñido (rango estrecho, hipomimia leve)','expresión proporcional y congruente','expresividad intensa pero congruente','teatralidad: sobreactuación histriónica/maníaca o incongruente'], flag:'continuo de síntomas negativos: restringido→embotado→aplanado; [incongruente] = paratimia; cruzar red 6 (hipomimia)'},
   {it:'Afiliación', a:['hostilidad sostenida / antagonismo activo','frialdad / retraimiento, escaso calor interpersonal','calidez y reciprocidad proporcionales','búsqueda de cercanía aumentada, apropiada','afiliación excesiva / fusión idealizadora / desinhibición social']},
-  {it:'Dominancia', a:['sumisión extrema: cede siempre, no sostiene posición','tendencia sumisa / deferente, poca iniciativa','rapport colaborativo, asertividad proporcional','dominante/asertivo marcado, aún colaborativo','dominancia franca: controla, descalifica, no cede']},
-  {it:'Patrón de personalidad', a:['patrón rígido extremo: invariante al contexto','rigidez moderada: repertorio interpersonal estrecho','flexibilidad proporcional al contexto','variabilidad aumentada según situación, adaptativa','oscilación impredecible e inestable (p. ej. TLP)']}
+  {it:'Dominancia', a:['sumisión extrema: cede siempre, no sostiene posición','tendencia sumisa / deferente, poca iniciativa','rapport colaborativo, asertividad proporcional','dominante/asertivo marcado, aún colaborativo','dominancia franca: controla, descalifica, no cede']}
  ],
  4:[
   {it:'Ánimo', a:['depresión: todo vivido como no-logro, anhedonia del ánimo','ánimo bajo / subdepresivo, reactividad conservada','eutímico: rastrea outcomes, reactivo proporcional','ánimo elevado/expansivo leve, aún reactivo','euforia/manía desacoplada del logro o disforia sostenida']},
@@ -584,8 +582,7 @@ const NMAP = {
  3:[
   {it:'Expresividad emocional', hitop:'Restricted emotional expression · Low emotional reactivity', dsm5:5, esc:'SANS Aff.Flattening · BNSS/CAINS EXP · PANSS N1'},
   {it:'Afiliación', hitop:'Social withdrawal · Hostility · Attention seeking', dsm5:14, esc:'BNSS Asociality · CAINS MAP-Social · PANSS N4', esp:'Detachment'},
-  {it:'Dominancia', hitop:'Submissiveness · Superiority · Manipulation/deceit', dsm5:17, esc:'PID-5 Antagonism · PANSS P7 · YMRS', esp:'Antagonismo'},
-  {it:'Patrón de personalidad', hitop:'—', dsm5:0, esc:'PID-5 (5 dominios) · IPDE', esp:'espectros completos'}
+  {it:'Dominancia', hitop:'Submissiveness · Superiority · Manipulation/deceit', dsm5:17, esc:'PID-5 Antagonism · PANSS P7 · YMRS', esp:'Antagonismo'}
  ],
  4:[
   {it:'Ánimo', hitop:'Depressed mood / loss of pleasure · Euphoric mood(+)', dsm5:4, esc:'MADRS · HAM-D · PANSS G6', esp:'Distress'},
@@ -642,7 +639,6 @@ const SPECTRUM = {
  'Expresividad emocional':'Detachment',
  'Afiliación':'Detachment',
  'Dominancia':'Antagonistic Ext.',
- 'Patrón de personalidad':'todos los espectros',
  'Ánimo':'Internalizing · Distress',
  'Amenaza':'Internalizing · Fear',
  'Motivación / drive (wanting + vigor)':'Detachment (−) / Mania (+)',
@@ -703,8 +699,7 @@ const AMDP = {
  3:[
   {it:'Expresividad emocional', n:6, a:'038 Dinámica delirante · 061 Afecto aplanado · 070 Quejumbrería · 076 Paratimia (afecto incongruente) · 079 Rigidez afectiva · 086 Histrionismo'},
   {it:'Afiliación', n:2, a:'092 Aislamiento social · 093 Contacto social excesivo'},
-  {it:'Dominancia', n:0, a:'—'},
-  {it:'Patrón de personalidad', n:0, a:'—'}
+  {it:'Dominancia', n:0, a:'—'}
  ],
  4:[
   {it:'Ánimo', n:3, a:'063 Estado de ánimo deprimido · 066 Euforia · 067 Disforia'},
@@ -774,8 +769,7 @@ const DSM = {
  3:[
   {it:'Expresividad emocional', n:5, d:'ZMQRF_497 Ausencia de reactividad emocional · ZMQRF_618 Sin respuesta emocional · ZMQRF_62 No expresa emociones a otros · ZMQRF_626 Supresión de expresión emocional · ZMQRF_67 Expresión emocional desinhibida'},
   {it:'Afiliación', n:14, d:'ZMQRF_193 Agresividad u hostilidad interpersonal · ZMQRF_376 Desapego o alienación social · ZMQRF_434 Culpa a otros por errores propios · ZMQRF_499_V4 Preferencia por la soledad · ZMQRF_506 Preferencia de soledad sobre vínculo romántico · ZMQRF_511 Distanciamiento social activo · ZMQRF_512 Rechazo a compartir con otros · ZMQRF_520 Búsqueda de atención de otros · ZMQRF_521 Ansia de atención · ZMQRF_522 Conducta de llamar la atención · ZMQRF_580 Provocación deliberada a otros · ZMQRF_637 Rechazo activo de relaciones románticas · ZMQRF_649 Desinterés en hacer amigos · ZMQRF_74 Conflictos y discusiones frecuentes'},
-  {it:'Dominancia', n:17, d:'ZMQRF_441 Mentir para evitar obligaciones · ZMQRF_442 Mentir para obtener beneficios · ZMQRF_500 Conducta moldeada por demandas ajenas · ZMQRF_501 Obediencia sumisa a otros · ZMQRF_525 Inventar historias para obtener beneficios · ZMQRF_526 Trampa para obtener ventaja · ZMQRF_527 Usar a otros para fines propios · ZMQRF_528 Distorsionar la verdad en beneficio propio · ZMQRF_529 Creencia de ser más importante · ZMQRF_530 Sentimiento de superioridad sobre otros · ZMQRF_531 Sentido de merecimiento especial · ZMQRF_532 Percepción de inferioridad en otros · ZMQRF_533 Manipulación para lograr objetivos · ZMQRF_534 Halagos con fines manipuladores · ZMQRF_535 Habilidad para engañar a otros · ZMQRF_536 Facilidad para aprovecharse de otros · ZMQRF_542 Promesas sin intención de cumplir'},
-  {it:'Patrón de personalidad', n:0, d:'—'}
+  {it:'Dominancia', n:17, d:'ZMQRF_441 Mentir para evitar obligaciones · ZMQRF_442 Mentir para obtener beneficios · ZMQRF_500 Conducta moldeada por demandas ajenas · ZMQRF_501 Obediencia sumisa a otros · ZMQRF_525 Inventar historias para obtener beneficios · ZMQRF_526 Trampa para obtener ventaja · ZMQRF_527 Usar a otros para fines propios · ZMQRF_528 Distorsionar la verdad en beneficio propio · ZMQRF_529 Creencia de ser más importante · ZMQRF_530 Sentimiento de superioridad sobre otros · ZMQRF_531 Sentido de merecimiento especial · ZMQRF_532 Percepción de inferioridad en otros · ZMQRF_533 Manipulación para lograr objetivos · ZMQRF_534 Halagos con fines manipuladores · ZMQRF_535 Habilidad para engañar a otros · ZMQRF_536 Facilidad para aprovecharse de otros · ZMQRF_542 Promesas sin intención de cumplir'}
  ],
  4:[
   {it:'Ánimo', n:4, d:'ZMQRF_109 Estado emocional negativo intenso · ZMQRF_290 Euforia o bienestar exaltado · ZMQRF_295 Estado de ánimo deprimido · ZMQRF_504 Visión desolada de la vida'},
@@ -844,8 +838,7 @@ const THEORY = {
  3:[
   {it:'Expresividad emocional', m:'Output de active inference: el cerebro genera acción motora (facial/vocal) para minimizar el error entre el afecto inferido y sus señales, con priors culturales (emoción construida).', refs:[['Barrett 2017 · Soc Cogn Affect Neurosci','10.1093/scan/nsw154'], ['Barrett & Satpute 2017 · Neurosci Lett','10.1016/j.neulet.2017.07.045']]},
   {it:'Afiliación', m:'Reduce incertidumbre sobre estados mentales ajenos: priors sobre intenciones del otro (mentalización jerárquica bayesiana); valor epistémico de alinear modelos generativos entre interactuantes.', refs:[['Vasil et al. 2020 · Front Psychol','10.3389/fpsyg.2020.00417'], ['Charlton & Diaconescu 2026 · Hum Brain Mapp','10.1002/hbm.70433']]},
-  {it:'Dominancia', m:'Política preferida que maximiza valor pragmático (control del nicho social): acciones que confirman priors sobre el rango jerárquico. Vínculo PP indirecto.', refs:[['Constant et al. 2019 · Front Psychol','10.3389/fpsyg.2019.00679']]},
-  {it:'Patrón de personalidad', m:'Priors profundos e hiperprecisos sobre el self/entorno, resistentes a actualización por PE; las patologías de personalidad = inferencias bayesianas maladaptativas sobre el self.', refs:[['Prosser & Friston 2018 · Comput Psychiatr','10.1162/cpsy_a_00016'], ['Barrett 2017 · Soc Cogn Affect Neurosci','10.1093/scan/nsw154']]}
+  {it:'Dominancia', m:'Política preferida que maximiza valor pragmático (control del nicho social): acciones que confirman priors sobre el rango jerárquico. Vínculo PP indirecto.', refs:[['Constant et al. 2019 · Front Psychol','10.3389/fpsyg.2019.00679']]}
  ],
  4:[
   {it:'Ánimo', m:'Resumen interoceptivo del presupuesto corporal (EPIC): error entre demanda metabólica esperada y real. Depresión = priors negativos hiperprecisos + PE positivos atenuados (bucle autorreforzante).', refs:[['Kube et al. 2020 · Biol Psychiatry','10.1016/j.biopsych.2019.07.017'], ['Barrett et al. 2016 · Philos Trans R Soc B','10.1098/rstb.2016.0011']]},
@@ -913,8 +906,7 @@ const MACRO = {
  3:[
   {it:'Expresividad emocional', b:'16 Afecto embotado', x:'—', np:'7 Apatía (parc.)', cp:'Falta de emoción apropiada / Mirada vacía'},
   {it:'Afiliación', b:'17 Retraimiento emocional', x:'XII Personalidad (parc.)', np:'7 Apatía / indiferencia', cp:'Retraimiento'},
-  {it:'Dominancia', b:'6 Hostilidad · 8 Grandiosidad', x:'II Ira', np:'3 Agitación/agresión', cp:'Hostilidad (obs)'},
-  {it:'Patrón de personalidad', b:'—', x:'XII Funcionamiento de personalidad', np:'—', cp:'—'}
+  {it:'Dominancia', b:'6 Hostilidad · 8 Grandiosidad', x:'II Ira', np:'3 Agitación/agresión', cp:'Hostilidad (obs)'}
  ],
  4:[
   {it:'Ánimo', b:'3 Depresión · 7 Ánimo elevado', x:'I Depresión · III Manía', np:'4 Depresión · 6 Euforia', cp:'Tristeza / Ánimo elevado'},
@@ -1076,7 +1068,7 @@ synth.innerHTML=`
   <div class="section-h" style="margin-top:18px">Correspondencias con otras clasificaciones</div>
   <ul class="ev">
     <li><b>DSM-5:</b> 331 síntomas del instrumento → <b>317 ubicados por red (96%)</b>, mostrados uno por uno en cada red. Fuera de alcance: eje de adicción y bajo peso corporal.</li>
-    <li><b>HiTOP:</b> espectro de nivel superior asignado a los 38 signos — <b>28 dentro de HiTOP</b> (Internalizing, Thought Disorder, Detachment, Externalizing, Somatoform…) y <b>10 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva), la cobertura diferencial del instrumento.</li>
+    <li><b>HiTOP:</b> espectro de nivel superior asignado a los 37 signos — <b>27 dentro de HiTOP</b> (Internalizing, Thought Disorder, Detachment, Externalizing, Somatoform…) y <b>10 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva), la cobertura diferencial del instrumento.</li>
     <li><b>RDoC:</b> las 10 redes se reagrupan en 6 dominios.</li>
     <li><b>AMDP (9ª ed.):</b> los 154 ítems ubicados por red.</li>
     <li><b>Escalas clínicas:</b> cada signo cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc.</li>

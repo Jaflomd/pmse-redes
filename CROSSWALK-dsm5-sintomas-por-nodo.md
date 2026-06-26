@@ -120,8 +120,6 @@
 | `ZMQRF_536` | Facilidad para aprovecharse de otros | I found it easy to take advantage of others. | Manipulative and exploitative behaviour |
 | `ZMQRF_542` | Promesas sin intención de cumplir | I made promises that I didn't really intend to keep. | Manipulative and exploitative behaviour |
 
-**Patrón de personalidad** — _sin síntoma DSM-5 directo_
-
 ## Red 4
 
 **Ánimo** (4):

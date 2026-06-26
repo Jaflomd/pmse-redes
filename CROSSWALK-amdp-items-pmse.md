@@ -70,8 +70,6 @@
 
 **Dominancia** — _sin ítem AMDP directo_
 
-**Patrón de personalidad** — _sin ítem AMDP directo_
-
 ## Red 4
 
 **Ánimo** (3):
