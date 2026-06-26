@@ -560,6 +560,76 @@ function nmapHTML(n){
   <table><thead><tr><th>Ítem</th><th>HiTOP (clusters empíricos)</th><th title="nº de síntomas DSM-5 mapeados">DSM-5</th><th>Escalas clave</th></tr></thead><tbody>${body}</tbody></table>${orphan}</div>`;
 }
 
+// ---------- crosswalk AMDP (9ª ed., 154 ítems) → ítems pMSE ----------
+const AMDP = {
+ 1:[
+  {it:'Conciencia', n:0, a:'—'},
+  {it:'Alerta', n:3, a:'001 Vigilancia disminuida · 002 Obnubilación de la consciencia · 105 Cansancio'}
+ ],
+ 2:[
+  {it:'Sueño y ritmo circadiano', n:8, a:'089 Empeoramiento matutino · 090 Empeoramiento vespertino · 091 Mejoría vespertina · 101 Dificultad para conciliar el sueño · 102 Sueño interrumpido · 103 Sueño acortado · 104 Despertar matutino precoz · ZS1 Parasomnias'},
+  {it:'Apetito e ingesta', n:3, a:'106 Apetito disminuido · 107 Apetito excesivo · 108 Sed excesiva'},
+  {it:'Libido', n:3, a:'109 Libido disminuida · ZS2 Libido aumentada · ZS3 Disfunciones sexuales'}
+ ],
+ 3:[
+  {it:'Expresividad emocional', n:4, a:'061 Afecto aplanado · 076 Paratimia (afecto incongruente) · 079 Rigidez afectiva · 086 Histrionismo'},
+  {it:'Afiliación', n:2, a:'092 Aislamiento social · 093 Contacto social excesivo'},
+  {it:'Dominancia', n:0, a:'—'},
+  {it:'Patrón de personalidad', n:0, a:'—'}
+ ],
+ 4:[
+  {it:'Ánimo', n:3, a:'063 Estado de ánimo deprimido · 066 Euforia · 067 Disforia'},
+  {it:'Amenaza', n:4, a:'027 Suspicacia · 029 Fobias · 065 Ansiedad · ZP01 Crisis de angustia'}
+ ],
+ 5:[
+  {it:'Motivación/drive (wanting+vigor)', n:4, a:'062 Pérdida sentida de vitalidad · 080 Falta de impulso · 081 Inhibición del impulso · 082 Impulso aumentado'},
+  {it:'Tono hedónico (liking)', n:1, a:'060 Sentimiento de pérdida de sentimientos'},
+  {it:'Frustración', n:3, a:'068 Irritabilidad · 069 Inquietud interior · 070 Quejumbrería'}
+ ],
+ 6:[
+  {it:'Velocidad psicomotriz', n:4, a:'016 Pensamiento enlentecido · 083 Agitación motora · 087 Mutismo · 088 Logorrea'},
+  {it:'Parakinesia', n:2, a:'084 Paracinesia · 085 Manierismos'},
+  {it:'Tics', n:0, a:'—'},
+  {it:'Síntomas extrapiramidales', n:5, a:'132 Rigidez muscular · 134 Temblor · 135 Discinesia aguda · 136 Hipocinesia · 137 Acatisia'},
+  {it:'Signos neurológicos blandos', n:6, a:'110 Hipersalivación · 123 Seborrea · 133 Hipotonía muscular · 138 Ataxia · 139 Nistagmo · 140 Parestesias'}
+ ],
+ 7:[
+  {it:'Contenido del pensamiento', n:15, a:'034 Percepción delirante · 035 Ideas delirantes repentinas · 036 Ideas delirantes · 037 Delirios sistematizados · 038 Dinámica delirante · 039 Delirios de referencia · 040 Delirios de persecución · 041 Delirios de celos · 042 Delirios de culpa · 043 Delirios de ruina · 044 Delirios hipocondríacos · 045 Delirios de grandiosidad · 046 Otros delirios · ZP03 Ideas de referencia · ZP10 Ideas sobrevaloradas'},
+  {it:'Integración sensorial', n:7, a:'047 Ilusiones · 048 Alucinaciones auditivas verbales · 049 Otras alucinaciones auditivas · 050 Alucinaciones visuales · 051 Alucinaciones corporales · 052 Alucinaciones olfativas y gustativas · 131 Síntomas de conversión'},
+  {it:'Interocepción', n:17, a:'028 Hipocondría · 111 Boca seca · 112 Náuseas · 113 Vómitos · 114 Molestias gástricas · 115 Estreñimiento · 116 Diarrea · 117 Dificultad respiratoria · 118 Mareos · 119 Palpitaciones · 121 Visión borrosa · 122 Sudoración aumentada · 124 Dificultades de micción · 125 Dificultades menstruales · 128 Pesadez en las piernas · 129 Sofocos · 130 Escalofríos'},
+  {it:'Nocicepción', n:3, a:'120 Dolor cardíaco · 126 Presión cefálica · 127 Dolor de espalda'},
+  {it:'Regulación atencional', n:1, a:'003 Estrechamiento de la consciencia'}
+ ],
+ 8:[
+  {it:'Metacontrol cognitivo', n:2, a:'009 Apercepción alterada · 010 Concentración alterada'},
+  {it:'Monitoreo del error', n:1, a:'030 Pensamientos obsesivos'},
+  {it:'Pruebas neurocognitivas', n:8, a:'005 Desorientación temporal · 006 Desorientación espacial · 007 Desorientación situacional · 008 Desorientación autopsíquica · 011 Memoria de fijación alterada · 012 Memoria a largo plazo alterada · 013 Confabulación · ZP11 Afasia anómica'}
+ ],
+ 9:[
+  {it:'Experiencia del pensamiento', n:11, a:'015 Pensamiento inhibido · 017 Pensamiento circunstancial · 018 Pensamiento restringido · 019 Pensamiento perseverativo · 020 Rumiación · 021 Pensamiento acelerado · 022 Fuga de ideas · 023 Pensamiento tangencial · 024 Bloqueo del pensamiento · 026 Neologismos · ZP02 Aceleración del pensamiento'},
+  {it:'Experiencia vivida', n:5, a:'004 Expansión de la consciencia · 014 Paramnesias · 033 Humor delirante · 053 Desrealización · 059 Perplejidad'},
+  {it:'Experiencia del yo', n:6, a:'054 Despersonalización · 055 Difusión del pensamiento · 056 Robo del pensamiento · 057 Inserción del pensamiento · 058 Otros sentimientos de influencia ajena · ZP06 Sonorización del pensamiento'},
+  {it:'Mentalización', n:0, a:'—'},
+  {it:'Autoevaluación', n:6, a:'071 Sentimientos de insuficiencia · 072 Autoestima exagerada · 073 Sentimientos de culpa · 074 Sentimientos de empobrecimiento · ZP08 Trastorno de la imagen corporal · ZP09 Sentimientos de vergüenza'},
+  {it:'Simulación a futuro', n:1, a:'064 Desesperanza'}
+ ],
+ 10:[
+  {it:'Regulación metacognitiva', n:2, a:'097 Ausencia de sentimiento de enfermedad · 098 Falta de conciencia de enfermedad'},
+  {it:'Organización conductual', n:4, a:'025 Incoherencia/Descarrilamiento · 032 Acciones compulsivas · 100 Necesidad de cuidados · ZP04 Desorganización'},
+  {it:'Regulación emocional', n:3, a:'075 Ambivalencia · 077 Labilidad afectiva · 078 Incontinencia afectiva'},
+  {it:'Approach-evitación', n:3, a:'031 Impulsos compulsivos · ZP05 Comportamiento intrusivo · ZP07 Impulsividad'},
+  {it:'Riesgo', n:4, a:'094 Agresividad · 095 Conducta suicida · 096 Autolesiones · 099 Falta de cooperación'}
+ ],
+};
+
+function amdpHTML(n){
+  const rows = AMDP[n]; if(!rows) return '';
+  const tot = rows.reduce((s,r)=>s+r.n,0);
+  const body = rows.map(r=>`<tr><td><b>${r.it}</b></td><td class="frt" style="text-align:center">${r.n||'—'}</td><td>${r.n? r.a : '<span style="color:var(--muted)">sin ítem AMDP directo</span>'}</td></tr>`).join('');
+  return `<div class="score"><div class="section-h" style="color:var(--accent2)">Ítems AMDP (9ª ed.) → este nodo <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">— ${tot} de 154</span></div>
+  <table><thead><tr><th>Ítem pMSE</th><th>n</th><th>Ítems AMDP que mapean aquí</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -617,6 +687,8 @@ NETS.forEach(net=>{
 
     ${nmapHTML(net.n)}
 
+    ${amdpHTML(net.n)}
+
     <div class="gaps">
       <div class="section-h">Huecos & fronteras</div>
       <ul>${net.gaps.map(g=>`<li>${g}</li>`).join('')}</ul>
@@ -665,6 +737,7 @@ synth.innerHTML=`
     <li><b>HiTOP:</b> clusters empíricos mapeados <b>por síntoma</b> (nivel fino, sourced); espectros de nivel superior (Detachment, Antagonismo, Distress, Thought Disorder, Disinhibición…) solo en algunos ítems vía crosswalk de escalas — cobertura parcial a nivel espectro.</li>
     <li><b>RDoC:</b> colapso 10 redes → 6 dominios (ver dominio por red arriba). Huecos que el pMSE cubre y RDoC no: contenido/juicio de realidad, fenomenología del yo, nocicepción, regulación/insight.</li>
     <li><b>Escalas clínicas:</b> cada ítem cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc. (crosswalk de escalas).</li>
+    <li><b>AMDP (9ª ed.):</b> los <b>154 ítems</b> mapeados ítem-por-ítem al nodo pMSE (ver tabla "Ítems AMDP" por red). 5 ítems pMSE quedan sin AMDP directo: <b>Conciencia, Dominancia, Patrón de personalidad, Tics, Mentalización</b> — AMDP no modela ToM, rasgos de personalidad ni tics (y obnubilación se asignó a Alerta).</li>
     <li style="color:var(--alta)"><b>✓ Resuelto:</b> los 29 síntomas DSM-5 de Control inhibitorio se reasignaron (2026-06-26) a Riesgo (+9), Regulación emocional (+11), Motivación/drive (+6) y Approach–evitación (+3). Cobertura DSM-5 intacta.</li>
   </ul>
 `;
