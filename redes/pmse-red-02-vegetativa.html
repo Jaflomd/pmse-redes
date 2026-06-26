@@ -299,20 +299,20 @@ const ACCESS = {
 
 const NETS = [
  {n:1, name:'Red LC-NE (ARAS) — arousal global',
-  onto:'Vía neuromoduladora. Locus coeruleus pontino, fuente principal de norepinefrina cortical. No es una red de conectividad tipo Yeo: es un sistema ascendente definido por neurotransmisor + origen/destino.',
+  onto:'Vía neuromoduladora. Locus coeruleus pontino, fuente principal de norepinefrina cortical. No es una red de conectividad tipo Yeo: es un sistema ascendente definido por neurotransmisor + origen/destino. Sostiene dos lecturas distinguibles: el nivel/intensidad de conciencia (ARAS + tálamo) y el arousal/ganancia (LC-NE, tónico y fásico).',
   items:['Conciencia','Alerta'], strength:'ALTA', access:'obs',
   ev:[
-    ['Tres sistemas de arousal con dinámicas temporales distintas convergen en arousal cortical: <b>LC-NE</b> (lento, sostenido), <b>BF-ACh</b> (basal forebrain colinérgico, lento), <b>BF-PV</b> (parvalbúmina/GABA, rápido = microarousal).','Maness et al. Brain Res Bull 2022;188:47-58 [library]'],
-    ['Modelo de reclutamiento: estímulo → BF-PV (microarousal rápido) → si saliente recluta BF-ACh + LC-NE para vigilancia sostenida.','Maness 2022 [library]'],
-    ['Dinámica tónico/fásico del arousal documentada como eje (paralela al tónico/fásico dopaminérgico).','van Schie 2021 [library]'],
-    ['Validación clínica: hiperarousal en PTSD; hipoarousal en depresión y TDAH.','Maness 2022 [library]']
+    ['<b>Conciencia (nivel):</b> no hay consenso sobre qué <i>es</i> la conciencia (teorías rivales; meta-review), pero <i>sí</i> sobre sus <b>alteraciones</b> — el continuo coma → vigilia se define por guías de <i>disorders of consciousness</i> (proceso de consenso).','Seth & Bayne Nat Rev Neurosci 2022; Giacino Neurology 2018; Kondziella Eur J Neurol 2020 (PubMed)'],
+    ['<b>Alerta (arousal):</b> capa de ganancia del sistema LC-noradrenalina, con modo <b>tónico</b> (basal) y <b>fásico</b> (reactivo); eje continuo hipo-hiper, separable de psicomotor, atención y afecto.','Aston-Jones & Cohen Annu Rev Neurosci 2005; Feld & Feige Nervenarzt 2021 (PubMed)'],
+    ['Arousal es transdiagnóstico y se fracciona: hipoarousal (p. ej. TDAH) e hiperarousal en subtipos (ansiedad, insomnio, TEPT, manía).','Bresser et al. eClinicalMedicine 2026 (PubMed)'],
+    ['Tres sistemas de arousal convergen en arousal cortical: LC-NE (lento/sostenido), BF-ACh (lento), BF-PV (rápido = microarousal).','Maness et al. Brain Res Bull 2022 [library]']
   ],
   map:[
-    ['Conciencia','ARAS (formación reticular pontomesencefálica) + LC-NE + tálamo intralaminar','Maness 2022 [library]','alta'],
-    ['Alerta','LC-NE tónico/fásico (sostenido) + BF-PV (microarousal rápido)','Maness 2022; van Schie 2021 [library]','alta / mod.']
+    ['Conciencia (nivel)','ARAS (formación reticular pontomesencefálica) + tálamo intralaminar; integración global','Giacino 2018; Kondziella 2020 (PubMed)','alta'],
+    ['Alerta (arousal)','LC-noradrenalina (tónico/fásico) + BF-PV (microarousal); capa de ganancia','Aston-Jones & Cohen 2005; Feld & Feige 2021 (PubMed)','alta']
   ],
-  gaps:['Conciencia y Alerta comparten sustrato (ARAS/LC-NE): justificar por qué son ítems separados (¿nivel global vs reactividad fásica?).',
-        'Pendiente — Reverificar DOIs de los papers 2025-2026 del dossier de arousal antes de citarlos.'],
+  gaps:['Conciencia = nivel/intensidad global (ARAS + tálamo); Alerta = arousal/ganancia (LC-NE, tónico + fásico). La distinción la resuelve el rationale.',
+        'Delirium y las formas cualitativas (estrechamiento, oniroide) no son polos del nivel: son compuestos transversales, fuera de esta escala.'],
   di:'Arousal y nivel de conciencia se evalúan por <b>observación directa</b> del estado del paciente — plenamente accesible en DI.'
  },
  {n:2, name:'Red vegetativa — homeostasis (hipotálamo-tronco)',
@@ -476,8 +476,8 @@ const NETS = [
 // ---------- scoring scales (−2 / +2) — fuente: SCORING-MAESTRO-pmse-v0.md ----------
 const SCORES = {
  1:[
-  {it:'Conciencia', a:['estupor/coma o delirium hipoactivo','obnubilación','vigilia clara','hiperalerta sin compromiso','hipervigilancia con interferencia / delirium hiperactivo'], flag:'fluctuación → delirium'},
-  {it:'Alerta', a:['hipoarousal: somnoliento, latencia >5 s, se duerme en entrevista','enlentecido: latencia 2–5 s, requiere reorientación','alerta proporcional, atiende sin esfuerzo','hiperalerta leve: reactivo/inquieto pero redirigible','hiperarousal sostenido: no se mantiene sentado, taquilalia, no redirigible']}
+  {it:'Conciencia', a:['estupor / coma (sin respuesta o solo a estímulo intenso)','obnubilación / somnolencia (vigilancia disminuida, enlentecido)','vigilia clara, lúcido y orientado','hipervigilancia (vigilancia y lucidez aumentadas, campo íntegro)','expansión de la conciencia (vivencia intensificada: más alerta, vívido e intenso; drogas, manía, meditación)'], flag:'fluctuación del nivel — compuesto a especificar (no es un polo)'},
+  {it:'Alerta', a:['hipoarousal: tono basal bajo, latencia >5 s, se duerme en entrevista','arousal reducido: enlentecido, latencia 2–5 s, requiere reorientación','arousal proporcional: tono basal y reactividad fásica adecuados','hiperarousal leve: tono alto o sobresalto fácil, redirigible','hiperarousal sostenido: tono alto no redirigible, taquilalia, no se mantiene sentado'], flag:'distinguir tono basal (tónico) de la reactividad al estímulo (fásico); separar de psicomotor, atención y afecto'}
  ],
  2:[
   {it:'Sueño y ritmo circadiano', a:['hipersomnia marcada (>10 h) o somnolencia diurna invalidante','tendencia a dormir de más / despertar difícil, leve','6–9 h reparador, fase alineada','insomnio leve o fase algo retrasada, sin disfunción diurna','insomnio severo <4 h / ↓necesidad de sueño / fase muy retrasada o sundowning']},
@@ -690,7 +690,7 @@ function nmapHTML(n){
 // ---------- crosswalk AMDP (9ª ed., 154 ítems) → ítems pMSE ----------
 const AMDP = {
  1:[
-  {it:'Conciencia', n:2, a:'001 Vigilancia disminuida · 002 Obnubilación de la consciencia'},
+  {it:'Conciencia', n:3, a:'001 Vigilancia disminuida · 002 Obnubilación de la consciencia · 004 Expansión de la consciencia'},
   {it:'Alerta', n:1, a:'105 Cansancio'}
  ],
  2:[
