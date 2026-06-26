@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
-<title>pMSE · Reporte de las 10 redes (v0)</title>
+<title>pMSE · Red 4 — Frontolímbica · afecto</title>
 <style>
   :root{
     --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --ink:#e8eaf0; --muted:#9aa3b2;
@@ -900,6 +900,75 @@ function theoryHTML(n){
   return `<details class="sec"><summary style="color:var(--accent)">Base teórica · procesamiento predictivo</summary><div class="sec-body"><table><thead><tr><th>Ítem</th><th>Mecanismo (predictive processing)</th><th>Referencias</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
 }
 
+const MACRO = {
+ 1:[
+  {it:'Conciencia', b:'14 Desorientación (parc.)', x:'—', np:'—', cp:'Desorientación (obs)'},
+  {it:'Alerta', b:'—', x:'VIII Sueño (parc.)', np:'11 Sueño (parc.)', cp:'Lasitud / fatigabilidad'}
+ ],
+ 2:[
+  {it:'Sueño y ritmo circadiano', b:'—', x:'VIII Problemas de sueño', np:'11 Sueño / nocturno', cp:'Sueño reducido'},
+  {it:'Apetito e ingesta', b:'—', x:'V Somático (parc.)', np:'12 Apetito / alimentación', cp:'Apetito reducido'},
+  {it:'Libido', b:'—', x:'—', np:'—', cp:'Interés sexual ↓/↑'}
+ ],
+ 3:[
+  {it:'Expresividad emocional', b:'16 Afecto embotado', x:'—', np:'7 Apatía (parc.)', cp:'Falta de emoción apropiada / Mirada vacía'},
+  {it:'Afiliación', b:'17 Retraimiento emocional', x:'XII Personalidad (parc.)', np:'7 Apatía / indiferencia', cp:'Retraimiento'},
+  {it:'Dominancia', b:'6 Hostilidad · 8 Grandiosidad', x:'II Ira', np:'3 Agitación/agresión', cp:'Hostilidad (obs)'},
+  {it:'Patrón de personalidad', b:'—', x:'XII Funcionamiento de personalidad', np:'—', cp:'—'}
+ ],
+ 4:[
+  {it:'Ánimo', b:'3 Depresión · 7 Ánimo elevado', x:'I Depresión · III Manía', np:'4 Depresión · 6 Euforia', cp:'Tristeza / Ánimo elevado'},
+  {it:'Amenaza', b:'2 Ansiedad · 19 Tensión', x:'IV Ansiedad', np:'5 Ansiedad', cp:'Tensión interna / Preocupación / Fobias'}
+ ],
+ 5:[
+  {it:'Motivación / drive (wanting + vigor)', b:'17 Retraimiento (parc.)', x:'—', np:'7 Apatía / indiferencia', cp:'Lasitud / fatigabilidad'},
+  {it:'Tono hedónico (liking)', b:'—', x:'I Depresión (anhedonia)', np:'7 Apatía', cp:'Incapacidad de sentir'},
+  {it:'Frustración', b:'6 Hostilidad', x:'II Ira', np:'9 Irritabilidad / labilidad', cp:'Sentimientos hostiles'}
+ ],
+ 6:[
+  {it:'Velocidad psicomotriz', b:'18 Retardo motor · 23 Hiperactividad', x:'—', np:'10 Conducta motora aberrante', cp:'Lentitud / Hiperactividad (obs)'},
+  {it:'Parakinesia', b:'24 Manierismos y posturas', x:'—', np:'10 Conducta motora aberrante', cp:'Manierismos/posturas · Mov. involuntarios'},
+  {it:'Tics', b:'—', x:'—', np:'10 (parc.)', cp:'Movimientos involuntarios'},
+  {it:'Síntomas extrapiramidales', b:'—', x:'—', np:'—', cp:'Mov. involuntarios / Tensión muscular'},
+  {it:'Signos neurológicos blandos', b:'—', x:'—', np:'—', cp:'—'}
+ ],
+ 7:[
+  {it:'Contenido del pensamiento', b:'11 Contenido inusual · 9 Suspicacia', x:'VII Psicosis', np:'1 Delirios', cp:'Ideas de persecución / grandiosas / otros delirios'},
+  {it:'Integración sensorial', b:'10 Alucinaciones', x:'VII Psicosis', np:'2 Alucinaciones', cp:'Voces comentadoras / Aluc. auditivas-visuales'},
+  {it:'Interocepción', b:'1 Preocupación somática', x:'V Síntomas somáticos', np:'—', cp:'Hipocondría / Disturbios autonómicos'},
+  {it:'Nocicepción', b:'1 Preocupación somática (parc.)', x:'V Somático', np:'—', cp:'Dolores y molestias'},
+  {it:'Regulación atencional', b:'22 Distractibilidad', x:'—', np:'—', cp:'Distractibilidad / Dif. concentración'}
+ ],
+ 8:[
+  {it:'Metacontrol cognitivo', b:'22 Distractibilidad (parc.)', x:'IX Memoria (parc.)', np:'—', cp:'Dificultades de concentración'},
+  {it:'Monitoreo del error', b:'—', x:'X Pensamientos/conductas repetitivas', np:'—', cp:'Pensamientos compulsivos / Rituales'},
+  {it:'Control inhibitorio', b:'21 Excitación (parc.)', x:'—', np:'8 Desinhibición', cp:'—'},
+  {it:'Pruebas neurocognitivas', b:'14 Desorientación', x:'IX Memoria', np:'—', cp:'Memoria deficiente / Desorientación'}
+ ],
+ 9:[
+  {it:'Experiencia del pensamiento', b:'15 Desorganización conceptual', x:'VII Psicosis (parc.)', np:'—', cp:'Pensamiento disgregado / Fuga de ideas / Presión del habla'},
+  {it:'Experiencia vivida', b:'—', x:'XI Disociación', np:'—', cp:'Desrealización/Despersonalización · Incapacidad de sentir'},
+  {it:'Experiencia del yo', b:'11 Contenido inusual (pasividad)', x:'VII Psicosis · XI Disociación', np:'—', cp:'Sentirse controlado / Ideas de posesión'},
+  {it:'Mentalización', b:'—', x:'—', np:'—', cp:'—'},
+  {it:'Autoevaluación', b:'5 Culpa', x:'I Depresión (parc.)', np:'—', cp:'Pensamientos pesimistas'},
+  {it:'Simulación a futuro', b:'4 Suicidalidad (parc.)', x:'VI Ideación suicida', np:'—', cp:'Pensamientos suicidas / pesimistas'}
+ ],
+ 10:[
+  {it:'Regulación metacognitiva', b:'—', x:'—', np:'—', cp:'— (insight no cubierto)'},
+  {it:'Organización conductual', b:'15 Desorganización conceptual · 12 Conducta bizarra', x:'VII Psicosis', np:'—', cp:'Habla incoherente / Perseveración'},
+  {it:'Regulación emocional', b:'—', x:'II Ira', np:'9 Irritabilidad / labilidad', cp:'Respuestas emocionales lábiles'},
+  {it:'Approach-evitación', b:'20 No cooperación (parc.)', x:'IV Ansiedad (evitación)', np:'8 Desinhibición (approach)', cp:'Fobias / Rituales'},
+  {it:'Riesgo', b:'4 Suicidalidad · 6 Hostilidad', x:'VI Ideación suicida', np:'3 Agitación/agresión', cp:'Pensamientos suicidas / Hostilidad'}
+ ],
+};
+
+function macroHTML(n){
+  const rows=MACRO[n]; if(!rows) return '';
+  const cell=v=>v==='—'?'<span style="color:var(--muted)">—</span>':v;
+  const body=rows.map(r=>`<tr><td><b>${r.it}</b></td><td>${cell(r.b)}</td><td>${cell(r.x)}</td><td>${cell(r.np)}</td><td>${cell(r.cp)}</td></tr>`).join('');
+  return `<details class="sec"><summary style="color:var(--accent2)">Escalas macro · BPRS · DSM-5 dimensional · NPI · CPRS</summary><div class="sec-body"><table><thead><tr><th>Ítem</th><th>BPRS</th><th>DSM-5 X-Cutting</th><th>NPI</th><th>CPRS</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -962,6 +1031,8 @@ NETS.filter(o=>o.n===4).forEach(net=>{
     ${dsmHTML(net.n)}
 
     ${amdpHTML(net.n)}
+
+    ${macroHTML(net.n)}
 
     <details class="sec"><summary style="color:var(--prelim)">Notas y límites</summary><div class="sec-body gaps">
       <ul>${net.gaps.map(g=>`<li>${g}</li>`).join('')}</ul>
