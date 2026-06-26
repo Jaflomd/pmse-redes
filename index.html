@@ -282,7 +282,7 @@ const NETS = [
  },
  {n:5, name:'Red de recompensa (valencia positiva)',
   onto:'Vía dopaminérgica mesolímbica + circuito funcional de recompensa. Integra dos subsistemas disociables: dopaminérgico (wanting/vigor/learning) y opioide (liking).',
-  items:['Energía / vigor','Anticipación hedónica (wanting)','Tono hedónico (liking)','Frustración (frustrative nonreward)'], strength:'ALTA', access:'mix',
+  items:['Motivación / drive (wanting + vigor)','Tono hedónico (liking)','Frustración (frustrative nonreward)'], strength:'ALTA', access:'mix',
   ev:[
     ['Descomposición wanting / liking / learning.','Berridge & Robinson (PMC5171207) [library]'],
     ['Coste del esfuerzo depende de ACC dorsal (su lesión elimina la disposición al esfuerzo sin afectar el liking).','Treadway & Zald 2011 [library]'],
@@ -291,13 +291,12 @@ const NETS = [
     ['Frustrative nonreward → circuito de recompensa (MID task); movida desde la red 4.','Parker et al. 2025, ABCD, N=5,923 [library]']
   ],
   map:[
-    ['Anticipación (wanting)','DA mesolímbica VTA→NAc','Berridge & Robinson [library]','alta'],
+    ['Motivación / drive (wanting + vigor)','DA mesolímbica VTA→NAc (incentive salience) + DA tónica / ACC dorsal (esfuerzo)','Berridge & Robinson; Treadway & Zald [library]','alta'],
     ['Tono hedónico (liking)','Opioides NAc shell / pálido ventral','Berridge & Robinson [library]','alta'],
-    ['Energía / vigor (esfuerzo)','DA tónica + ACC dorsal (effort)','Treadway & Zald [library]','moderada'],
     ['Frustración (frustrative nonreward)','Estriado ventral / circuito de recompensa (MID task)','Parker 2025 [library]','alta']
   ],
   gaps:['Reward learning = mecanismo, no ítem (no medible bedside).',
-        'Esfuerzo carece de soporte factorial independiente robusto (dossier F3-anhedonia).'],
+        'Wanting y vigor/esfuerzo <b>unidos en "Motivación/drive"</b> (2026-06-26): el esfuerzo carecía de soporte factorial independiente (dossier F3-anhedonia); ambos son el brazo dopaminérgico, frente al opioide (liking). Especificadores [wanting]/[vigor] si se requiere granularidad.'],
   di:'El vigor/energía es <b>observable</b>; wanting y liking dependen de reporte hedónico → mixto.'
  },
  {n:6, name:'Red sensoriomotora — nigroestriatal + cerebelo + motor',
@@ -407,9 +406,8 @@ const SCORES = {
   {it:'Amenaza', a:['hiporespuesta defensiva',null,'proporcional, recupera',null,'pánico activo / worry multidominio sostenido'], flag:'[agudo] (amígdala) vs [sostenido] (BNST)'}
  ],
  5:[
-  {it:'Anticipación (wanting)', a:['avolición',null,'deseo proporcional',null,'craving / hipermotivación']},
+  {it:'Motivación / drive (wanting + vigor)', a:['avolición / anergia (sin deseo ni empuje)',null,'motivación y vigor proporcionales',null,'craving / hipermotivación con hiperactivación'], flag:'une wanting (incentive salience) + vigor (esfuerzo) — brazo dopaminérgico; espec [wanting]/[vigor]'},
   {it:'Tono hedónico (liking)', a:['anhedonia consumatoria',null,'disfrute proporcional',null,'hiperhedonia']},
-  {it:'Energía / vigor', a:['anergia',null,'vigor proporcional',null,'hiperactivación']},
   {it:'Frustración (frustrative nonreward)', a:['indiferencia al no-logro',null,'proporcional, recupera','frustración fásica (non-reward)','irritabilidad tónica basal'], flag:'movida desde red 4 (recluta estriado ventral)'}
  ],
  6:[
