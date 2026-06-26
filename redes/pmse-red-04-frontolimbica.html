@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
-<title>pMSE · Red 4 — Frontolímbica · afecto</title>
+<title>pMSE · Reporte de las 10 redes (v0)</title>
 <style>
   :root{
     --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --ink:#e8eaf0; --muted:#9aa3b2;
@@ -966,7 +966,7 @@ function macroHTML(n){
   const rows=MACRO[n]; if(!rows) return '';
   const cell=v=>v==='—'?'<span style="color:var(--muted)">—</span>':v;
   const body=rows.map(r=>`<tr><td><b>${r.it}</b></td><td>${cell(r.b)}</td><td>${cell(r.x)}</td><td>${cell(r.np)}</td><td>${cell(r.cp)}</td></tr>`).join('');
-  return `<details class="sec"><summary style="color:var(--accent2)">Escalas macro · BPRS · DSM-5 dimensional · NPI · CPRS</summary><div class="sec-body"><table><thead><tr><th>Ítem</th><th>BPRS</th><th>DSM-5 X-Cutting</th><th>NPI</th><th>CPRS</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
+  return `<details class="sec"><summary style="color:var(--accent2)">Mapeo a escalas amplias <span class="muted-note">· BPRS · DSM-5 · NPI · CPRS</span></summary><div class="sec-body"><table><thead><tr><th>Ítem</th><th>BPRS</th><th>DSM-5 X-Cutting</th><th>NPI</th><th>CPRS</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
 }
 
 // ---------- render ----------
