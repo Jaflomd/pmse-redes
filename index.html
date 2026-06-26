@@ -101,6 +101,8 @@
   .scell.lvl0{border-color:var(--alta);background:rgba(74,222,128,.10)}
   .scol{font-size:11px;font-weight:800;text-align:center;padding:5px;border-radius:7px;color:#0a0d12}
   .c-2{background:#f87171}.c-1{background:#fb923c}.c0{background:#4ade80}.cp1{background:#fb923c}.cp2{background:#f87171}
+  .scol.s04-0{background:#4ade80}.scol.s04-1{background:#a3e635}.scol.s04-2{background:#fbbf24}.scol.s04-3{background:#fb923c}.scol.s04-4{background:#f87171}
+  .scell.s04-0{border-left:3px solid #4ade80}.scell.s04-1{border-left:3px solid #a3e635}.scell.s04-2{border-left:3px solid #fbbf24}.scell.s04-3{border-left:3px solid #fb923c}.scell.s04-4{border-left:3px solid #f87171}
   .sflag{font-size:11px;color:var(--mod);margin:2px 0 2px 4px}
   .snote{font-size:12px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);
     border-radius:8px;padding:9px 11px;margin:6px 0}
@@ -365,7 +367,7 @@ const NETS = [
  },
  {n:10, name:'Integración de red — control de dominio-general (ápex)',
   onto:'Capa de control de dominio-general (triple-red: DMN ⇄ saliencia ⇄ central-ejecutiva). NO tiene circuito propio: ES la red que coordina a las demás. Declarar su naturaleza integrativa es definición, no debilidad.',
-  items:['Regulación metacognitiva','Organización conductual','Control inhibitorio','Regulación emocional','Approach–evitación','Riesgo'], strength:'MODERADA-ALTA', access:'mix',
+  items:['Regulación metacognitiva','Organización conductual','Regulación emocional','Approach–evitación','Riesgo'], strength:'MODERADA-ALTA', access:'mix',
   ev:[
     ['Modelo triple-red: SN, CEN y DMN como hubs de procesamiento perceptivo-emocional-conductual e introspección; saliencia aberrante aplicada transdiagnósticamente.','Menon B. Med Hypotheses 2019 (PubMed); <span class="flag">[VERIFICAR]</span> añadir Menon V. Trends Cogn Sci 2011 como cita primaria'],
     ['Desorganización (FTD): disconectividad de sustancia blanca, dimensiones transdiagnósticas. Desregulación emocional = intersección NVS (genera) + Cognitive Systems (regula).','Stein et al. 2024 Biol Psychiatry; dossier F6 [library]'],
@@ -374,7 +376,6 @@ const NETS = [
   map:[
     ['Organización conductual (incl. discurso/FTD)','Disconectividad WM + control top-down','Stein 2024 [library]','alta'],
     ['Regulación emocional','FPN sobre amígdala (NVS × cognitive)','F6 [library]','moderada'],
-    ['Control inhibitorio','FPN / response inhibition','McTeague 2016 [library]','moderada'],
     ['Approach–evitación','Hipocampo ventral (conflicto) + BIS (Gray)','Schumacher 2015 (PubMed)','moderada'],
     ['Riesgo','NVS (sustained threat/loss)','Glenn 2018 [library]','alta']
   ],
@@ -419,7 +420,7 @@ const SCORES = {
   {it:'Signos neurológicos blandos', a:[null,null,'ausentes','sutiles (1–2 signos)','marcados (múltiples dominios)'], note:'<b>Unidireccional 0/+1/+2.</b>'}
  ],
  7:[
-  {it:'Contenido del pensamiento', a:['empobrecimiento del contenido',null,'proporcional',null,'contenido patológico (delirios/obsesiones/ideación)'], flag:'+2 añade escalera de convicción BABS (0–4)'},
+  {it:'Contenido del pensamiento', scale04:['Normal','Idea fija o preocupación','Obsesiones o rumiaciones','Idea sobrevalorada o creencia inusual','Delusión'], flag:'escala dimensional de convicción 0→4 (sustituye −2/+2 para este ítem)'},
   {it:'Integración sensorial', a:['atenuación perceptiva (desrealización)',null,'calibrado','anómalo / PLE / hipervigilancia','alucinación formada (incl. voces)'], flag:'cruzar F7.testing (juicio de realidad)'},
   {it:'Interocepción', a:['hipo-interocepción / alexisomia (no registra señales corporales, negación somática)',null,'interocepción calibrada',null,'hiper-interocepción / somatización (amplificación, ansiedad por la salud, pánico interoceptivo)'], flag:'subsume somatización; 3 dimensiones Garfinkel 2015 (precisión/sensibilidad/conciencia)'},
   {it:'Nocicepción', a:['hipoalgesia / asimbolia al dolor',null,'proporcional',null,'dolor desproporcionado / central / catastrofizado']},
@@ -435,13 +436,12 @@ const SCORES = {
   {it:'Experiencia vivida', a:['desrealización/despersonalización + discontinuidad biográfica',null,'realidad y continuidad',null,'Wahnstimmung + narrativa sobre-significada']},
   {it:'Experiencia del yo (agencia)', a:['pasividad (inserción/robo/influencia)',null,'self como fuente',null,'hiper-agencia (control activo, omnipotencia del pensamiento)'], flag:'espec ipseicos [hiperreflexividad]/[despersonalización]'},
   {it:'Mentalización', a:['hipomentalización (falla ToM)',null,'proporcional',null,'hipermentalización (lectura paranoide)']},
-  {it:'Autoevaluación', a:['ausencia de respuesta autoevaluativa',null,'proporcional',null,'culpa / autodescalificación nuclear (o hiperreflexividad)']},
+  {it:'Autoevaluación', a:['culpa / autodescalificación nuclear (mala valoración de sí)',null,'autoevaluación calibrada / proporcional',null,'autoevaluación grandiosa / sobrevalorada']},
   {it:'Simulación a futuro', a:['colapso del horizonte temporal',null,'proyección proporcional',null,'hiper-prospección catastrófica/grandiosa'], flag:'−2 = bandera de suicidio'}
  ],
  10:[
   {it:'Regulación metacognitiva', a:['no usa el autoconocimiento para corregirse (insight pobre / anosognosia)',null,'ajusta conducta según su autoconocimiento (insight operativo)',null,'sobre-regulación (rumia metacognitiva, hiperreflexividad paralizante / CAS de Wells)'], flag:'aquí se lee el insight clínico (decisión 15)'},
   {it:'Organización conductual', a:['desorganización (conducta caótica + discurso incoherente)',null,'organizado, dirigido a metas',null,'sobre-rigidez (estereotipias, rituales, discurso monográfico)'], flag:'espec [conductual]/[discurso]'},
-  {it:'Control inhibitorio', a:['impulsividad (actúa antes de pensar, riesgo)',null,'proporcional',null,'sobre-inhibición rígida']},
   {it:'Regulación emocional', a:['sub-regulación / desregulación (afecto desbordado, labilidad)','reducida','modula el afecto adaptativamente','sobre-control leve','sobre-regulación (supresión excesiva, constricción afectiva)']},
   {it:'Approach–evitación', a:['evitación experiencial severa',null,'flexibilidad psicológica',null,'approach desinhibido (riesgo sin freno)']},
   {it:'Riesgo a sí mismo / otros', note:'<b>Módulo (no bipolar), del intake bMSE</b> — 3 ejes con variables extrínsecas → señal de riesgo (VIGILAR / crítico). <b>Suicidio → 3ST (Klonsky &amp; May):</b> plan · acceso a medios letales · intento previo · desesperanza · red de soporte · + variabilidad temporal reciente. <b>Heteroagresión → BVC (Brøset):</b> agitación auditiva · amenazas verbales · ataque a objetos (24h) · + historia de violencia · sustancias activas. <b>Negligencia:</b> autocuidado · actividades útiles · relaciones · insight. Modulador transversal: <b>rechazo de ayuda</b> (pasivo/activo).'}
@@ -455,6 +455,13 @@ function scoreHTML(n){
     <div class="scol c0">0</div><div class="scol cp1">+1</div><div class="scol cp2">+2</div></div>`;
   const lvl=['−2','−1','0','+1','+2'];
   const body = rows.map(r=>{
+    if(r.scale04){
+      const labs=['0','1','2','3','4'];
+      const lh=`<div class="scrow head"><div></div>${labs.map((l,i)=>`<div class="scol s04-${i}">${l}</div>`).join('')}</div>`;
+      const cells=r.scale04.map((v,i)=>`<div class="scell s04-${i}" data-lvl="${labs[i]}">${v}</div>`).join('');
+      const fl = r.flag?`<div class="sflag">⚑ ${r.flag}</div>`:'';
+      return `${lh}<div class="scrow"><div class="it">${r.it}</div>${cells}</div>${fl}`;
+    }
     if(!r.a){ return `<div class="snote"><b>${r.it}.</b> ${r.note}</div>`; }
     const cells = r.a.map((v,i)=> v
       ? `<div class="scell${i===2?' lvl0':''}" data-lvl="${lvl[i]}">${v}</div>`
