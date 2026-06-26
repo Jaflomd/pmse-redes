@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pMSE · Red 8 — Frontoparietal · CEN</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --ink:#e8eaf0; --muted:#9aa3b2;
+    --line:#2a2f3a; --accent:#6ea8fe; --accent2:#7ee0c0;
+    --alta:#4ade80; --modalta:#a3e635; --mod:#fbbf24; --prelim:#fb923c;
+    --falta:#f87171; --chip:#222838; --shadow:0 1px 0 rgba(255,255,255,.03), 0 8px 24px rgba(0,0,0,.35);
+    --maxw:1080px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f6f7fb; --panel:#ffffff; --panel2:#f0f2f8; --ink:#1a1d26; --muted:#5a6473;
+           --line:#e2e6ee; --chip:#eef1f8; --shadow:0 1px 2px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.08); }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;}
+  a{color:var(--accent);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  header.top{padding:38px 0 22px;border-bottom:1px solid var(--line);background:
+    radial-gradient(1200px 300px at 50% -120px, rgba(110,168,254,.10), transparent);}
+  .eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--accent);font-weight:700}
+  h1{margin:.25em 0 .15em;font-size:30px;letter-spacing:-.01em}
+  .sub{color:var(--muted);max-width:760px;font-size:15px}
+  .meta-line{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;font-size:12.5px;color:var(--muted)}
+  .meta-line b{color:var(--ink);font-weight:600}
+
+  /* layout */
+  .layout{display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:start;padding:26px 0 60px}
+  nav.toc{position:sticky;top:14px;align-self:start;background:var(--panel);border:1px solid var(--line);
+    border-radius:14px;padding:12px;box-shadow:var(--shadow);max-height:calc(100vh - 28px);overflow:auto}
+  nav.toc h4{margin:6px 8px 8px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  nav.toc a{display:flex;gap:9px;align-items:center;padding:7px 8px;border-radius:9px;color:var(--ink);
+    font-size:13px}
+  nav.toc a:hover{background:var(--panel2)}
+  nav.toc a .n{flex:0 0 22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:11px;
+    font-weight:700;background:var(--chip);color:var(--muted)}
+  nav.toc a .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  nav.toc a .dot{width:8px;height:8px;border-radius:50%}
+  .controls{margin:10px 8px 4px;display:flex;flex-direction:column;gap:8px}
+  .controls label{font-size:12px;color:var(--muted);display:flex;gap:7px;align-items:center;cursor:pointer}
+
+  main{min-width:0}
+
+  /* card */
+  .net{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 22px 6px;
+    margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:14px}
+  .net-head{display:flex;gap:14px;align-items:flex-start}
+  .badge-n{flex:0 0 46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:20px;
+    font-weight:800;background:linear-gradient(160deg,var(--panel2),var(--chip));border:1px solid var(--line)}
+  .net-title{flex:1;min-width:0}
+  .net-title h2{margin:0 0 3px;font-size:20px;letter-spacing:-.01em}
+  .net-title .onto{color:var(--muted);font-size:12.5px}
+  .pills{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
+  .pill{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--line)}
+  .pill.item{color:var(--ink)}
+  .strength{font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 11px;border-radius:999px;
+    color:#0a0d12;white-space:nowrap}
+  .access{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);
+    display:inline-flex;gap:6px;align-items:center}
+
+  .section-h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);
+    font-weight:700;margin:20px 0 8px}
+  ul.ev{margin:0;padding-left:18px}
+  ul.ev li{margin:5px 0;color:var(--ink)}
+  ul.ev li .src{color:var(--muted);font-size:12.5px}
+
+  table{width:100%;border-collapse:collapse;margin:6px 0 4px;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  td.frt{white-space:nowrap}
+  .tag{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;color:#0a0d12}
+
+  .gaps{background:var(--panel2);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;
+    margin:14px 0 18px}
+  .gaps .section-h{margin-top:0;color:var(--prelim)}
+  .gaps ul{margin:0;padding-left:18px}
+  .gaps li{margin:4px 0;font-size:13px;color:var(--muted)}
+  .flag{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--prelim);
+    background:rgba(251,146,60,.10);padding:1px 5px;border-radius:4px}
+
+  .di-note{display:none;background:rgba(110,168,254,.08);border:1px solid rgba(110,168,254,.25);
+    border-radius:10px;padding:10px 13px;margin:12px 0 16px;font-size:13px;color:var(--ink)}
+  body.show-di .di-note{display:block}
+  .di-note b{color:var(--accent)}
+
+  /* scoring scale */
+  .score{margin:14px 0 6px}
+  .score .section-h{color:var(--accent)}
+  .scrow{display:grid;grid-template-columns:148px repeat(5,1fr);gap:6px;margin:6px 0;align-items:stretch}
+  .scrow.head{margin-bottom:2px}
+  .scrow .it{font-weight:600;font-size:12.5px;display:flex;align-items:center}
+  .scell{font-size:11.5px;padding:6px 9px;border-radius:8px;border:1px solid var(--line);
+    background:var(--panel2);min-height:36px;display:flex;align-items:center;line-height:1.3}
+  .scell.empty{opacity:.3;justify-content:center}
+  .scell.lvl0{border-color:var(--alta);background:rgba(74,222,128,.10)}
+  .scol{font-size:11px;font-weight:800;text-align:center;padding:5px;border-radius:7px;color:#0a0d12}
+  .c-2{background:#f87171}.c-1{background:#fb923c}.c0{background:#4ade80}.cp1{background:#fb923c}.cp2{background:#f87171}
+  .scol.s04-0{background:#4ade80}.scol.s04-1{background:#a3e635}.scol.s04-2{background:#fbbf24}.scol.s04-3{background:#fb923c}.scol.s04-4{background:#f87171}
+  .scell.s04-0{border-left:3px solid #4ade80}.scell.s04-1{border-left:3px solid #a3e635}.scell.s04-2{border-left:3px solid #fbbf24}.scell.s04-3{border-left:3px solid #fb923c}.scell.s04-4{border-left:3px solid #f87171}
+  .sflag{font-size:11px;color:var(--mod);margin:2px 0 2px 4px}
+  .snote{font-size:12px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);
+    border-radius:8px;padding:9px 11px;margin:6px 0}
+  .snote b{color:var(--ink)}
+  .snote table{margin:6px 0 0}
+  .snote td,.snote th{padding:4px 8px;font-size:11.5px}
+  @media (max-width:680px){
+    .scrow{grid-template-columns:1fr;gap:3px}
+    .scrow.head{display:none}
+    .scell.empty{display:none}
+    .scell::before{content:attr(data-lvl);font-weight:800;margin-right:7px;color:var(--accent)}
+  }
+
+  /* overview map */
+  #overview{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .ov-card{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel)}
+  .ov-head{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:5px}
+  .ov-head a{display:flex;align-items:center;gap:7px;color:var(--ink);font-weight:600;font-size:13px}
+  .ov-n{flex:0 0 20px;height:20px;border-radius:6px;display:grid;place-items:center;font-size:11px;font-weight:800;background:var(--chip)}
+  .ov-acc{font-size:11px;color:var(--muted);margin:0 0 6px;display:flex;align-items:center;gap:6px}
+  .ov-items{display:flex;flex-wrap:wrap;gap:4px}
+  .ov-items .pill{font-size:10.5px;padding:2px 7px}
+  @media(max-width:820px){#overview{grid-template-columns:1fr}}
+
+  /* collapsible sections */
+  details.sec{border:1px solid var(--line);border-radius:12px;margin:12px 0;background:var(--panel2)}
+  details.sec>summary{cursor:pointer;list-style:none;padding:11px 14px;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:700;color:var(--accent2);display:flex;align-items:center;gap:9px;user-select:none}
+  details.sec>summary::-webkit-details-marker{display:none}
+  details.sec>summary::before{content:'\25B8';font-size:11px;color:var(--muted);transition:transform .15s}
+  details.sec[open]>summary::before{transform:rotate(90deg)}
+  details.sec>summary:hover{background:var(--panel)}
+  details.sec .sec-body{padding:2px 14px 14px}
+  details.sec .sec-body>table{margin-top:4px}
+  .muted-note{color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:12px}
+  .toggle-all{margin-top:4px;font:inherit;font-size:12px;cursor:pointer;background:var(--panel2);
+    color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 9px;text-align:left;width:100%}
+  .toggle-all:hover{background:var(--chip)}
+
+  /* synthesis */
+  .synth{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;
+    box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:14px}
+  .synth h2{margin:0 0 14px;font-size:20px}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 4px;font-size:12px;color:var(--muted)}
+  .legend span{display:inline-flex;gap:7px;align-items:center}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  footer{border-top:1px solid var(--line);padding:24px 0 50px;color:var(--muted);font-size:12.5px}
+  .note{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+
+  @media (max-width:820px){
+    .layout{grid-template-columns:1fr}
+    nav.toc{position:static;max-height:none;order:-1}
+  }
+  @media print{
+    body{background:#fff;color:#000}
+    nav.toc,.controls{display:none}
+    .layout{display:block}
+    .net,.synth{box-shadow:none;break-inside:avoid;border-color:#ccc}
+  }
+  /* single-red embed */
+  body.single header.top, body.single nav.toc, body.single #ovwrap, body.single #sintesis, body.single footer{display:none}
+  body.single .layout{grid-template-columns:1fr;padding:18px 0}
+  body.single .net{margin:0}
+</style>
+</head>
+<body class="show-di single">
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">pMSE · examen mental por redes neurales</div>
+    <h1>Reporte de las 10 redes — v0</h1>
+    <p class="sub">Una ficha por red, del tronco encefálico al ápex integrador. El examen
+      <b>lee salidas (outputs), no circuitos</b>: un ítem anómalo no localiza el circuito por sí solo;
+      se interpreta cruzando el patrón de los demás. Cada ficha integra la evidencia de los dossiers
+      por ítem (tipo ontológico → evidencia → mapeo fenómeno·sustrato·fuente → <b>escala de puntuación
+      −2/+2</b> → fortaleza → huecos). En la escala, <b>0 = calibrado/sano</b> y ambos extremos (−2, +2)
+      son polos patológicos opuestos.</p>
+    <div class="meta-line">
+      <span>Fuente: <b>EVIDENCIA-redes-pmse.md</b> + SPEC-arquitectura-pmse-v0</span>
+      <span>Orden: <b>ascendente por el neuraxis</b></span>
+      <span>Regla de citas: <b>cero inventadas</b></span>
+      <span><span class="flag">[library]</span> = dossier heredado · <b>QA hecho: 0 citas fabricadas</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" id="ovwrap" style="padding-top:18px">
+  <details class="sec" open><summary>Mapa del instrumento — 38 ítems en 10 redes</summary><div class="sec-body"><div id="overview"></div></div></details>
+</div>
+
+<div class="wrap">
+  <div class="layout">
+    <nav class="toc">
+      <h4>Las 10 redes</h4>
+      <div id="tocList"></div>
+      <div class="controls">
+        <label><input type="checkbox" id="diToggle" checked> Mostrar capa de acceso en DI</label>
+        <label><input type="checkbox" id="onlyHigh"> Solo fortaleza ALTA</label>
+        <button id="toggleAll" type="button" class="toggle-all">Expandir / colapsar todo</button>
+      </div>
+      <h4 style="margin-top:12px">Resumen</h4>
+      <a href="#sintesis"><span class="n">Σ</span><span class="nm">Síntesis & hallazgos</span></a>
+    </nav>
+
+    <main id="main"></main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="note">
+      <b>Nota metodológica.</b> Las citas marcadas <span class="flag">[library]</span> provienen de
+      dossiers heredados. <b>QA de citas realizado (2026-06-26):</b> los 18 identificadores resuelven a artículos reales (0 fabricados); discrepancias menores de autoría/año corregidas. Ver QA-citas-library-2026-06-26.md.
+      Las marcadas <i>(PubMed)</i> se cerraron por búsqueda dirigida el 2026-06-25. Ningún dato,
+      DOI ni cita fue inventado para este reporte: todo proviene de la ficha de evidencia del proyecto.
+    </div>
+    <div class="note">
+      <b>Capa «acceso en DI».</b> La clasificación de canal de administración (observable directo /
+      performance / introspectivo) es una <b>interpretación derivada del tipo ontológico</b> de cada
+      red, no un dato de evidencia. Refleja la observación de que las redes superiores (8–10) dependen
+      de autorreporte y metacognición, canales limitados en discapacidad intelectual. Ausencia de
+      acceso ≠ ausencia de función: es <i>missing data</i>, no déficit medido.
+    </div>
+    <div class="note">
+      <b>Mapeo nosológico.</b> La columna <b>HiTOP</b> muestra los clusters empíricos del instrumento
+      (Table S1), asignados síntoma por síntoma — son datos sourced, no inferencias. El tag
+      <span class="tag" style="background:var(--accent2)">esp</span> indica el espectro HiTOP de nivel
+      superior (asignación clínica a la jerarquía HiTOP, 2026-06-26). <b>10 nodos van marcados «fuera de
+      HiTOP»</b> — arousal, motor y cognición ejecutiva que HiTOP no modela: es la cobertura diferencial
+      del pMSE. La columna
+      <b>DSM-5</b> es el nº de síntomas mapeados a ese ítem. Los conteos de la red 10 ya incluyen la
+      reasignación (2026-06-26) de los 29 síntomas de Control inhibitorio.
+    </div>
+    <p>pMSE v0 · estructura canónica de 10 redes (Javier, 2026-06-22 · evidencia 2026-06-25).
+       Riesgo, funcionalidad e insight quedan fuera del MSE como ejes paralelos.</p>
+  </div>
+</footer>
+
+<script>
+const STRENGTH = {
+  'ALTA':{c:'var(--alta)',label:'ALTA'},
+  'MODERADA-ALTA':{c:'var(--modalta)',label:'MODERADA-ALTA'},
+  'MODERADA':{c:'var(--mod)',label:'MODERADA'},
+  'PRELIMINAR':{c:'var(--prelim)',label:'PRELIMINAR'}
+};
+const ACCESS = {
+  obs:{label:'Acceso DI: observable directo', dot:'#4ade80', txt:'Observable directo'},
+  perf:{label:'Acceso DI: performance / test', dot:'#fbbf24', txt:'Performance / test'},
+  intro:{label:'Acceso DI: requiere autorreporte', dot:'#f87171', txt:'Introspectivo / autorreporte'},
+  mix:{label:'Acceso DI: mixto', dot:'#a3e635', txt:'Mixto (obs. + reporte)'}
+};
+
+const NETS = [
+ {n:1, name:'Red LC-NE (ARAS) — arousal global',
+  onto:'Vía neuromoduladora. Locus coeruleus pontino, fuente principal de norepinefrina cortical. No es una red de conectividad tipo Yeo: es un sistema ascendente definido por neurotransmisor + origen/destino.',
+  items:['Conciencia','Alerta'], strength:'ALTA', access:'obs',
+  ev:[
+    ['Tres sistemas de arousal con dinámicas temporales distintas convergen en arousal cortical: <b>LC-NE</b> (lento, sostenido), <b>BF-ACh</b> (basal forebrain colinérgico, lento), <b>BF-PV</b> (parvalbúmina/GABA, rápido = microarousal).','Maness et al. Brain Res Bull 2022;188:47-58 [library]'],
+    ['Modelo de reclutamiento: estímulo → BF-PV (microarousal rápido) → si saliente recluta BF-ACh + LC-NE para vigilancia sostenida.','Maness 2022 [library]'],
+    ['Dinámica tónico/fásico del arousal documentada como eje (paralela al tónico/fásico dopaminérgico).','van Schie 2021 [library]'],
+    ['Validación clínica: hiperarousal en PTSD; hipoarousal en depresión y TDAH.','Maness 2022 [library]']
+  ],
+  map:[
+    ['Conciencia','ARAS (formación reticular pontomesencefálica) + LC-NE + tálamo intralaminar','Maness 2022 [library]','alta'],
+    ['Alerta','LC-NE tónico/fásico (sostenido) + BF-PV (microarousal rápido)','Maness 2022; van Schie 2021 [library]','alta / mod.']
+  ],
+  gaps:['<span class="flag">[FRONTERA]</span> Conciencia y Alerta comparten sustrato (ARAS/LC-NE): justificar por qué son ítems separados (¿nivel global vs reactividad fásica?).',
+        '<span class="flag">[VERIFICAR]</span> Reverificar DOIs de los papers 2025-2026 del dossier de arousal antes de citarlos.'],
+  di:'Arousal y nivel de conciencia se evalúan por <b>observación directa</b> del estado del paciente — plenamente accesible en DI.'
+ },
+ {n:2, name:'Red vegetativa — homeostasis (hipotálamo-tronco)',
+  onto:'Circuito homeostático central (hipotálamo + núcleos del tronco autonómico). Mezcla de marcapasos (NSQ), switch de estado (VLPO↔orexina) y ejes neuroendocrinos.',
+  items:['Sueño y ritmo circadiano','Apetito e ingesta','Libido'], strength:'ALTA', access:'mix',
+  ev:[
+    ['<b>Sueño/circadiano (ALTA):</b> interfaz sueño-circadiano como sistema integrado; orexina/hipocretina como nodo integrador; sustratos (crónico→ACC subgenual↓ + amígdala-hipocampo↑).','Meyer PNAS 2024; Knez 2022; Reimann JAMA Psychiatry 2025; Baglioni Psychol Bull 2016 [library]'],
+    ['<b>Apetito (ALTA):</b> núcleo arcuato como integrador — NPY/AgRP (orexigénico) vs POMC/CART (anorexigénico); leptina/grelina/insulina señalan estado energético.','Sobrino Crespo Front Endocrinol 2014; Stark Mol Cell Endocrinol 2012 (PubMed)'],
+    ['<b>Libido (ALTA):</b> doble circuito — hipotálamo (ARH→MPN→VMH, consumatorio) + mesolímbico (NAc/DA, deseo), convergiendo en el área preóptica medial. Replica la lógica wanting vs consumatorio.','Micevych & Meisel Front Syst Neurosci 2017 (PubMed)']
+  ],
+  map:[
+    ['Sueño/circadiano','NSQ (timing) + VLPO↔orexina (switch) + interfaz','Meyer 2024; Knez 2022 [library]','alta'],
+    ['Apetito','ARC (NPY/AgRP vs POMC) + leptina/grelina','Sobrino Crespo 2014; Stark 2012 (PubMed)','alta'],
+    ['Libido','Área preóptica medial + mesolímbico (NAc/DA)','Micevych & Meisel 2017 (PubMed)','alta'],
+    ['Nocicepción','→ movida a red 7 (matriz del dolor)','ver ficha 7','—']
+  ],
+  gaps:['Nocicepción <b>movida a red 7</b> (matriz del dolor ínsula-ACC, McBenedict 2024). RESUELTO.',
+        '<span class="flag">[FRONTERA]</span> La red mezcla constructos RDoC (Sleep-Wakefulness, Circadian) con apetito/libido que no son constructos RDoC — coherente con que sean huecos de RDoC.'],
+  di:'Sueño, apetito y libido se acceden por <b>heteroanamnesis</b> (cuidador) y signos observables — accesible en DI sin depender de introspección.'
+ },
+ {n:3, name:'Red social subcortical',
+  onto:'Circuito subcortical (Social Behavior Network de Newman): hipotálamo medial/preóptica, septum lateral, amígdala extendida/BNST, PAG; oxitocina/vasopresina. Distinto de la red de mentalización cortical (red 9) — la distinción de las "dos redes sociales".',
+  items:['Expresividad emocional','Afiliación','Dominancia','Patrón de personalidad'], strength:'MODERADA-ALTA', access:'obs',
+  ev:[
+    ['Afiliación/apego recluta circuitería estriatal/de recompensa; receptores de oxitocina en NAc predicen conducta afiliativa/prosocial (red prosocial: ínsula, cingulado, NAc).','Pintos Lobo 2023; Hazani J Neurosci 2025 (PubMed)'],
+    ['Neuronas de oxitocina organizan el desarrollo de la "social decision-making network" y la respuesta a estímulos sociales.','Nunes J Neurosci 2021 (PubMed)'],
+    ['<b>Expresividad — doble sistema facial:</b> disociación automático-voluntaria; pérdida de inervación facial voluntaria con la emocional involuntaria preservada → vías separadas (aferentes subcorticales al núcleo motor facial).','Eblen, Weller & Dichgans Eur Arch Psychiatry 1992 (PubMed)']
+  ],
+  map:[
+    ['Afiliación','Oxitocina en NAc + red prosocial (ínsula/cingulado/NAc)','Hazani 2025; Nunes 2021 (PubMed)','alta'],
+    ['Dominancia','SBN (agencia social)','<span class="flag">[BUSCAR]</span> jerarquía social específica','preliminar'],
+    ['Patrón de personalidad','Circumplejo interpersonal (afiliación × dominancia)','inferencia de los dos ejes','preliminar'],
+    ['Expresividad emocional','Doble vía motora facial (emocional vs voluntaria; multi-red con red 6)','Eblen 1992 (PubMed)','alta']
+  ],
+  gaps:['<span class="flag">[BUSCAR]</span> Sustrato específico de jerarquía/dominancia social (más allá de afiliación).',
+        'Subió a MODERADA-ALTA tras búsqueda dirigida (afiliación y expresividad ahora con evidencia directa).'],
+  di:'Expresividad, afiliación y dominancia son <b>conductas observables</b> en la interacción — accesible en DI.'
+ },
+ {n:4, name:'Red frontolímbica — generación de afecto (valencia negativa)',
+  onto:'Circuito amigdalino + red de saliencia. Bien delimitado anatómicamente. Separación fear (rápido, estímulo-específico, amígdala) vs distress (lento, contextual, ACC-HPA).',
+  items:['Ánimo','Amenaza'], strength:'ALTA', access:'mix',
+  ev:[
+    ['RDoC Negative Valence define cinco constructos disociables: Acute Threat (BLA, PAG), Potential Threat (BNST), Sustained Threat (ACC-HPA), Loss, Frustrative Nonreward.','síntesis dossier F6 [library]'],
+    ['Mapeo RDoC NVS → HiTOP (Acute Threat→Fear; Sustained Threat + Loss→Distress).','Michelini et al. 2021 (PMC8165014) [library]'],
+    ['NVS (esp. sustained threat/loss) predice conducta suicida.','Glenn et al. 2018 (PMC5760472) [library]']
+  ],
+  map:[
+    ['Ánimo','ACC subgenual-HPA (Loss / Sustained threat)','Michelini 2021 [library]','alta'],
+    ['Amenaza','Amígdala BLA + PAG (agudo) / BNST (potencial/sostenido)','dossier F6 [library]','alta']
+  ],
+  gaps:['Frustración (frustrative nonreward) <b>movida a red 5</b> (recompensa): recluta estriado ventral / circuito de recompensa (Parker 2025, MID task). RESUELTO.',
+        'La regulación deliberada de la reactividad vive en red 10 (la extinción vmPFC es frontolímbica implícita).'],
+  di:'El afecto es <b>observable</b>, pero el ánimo subjetivo y la amenaza percibida requieren reporte → canal mixto; en DI apoyarse en signos observables.'
+ },
+ {n:5, name:'Red de recompensa (valencia positiva)',
+  onto:'Vía dopaminérgica mesolímbica + circuito funcional de recompensa. Integra dos subsistemas disociables: dopaminérgico (wanting/vigor/learning) y opioide (liking).',
+  items:['Motivación / drive (wanting + vigor)','Tono hedónico (liking)','Frustración (frustrative nonreward)'], strength:'ALTA', access:'mix',
+  ev:[
+    ['Descomposición wanting / liking / learning.','Berridge & Robinson (PMC5171207) [library]'],
+    ['Coste del esfuerzo depende de ACC dorsal (su lesión elimina la disposición al esfuerzo sin afectar el liking).','Treadway & Zald 2011 [library]'],
+    ['PET ¹¹C-raclopride post-IFN-α: ↓ DA estriatal ↔ ↓ motivación.','Felger et al. Neuropsychopharmacology 2016 [library]'],
+    ['BNSS confirma dos factores (MAP motivación/placer vs EE expresividad).','Kirkpatrick et al. 2012 (PMC3502636) [library]'],
+    ['Frustrative nonreward → circuito de recompensa (MID task); movida desde la red 4.','Parker et al. 2025, ABCD, N=5,923 [library]']
+  ],
+  map:[
+    ['Motivación / drive (wanting + vigor)','DA mesolímbica VTA→NAc (incentive salience) + DA tónica / ACC dorsal (esfuerzo)','Berridge & Robinson; Treadway & Zald [library]','alta'],
+    ['Tono hedónico (liking)','Opioides NAc shell / pálido ventral','Berridge & Robinson [library]','alta'],
+    ['Frustración (frustrative nonreward)','Estriado ventral / circuito de recompensa (MID task)','Parker 2025 [library]','alta']
+  ],
+  gaps:['Reward learning = mecanismo, no ítem (no medible bedside).',
+        'Wanting y vigor/esfuerzo <b>unidos en "Motivación/drive"</b> (2026-06-26): el esfuerzo carecía de soporte factorial independiente (dossier F3-anhedonia); ambos son el brazo dopaminérgico, frente al opioide (liking). Especificadores [wanting]/[vigor] si se requiere granularidad.'],
+  di:'El vigor/energía es <b>observable</b>; wanting y liking dependen de reporte hedónico → mixto.'
+ },
+ {n:6, name:'Red sensoriomotora — nigroestriatal + cerebelo + motor',
+  onto:'Circuito nigroestriatal (ganglios basales) + circuito cerebeloso-tálamo-cortical. Territorio que HiTOP no captura (ventaja diferencial del instrumento).',
+  items:['Velocidad psicomotriz','Parakinesia','Tics','Síntomas extrapiramidales','Signos neurológicos blandos'], strength:'ALTA', access:'obs',
+  ev:[
+    ['Catatonia: locus neural en loops cortico-estriado-tálamo-cerebelosos.','Walther & Heckers NEJM 2023;389:1797; Duque 2024 (PMC11006573) [library]'],
+    ['Enlentecimiento psicomotor en MDD: desacople SMN-frontal + desregulación dopaminérgica (conectividad ↔ mapas D1/D2 r=−0.492).','Liang et al. 2025 Psychol Med (PMC12527541) [library]'],
+    ['Signos neurológicos blandos: sustrato cerebelo, ganglios basales, regiones somatomotoras; endofenotipo independiente de antipsicóticos.','Tsapakis et al. 2023 (PMID 36924179) [library]']
+  ],
+  map:[
+    ['Velocidad psicomotriz','SMN-frontal + DA (D1/D2)','Liang 2025 [library]','alta'],
+    ['Parakinesia / EPS','Nigroestriatal (ganglios basales)','Walther 2023 [library]','alta'],
+    ['Signos neurológicos blandos','Cerebelo + ganglios basales + somatomotor','Tsapakis 2023 [library]','alta']
+  ],
+  gaps:['Tics: ítem propio con escala unidireccional 0/−1/−2 anclada en YGTSS (decisión 14 del SPEC).'],
+  di:'Todo el dominio motor es <b>observable directamente</b> — el canal más robusto en DI.'
+ },
+ {n:7, name:'Red CSTC + saliencia',
+  onto:'Circuito cortico-estriado-tálamo-cortical + red de saliencia (ínsula anterior + dACC como switch interno/externo).',
+  items:['Contenido del pensamiento','Integración sensorial','Interocepción','Nocicepción'], strength:'ALTA', access:'mix',
+  ev:[
+    ['Red de saliencia como sustrato transdiagnóstico: pérdida de sustancia gris en dACC + ínsula bilateral común a 6 grupos diagnósticos.','Goodkind et al. 2015, VBM meta (~16,000; PMC4791058) [library]'],
+    ['Saliencia como switch DMN↔CEN; gating sensorial (P50). Contenido del pensamiento (psicosis): saliencia dopaminérgica aberrante en estriado.','dossier F2-sensorial (Kapur) [library]'],
+    ['<b>Nocicepción (movida desde red 2):</b> la ínsula procesa el input nociceptivo (posterior) y media su dimensión emocional (anterior); su lesión causa asimbolia al dolor.','McBenedict et al. Cureus 2024 (PubMed)']
+  ],
+  map:[
+    ['Contenido del pensamiento','CSTC / saliencia dopaminérgica aberrante','F2-sensorial (Kapur) [library]','alta'],
+    ['Integración sensorial','Saliencia + gating talámico (P50)','F2-sensorial [library]','alta'],
+    ['Interocepción','Ínsula posterior→anterior + dACC','Goodkind 2015 [library]','alta'],
+    ['Nocicepción','Matriz del dolor: ínsula posterior → anterior + ACC','McBenedict 2024 (PubMed)','alta']
+  ],
+  gaps:['Nocicepción confirmada en red 7 (ínsula-ACC), no en red 2 — hallazgo del loop, RESUELTO.'],
+  di:'El contenido del pensamiento, interocepción y dolor dependen de <b>autorreporte</b>; las anomalías graves (psicosis) se infieren por conducta → mixto, parcial en DI.'
+ },
+ {n:8, name:'Red frontoparietal — control ejecutivo',
+  onto:'Red de conectividad funcional (multiple-demand / fronto-parietal control network).',
+  items:['Metacontrol cognitivo','Monitoreo del error','Control inhibitorio','Pruebas neurocognitivas'], strength:'ALTA', access:'perf',
+  ev:[
+    ['Déficit de control cognitivo transdiagnóstico en la multiple-demand network.','McTeague, Goodkind & Etkin 2016 (PMC5107153) [library]'],
+    ['Sustrato común dACC/ínsula a través de trastornos (monitoreo del error, ERN).','Goodkind et al. 2015 (PMC4791058) [library]'],
+    ['Memoria de trabajo / control ejecutivo = RDoC Cognitive Systems (fMRI-DLPFC, n-back).','dossier NC-neurocognitive [library]']
+  ],
+  map:[
+    ['Metacontrol cognitivo','FPN / multiple-demand network','McTeague 2016 [library]','alta'],
+    ['Monitoreo del error','dACC / dmPFC (ERN)','Goodkind 2015 [library]','alta'],
+    ['Control inhibitorio','IFG derecho–preSMA–STN (vía hiperdirecta) / FPN','McTeague 2016 [library]','alta'],
+    ['Pruebas neurocognitivas','DLPFC + parietal (MCCB)','NC-neurocognitive [library]','alta']
+  ],
+  gaps:['Frontera con red 10: metacontrol = capacidad ejecutiva medible (FPN); regulación = aplicación del control a través de dominios (integrativa).'],
+  di:'Se evalúa por <b>pruebas de desempeño</b> estructuradas — parcialmente accesible en DI según el nivel, pero el rendimiento está intrínsecamente comprometido (no separable del propio constructo de DI).'
+ },
+ {n:9, name:'Red de modo por defecto (DMN) + mentalización',
+  onto:'Red de conectividad funcional (DMN: mPFC, PCC/precúneo, TPJ, polo temporal) + red de mentalización cortical (la segunda "red social", distinta de la red 3).',
+  items:['Experiencia del pensamiento','Experiencia vivida','Experiencia del yo','Mentalización','Autoevaluación','Simulación a futuro'], strength:'ALTA', access:'intro',
+  ev:[
+    ['Red de mentalización núcleo confirmada: TPJ, precúneo, mPFC.','Borbás et al. 2026, fMRI desarrollo (N=181; PMC12920907) [library]'],
+    ['Déficit de mentalización transdiagnóstico (SZ g=−0.96; BPD g=−0.61; ASD g=−0.50).','Tsui, Lo & Chan 2025, NMA (89 estudios, N=9,038; PMC12816936) [library]'],
+    ['DMN co-activa con red ejecutiva en mind-wandering; disociación hipo/hipermentalización en el continuo autismo-psicosis.','Christoff et al. 2016 PNAS; F7/F1 [library]']
+  ],
+  map:[
+    ['Mentalización','TPJ + mPFC + pSTS','Tsui 2025; Borbás 2026 [library]','alta'],
+    ['Experiencia del yo','Precúneo + PCC (DMN); eje de agencia bipolar','Borbás 2026 [library]','alta'],
+    ['Autoevaluación / simulación a futuro','mPFC (prospección, DMN)','Christoff 2016 [library]','alta']
+  ],
+  gaps:['Experiencia del yo definida como eje de AGENCIA bipolar (−2 pasividad / +2 hiperagencia) — decisión del SPEC.'],
+  di:'Toda la red depende de <b>autorreporte introspectivo</b> de la experiencia subjetiva — canal limitado en DI moderada-severa. Marcar como "no evaluable por canal directo" antes que puntuar como ausente.'
+ },
+ {n:10, name:'Integración de red — control de dominio-general (ápex)',
+  onto:'Capa de control de dominio-general (triple-red: DMN ⇄ saliencia ⇄ central-ejecutiva). NO tiene circuito propio: ES la red que coordina a las demás. Declarar su naturaleza integrativa es definición, no debilidad.',
+  items:['Regulación metacognitiva','Organización conductual','Regulación emocional','Approach–evitación','Riesgo'], strength:'MODERADA-ALTA', access:'mix',
+  ev:[
+    ['Modelo triple-red: SN, CEN y DMN como hubs de procesamiento perceptivo-emocional-conductual e introspección; saliencia aberrante aplicada transdiagnósticamente.','Menon B. Med Hypotheses 2019 (PubMed); <span class="flag">[VERIFICAR]</span> añadir Menon V. Trends Cogn Sci 2011 como cita primaria'],
+    ['Desorganización (FTD): disconectividad de sustancia blanca, dimensiones transdiagnósticas. Desregulación emocional = intersección NVS (genera) + Cognitive Systems (regula).','Stein et al. 2024 Biol Psychiatry; dossier F6 [library]'],
+    ['<b>Approach–evitación:</b> el hipocampo ventral es crítico para la decisión bajo conflicto motivacional; sustrato del behavioral inhibition system (Gray).','Schumacher, Vlassov & Ito Hippocampus 2015 (PubMed)']
+  ],
+  map:[
+    ['Organización conductual (incl. discurso/FTD)','Disconectividad WM + control top-down','Stein 2024 [library]','alta'],
+    ['Regulación emocional','FPN sobre amígdala (NVS × cognitive)','F6 [library]','moderada'],
+    ['Approach–evitación','Hipocampo ventral (conflicto) + BIS (Gray)','Schumacher 2015 (PubMed)','moderada'],
+    ['Riesgo','NVS (sustained threat/loss)','Glenn 2018 [library]','alta']
+  ],
+  gaps:['Insight = componente de Regulación metacognitiva (no eje paralelo). Los ejes paralelos quedan reducidos a Riesgo y Funcionalidad (PSP).',
+        '<span class="flag">[VERIFICAR]</span> Añadir Menon V. 2011 (Trends Cogn Sci) como cita primaria del triple-red.'],
+  di:'La organización conductual y el riesgo son <b>parcialmente observables</b>; la regulación metacognitiva y el insight requieren introspección. En DI: el ápex integrador es el canal más comprometido.'
+ }
+];
+
+// ---------- scoring scales (−2 / +2) — fuente: SCORING-MAESTRO-pmse-v0.md ----------
+const SCORES = {
+ 1:[
+  {it:'Conciencia', a:['estupor/coma o delirium hipoactivo','obnubilación','vigilia clara','hiperalerta sin compromiso','hipervigilancia con interferencia / delirium hiperactivo'], flag:'fluctuación → delirium'},
+  {it:'Alerta', a:['hipoarousal: somnoliento, latencia >5 s, se duerme en entrevista','enlentecido: latencia 2–5 s, requiere reorientación','alerta proporcional, atiende sin esfuerzo','hiperalerta leve: reactivo/inquieto pero redirigible','hiperarousal sostenido: no se mantiene sentado, taquilalia, no redirigible']}
+ ],
+ 2:[
+  {it:'Sueño y ritmo circadiano', a:['hipersomnia marcada (>10 h) o somnolencia diurna invalidante','tendencia a dormir de más / despertar difícil, leve','6–9 h reparador, fase alineada','insomnio leve o fase algo retrasada, sin disfunción diurna','insomnio severo <4 h / ↓necesidad de sueño / fase muy retrasada o sundowning']},
+  {it:'Apetito', a:['restricción severa (<500 kcal/ARFID) o ↓peso >10%','apetito/ingesta por debajo de lo habitual','apetito e ingesta estables','apetito aumentado / picoteo, sin atracón','atracón / pica / purga']},
+  {it:'Libido', a:['alibido / anhedonia sexual completa','deseo sexual reducido respecto al baseline','libido proporcional al baseline','deseo sexual aumentado, sin daño','hipersexualidad / parafilia con daño o pérdida de control']}
+ ],
+ 3:[
+  {it:'Expresividad emocional', a:['embotamiento: cara inmóvil, prosodia plana, sin gestos','expresividad reducida: rango estrecho, hipomimia leve','expresión proporcional y congruente','expresividad intensa pero congruente','teatralidad: sobreactuación histriónica/maníaca o incongruente'], flag:'[incongruente] = paratimia; cruzar red 6 (hipomimia)'},
+  {it:'Afiliación', a:['hostilidad sostenida / antagonismo activo','frialdad / retraimiento, escaso calor interpersonal','calidez y reciprocidad proporcionales','búsqueda de cercanía aumentada, apropiada','afiliación excesiva / fusión idealizadora / desinhibición social']},
+  {it:'Dominancia', a:['sumisión extrema: cede siempre, no sostiene posición','tendencia sumisa / deferente, poca iniciativa','rapport colaborativo, asertividad proporcional','dominante/asertivo marcado, aún colaborativo','dominancia franca: controla, descalifica, no cede']},
+  {it:'Patrón de personalidad', a:['patrón rígido extremo: invariante al contexto','rigidez moderada: repertorio interpersonal estrecho','flexibilidad proporcional al contexto','variabilidad aumentada según situación, adaptativa','oscilación impredecible e inestable (p. ej. TLP)']}
+ ],
+ 4:[
+  {it:'Ánimo', a:['depresión: todo vivido como no-logro, anhedonia del ánimo','ánimo bajo / subdepresivo, reactividad conservada','eutímico: rastrea outcomes, reactivo proporcional','ánimo elevado/expansivo leve, aún reactivo','euforia/manía desacoplada del logro o disforia sostenida']},
+  {it:'Amenaza', a:['hiporespuesta defensiva: no registra amenaza real','ansiedad/reactividad por debajo de lo esperable','respuesta de amenaza proporcional, recupera','ansiedad/hipervigilancia elevada, redirigible','pánico activo o worry multidominio sostenido, no redirigible'], flag:'[agudo] (amígdala) vs [sostenido] (BNST)'}
+ ],
+ 5:[
+  {it:'Motivación / drive (wanting + vigor)', a:['avolición / anergia: sin deseo ni empuje, no inicia','motivación/energía reducida, inicia con esfuerzo','motivación y vigor proporcionales a metas','empuje/energía aumentados, productivos','craving / hipermotivación con hiperactivación'], flag:'une wanting (incentive salience) + vigor (esfuerzo) — brazo dopaminérgico; espec [wanting]/[vigor]'},
+  {it:'Tono hedónico (liking)', a:['anhedonia consumatoria: no disfruta nada','placer atenuado / disfrute reducido','disfrute proporcional','disfrute intensificado, apropiado','hiperhedonia (placer desregulado)']},
+  {it:'Frustración (frustrative nonreward)', a:['indiferencia al no-logro: no reacciona a obstáculos','tolerancia aumentada / poca reactividad','frustración proporcional, recupera','frustración fásica (non-reward), reactiva al obstáculo','irritabilidad tónica basal, sin gatillo'], flag:'movida desde red 4 (recluta estriado ventral)'}
+ ],
+ 6:[
+  {it:'Velocidad psicomotriz', a:['retardo: latencia >5 s, AVD afectadas, bradicinesia','enlentecimiento leve: movimientos/habla algo lentos','velocidad proporcional','aceleración leve: inquieto, habla rápida redirigible','agitación / taquilalia, no redirigible']},
+  {it:'Parakinesia', note:'<b>3 subtipos, cada uno 0/−1/−2</b> (ventana: entrevista o últimos 7 días). <b>Iterativa</b>: 0 ausente · −1 sutil/intermitente · −2 recurrente/difícil de interrumpir (estereotipias, perseveraciones, verbigeración, ecolalia). <b>Odd/bizarra</b>: 0 proporcional · −1 gesto/postura rara breve · −2 bizarra clara o sostenida (mannerisms, grimacing, posturas raras). <b>Volicional/automática</b>: 0 agencia motora normal · −1 leve/ambiguo · −2 claro/reproducible (obediencia automática, mitgehen/mitmachen, ambitendencia, flexibilidad cérea, catalepsia, grasp reflex).'},
+  {it:'Tics', a:['marcados (frecuentes/casi continuos, complejos, no suprimibles, con interferencia)','leves (ocasionales, simples, suprimibles)','ausentes',null,null], note:'<b>Unidireccional 0/−1/−2</b> anclado en YGTSS (frecuencia · intensidad · complejidad · supresibilidad · interferencia). Espec [motor]/[vocal-fónico] · [simple]/[complejo].'},
+  {it:'Síntomas extrapiramidales', a:[null,null,'ausentes','leves','marcados'], note:'<b>Unidireccional 0/+1/+2.</b> Incluye acatisia. Anclas: Simpson-Angus (parkinsonismo) · BARS (acatisia) · AIMS (discinesia). Espec [parkinsonismo]/[acatisia]/[discinesia]/[distonía].'},
+  {it:'Signos neurológicos blandos', a:[null,null,'ausentes','sutiles (1–2 signos)','marcados (múltiples dominios)'], note:'<b>Unidireccional 0/+1/+2.</b> Especificador <b>[autonómico]</b> para signos vegetativos (sialorrea, seborrea, sudoración) — AMDP 110, 123.'}
+ ],
+ 7:[
+  {it:'Contenido del pensamiento', scale04:['Normal','Idea fija o preocupación','Obsesiones o rumiaciones','Idea sobrevalorada o creencia inusual','Delusión'], flag:'escala dimensional de convicción 0→4 (sustituye −2/+2 para este ítem)'},
+  {it:'Integración sensorial', a:['atenuación perceptiva (desrealización, hipoestesia)','distorsión perceptiva sutil / hipersensibilidad','percepción calibrada','anómalo: PLE, ilusiones, hipervigilancia perceptiva','alucinación formada (incl. voces)'], flag:'cruzar F7.testing (juicio de realidad)'},
+  {it:'Interocepción', a:['hipo-interocepción / alexisomia: no registra señales corporales','conciencia corporal reducida','interocepción calibrada','sensibilidad somática aumentada / vigilancia leve','hiper-interocepción / somatización (amplificación, pánico interoceptivo)'], flag:'subsume somatización; 3 dimensiones Garfinkel 2015 (precisión/sensibilidad/conciencia)'},
+  {it:'Nocicepción', a:['hipoalgesia / asimbolia al dolor','umbral de dolor elevado / poca reactividad','percepción del dolor proporcional','sensibilidad al dolor aumentada / hiperalgesia leve','dolor desproporcionado / central / catastrofizado']},
+  {it:'Regulación atencional', a:['saliencia aberrante: atención capturada por lo irrelevante','distractibilidad leve / filtra con esfuerzo','asignación calibrada (atiende lo relevante, suelta lo irrelevante)','foco algo pegajoso / cuesta desenganchar','sobre-fijación / "sticky" (hiperfoco perseverativo)'], flag:'frontera con Metacontrol (red 8): aquí gating bottom-up, allá control top-down'}
+ ],
+ 8:[
+  {it:'Metacontrol cognitivo', a:['déficit: distractibilidad, perseveración, no sostiene set','control reducido: lapsos, requiere esfuerzo','control cognitivo proporcional','control elevado/esforzado, algo rígido','sobre-control: hiperfoco rígido, no cambia set']},
+  {it:'Monitoreo del error', a:['hipomonitoreo / jumping-to-conclusions: no detecta error','detección de error reducida','monitoreo calibrado','hipermonitoreo leve / chequeo aumentado','hipermonitoreo / not-just-right: dudas y checking']},
+  {it:'Control inhibitorio', a:['desinhibición: actúa sin frenar, blurting, interrumpe, no espera turno','inhibición reducida: impulsividad ocasional, frena con lentitud','frena la respuesta prepotente proporcionalmente','inhibición aumentada / cautela motora leve','sobre-inhibición: freezing conductual, lentitud marcada para iniciar'], flag:'inhibición de respuesta (Go/No-Go · Stroop · Stop-Signal); el freno motor/verbal ≠ dirección (Approach-evitación) ni daño (Riesgo)'},
+  {it:'Pruebas neurocognitivas', note:'<b>Batería bedside, 5 pruebas (cada una 0/−1/−2 hacia déficit):</b><table><thead><tr><th>Prueba</th><th>0 (normal)</th><th>−1 (leve)</th><th>−2 (déficit)</th></tr></thead><tbody><tr><td>Fluencia semántica (animales)</td><td>≥18</td><td>12–17</td><td>&lt;12</td></tr><tr><td>Digit span</td><td>6F / 4B</td><td>5F / 3B</td><td>≤4F / ≤2B</td></tr><tr><td>TMT oral (Trail Making)</td><td>A&lt;30s, B&lt;75s</td><td>ratio B/A &gt;3.0</td><td>B&gt;180s</td></tr><tr><td>Clock Drawing</td><td>normal</td><td>error menor</td><td>errores graves</td></tr><tr><td>3-Word Recall</td><td>3/3 libre</td><td>2/3 con cues</td><td>≤1/3 libre</td></tr></tbody></table>'}
+ ],
+ 9:[
+  {it:'Experiencia del pensamiento', a:['bloqueo / vacío (Gedankenabreißen), pobreza marcada','enlentecimiento / empobrecimiento del flujo','flujo de pensamiento proporcional','aceleración leve del pensar','presión / crowding (Gedankendrängen)']},
+  {it:'Experiencia vivida', a:['desrealización/despersonalización + discontinuidad biográfica','extrañeza/irrealidad leve, continuidad conservada','realidad y continuidad del vivir','intensificación/sobre-significación leve del entorno','Wahnstimmung + narrativa sobre-significada']},
+  {it:'Experiencia del yo (agencia)', a:['pasividad: inserción/robo/influencia, no es fuente','sentido de agencia reducido / extrañeza del yo','self como fuente de sus actos y pensamientos','agencia aumentada / hiperreflexividad leve','hiper-agencia: control activo, omnipotencia del pensamiento'], flag:'espec ipseicos [hiperreflexividad]/[despersonalización]'},
+  {it:'Mentalización', a:['hipomentalización: falla de ToM, no infiere estados ajenos','mentalización reducida / literal','mentalización proporcional','hipermentalización leve / sobre-interpreta intenciones','hipermentalización: lectura paranoide de intenciones']},
+  {it:'Autoevaluación', a:['culpa / autodescalificación nuclear (mala valoración de sí)','autovaloración negativa / inseguridad','autoevaluación calibrada / proporcional','autovaloración positiva elevada','autoevaluación grandiosa / sobrevalorada']},
+  {it:'Simulación a futuro', a:['colapso del horizonte temporal (sin futuro)','prospección reducida / pesimista','proyección a futuro proporcional','prospección optimista aumentada','hiper-prospección catastrófica o grandiosa'], flag:'−2 = bandera de suicidio'}
+ ],
+ 10:[
+  {it:'Regulación metacognitiva', a:['no usa el autoconocimiento para corregirse (insight pobre / anosognosia)','insight parcial: reconoce algo pero corrige poco','ajusta conducta según su autoconocimiento (insight operativo)','metacognición aumentada / autoexamen frecuente','sobre-regulación: rumia metacognitiva, hiperreflexividad paralizante (CAS de Wells)'], flag:'aquí se lee el insight clínico (decisión 15)'},
+  {it:'Organización conductual', a:['desorganización: conducta caótica + discurso incoherente','organización reducida / secuenciación pobre','organizado, dirigido a metas','orden/estructura aumentados, algo rígidos','sobre-rigidez: estereotipias, rituales, discurso monográfico'], flag:'espec [conductual]/[discurso]'},
+  {it:'Regulación emocional', a:['sub-regulación / desregulación (afecto desbordado, labilidad)','reducida','modula el afecto adaptativamente','sobre-control leve','sobre-regulación (supresión excesiva, constricción afectiva)']},
+  {it:'Approach–evitación', a:['evitación experiencial severa: evita todo malestar','evitación aumentada / cautela excesiva','flexibilidad psicológica (approach/evitación según valor)','approach aumentado / busca novedad sin gran riesgo','approach desinhibido: riesgo sin freno']},
+  {it:'Riesgo a sí mismo / otros', note:'<b>Módulo (no bipolar), del intake bMSE</b> — 3 ejes con variables extrínsecas → señal de riesgo (VIGILAR / crítico). <b>Suicidio → 3ST (Klonsky &amp; May):</b> plan · acceso a medios letales · intento previo · desesperanza · red de soporte · + variabilidad temporal reciente. <b>Heteroagresión → BVC (Brøset):</b> agitación auditiva · amenazas verbales · ataque a objetos (24h) · + historia de violencia · sustancias activas. <b>Negligencia:</b> autocuidado · actividades útiles · relaciones · insight. Modulador transversal: <b>rechazo de ayuda</b> (pasivo/activo).'}
+ ]
+};
+
+function scoreHTML(n){
+  const rows = SCORES[n]; if(!rows) return '';
+  const head = `<div class="scrow head"><div></div>
+    <div class="scol c-2">−2</div><div class="scol c-1">−1</div>
+    <div class="scol c0">0</div><div class="scol cp1">+1</div><div class="scol cp2">+2</div></div>`;
+  const lvl=['−2','−1','0','+1','+2'];
+  const body = rows.map(r=>{
+    if(r.scale04){
+      const labs=['0','1','2','3','4'];
+      const lh=`<div class="scrow head"><div></div>${labs.map((l,i)=>`<div class="scol s04-${i}">${l}</div>`).join('')}</div>`;
+      const cells=r.scale04.map((v,i)=>`<div class="scell s04-${i}" data-lvl="${labs[i]}">${v}</div>`).join('');
+      const fl = r.flag?`<div class="sflag">⚑ ${r.flag}</div>`:'';
+      return `${lh}<div class="scrow"><div class="it">${r.it}</div>${cells}</div>${fl}`;
+    }
+    if(!r.a){ return `<div class="snote"><b>${r.it}.</b> ${r.note}</div>`; }
+    const cells = r.a.map((v,i)=> v
+      ? `<div class="scell${i===2?' lvl0':''}" data-lvl="${lvl[i]}">${v}</div>`
+      : `<div class="scell empty" data-lvl="${lvl[i]}">—</div>`).join('');
+    let extra='';
+    if(r.flag) extra += `<div class="sflag">⚑ ${r.flag}</div>`;
+    if(r.note) extra += `<div class="snote">${r.note}</div>`;
+    return `<div class="scrow"><div class="it">${r.it}</div>${cells}</div>${extra}`;
+  }).join('');
+  return `<details class="sec" open><summary>Escala de puntuación · −2 → +2 <span class="muted-note">(0 = calibrado/sano; ambos polos patológicos)</span></summary><div class="sec-body">${head}${body}</div></details>`;
+}
+
+// ---------- mapeo nosológico (HiTOP clusters sourced + DSM-5 count + escalas) ----------
+const RDOC = {
+  1:'Arousal & Regulatory', 2:'Arousal & Regulatory', 3:'Social Processes',
+  4:'Negative Valence', 5:'Positive Valence', 6:'Sensorimotor',
+  7:'Cognitive Systems (Perception)', 8:'Cognitive Systems', 9:'Social Processes',
+  10:'— (regulación: hueco de RDoC)'
+};
+const ORPHAN = {
+  10:'<b>✓ Reasignación de Control inhibitorio</b> (29 síntomas DSM-5, 2026-06-26): Reckless risk-taking (7)+Antisocial (2) → <b>Riesgo</b> · Substance use (6) → <b>Motivación/drive</b> · Verbal impulsivity (4)+Oppositional (2)+Inconsiderate (2)+Inappropriate (1)+Difficulty waiting (1)+Hostility (1) → <b>Regulación emocional</b> · Compulsions (2)+Perseveration (1) → <b>Approach–evitación</b>. Conteos DSM-5 ya actualizados (suma = 29; cobertura intacta). <b>Actualización:</b> la <b>capacidad</b> de inhibición (response inhibition) se reintrodujo como ítem ejecutivo en la <b>red 8 (CEN)</b>; 4 síntomas de impulsividad motora/verbal (blurting, no esperar turno, interrumpir, impulsividad) se movieron allí.'
+};
+const NMAP = {
+ 1:[
+  {it:'Conciencia', hitop:'—', dsm5:0, esc:'MMSE/MoCA Orientation · PANSS G10 · AMDP Bewusstseins.'},
+  {it:'Alerta', hitop:'Hypervigilance', dsm5:1, esc:'AMDP Vigilanz · PANSS Excitement(+) · MADRS Lassitude(−)'}
+ ],
+ 2:[
+  {it:'Sueño y ritmo circadiano', hitop:'Insomnia · Decreased need for sleep · Fatigue', dsm5:5, esc:'PSQI · ISI · HAM-D 4-6 · YMRS 4'},
+  {it:'Apetito e ingesta', hitop:'Overeating · Appetite loss · Purging · Restricted intake', dsm5:17, esc:'IDS/QIDS · EDE-Q · HAM-D 12'},
+  {it:'Libido', hitop:'Low sexual interest · Low responsiveness', dsm5:16, esc:'ASEX · CSFQ · HAM-D 14'}
+ ],
+ 3:[
+  {it:'Expresividad emocional', hitop:'Restricted emotional expression · Low emotional reactivity', dsm5:5, esc:'SANS Aff.Flattening · BNSS/CAINS EXP · PANSS N1'},
+  {it:'Afiliación', hitop:'Social withdrawal · Hostility · Attention seeking', dsm5:14, esc:'BNSS Asociality · CAINS MAP-Social · PANSS N4', esp:'Detachment'},
+  {it:'Dominancia', hitop:'Submissiveness · Superiority · Manipulation/deceit', dsm5:17, esc:'PID-5 Antagonism · PANSS P7 · YMRS', esp:'Antagonismo'},
+  {it:'Patrón de personalidad', hitop:'—', dsm5:0, esc:'PID-5 (5 dominios) · IPDE', esp:'espectros completos'}
+ ],
+ 4:[
+  {it:'Ánimo', hitop:'Depressed mood / loss of pleasure · Euphoric mood(+)', dsm5:4, esc:'MADRS · HAM-D · PANSS G6', esp:'Distress'},
+  {it:'Amenaza', hitop:'Fear & phobic anxiety · Anxious arousal · Suspiciousness', dsm5:40, esc:'HAM-A · STAI State · PANSS P6/G4'}
+ ],
+ 5:[
+  {it:'Motivación / drive (wanting + vigor)', hitop:'Avolition · Substance use · Euphoric mood(+) · Fatigue', dsm5:15, esc:'TEPS Antic. · BNSS/CAINS MAP · SANS Avolition · YMRS Energy(+)'},
+  {it:'Tono hedónico (liking)', hitop:'Depressed mood / loss of pleasure · Avolition', dsm5:5, esc:'BNSS Anhedonia-Consum. · CAINS · BDI 4'},
+  {it:'Frustración (frustrative nonreward)', hitop:'Irritability · Suspiciousness & resentment', dsm5:6, esc:'YMRS Irritability · PANSS G14/P7 · PID-5 Hostility', esp:'Antagonismo'}
+ ],
+ 6:[
+  {it:'Velocidad psicomotriz', hitop:'Psychomotor retardation · Hyperactivity · Fidgeting', dsm5:10, esc:'MADRS/HAM-D 8 · PANSS G7 · MCCB Speed'},
+  {it:'Parakinesia', hitop:'Catatonia · Disorganised motor behaviour', dsm5:10, esc:'AIMS · NES overflow · Heidelberg NSS'},
+  {it:'Tics', hitop:'—', dsm5:0, esc:'YGTSS'},
+  {it:'Síntomas extrapiramidales', hitop:'—', dsm5:0, esc:'Simpson-Angus · BARS · AIMS'},
+  {it:'Signos neurológicos blandos', hitop:'—', dsm5:0, esc:'NES · Heidelberg NSS'}
+ ],
+ 7:[
+  {it:'Contenido del pensamiento', hitop:'Unusual beliefs · Disorganised thought', dsm5:14, esc:'PANSS P1/P6/G9 · SAPS Delusions · PSYRATS-DEL', esp:'Thought Disorder'},
+  {it:'Integración sensorial', hitop:'Unusual experiences', dsm5:4, esc:'SAPS Hallucin. · PANSS P3 · PSYRATS-AH'},
+  {it:'Interocepción', hitop:'Health anxiety · Physical panic · GI distress · Muscle tension', dsm5:26, esc:'EASE d3 · CDS · PID-5 Cogn-Percept · HAM-A somático'},
+  {it:'Nocicepción', hitop:'Sexual pain · Muscle tension · Headaches', dsm5:4, esc:'AMDP dolor · PID-5 Somatic · PANSS G1'},
+  {it:'Regulación atencional', hitop:'Cognitive difficulties', dsm5:2, esc:'MCCB Attention · PANSS G11 · PID-5 Distractibility'}
+ ],
+ 8:[
+  {it:'Metacontrol cognitivo', hitop:'Cognitive difficulties', dsm5:11, esc:'MCCB (WM/Vigilance/Reasoning) · PANSS cognitivo'},
+  {it:'Monitoreo del error', hitop:'Intrusive obsessions', dsm5:1, esc:'Y-BOCS Obsessions · OCI-R Checking · PID-5 Rigid Perfect.'},
+  {it:'Control inhibitorio', hitop:'Verbal impulsivity · Reckless impulsivity', dsm5:4, esc:'Stroop · Go/No-Go · Stop-Signal (SSRT) · PID-5 Impulsivity', esp:'Disinhibición'},
+  {it:'Pruebas neurocognitivas', hitop:'Cognitive difficulties · Cognitive sympt. (trauma)', dsm5:3, esc:'MCCB (7 dominios) · MoCA/MMSE'}
+ ],
+ 9:[
+  {it:'Experiencia del pensamiento', hitop:'Verbal impulsivity · Anxious arousal', dsm5:2, esc:'SANS Alogia · SAPS FTD · PANSS N5/N7 · EASE d2', esp:'Thought Disorder'},
+  {it:'Experiencia vivida', hitop:'Dissociation · Traumatic intrusions', dsm5:2, esc:'EASE d1/d4 · CDS · AMDP despers.'},
+  {it:'Experiencia del yo', hitop:'Passivity · Despersonalización', dsm5:3, esc:'EASE d3 · SAPS Passivity · AMDP yo · PID-5 Psychoticism'},
+  {it:'Mentalización', hitop:'Lack of empathy · Callousness', dsm5:3, esc:'MCCB Social Cog. · CAINS/BNSS MAP-Social · PANSS G12', esp:'Detachment'},
+  {it:'Autoevaluación', hitop:'Guilt/shame proneness · Body image · Depressed mood', dsm5:11, esc:'HAM-D 2 · MADRS 9 · BDI cognitivo · EASE hiperreflex.', esp:'Distress'},
+  {it:'Simulación a futuro', hitop:'Depressed mood / loss of pleasure', dsm5:2, esc:'PSWQ · BNSS/CAINS MAP-Antic. · MADRS 9'}
+ ],
+ 10:[
+  {it:'Regulación metacognitiva', hitop:'Perseveration / fear of dyscontrol', dsm5:1, esc:'PANSS G12 Insight · EASE s4 · MCCB Reasoning'},
+  {it:'Organización conductual', hitop:'Disorganised thought · Perfectionism · Verbal impulsivity', dsm5:10, esc:'SANS Alogia/Avol. · PANSS N6 · SAPS FTD · NES Sequencing', esp:'Thought Disorder'},
+  {it:'Regulación emocional', hitop:'Emotional lability · Oppositional · Hostility · Depressed mood', dsm5:13, esc:'MCCB Reasoning · PID-5 Disinhibition · PANSS N5'},
+  {it:'Approach–evitación', hitop:'Agoraphobia · Avoidance · Compulsions · Perseveration', dsm5:17, esc:'CAINS/BNSS MAP-Antic. · STAI Trait · PID-5 Anxiousness/Detach.'},
+  {it:'Riesgo', hitop:'Suicidality · Reckless risk-taking · Antisocial · Physical aggression', dsm5:20, esc:'MADRS 10 / HAM-D 3 · PANSS G14/P7 · PID-5 Risk-Taking', esp:'Disinhibición'}
+ ]
+};
+
+const SPECTRUM = {
+ 'Conciencia':'fuera de HiTOP · arousal',
+ 'Alerta':'fuera de HiTOP · arousal',
+ 'Sueño y ritmo circadiano':'Internalizing (transdiagnóstico)',
+ 'Apetito e ingesta':'Eating Pathology',
+ 'Libido':'Sexual Problems',
+ 'Expresividad emocional':'Detachment',
+ 'Afiliación':'Detachment',
+ 'Dominancia':'Antagonistic Ext.',
+ 'Patrón de personalidad':'todos los espectros',
+ 'Ánimo':'Internalizing · Distress',
+ 'Amenaza':'Internalizing · Fear',
+ 'Motivación / drive (wanting + vigor)':'Detachment (−) / Mania (+)',
+ 'Tono hedónico (liking)':'Detachment · anhedonia',
+ 'Frustración (frustrative nonreward)':'Antagonistic Ext.',
+ 'Velocidad psicomotriz':'fuera de HiTOP · motor',
+ 'Parakinesia':'fuera de HiTOP · motor',
+ 'Tics':'fuera de HiTOP · motor',
+ 'Síntomas extrapiramidales':'fuera de HiTOP · motor/iatrogénico',
+ 'Signos neurológicos blandos':'fuera de HiTOP · neurológico',
+ 'Contenido del pensamiento':'Thought Disorder',
+ 'Integración sensorial':'Thought Disorder',
+ 'Interocepción':'Somatoform',
+ 'Nocicepción':'Somatoform',
+ 'Regulación atencional':'Disinhibited Ext. · distractib.',
+ 'Metacontrol cognitivo':'fuera de HiTOP · cognición',
+ 'Monitoreo del error':'Internalizing · Fear/OCD',
+ 'Control inhibitorio':'Disinhibited Ext.',
+ 'Pruebas neurocognitivas':'fuera de HiTOP · cognición',
+ 'Experiencia del pensamiento':'Thought Disorder',
+ 'Experiencia vivida':'Thought Disorder · disociación',
+ 'Experiencia del yo':'Thought Disorder',
+ 'Mentalización':'Detachment',
+ 'Autoevaluación':'Internalizing · Distress',
+ 'Simulación a futuro':'Internalizing · Distress',
+ 'Regulación metacognitiva':'fuera de HiTOP · metacognición',
+ 'Organización conductual':'Thought Disorder · disorg.',
+ 'Regulación emocional':'Internalizing / Disinhibited Ext.',
+ 'Approach–evitación':'Internalizing · Fear / Disinhibited',
+ 'Riesgo':'Disinhibited Ext.',
+};
+
+function nmapHTML(n){
+  const rows = NMAP[n]; if(!rows) return '';
+  const rd = RDOC[n] || '—';
+  const body = rows.map(r=>{
+    const sp = SPECTRUM[r.it] !== undefined ? SPECTRUM[r.it] : r.esp;
+    const out = sp && sp.indexOf('fuera')===0;
+    const spTag = sp ? ` <span class="tag" style="background:${out?'var(--chip)':'var(--accent2)'};color:${out?'var(--muted)':'#0a0d12'}">${out?sp:'esp: '+sp}</span>` : '';
+    return `<tr><td><b>${r.it}</b></td><td>${r.hitop||'—'}${spTag}</td><td class="frt" style="text-align:center">${r.dsm5}</td><td>${r.esc}</td></tr>`;
+  }).join('');
+  const orphan = ORPHAN[n] ? `<div class="snote" style="border-color:var(--falta)">${ORPHAN[n]}</div>` : '';
+  return `<details class="sec"><summary style="color:var(--accent2)">Mapeo nosológico · HiTOP · DSM-5 · escalas <span class="muted-note">— Dominio RDoC: <b style="color:var(--ink)">${rd}</b></span></summary><div class="sec-body">
+  <table><thead><tr><th>Ítem</th><th>HiTOP (clusters empíricos)</th><th title="nº de síntomas DSM-5 mapeados">DSM-5</th><th>Escalas clave</th></tr></thead><tbody>${body}</tbody></table>${orphan}</div></details>`;
+}
+
+// ---------- crosswalk AMDP (9ª ed., 154 ítems) → ítems pMSE ----------
+const AMDP = {
+ 1:[
+  {it:'Conciencia', n:2, a:'001 Vigilancia disminuida · 002 Obnubilación de la consciencia'},
+  {it:'Alerta', n:1, a:'105 Cansancio'}
+ ],
+ 2:[
+  {it:'Sueño y ritmo circadiano', n:8, a:'089 Empeoramiento matutino · 090 Empeoramiento vespertino · 091 Mejoría vespertina · 101 Dificultad para conciliar el sueño · 102 Sueño interrumpido · 103 Sueño acortado · 104 Despertar matutino precoz · ZS1 Parasomnias'},
+  {it:'Apetito e ingesta', n:3, a:'106 Apetito disminuido · 107 Apetito excesivo · 108 Sed excesiva'},
+  {it:'Libido', n:3, a:'109 Libido disminuida · ZS2 Libido aumentada · ZS3 Disfunciones sexuales'}
+ ],
+ 3:[
+  {it:'Expresividad emocional', n:6, a:'038 Dinámica delirante · 061 Afecto aplanado · 070 Quejumbrería · 076 Paratimia (afecto incongruente) · 079 Rigidez afectiva · 086 Histrionismo'},
+  {it:'Afiliación', n:2, a:'092 Aislamiento social · 093 Contacto social excesivo'},
+  {it:'Dominancia', n:0, a:'—'},
+  {it:'Patrón de personalidad', n:0, a:'—'}
+ ],
+ 4:[
+  {it:'Ánimo', n:3, a:'063 Estado de ánimo deprimido · 066 Euforia · 067 Disforia'},
+  {it:'Amenaza', n:4, a:'027 Suspicacia · 029 Fobias · 065 Ansiedad · ZP01 Crisis de angustia'}
+ ],
+ 5:[
+  {it:'Motivación/drive (wanting+vigor)', n:4, a:'062 Pérdida sentida de vitalidad · 080 Falta de impulso · 081 Inhibición del impulso · 082 Impulso aumentado'},
+  {it:'Tono hedónico (liking)', n:1, a:'060 Sentimiento de pérdida de sentimientos'},
+  {it:'Frustración', n:2, a:'068 Irritabilidad · 069 Inquietud interior'}
+ ],
+ 6:[
+  {it:'Velocidad psicomotriz', n:4, a:'016 Pensamiento enlentecido · 083 Agitación motora · 087 Mutismo · 088 Logorrea'},
+  {it:'Parakinesia', n:2, a:'084 Paracinesia · 085 Manierismos'},
+  {it:'Tics', n:0, a:'—'},
+  {it:'Síntomas extrapiramidales', n:5, a:'132 Rigidez muscular · 134 Temblor · 135 Discinesia aguda · 136 Hipocinesia · 137 Acatisia'},
+  {it:'Signos neurológicos blandos', n:6, a:'110 Hipersalivación · 123 Seborrea · 133 Hipotonía muscular · 138 Ataxia · 139 Nistagmo · 140 Parestesias'}
+ ],
+ 7:[
+  {it:'Contenido del pensamiento', n:15, a:'034 Percepción delirante · 035 Ideas delirantes repentinas · 036 Ideas delirantes · 037 Delirios sistematizados · 039 Delirios de referencia · 040 Delirios de persecución · 041 Delirios de celos · 042 Delirios de culpa · 043 Delirios de ruina · 044 Delirios hipocondríacos · 045 Delirios de grandiosidad · 046 Otros delirios · 074 Sentimientos de empobrecimiento · ZP03 Ideas de referencia · ZP10 Ideas sobrevaloradas'},
+  {it:'Integración sensorial', n:7, a:'047 Ilusiones · 048 Alucinaciones auditivas verbales · 049 Otras alucinaciones auditivas · 050 Alucinaciones visuales · 051 Alucinaciones corporales · 052 Alucinaciones olfativas y gustativas · 131 Síntomas de conversión'},
+  {it:'Interocepción', n:17, a:'028 Hipocondría · 111 Boca seca · 112 Náuseas · 113 Vómitos · 114 Molestias gástricas · 115 Estreñimiento · 116 Diarrea · 117 Dificultad respiratoria · 118 Mareos · 119 Palpitaciones · 121 Visión borrosa · 122 Sudoración aumentada · 124 Dificultades de micción · 125 Dificultades menstruales · 128 Pesadez en las piernas · 129 Sofocos · 130 Escalofríos'},
+  {it:'Nocicepción', n:3, a:'120 Dolor cardíaco · 126 Presión cefálica · 127 Dolor de espalda'},
+  {it:'Regulación atencional', n:1, a:'003 Estrechamiento de la consciencia'}
+ ],
+ 8:[
+  {it:'Metacontrol cognitivo', n:2, a:'009 Apercepción alterada · 010 Concentración alterada'},
+  {it:'Monitoreo del error', n:1, a:'030 Pensamientos obsesivos'},
+  {it:'Control inhibitorio', n:0, a:'—'},
+  {it:'Pruebas neurocognitivas', n:8, a:'005 Desorientación temporal · 006 Desorientación espacial · 007 Desorientación situacional · 008 Desorientación autopsíquica · 011 Memoria de fijación alterada · 012 Memoria a largo plazo alterada · 013 Confabulación · ZP11 Afasia anómica'}
+ ],
+ 9:[
+  {it:'Experiencia del pensamiento', n:10, a:'015 Pensamiento inhibido · 017 Pensamiento circunstancial · 018 Pensamiento restringido · 019 Pensamiento perseverativo · 020 Rumiación · 021 Pensamiento acelerado · 022 Fuga de ideas · 023 Pensamiento tangencial · 024 Bloqueo del pensamiento · ZP02 Aceleración del pensamiento'},
+  {it:'Experiencia vivida', n:5, a:'004 Expansión de la consciencia · 014 Paramnesias · 033 Humor delirante · 053 Desrealización · 059 Perplejidad'},
+  {it:'Experiencia del yo', n:6, a:'054 Despersonalización · 055 Difusión del pensamiento · 056 Robo del pensamiento · 057 Inserción del pensamiento · 058 Otros sentimientos de influencia ajena · ZP06 Sonorización del pensamiento'},
+  {it:'Mentalización', n:0, a:'—'},
+  {it:'Autoevaluación', n:5, a:'071 Sentimientos de insuficiencia · 072 Autoestima exagerada · 073 Sentimientos de culpa · ZP08 Trastorno de la imagen corporal · ZP09 Sentimientos de vergüenza'},
+  {it:'Simulación a futuro', n:1, a:'064 Desesperanza'}
+ ],
+ 10:[
+  {it:'Regulación metacognitiva', n:3, a:'097 Ausencia de sentimiento de enfermedad · 098 Falta de conciencia de enfermedad · 099 Falta de cooperación'},
+  {it:'Organización conductual', n:5, a:'025 Incoherencia/Descarrilamiento · 026 Neologismos · 032 Acciones compulsivas · 100 Necesidad de cuidados · ZP04 Desorganización'},
+  {it:'Regulación emocional', n:3, a:'075 Ambivalencia · 077 Labilidad afectiva · 078 Incontinencia afectiva'},
+  {it:'Approach-evitación', n:3, a:'031 Impulsos compulsivos · ZP05 Comportamiento intrusivo · ZP07 Impulsividad'},
+  {it:'Riesgo', n:3, a:'094 Agresividad · 095 Conducta suicida · 096 Autolesiones'}
+ ],
+};
+
+function amdpHTML(n){
+  const rows = AMDP[n]; if(!rows) return '';
+  const tot = rows.reduce((s,r)=>s+r.n,0);
+  const body = rows.map(r=>`<tr><td><b>${r.it}</b></td><td class="frt" style="text-align:center">${r.n||'—'}</td><td>${r.n? r.a : '<span style="color:var(--muted)">sin ítem AMDP directo</span>'}</td></tr>`).join('');
+  return `<details class="sec"><summary style="color:var(--accent2)">Ítems AMDP (9ª ed.) → este nodo <span class="muted-note">— ${tot} de 154</span></summary><div class="sec-body">
+  <table><thead><tr><th>Ítem pMSE</th><th>n</th><th>Ítems AMDP que mapean aquí</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
+}
+
+// ---------- síntomas DSM-5 (código ZMQRF + etiqueta corta ES) → nodo pMSE ----------
+const DSM = {
+ 1:[
+  {it:'Conciencia', n:0, d:'—'},
+  {it:'Alerta', n:1, d:'ZMQRF_113 Sobresalto exagerado'}
+ ],
+ 2:[
+  {it:'Sueño y ritmo circadiano', n:5, d:'ZMQRF_301 Insomnio de inicio/mantenimiento · ZMQRF_567 Sueño inquieto e insatisfactorio · ZMQRF_593 Pesadillas sobre evento traumático · ZMQRF_631 Somnolencia diurna excesiva · ZMQRF_660 Menor necesidad de sueño'},
+  {it:'Apetito e ingesta', n:17, d:'ZMQRF_125 Purgación con laxantes/diuréticos · ZMQRF_297 Pérdida de peso significativa · ZMQRF_298 Ganancia de peso significativa · ZMQRF_299 Hiporexia · ZMQRF_300 Apetito aumentado · ZMQRF_317 Sobreingesta · ZMQRF_323 Antojos de alimentos específicos · ZMQRF_404 Conductas para evitar peso · ZMQRF_407 Restricción alimentaria (dieta) · ZMQRF_408 Ayuno para control de peso · ZMQRF_409 Ejercicio excesivo compulsivo · ZMQRF_410 Atracón con pérdida de control · ZMQRF_411 Vómito autoinducido · ZMQRF_412 Ingesta acelerada · ZMQRF_413 Comer hasta saciedad incómoda · ZMQRF_565 Comer sin hambre · ZMQRF_661 Apetito disminuido'},
+  {it:'Libido', n:16, d:'ZMQRF_144_V4 Anorgasmia o anejaculación · ZMQRF_145 Dificultad para alcanzar excitación · ZMQRF_146 Dificultad para mantener excitación · ZMQRF_147_V4 Orgasmos menos intensos · ZMQRF_148 Desinterés en actividad sexual · ZMQRF_149 Iniciación de actividad sexual · ZMQRF_150 Ausencia de placer sexual · ZMQRF_151 Excitación ante material erótico · ZMQRF_152_V4 Sensaciones corporales durante sexo · ZMQRF_156 Eyaculación/orgasmo prematuro · ZMQRF_428 Orgasmo o eyaculación retardados · ZMQRF_429 Erección insuficiente o sequedad vaginal · ZMQRF_566 Pensamientos o fantasías sexuales · ZMQRF_578 Falta de interés en relaciones sexuales · ZMQRF_589_V4 Dificultades físicas en el coito · ZMQRF_616 Indiferencia a avances sexuales de pareja'}
+ ],
+ 3:[
+  {it:'Expresividad emocional', n:5, d:'ZMQRF_497 Ausencia de reactividad emocional · ZMQRF_618 Sin respuesta emocional · ZMQRF_62 No expresa emociones a otros · ZMQRF_626 Supresión de expresión emocional · ZMQRF_67 Expresión emocional desinhibida'},
+  {it:'Afiliación', n:14, d:'ZMQRF_193 Agresividad u hostilidad interpersonal · ZMQRF_376 Desapego o alienación social · ZMQRF_434 Culpa a otros por errores propios · ZMQRF_499_V4 Preferencia por la soledad · ZMQRF_506 Preferencia de soledad sobre vínculo romántico · ZMQRF_511 Distanciamiento social activo · ZMQRF_512 Rechazo a compartir con otros · ZMQRF_520 Búsqueda de atención de otros · ZMQRF_521 Ansia de atención · ZMQRF_522 Conducta de llamar la atención · ZMQRF_580 Provocación deliberada a otros · ZMQRF_637 Rechazo activo de relaciones románticas · ZMQRF_649 Desinterés en hacer amigos · ZMQRF_74 Conflictos y discusiones frecuentes'},
+  {it:'Dominancia', n:17, d:'ZMQRF_441 Mentir para evitar obligaciones · ZMQRF_442 Mentir para obtener beneficios · ZMQRF_500 Conducta moldeada por demandas ajenas · ZMQRF_501 Obediencia sumisa a otros · ZMQRF_525 Inventar historias para obtener beneficios · ZMQRF_526 Trampa para obtener ventaja · ZMQRF_527 Usar a otros para fines propios · ZMQRF_528 Distorsionar la verdad en beneficio propio · ZMQRF_529 Creencia de ser más importante · ZMQRF_530 Sentimiento de superioridad sobre otros · ZMQRF_531 Sentido de merecimiento especial · ZMQRF_532 Percepción de inferioridad en otros · ZMQRF_533 Manipulación para lograr objetivos · ZMQRF_534 Halagos con fines manipuladores · ZMQRF_535 Habilidad para engañar a otros · ZMQRF_536 Facilidad para aprovecharse de otros · ZMQRF_542 Promesas sin intención de cumplir'},
+  {it:'Patrón de personalidad', n:0, d:'—'}
+ ],
+ 4:[
+  {it:'Ánimo', n:4, d:'ZMQRF_109 Estado emocional negativo intenso · ZMQRF_290 Euforia o bienestar exaltado · ZMQRF_295 Estado de ánimo deprimido · ZMQRF_504 Visión desolada de la vida'},
+  {it:'Amenaza', n:40, d:'ZMQRF_104 Angustia ante recuerdos traumáticos · ZMQRF_154 Preocupación por dolor genital en el coito · ZMQRF_304 Tensión nerviosa o estado de alerta · ZMQRF_305 Miedo a que ocurra algo terrible · ZMQRF_306 Miedo a perder el control · ZMQRF_321 Ansiedad · ZMQRF_322 Tensión · ZMQRF_330 Miedo o evitación de estar solo · ZMQRF_331 Temor a separarse de figura de apego · ZMQRF_336 Oleada súbita de miedo intenso · ZMQRF_352 Miedo a morir · ZMQRF_353 Miedo a ser desbordado y perder control · ZMQRF_354 Ansiedad en transporte público · ZMQRF_355 Ansiedad en espacios abiertos · ZMQRF_356 Ansiedad en espacios cerrados · ZMQRF_357 Ansiedad en filas o colas · ZMQRF_358 Ansiedad en multitudes · ZMQRF_359 Ansiedad fuera del hogar sin compañía · ZMQRF_360 Dificultad para controlar preocupaciones · ZMQRF_374 Creencias negativas sobre los demás · ZMQRF_378 Nerviosismo · ZMQRF_379 Preocupación persistente · ZMQRF_498 Conductas desesperadas para evitar abandono · ZMQRF_508 Vigilancia ante engaño o daño ajeno · ZMQRF_509 Sentirse tratado injustamente · ZMQRF_510 Desconfianza hacia amigos · ZMQRF_564 Ansiedad social situacional · ZMQRF_600 Hipervigilancia ante el peligro · ZMQRF_612 Agitación ansiosa · ZMQRF_633 Preocupación generalizada por múltiples eventos · ZMQRF_76 Angustia al alejarse del hogar · ZMQRF_77 Angustia al separarse de figura de apego · ZMQRF_78 Preocupación por pérdida de figura de apego · ZMQRF_79 Miedo a separación accidental de figura de apego · ZMQRF_80 Pesadillas de separación · ZMQRF_82 Fobia específica a objeto o situación · ZMQRF_84 Aguantar situaciones temidas con miedo intenso · ZMQRF_85 Permanencia en situaciones sociales ansiógenas · ZMQRF_87 Miedo a no poder escapar ni recibir ayuda · ZMQRF_90 Permanencia en situaciones de imposible escape'}
+ ],
+ 5:[
+  {it:'Motivación/drive (wanting+vigor)', n:15, d:'ZMQRF_110 Abandono de actividades importantes · ZMQRF_171 Craving de sustancias · ZMQRF_172 Uso de sustancias pese a problemas relacionales · ZMQRF_173 Uso de sustancias en situaciones de riesgo físico · ZMQRF_174 Uso de sustancias pese a daño en salud · ZMQRF_296 Pérdida de interés en actividades · ZMQRF_453 Consumo de sustancias mayor al planeado · ZMQRF_454 Uso de sustancias por más tiempo del planeado · ZMQRF_455 Deseo de reducir consumo de sustancias · ZMQRF_456 Tiempo excesivo en uso de sustancias · ZMQRF_595 Falta de motivación para tareas cotidianas · ZMQRF_659 Energía o actividad excesiva · ZMQRF_662 Fatiga/baja energía · ZMQRF_672 Incapacidad de reducir consumo de sustancias · ZMQRF_673 Absorción excesiva en planificación'},
+  {it:'Tono hedónico (liking)', n:5, d:'ZMQRF_111 Incapacidad de experimentar emociones positivas · ZMQRF_63 Anhedonia/falta de placer vital · ZMQRF_665 Pérdida de interés en actividades placenteras · ZMQRF_667 Disminución del placer vital · Zhiranhedonia No disfrutar la vida (anhedonia)'},
+  {it:'Frustración', n:6, d:'ZMQRF_291 Irritabilidad · ZMQRF_316 Enojo/ira · ZMQRF_432 Susceptibilidad/irritación fácil · ZMQRF_632 Resentimiento · ZMQRF_658 Enojo ante pequeñas cosas · ZMQRF_663 Pérdida de control del temperamento'}
+ ],
+ 6:[
+  {it:'Velocidad psicomotriz', n:10, d:'ZMQRF_272 Movimientos repetitivos de manos/pies · ZMQRF_273 Inquietud motora en asiento · ZMQRF_274 Abandono inapropiado del asiento · ZMQRF_275 Actividad motora inapropiada al contexto · ZMQRF_276 Inquietud/agitación interna · ZMQRF_277 Incapacidad de estar quieto en ocio · ZMQRF_278 Hiperactividad motora persistente · ZMQRF_598 Movimientos sin propósito/agitación psicomotriz · ZMQRF_676 Enlentecimiento observado por otros · ZMQRF_69 Enlentecimiento psicomotor subjetivo'},
+  {it:'Parakinesia', n:9, d:'ZMQRF_129 Muecas faciales involuntarias · ZMQRF_289_V4 Mutismo/incapacidad de hablar · ZMQRF_40 Movimientos estereotipados incontrolables · ZMQRF_41 Ecolalia/repetición automática del habla · ZMQRF_584 Ecopraxia/copia involuntaria de movimientos · ZMQRF_597 Movimientos percibidos como extraños por otros · ZMQRF_64 Catatonia/inmovilidad y falta de respuesta · ZMQRF_65 Rigidez corporal con resistencia al reposicionamiento · ZMQRF_66_V4 Postura rígida con no-responsividad al entorno'},
+  {it:'Tics', n:0, d:'—'},
+  {it:'Síntomas extrapiramidales', n:0, d:'—'},
+  {it:'Signos neurológicos blandos', n:0, d:'—'}
+ ],
+ 7:[
+  {it:'Contenido del pensamiento', n:14, d:'ZMQRF_35 Pensamiento idiosincrático · ZMQRF_375 Creencias negativas del mundo · ZMQRF_507 Creencia de ser atacado · ZMQRF_518 Transmisión del pensamiento · ZMQRF_55 Delirio erotomaníaco · ZMQRF_56 Delirio de grandiosidad · ZMQRF_57 Celos delirantes (infidelidad) · ZMQRF_58 Creencia somática delirante · ZMQRF_59 Creencia bizarra extrema · ZMQRF_594 Creencia resistente a evidencia · ZMQRF_599 Recuerdos intrusivos traumáticos · ZMQRF_638 Pensamiento extraño referido por otros · ZMQRF_642 Delirio persecutorio · Zhirfearweight Miedo a ganar peso'},
+  {it:'Integración sensorial', n:4, d:'ZMQRF_254 Experiencia perceptual inusual · ZMQRF_287 Alucinaciones en vigilia · ZMQRF_515 Distorsión perceptual de objetos · ZMQRF_519 Experiencias inexplicables'},
+  {it:'Interocepción', n:26, d:'ZMQRF_105 Reacción física a trauma · ZMQRF_115 Preocupación excesiva por salud · ZMQRF_116 Miedo a enfermedad grave · ZMQRF_155 Vaginismo (tensión pélvica) · ZMQRF_326 Sensibilidad/tumefacción mamaria · ZMQRF_328 Distensión abdominal · ZMQRF_337 Palpitaciones/latidos irregulares · ZMQRF_340 Sudoración sin esfuerzo · ZMQRF_341 Temblores · ZMQRF_342 Disnea (falta de aire) · ZMQRF_343 Sensación de ahogo · ZMQRF_344 Dolor/malestar torácico · ZMQRF_345 Náusea · ZMQRF_347 Mareo/lipotimia · ZMQRF_348 Escalofríos · ZMQRF_349 Sensación de calor corporal · ZMQRF_350 Parestesias (hormigueo/entumecimiento) · ZMQRF_362 Tensión muscular · ZMQRF_380 Nerviosismo somático · ZMQRF_384 Catastrofización de síntomas físicos · ZMQRF_385 Ansiedad por salud física · ZMQRF_386 Autochequeo corporal frecuente · ZMQRF_634 Inestabilidad/sensación de desmayo · ZMQRF_664 Sensación de sofocación · ZMQRF_81 Síntomas físicos por separación · Zhirheartrace Palpitaciones (pánico)'},
+  {it:'Nocicepción', n:4, d:'ZMQRF_153 Dolor génito-pélvico en coito · ZMQRF_327 Dolor/rigidez músculo-articular · ZMQRF_346 Dolor/malestar abdominal · ZMQRF_460 Cefaleas'},
+  {it:'Regulación atencional', n:2, d:'ZMQRF_224 Distracción fácil · ZMQRF_538 Pérdida de foco por distractores'}
+ ],
+ 8:[
+  {it:'Metacontrol cognitivo', n:11, d:'ZMQRF_267 Errores por descuido · ZMQRF_268 Mente ausente en conversación · ZMQRF_269 No sigue instrucciones hasta el final · ZMQRF_270 No termina tareas asignadas · ZMQRF_361 Mente en blanco · ZMQRF_46 Dificultad para sostener atención · ZMQRF_47 Dificultad para organizar tareas · ZMQRF_537 Incapacidad de concentrarse prolongadamente · ZMQRF_579 Dificultad para tomar decisiones · ZMQRF_677 Dificultad inusual para pensar o concentrarse · ZMQRF_70 Dificultad para pensar o concentrarse'},
+  {it:'Monitoreo del error', n:1, d:'ZMQRF_92 Pensamientos/impulsos intrusivos'},
+  {it:'Control inhibitorio', n:4, d:'ZMQRF_194 Impulsividad generalizada · ZMQRF_279 Respuestas impulsivas prematuras · ZMQRF_280 Dificultad para esperar turno · ZMQRF_281 Interrupción de conversaciones'},
+  {it:'Pruebas neurocognitivas', n:3, d:'ZMQRF_271 Olvidos en actividades cotidianas · ZMQRF_48 Pérdida de objetos necesarios · ZMQRF_573 Amnesia de evento traumático'}
+ ],
+ 9:[
+  {it:'Experiencia del pensamiento', n:2, d:'ZMQRF_292 Presión para seguir hablando · ZMQRF_294 Pensamientos acelerados'},
+  {it:'Experiencia vivida', n:2, d:'ZMQRF_372 Flashbacks de evento traumático · ZMQRF_591 Desrealización'},
+  {it:'Experiencia del yo', n:3, d:'ZMQRF_351 Despersonalización · ZMQRF_516 Pensamientos controlados por otros · ZMQRF_517 Robo de pensamientos por otros'},
+  {it:'Mentalización', n:3, d:'ZMQRF_167 Indiferencia ante daño a otros · ZMQRF_523 Indiferencia ante sentimientos ajenos · ZMQRF_524 Desinterés por problemas de otros'},
+  {it:'Autoevaluación', n:11, d:'ZMQRF_108 Cogniciones distorsionadas sobre trauma · ZMQRF_318 Baja autoestima · ZMQRF_335 Miedo a la evaluación negativa · ZMQRF_373 Creencias negativas sobre sí mismo · ZMQRF_405 Distorsión imagen corporal · ZMQRF_553 Autoestima ligada al peso · ZMQRF_554 Culpa o vergüenza por hiperfagia · ZMQRF_571 Culpa desproporcionada · ZMQRF_614 Vergüenza por cantidad comida · ZMQRF_679 Culpa sin conducta incorrecta · Zhirworthless Sentimiento de inutilidad'},
+  {it:'Simulación a futuro', n:2, d:'ZMQRF_319 Desesperanza · ZMQRF_505 Sentido de inutilidad existencial'}
+ ],
+ 10:[
+  {it:'Regulación metacognitiva', n:1, d:'ZMQRF_93 Supresión de pensamientos intrusivos'},
+  {it:'Organización conductual', n:10, d:'ZMQRF_293 Habla acelerada con cambios de tema · ZMQRF_495 Rigidez conductual perseverativa · ZMQRF_496 Fijación obsesiva incontrolable · ZMQRF_513 Conducta percibida como extraña · ZMQRF_543 Intolerancia a la imperfección · ZMQRF_544 Perfeccionismo persistente · ZMQRF_545 Necesidad de orden rígido · ZMQRF_568 Exigencia de perfección absoluta · ZMQRF_60 Discurso desorganizado/ilógico · ZMQRF_61 Conducta inapropiada o pueril'},
+  {it:'Regulación emocional', n:13, d:'ZMQRF_163 Negativa ante figuras de autoridad · ZMQRF_282 Uso no autorizado de objetos ajenos · ZMQRF_315 Estallidos verbales de ira · ZMQRF_324 Sentimiento de desbordamiento · ZMQRF_377 Llanto fácil · ZMQRF_433 Discusiones con figuras de autoridad · ZMQRF_49 Verborrea aumentada · ZMQRF_494 Labilidad emocional por estímulos menores · ZMQRF_541 Descuido de bienes propios y ajenos · ZMQRF_586 Emociones impredecibles/fluctuantes · ZMQRF_596 Desobediencia/negativismo · ZMQRF_654 Habla excesiva inapropiada · ZMQRF_73 Cambios de humor bruscos'},
+  {it:'Approach-evitación', n:17, d:'ZMQRF_106 Evitación de recuerdos traumáticos · ZMQRF_107 Evitación de disparadores traumáticos · ZMQRF_255 Huida para evitar responsabilidades · ZMQRF_325 Sensación de pérdida de control · ZMQRF_329 Negativa/resistencia a salir · ZMQRF_332 Negativa a dormir fuera de casa · ZMQRF_333 Necesidad de presencia para dormir · ZMQRF_414 Comer en aislamiento · ZMQRF_574 Evitación de esfuerzo cognitivo sostenido · ZMQRF_585 Evitación de situaciones sociales · ZMQRF_587 Evitación de atención médica · ZMQRF_682 Compulsiones reductoras de ansiedad · ZMQRF_83 Evitación fóbica · ZMQRF_86 Evitación de situaciones de pánico · ZMQRF_88 Evitación agorafóbica · ZMQRF_89 Dependencia de acompañante en situaciones fóbicas · ZMQRF_94 Compulsiones ante pensamiento intrusivo'},
+  {it:'Riesgo', n:20, d:'ZMQRF_112 Conductas autodestructivas · ZMQRF_164 Deseos de venganza/daño a otros · ZMQRF_165 Inicio de peleas físicas · ZMQRF_166 Robo encubierto · ZMQRF_303 Pensamientos sobre la muerte · ZMQRF_435 Amenazas/intimidación a otros · ZMQRF_437 Daño físico deliberado a otros · ZMQRF_503 Ideación de muerte por inutilidad · ZMQRF_539 Actuar sin evaluar consecuencias · ZMQRF_540 Decisiones imprudentes incontrolables · ZMQRF_546 Conductas peligrosas sin límites · ZMQRF_547 Búsqueda activa de riesgo · ZMQRF_548 Conducta insegura deliberada · ZMQRF_550 Intento de suicidio · ZMQRF_551 Plan suicida específico · ZMQRF_588 Destrucción deliberada de propiedad ajena · ZMQRF_678 Agresión física al perder control · ZMQRF_68 Conductas imprudentes de alto riesgo · ZMQRF_71 Ideación suicida sin plan · ZMQRF_72 Agresión física a personas/objetos'}
+ ],
+};
+
+function dsmHTML(n){
+  const rows = DSM[n]; if(!rows) return '';
+  const tot = rows.reduce((s,r)=>s+r.n,0);
+  const body = rows.map(r=>`<tr><td><b>${r.it}</b></td><td class="frt" style="text-align:center">${r.n||'—'}</td><td>${r.n? r.d : '<span style="color:var(--muted)">sin síntoma DSM-5</span>'}</td></tr>`).join('');
+  return `<details class="sec"><summary style="color:var(--accent)">Síntomas DSM-5 → este nodo <span class="muted-note">— ${tot} síntomas (código ZMQRF + etiqueta)</span></summary><div class="sec-body">
+  <table><thead><tr><th>Ítem pMSE</th><th>n</th><th>Síntomas DSM-5 que mapean aquí</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
+}
+
+// ---------- render ----------
+const main = document.getElementById('main');
+const tocList = document.getElementById('tocList');
+
+function strengthChip(s){
+  const m = STRENGTH[s] || STRENGTH['MODERADA'];
+  return `<span class="strength" style="background:${m.c}">${m.label}</span>`;
+}
+function frtTag(t){
+  const map={'alta':'var(--alta)','alta / mod.':'var(--modalta)','moderada':'var(--mod)','preliminar':'var(--prelim)','—':'var(--muted)'};
+  const c = map[t] || 'var(--mod)';
+  return `<span class="tag" style="background:${c}">${t}</span>`;
+}
+
+NETS.filter(o=>o.n===8).forEach(net=>{
+  const a = ACCESS[net.access];
+  // TOC
+  const link=document.createElement('a');
+  link.href='#net'+net.n;
+  link.dataset.strength = net.strength;
+  link.innerHTML = `<span class="n">${net.n}</span><span class="nm">${net.name.replace(/ —.*/,'')}</span>
+    <span class="dot" style="background:${STRENGTH[net.strength].c}" title="${net.strength}"></span>`;
+  tocList.appendChild(link);
+
+  // card
+  const el=document.createElement('section');
+  el.className='net'; el.id='net'+net.n; el.dataset.strength=net.strength;
+  el.innerHTML = `
+    <div class="net-head">
+      <div class="badge-n">${net.n}</div>
+      <div class="net-title">
+        <h2>${net.name}</h2>
+        <div class="onto">${net.onto}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+        ${strengthChip(net.strength)}
+        <span class="access" title="${a.label}"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:${a.dot}"></span>${a.txt}</span>
+      </div>
+    </div>
+
+    <div class="pills">${net.items.map(i=>`<span class="pill item">${i}</span>`).join('')}</div>
+
+    <div class="di-note"><b>Acceso en DI:</b> ${net.di}</div>
+
+    <details class="sec" open><summary>Evidencia de existencia</summary><div class="sec-body">
+    <ul class="ev">${net.ev.map(([t,s])=>`<li>${t}<br><span class="src">— ${s}</span></li>`).join('')}</ul></div></details>
+
+    <details class="sec" open><summary>Mapeo · fenómeno → sustrato → fuente</summary><div class="sec-body">
+    <table>
+      <thead><tr><th>Ítem</th><th>Sustrato</th><th>Fuente</th><th>Fortaleza</th></tr></thead>
+      <tbody>${net.map.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td class="frt">${frtTag(r[3])}</td></tr>`).join('')}</tbody>
+    </table></div></details>
+
+    ${scoreHTML(net.n)}
+
+    ${nmapHTML(net.n)}
+
+    ${dsmHTML(net.n)}
+
+    ${amdpHTML(net.n)}
+
+    <details class="sec"><summary style="color:var(--prelim)">Huecos & fronteras</summary><div class="sec-body gaps">
+      <ul>${net.gaps.map(g=>`<li>${g}</li>`).join('')}</ul>
+    </div></details>
+  `;
+  main.appendChild(el);
+});
+
+// overview map
+const ov=document.getElementById('overview');
+if(ov){
+  ov.innerHTML = NETS.filter(o=>o.n===8).map(net=>{
+    const a=ACCESS[net.access];
+    return `<div class="ov-card">
+      <div class="ov-head"><a href="#net${net.n}"><span class="ov-n">${net.n}</span> ${net.name.replace(/ —.*/,'')}</a>
+        <span class="strength" style="background:${STRENGTH[net.strength].c};font-size:9px;padding:2px 7px">${net.strength}</span></div>
+      <div class="ov-acc"><span style="width:8px;height:8px;border-radius:50%;background:${a.dot};display:inline-block"></span>${a.txt}</div>
+      <div class="ov-items">${net.items.map(i=>`<span class=\"pill item\">${i}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+// synthesis
+const synth=document.createElement('section');
+synth.className='synth'; synth.id='sintesis';
+synth.innerHTML=`
+  <h2>Síntesis de la fase de evidencia</h2>
+  <table>
+    <thead><tr><th>Red</th><th>Fortaleza (tras búsqueda)</th><th>Estado</th></tr></thead>
+    <tbody>
+      ${NETS.filter(o=>o.n===8).map(n=>`<tr><td><b>${n.n}.</b> ${n.name.replace(/ —.*/,'')}</td><td>${strengthChip(n.strength)}</td><td>✓</td></tr>`).join('')}
+    </tbody>
+  </table>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--alta)"></span> ALTA</span>
+    <span><span class="sw" style="background:var(--modalta)"></span> MODERADA-ALTA</span>
+    <span><span class="sw" style="background:var(--mod)"></span> MODERADA</span>
+    <span><span class="sw" style="background:var(--prelim)"></span> PRELIMINAR</span>
+  </div>
+  <div class="section-h" style="margin-top:18px">Hallazgos del loop</div>
+  <ul class="ev">
+    <li>Nocicepción movida de red 2 → red 7 (matriz del dolor ínsula-ACC, McBenedict 2024). <b>RESUELTO.</b></li>
+    <li>Red 3 era la más infra-documentada; cerrada con búsqueda dirigida (oxitocina/NAc; disociación facial automático-voluntaria).</li>
+  </ul>
+  <div class="section-h" style="margin-top:14px">Cola residual</div>
+  <ul class="ev">
+    <li><span class="flag">[VERIFICAR]</span> Añadir Menon V. 2011 (Trends Cogn Sci) como cita primaria del triple-red.</li>
+    <li><span class="flag">[BUSCAR]</span> Sustrato específico de jerarquía/dominancia social (red 3).</li>
+    <li><span class="flag">[QA]</span> Reverificar DOIs heredados de los dossiers [library] antes de imprenta.</li>
+  </ul>
+  <div class="section-h" style="margin-top:18px">Ejes / módulos paralelos (fuera de la escala −2/+2)</div>
+  <ul class="ev">
+    <li><b>Funcionalidad → PSP</b> (Personal and Social Performance Scale, 0–100): 4 dominios — actividades socialmente útiles · relaciones personales y sociales · autocuidado · conductas perturbadoras/agresivas.</li>
+    <li><b>Riesgo</b> (3ST + BVC): módulo en la red 10, dispara acción + documentación.</li>
+    <li><b>Insight:</b> ya NO es eje paralelo — vive como componente de <b>Regulación metacognitiva</b> (red 10, decisión 15).</li>
+  </ul>
+  <div class="section-h" style="margin-top:18px">Cobertura nosológica (crosswalks)</div>
+  <ul class="ev">
+    <li><b>DSM-5:</b> 331 síntomas únicos del instrumento → <b>317 mapeados a nodo (96%)</b>, mostrados síntoma por síntoma en cada red. GAP: eje de adicción (uso/tolerancia/abstinencia) + bajo peso corporal — fuera del pMSE. <span class="src">— Table S1, abn0001125</span></li>
+    <li><b>HiTOP:</b> clusters empíricos por síntoma (sourced) + <b>espectro de nivel superior en los 38 nodos</b>: <b>28 dentro de HiTOP</b> (Internalizing/Distress·Fear, Thought Disorder, Detachment, Antagonistic/Disinhibited Externalizing, Somatoform, Eating, Sexual) y <b>10 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva) — la cobertura diferencial del pMSE.</li>
+    <li><b>RDoC:</b> colapso 10 redes → 6 dominios (ver dominio por red arriba). Huecos que el pMSE cubre y RDoC no: contenido/juicio de realidad, fenomenología del yo, nocicepción, regulación/insight.</li>
+    <li><b>Escalas clínicas:</b> cada ítem cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc. (crosswalk de escalas).</li>
+    <li><b>AMDP (9ª ed.):</b> los <b>154 ítems</b> mapeados ítem-por-ítem al nodo pMSE, revisados por <b>panel de 3 expertos</b>. 4 ítems pMSE sin AMDP directo: <b>Dominancia, Patrón de personalidad, Tics, Mentalización</b> — AMDP no modela ToM, rasgos de personalidad ni tics.</li>
+    <li style="color:var(--accent2)"><b>Auditoría aplicada (2026-06-26):</b> revisión crítica de la distribución. Corrección mayor — <b>Mentalización</b> estaba sobrecargada de Antagonismo (17→3): 11 síntomas de manipulación/engaño movidos a <b>Dominancia</b> (6→17), 3 de suspicacia a <b>Amenaza</b>. Más 8 reasignaciones de coherencia AMDP↔DSM (despersonalización, imagen corporal, obsesiones, desapego social…). Detalle en <code>AUDITORIA-distribucion-amdp-dsm-2026-06-26.md</code>.</li>
+    <li style="color:var(--alta)"><b>✓ Resuelto:</b> los 29 síntomas DSM-5 de Control inhibitorio se reasignaron (2026-06-26) a Riesgo (+9), Regulación emocional (+11), Motivación/drive (+6) y Approach–evitación (+3). Cobertura DSM-5 intacta. <b>Control inhibitorio reintroducido</b> en la red 8 (CEN) como inhibición de respuesta (eje −2 desinhibición ↔ +2 sobre-inhibición); 4 síntomas de impulsividad motora/verbal reubicados allí.</li>
+  </ul>
+`;
+main.appendChild(synth);
+
+// controls
+document.getElementById('diToggle').addEventListener('change',e=>{
+  document.body.classList.toggle('show-di', e.target.checked);
+});
+document.getElementById('onlyHigh').addEventListener('change',e=>{
+  const on=e.target.checked;
+  document.querySelectorAll('.net').forEach(c=>{
+    c.style.display = (!on || c.dataset.strength==='ALTA') ? '' : 'none';
+  });
+  document.querySelectorAll('#tocList a').forEach(l=>{
+    l.style.display = (!on || l.dataset.strength==='ALTA') ? '' : 'none';
+  });
+});
+document.getElementById('toggleAll').addEventListener('click',()=>{
+  const ds=document.querySelectorAll('details.sec');
+  const anyClosed=[...ds].some(d=>!d.open);
+  ds.forEach(d=>d.open=anyClosed);
+});
+</script>
+</body>
+</html>
