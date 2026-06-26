@@ -103,11 +103,7 @@
 | 081 | Inhibición del impulso | S | alta |
 | 082 | Impulso aumentado | SO | alta |
 
-**Tono hedónico (liking)** (1):
-
-| AMDP | Ítem | ds | conf |
-|---|---|---|---|
-| 060 | Sentimiento de pérdida de sentimientos | S | alta |
+**Tono hedónico (liking)** — _sin ítem AMDP directo_
 
 **Frustración** (1):
 
@@ -272,7 +268,7 @@
 | 024 | Bloqueo del pensamiento | SO | alta |
 | ZP02 | Aceleración del pensamiento | S | alta |
 
-**Experiencia vivida** (5):
+**Experiencia vivida** (6):
 
 | AMDP | Ítem | ds | conf |
 |---|---|---|---|
@@ -281,6 +277,7 @@
 | 033 | Humor delirante | S | alta |
 | 053 | Desrealización | S | alta |
 | 059 | Perplejidad | O | media |
+| 060 | Sentimiento de pérdida de sentimientos | S | alta |
 
 **Experiencia del yo** (7):
 
