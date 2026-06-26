@@ -191,6 +191,14 @@
       de autorreporte y metacognición, canales limitados en discapacidad intelectual. Ausencia de
       acceso ≠ ausencia de función: es <i>missing data</i>, no déficit medido.
     </div>
+    <div class="note">
+      <b>Mapeo nosológico.</b> La columna <b>HiTOP</b> muestra los clusters empíricos del instrumento
+      (Table S1), asignados síntoma por síntoma — son datos sourced, no inferencias. El tag
+      <span class="tag" style="background:var(--accent2)">esp</span> indica el espectro HiTOP de nivel
+      superior <i>solo</i> donde el crosswalk de escalas lo declara explícitamente. La columna
+      <b>DSM-5</b> es el nº de síntomas mapeados a ese ítem. Los conteos de la red 10 no incluyen aún
+      la reasignación de los 29 síntomas huérfanos de Control inhibitorio.
+    </div>
     <p>pMSE v0 · estructura canónica de 10 redes (Javier, 2026-06-22 · evidencia 2026-06-25).
        Riesgo, funcionalidad e insight quedan fuera del MSE como ejes paralelos.</p>
   </div>
@@ -472,6 +480,86 @@ function scoreHTML(n){
   return `<div class="score"><div class="section-h">Escala de puntuación · −2 → +2 <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">(0 = calibrado/sano; ambos polos son patológicos)</span></div>${head}${body}</div>`;
 }
 
+// ---------- mapeo nosológico (HiTOP clusters sourced + DSM-5 count + escalas) ----------
+const RDOC = {
+  1:'Arousal & Regulatory', 2:'Arousal & Regulatory', 3:'Social Processes',
+  4:'Negative Valence', 5:'Positive Valence', 6:'Sensorimotor',
+  7:'Cognitive Systems (Perception)', 8:'Cognitive Systems', 9:'Social Processes',
+  10:'— (regulación: hueco de RDoC)'
+};
+const ORPHAN = {
+  10:'<b>⚠ Huérfanos de Control inhibitorio (eliminado):</b> sus <b>29 síntomas DSM-5</b> quedan sin hogar. Clusters: Reckless risk-taking/impulsivity (7) · Substance use (6) · Verbal impulsivity (5) · Perseveration/fear of dyscontrol (3) · Antisocial (3) · Compulsions (2) · Oppositional (2) · otros (1). Reasignación propuesta: → Riesgo, Regulación emocional, Approach–evitación, Motivación/drive. Pendiente tu decisión.'
+};
+const NMAP = {
+ 1:[
+  {it:'Conciencia', hitop:'—', dsm5:0, esc:'MMSE/MoCA Orientation · PANSS G10 · AMDP Bewusstseins.'},
+  {it:'Alerta', hitop:'Hypervigilance', dsm5:1, esc:'AMDP Vigilanz · PANSS Excitement(+) · MADRS Lassitude(−)'}
+ ],
+ 2:[
+  {it:'Sueño y ritmo circadiano', hitop:'Insomnia · Decreased need for sleep · Fatigue', dsm5:5, esc:'PSQI · ISI · HAM-D 4-6 · YMRS 4'},
+  {it:'Apetito e ingesta', hitop:'Overeating · Appetite loss · Purging · Restricted intake', dsm5:17, esc:'IDS/QIDS · EDE-Q · HAM-D 12'},
+  {it:'Libido', hitop:'Low sexual interest · Low responsiveness', dsm5:16, esc:'ASEX · CSFQ · HAM-D 14'}
+ ],
+ 3:[
+  {it:'Expresividad emocional', hitop:'Restricted emotional expression · Low emotional reactivity', dsm5:5, esc:'SANS Aff.Flattening · BNSS/CAINS EXP · PANSS N1'},
+  {it:'Afiliación', hitop:'Social withdrawal · Hostility · Attention seeking', dsm5:11, esc:'BNSS Asociality · CAINS MAP-Social · PANSS N4', esp:'Detachment'},
+  {it:'Dominancia', hitop:'Submissiveness · Superiority', dsm5:6, esc:'PID-5 Antagonism · PANSS P7 · YMRS', esp:'Antagonismo'},
+  {it:'Patrón de personalidad', hitop:'—', dsm5:0, esc:'PID-5 (5 dominios) · IPDE', esp:'espectros completos'}
+ ],
+ 4:[
+  {it:'Ánimo', hitop:'Depressed mood / loss of pleasure · Euphoric mood(+)', dsm5:4, esc:'MADRS · HAM-D · PANSS G6', esp:'Distress'},
+  {it:'Amenaza', hitop:'Fear & phobic anxiety · Anxious arousal · Hypervigilance', dsm5:36, esc:'HAM-A · STAI State · PANSS P6/G4'}
+ ],
+ 5:[
+  {it:'Motivación / drive (wanting + vigor)', hitop:'Avolition · Substance use · Euphoric mood(+) · Fatigue', dsm5:9, esc:'TEPS Antic. · BNSS/CAINS MAP · SANS Avolition · YMRS Energy(+)'},
+  {it:'Tono hedónico (liking)', hitop:'Depressed mood / loss of pleasure · Avolition', dsm5:5, esc:'BNSS Anhedonia-Consum. · CAINS · BDI 4'},
+  {it:'Frustración (frustrative nonreward)', hitop:'Irritability · Suspiciousness & resentment', dsm5:6, esc:'YMRS Irritability · PANSS G14/P7 · PID-5 Hostility', esp:'Antagonismo'}
+ ],
+ 6:[
+  {it:'Velocidad psicomotriz', hitop:'Psychomotor retardation · Hyperactivity · Fidgeting', dsm5:10, esc:'MADRS/HAM-D 8 · PANSS G7 · MCCB Speed'},
+  {it:'Parakinesia', hitop:'Catatonia · Disorganised motor behaviour', dsm5:10, esc:'AIMS · NES overflow · Heidelberg NSS'},
+  {it:'Tics', hitop:'—', dsm5:0, esc:'YGTSS'},
+  {it:'Síntomas extrapiramidales', hitop:'—', dsm5:0, esc:'Simpson-Angus · BARS · AIMS'},
+  {it:'Signos neurológicos blandos', hitop:'—', dsm5:0, esc:'NES · Heidelberg NSS'}
+ ],
+ 7:[
+  {it:'Contenido del pensamiento', hitop:'Unusual beliefs · Disorganised thought · Suspiciousness', dsm5:18, esc:'PANSS P1/P6/G9 · SAPS Delusions · PSYRATS-DEL', esp:'Thought Disorder'},
+  {it:'Integración sensorial', hitop:'Unusual experiences', dsm5:4, esc:'SAPS Hallucin. · PANSS P3 · PSYRATS-AH'},
+  {it:'Interocepción', hitop:'Health anxiety · Physical panic · GI distress · Muscle tension', dsm5:26, esc:'EASE d3 · CDS · PID-5 Cogn-Percept · HAM-A somático'},
+  {it:'Nocicepción', hitop:'Sexual pain · Muscle tension · Headaches', dsm5:4, esc:'AMDP dolor · PID-5 Somatic · PANSS G1'},
+  {it:'Regulación atencional', hitop:'Cognitive difficulties', dsm5:2, esc:'MCCB Attention · PANSS G11 · PID-5 Distractibility'}
+ ],
+ 8:[
+  {it:'Metacontrol cognitivo', hitop:'Cognitive difficulties', dsm5:11, esc:'MCCB (WM/Vigilance/Reasoning) · PANSS cognitivo'},
+  {it:'Monitoreo del error', hitop:'—', dsm5:0, esc:'Y-BOCS Obsessions · OCI-R Checking · PID-5 Rigid Perfect.'},
+  {it:'Pruebas neurocognitivas', hitop:'Cognitive difficulties · Cognitive sympt. (trauma)', dsm5:3, esc:'MCCB (7 dominios) · MoCA/MMSE'}
+ ],
+ 9:[
+  {it:'Experiencia del pensamiento', hitop:'Verbal impulsivity · Anxious arousal', dsm5:2, esc:'SANS Alogia · SAPS FTD · PANSS N5/N7 · EASE d2', esp:'Thought Disorder'},
+  {it:'Experiencia vivida', hitop:'Dissociation · Traumatic intrusions', dsm5:3, esc:'EASE d1/d4 · CDS · AMDP despers.'},
+  {it:'Experiencia del yo', hitop:'Unusual beliefs', dsm5:2, esc:'EASE d3 · SAPS Passivity · AMDP yo · PID-5 Psychoticism'},
+  {it:'Mentalización', hitop:'Lack of empathy · Suspiciousness · Manipulative', dsm5:17, esc:'MCCB Social Cog. · CAINS/BNSS MAP-Social · PANSS G12', esp:'Detachment'},
+  {it:'Autoevaluación', hitop:'Guilt/shame proneness · Depressed mood', dsm5:9, esc:'HAM-D 2 · MADRS 9 · BDI cognitivo · EASE hiperreflex.', esp:'Distress'},
+  {it:'Simulación a futuro', hitop:'Depressed mood / loss of pleasure', dsm5:2, esc:'PSWQ · BNSS/CAINS MAP-Antic. · MADRS 9'}
+ ],
+ 10:[
+  {it:'Regulación metacognitiva', hitop:'Perseveration / fear of dyscontrol', dsm5:1, esc:'PANSS G12 Insight · EASE s4 · MCCB Reasoning'},
+  {it:'Organización conductual', hitop:'Disorganised thought · Perfectionism · Verbal impulsivity', dsm5:10, esc:'SANS Alogia/Avol. · PANSS N6 · SAPS FTD · NES Sequencing', esp:'Thought Disorder'},
+  {it:'Regulación emocional', hitop:'Emotional lability · Depressed mood', dsm5:5, esc:'MCCB Reasoning · PID-5 (inv.) · PANSS N5'},
+  {it:'Approach–evitación', hitop:'Social withdrawal · Agoraphobia · Romantic/medical avoidance', dsm5:17, esc:'CAINS/BNSS MAP-Antic. · STAI Trait · PID-5 Anxiousness/Detach.'},
+  {it:'Riesgo', hitop:'Suicidality · Antisocial behaviour · Physical aggression · Substance use', dsm5:13, esc:'MADRS 10 / HAM-D 3 · PANSS G14/P7 · PID-5 Risk-Taking', esp:'Disinhibición'}
+ ]
+};
+
+function nmapHTML(n){
+  const rows = NMAP[n]; if(!rows) return '';
+  const rd = RDOC[n] || '—';
+  const body = rows.map(r=>`<tr><td><b>${r.it}</b></td><td>${r.hitop||'—'}${r.esp?` <span class="tag" style="background:var(--accent2)">esp: ${r.esp}</span>`:''}</td><td class="frt" style="text-align:center">${r.dsm5}</td><td>${r.esc}</td></tr>`).join('');
+  const orphan = ORPHAN[n] ? `<div class="snote" style="border-color:var(--falta)">${ORPHAN[n]}</div>` : '';
+  return `<div class="score"><div class="section-h" style="color:var(--accent2)">Mapeo nosológico · HiTOP · DSM-5 · escalas <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">— Dominio RDoC: <b style="color:var(--ink)">${rd}</b></span></div>
+  <table><thead><tr><th>Ítem</th><th>HiTOP (clusters empíricos)</th><th title="nº de síntomas DSM-5 mapeados">DSM-5</th><th>Escalas clave</th></tr></thead><tbody>${body}</tbody></table>${orphan}</div>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -527,6 +615,8 @@ NETS.forEach(net=>{
 
     ${scoreHTML(net.n)}
 
+    ${nmapHTML(net.n)}
+
     <div class="gaps">
       <div class="section-h">Huecos & fronteras</div>
       <ul>${net.gaps.map(g=>`<li>${g}</li>`).join('')}</ul>
@@ -568,6 +658,14 @@ synth.innerHTML=`
     <li><b>Funcionalidad → PSP</b> (Personal and Social Performance Scale, 0–100): 4 dominios — actividades socialmente útiles · relaciones personales y sociales · autocuidado · conductas perturbadoras/agresivas.</li>
     <li><b>Riesgo</b> (3ST + BVC): módulo en la red 10, dispara acción + documentación.</li>
     <li><b>Insight:</b> ya NO es eje paralelo — vive como componente de <b>Regulación metacognitiva</b> (red 10, decisión 15).</li>
+  </ul>
+  <div class="section-h" style="margin-top:18px">Cobertura nosológica (crosswalks)</div>
+  <ul class="ev">
+    <li><b>DSM-5:</b> 331 síntomas únicos del instrumento → <b>319 con hogar en el pMSE (96%)</b> · 12 GAP (eje de adicción: 10 ítems de uso/tolerancia/abstinencia + 2 de bajo peso corporal). <span class="src">— Table S1, abn0001125</span></li>
+    <li><b>HiTOP:</b> clusters empíricos mapeados <b>por síntoma</b> (nivel fino, sourced); espectros de nivel superior (Detachment, Antagonismo, Distress, Thought Disorder, Disinhibición…) solo en algunos ítems vía crosswalk de escalas — cobertura parcial a nivel espectro.</li>
+    <li><b>RDoC:</b> colapso 10 redes → 6 dominios (ver dominio por red arriba). Huecos que el pMSE cubre y RDoC no: contenido/juicio de realidad, fenomenología del yo, nocicepción, regulación/insight.</li>
+    <li><b>Escalas clínicas:</b> cada ítem cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc. (crosswalk de escalas).</li>
+    <li style="color:var(--falta)"><b>⚠ Pendiente:</b> al eliminar Control inhibitorio, <b>29 síntomas DSM-5 quedan huérfanos</b> (ver red 10) — requieren reasignación formal.</li>
   </ul>
 `;
 main.appendChild(synth);
