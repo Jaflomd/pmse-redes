@@ -196,8 +196,8 @@
       (Table S1), asignados síntoma por síntoma — son datos sourced, no inferencias. El tag
       <span class="tag" style="background:var(--accent2)">esp</span> indica el espectro HiTOP de nivel
       superior <i>solo</i> donde el crosswalk de escalas lo declara explícitamente. La columna
-      <b>DSM-5</b> es el nº de síntomas mapeados a ese ítem. Los conteos de la red 10 no incluyen aún
-      la reasignación de los 29 síntomas huérfanos de Control inhibitorio.
+      <b>DSM-5</b> es el nº de síntomas mapeados a ese ítem. Los conteos de la red 10 ya incluyen la
+      reasignación (2026-06-26) de los 29 síntomas de Control inhibitorio.
     </div>
     <p>pMSE v0 · estructura canónica de 10 redes (Javier, 2026-06-22 · evidencia 2026-06-25).
        Riesgo, funcionalidad e insight quedan fuera del MSE como ejes paralelos.</p>
@@ -488,7 +488,7 @@ const RDOC = {
   10:'— (regulación: hueco de RDoC)'
 };
 const ORPHAN = {
-  10:'<b>⚠ Huérfanos de Control inhibitorio (eliminado):</b> sus <b>29 síntomas DSM-5</b> quedan sin hogar. Clusters: Reckless risk-taking/impulsivity (7) · Substance use (6) · Verbal impulsivity (5) · Perseveration/fear of dyscontrol (3) · Antisocial (3) · Compulsions (2) · Oppositional (2) · otros (1). Reasignación propuesta: → Riesgo, Regulación emocional, Approach–evitación, Motivación/drive. Pendiente tu decisión.'
+  10:'<b>✓ Reasignación de Control inhibitorio</b> (29 síntomas DSM-5, 2026-06-26): Reckless risk-taking (7)+Antisocial (2) → <b>Riesgo</b> · Substance use (6) → <b>Motivación/drive</b> · Verbal impulsivity (4)+Oppositional (2)+Inconsiderate (2)+Inappropriate (1)+Difficulty waiting (1)+Hostility (1) → <b>Regulación emocional</b> · Compulsions (2)+Perseveration (1) → <b>Approach–evitación</b>. Conteos DSM-5 ya actualizados arriba (suma = 29; cobertura intacta).'
 };
 const NMAP = {
  1:[
@@ -511,7 +511,7 @@ const NMAP = {
   {it:'Amenaza', hitop:'Fear & phobic anxiety · Anxious arousal · Hypervigilance', dsm5:36, esc:'HAM-A · STAI State · PANSS P6/G4'}
  ],
  5:[
-  {it:'Motivación / drive (wanting + vigor)', hitop:'Avolition · Substance use · Euphoric mood(+) · Fatigue', dsm5:9, esc:'TEPS Antic. · BNSS/CAINS MAP · SANS Avolition · YMRS Energy(+)'},
+  {it:'Motivación / drive (wanting + vigor)', hitop:'Avolition · Substance use · Euphoric mood(+) · Fatigue', dsm5:15, esc:'TEPS Antic. · BNSS/CAINS MAP · SANS Avolition · YMRS Energy(+)'},
   {it:'Tono hedónico (liking)', hitop:'Depressed mood / loss of pleasure · Avolition', dsm5:5, esc:'BNSS Anhedonia-Consum. · CAINS · BDI 4'},
   {it:'Frustración (frustrative nonreward)', hitop:'Irritability · Suspiciousness & resentment', dsm5:6, esc:'YMRS Irritability · PANSS G14/P7 · PID-5 Hostility', esp:'Antagonismo'}
  ],
@@ -545,9 +545,9 @@ const NMAP = {
  10:[
   {it:'Regulación metacognitiva', hitop:'Perseveration / fear of dyscontrol', dsm5:1, esc:'PANSS G12 Insight · EASE s4 · MCCB Reasoning'},
   {it:'Organización conductual', hitop:'Disorganised thought · Perfectionism · Verbal impulsivity', dsm5:10, esc:'SANS Alogia/Avol. · PANSS N6 · SAPS FTD · NES Sequencing', esp:'Thought Disorder'},
-  {it:'Regulación emocional', hitop:'Emotional lability · Depressed mood', dsm5:5, esc:'MCCB Reasoning · PID-5 (inv.) · PANSS N5'},
-  {it:'Approach–evitación', hitop:'Social withdrawal · Agoraphobia · Romantic/medical avoidance', dsm5:17, esc:'CAINS/BNSS MAP-Antic. · STAI Trait · PID-5 Anxiousness/Detach.'},
-  {it:'Riesgo', hitop:'Suicidality · Antisocial behaviour · Physical aggression · Substance use', dsm5:13, esc:'MADRS 10 / HAM-D 3 · PANSS G14/P7 · PID-5 Risk-Taking', esp:'Disinhibición'}
+  {it:'Regulación emocional', hitop:'Emotional lability · Verbal impulsivity · Oppositional · Hostility · Depressed mood', dsm5:16, esc:'MCCB Reasoning · PID-5 Disinhibition · PANSS N5'},
+  {it:'Approach–evitación', hitop:'Social withdrawal · Agoraphobia · Avoidance · Compulsions · Perseveration', dsm5:20, esc:'CAINS/BNSS MAP-Antic. · STAI Trait · PID-5 Anxiousness/Detach.'},
+  {it:'Riesgo', hitop:'Suicidality · Reckless risk-taking · Antisocial · Physical aggression · Substance use', dsm5:22, esc:'MADRS 10 / HAM-D 3 · PANSS G14/P7 · PID-5 Risk-Taking', esp:'Disinhibición'}
  ]
 };
 
@@ -665,7 +665,7 @@ synth.innerHTML=`
     <li><b>HiTOP:</b> clusters empíricos mapeados <b>por síntoma</b> (nivel fino, sourced); espectros de nivel superior (Detachment, Antagonismo, Distress, Thought Disorder, Disinhibición…) solo en algunos ítems vía crosswalk de escalas — cobertura parcial a nivel espectro.</li>
     <li><b>RDoC:</b> colapso 10 redes → 6 dominios (ver dominio por red arriba). Huecos que el pMSE cubre y RDoC no: contenido/juicio de realidad, fenomenología del yo, nocicepción, regulación/insight.</li>
     <li><b>Escalas clínicas:</b> cada ítem cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc. (crosswalk de escalas).</li>
-    <li style="color:var(--falta)"><b>⚠ Pendiente:</b> al eliminar Control inhibitorio, <b>29 síntomas DSM-5 quedan huérfanos</b> (ver red 10) — requieren reasignación formal.</li>
+    <li style="color:var(--alta)"><b>✓ Resuelto:</b> los 29 síntomas DSM-5 de Control inhibitorio se reasignaron (2026-06-26) a Riesgo (+9), Regulación emocional (+11), Motivación/drive (+6) y Approach–evitación (+3). Cobertura DSM-5 intacta.</li>
   </ul>
 `;
 main.appendChild(synth);
