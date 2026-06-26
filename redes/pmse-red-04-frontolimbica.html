@@ -257,7 +257,7 @@
 <footer>
   <div class="wrap">
     <div class="note">
-      <b>Sobre las citas.</b> Todas las referencias se verificaron contra fuentes reales (PubMed/PMC):
+      <b>Base teórica.</b> Cada red incluye un box de <b>procesamiento predictivo / active inference</b> (mecanismo por ítem + referencias), buscado y verificado contra PubMed; las referencias clásicas (Friston, Kapur, Barrett, Schultz, Holroyd) son sólidas, las de 2025-2026 son muy recientes. <b>Sobre las citas.</b> Todas las referencias se verificaron contra fuentes reales (PubMed/PMC):
       <b>ninguna fue inventada</b>. Las marcadas <span class="flag">[library]</span> provienen de revisiones
       previas; las <i>(PubMed)</i> de búsqueda dirigida. Pueden quedar imprecisiones menores de autoría o
       año propias de un borrador.
@@ -831,6 +831,75 @@ function dsmHTML(n){
   <table><thead><tr><th>Ítem pMSE</th><th>n</th><th>Síntomas DSM-5 que mapean aquí</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
 }
 
+const THEORY = {
+ 1:[
+  {it:'Conciencia', m:'Inferencia global: un modelo generativo de alto nivel cuya evidencia se maximiza integrando prediction errors de varias jerarquías; el nivel de conciencia = profundidad/coherencia de esa inferencia.', refs:[['Hobson, Hong & Friston 2014 · Front Psychol','10.3389/fpsyg.2014.01133'], ['Seth & Tsakiris 2018 · Trends Cogn Sci','10.1016/j.tics.2018.08.008']]},
+  {it:'Alerta', m:'Arousal = precisión global (gain): la neuromodulación (NE/ACh) regula la ganancia que pondera los prediction errors; más alerta = más precisión a los errores ascendentes.', refs:[['Hesselmann et al. 2010 · PLoS ONE','10.1371/journal.pone.0009926'], ['Barrett & Simmons 2015 · Nat Rev Neurosci','10.1038/nrn3950']]}
+ ],
+ 2:[
+  {it:'Sueño y ritmo circadiano', m:'NREM recalibra sinapsis (reduce complejidad del modelo minimizando free energy); REM prueba el modelo contra simulaciones internas; el circadiano impone priors temporales de precisión esperada.', refs:[['Hobson, Hong & Friston 2014 · Front Psychol','10.3389/fpsyg.2014.01133'], ['Censi et al. 2026 · Prog Neurobiol','10.1016/j.pneurobio.2026.102939']]},
+  {it:'Apetito e ingesta', m:'Hambre = prediction error alostático interoceptivo: priors sobre glucosa/nutrientes vs. señal visceral; la discrepancia motiva ingesta (active inference para minimizar free energy corporal).', refs:[['Barrett & Simmons 2015 · Nat Rev Neurosci','10.1038/nrn3950'], ['Tschantz et al. 2022 · Biol Psychol','10.1016/j.biopsycho.2022.108266']]},
+  {it:'Libido', m:'Inferencia alostática sobre estados de necesidad hedónica/reproductiva (priors hormonales + señales interoceptivas). Marco general; falta literatura PP específica.', refs:[]}
+ ],
+ 3:[
+  {it:'Expresividad emocional', m:'Output de active inference: el cerebro genera acción motora (facial/vocal) para minimizar el error entre el afecto inferido y sus señales, con priors culturales (emoción construida).', refs:[['Barrett 2017 · Soc Cogn Affect Neurosci','10.1093/scan/nsw154'], ['Barrett & Satpute 2017 · Neurosci Lett','10.1016/j.neulet.2017.07.045']]},
+  {it:'Afiliación', m:'Reduce incertidumbre sobre estados mentales ajenos: priors sobre intenciones del otro (mentalización jerárquica bayesiana); valor epistémico de alinear modelos generativos entre interactuantes.', refs:[['Vasil et al. 2020 · Front Psychol','10.3389/fpsyg.2020.00417'], ['Charlton & Diaconescu 2026 · Hum Brain Mapp','10.1002/hbm.70433']]},
+  {it:'Dominancia', m:'Política preferida que maximiza valor pragmático (control del nicho social): acciones que confirman priors sobre el rango jerárquico. Vínculo PP indirecto.', refs:[['Constant et al. 2019 · Front Psychol','10.3389/fpsyg.2019.00679']]},
+  {it:'Patrón de personalidad', m:'Priors profundos e hiperprecisos sobre el self/entorno, resistentes a actualización por PE; las patologías de personalidad = inferencias bayesianas maladaptativas sobre el self.', refs:[['Prosser & Friston 2018 · Comput Psychiatr','10.1162/cpsy_a_00016'], ['Barrett 2017 · Soc Cogn Affect Neurosci','10.1093/scan/nsw154']]}
+ ],
+ 4:[
+  {it:'Ánimo', m:'Resumen interoceptivo del presupuesto corporal (EPIC): error entre demanda metabólica esperada y real. Depresión = priors negativos hiperprecisos + PE positivos atenuados (bucle autorreforzante).', refs:[['Kube et al. 2020 · Biol Psychiatry','10.1016/j.biopsych.2019.07.017'], ['Barrett et al. 2016 · Philos Trans R Soc B','10.1098/rstb.2016.0011']]},
+  {it:'Amenaza', m:'Señal interoceptiva amplificada en ínsula anterior: prior de estado corporal aversivo inminente con precisión aumentada; la ansiedad baja el umbral de detección de amenaza.', refs:[['Paulus & Stein 2006 · Biol Psychiatry','10.1016/j.biopsych.2006.03.042'], ['Barrett et al. 2016 · Philos Trans R Soc B','10.1098/rstb.2016.0011']]}
+ ],
+ 5:[
+  {it:'Motivación / drive (wanting + vigor)', m:'Wanting = reward prediction error dopaminérgico; su magnitud escala la precisión a señales de recompensa, amplificando el drive hacia acciones de alto valor esperado.', refs:[['Schultz et al. 1997 · Science','10.1126/science.275.5306.1593'], ['Berridge & Robinson 2016 · Am Psychol','10.1037/amp0000059']]},
+  {it:'Tono hedónico (liking)', m:'Liking = valor afectivo del estado consumatorio (sistemas opioides), disociado del RPE dopaminérgico que gobierna el wanting. Anhedonia = atenuación asimétrica del RPE positivo.', refs:[['Berridge & Robinson 2016 · Am Psychol','10.1037/amp0000059'], ['Rothkirch et al. 2017 · Brain','10.1093/brain/awx025']]},
+  {it:'Frustración', m:'RPE negativo (pausa dopaminérgica) al omitirse recompensa esperada: la violación de la predicción activa circuitos aversivos y agitación (frustrative nonreward).', refs:[['Schultz 2019 · F1000Research','10.12688/f1000research.19793.1']]}
+ ],
+ 6:[
+  {it:'Velocidad psicomotriz', m:'El vigor del movimiento depende del RPE dopaminérgico escalado al coste energético; la reducción tónica de DA sesga el coste/beneficio → lentitud sin perder precisión.', refs:[['Mazzoni et al. 2007 · J Neurosci','10.1523/JNEUROSCI.0264-07.2007'], ['Schultz 2019 · F1000Research','10.12688/f1000research.19793.1']]},
+  {it:'Parakinesia', m:'Fallo en la supresión de priors motores competitivos: la precisión de predicciones propioceptivas no cancela modelos motores alternativos → movimientos parásitos.', refs:[['Joseph, Adams et al. 2026 · Brain','10.1093/brain/awag064']]},
+  {it:'Tics', m:'Actualización aberrante de creencias sobre la predictibilidad de cues sensoriomotores: el modelo generativo no se ajusta al cambio de contingencias → asociaciones estímulo-respuesta inflexibles.', refs:[['Schüller et al. 2025 · Brain Commun','10.1093/braincomms/fcaf458']]},
+  {it:'Síntomas extrapiramidales', m:'Disfunción sensoriomotora nuclear (no solo iatrogénica): fallo de integración de señales predictivas descendentes sobre el sistema motor estriado-cortical.', refs:[['Hirjak et al. 2025 · Schizophr Res','10.1016/j.schres.2025.09.021'], ['Joseph, Adams et al. 2026 · Brain','10.1093/brain/awag064']]},
+  {it:'Signos neurológicos blandos', m:'Integración sensoriomotora alterada del neurodesarrollo: fallo crónico en la calibración de modelos propioceptivo-visuo-vestibulares (corollary discharge persistente).', refs:[['Brown, Friston & Bestmann 2011 · Front Psychol','10.3389/fpsyg.2011.00218'], ['Hirjak et al. 2025 · Schizophr Res','10.1016/j.schres.2025.09.021']]}
+ ],
+ 7:[
+  {it:'Contenido del pensamiento', m:'Priors hiperprecisos generan prediction errors con saliencia aberrante; el delirio es la inferencia que mejor minimiza esa energía libre ante señales dopaminérgicas desreguladas.', refs:[['Kapur 2003 · Am J Psychiatry','10.1176/appi.ajp.160.1.13'], ['Sterzer et al. 2018 · Biol Psychiatry','10.1016/j.biopsych.2018.05.015']]},
+  {it:'Integración sensorial', m:'El cerebro combina priors con evidencia ponderando precisiones; el fallo de esa ponderación produce alucinación (prior domina) o incoherencia (likelihood domina).', refs:[['Friston 2010 · Nat Rev Neurosci','10.1038/nrn2787'], ['Sterzer et al. 2018 · Biol Psychiatry','10.1016/j.biopsych.2018.05.015']]},
+  {it:'Interocepción', m:'La ínsula implementa inferencia interoceptiva activa: predicciones viscerales descendentes; los errores interoceptivos no suprimidos son la base del afecto y del self corporal.', refs:[['Seth & Friston 2016 · Philos Trans R Soc B','10.1098/rstb.2016.0007'], ['Seth 2013 · Trends Cogn Sci','10.1016/j.tics.2013.09.007']]},
+  {it:'Nocicepción', m:'El dolor es inferencia activa: predicciones descendentes del estado nociceptivo; expectativas de dolor hiperprecisas o errores no cancelados amplifican el dolor (placebo/nocebo, dolor crónico).', refs:[['Büchel et al. 2014 · Neuron','10.1016/j.neuron.2014.02.042'], ['Friston & Kiebel 2009 · Philos Trans R Soc B','10.1098/rstb.2008.0300']]},
+  {it:'Regulación atencional', m:'La atención = optimización de la precisión asignada a prediction errors específicos: subir la ganancia de un canal sensorial eleva la precisión de ese error en la jerarquía.', refs:[['Friston 2010 · Nat Rev Neurosci','10.1038/nrn2787'], ['Friston & Kiebel 2009 · Philos Trans R Soc B','10.1098/rstb.2008.0300']]}
+ ],
+ 8:[
+  {it:'Metacontrol cognitivo', m:'Meta-inferencia sobre la precisión de las propias predicciones; el DLPFC ajusta la ganancia de los errores en niveles jerárquicos superiores.', refs:[['Stephan et al. 2016 · Front Hum Neurosci','10.3389/fnhum.2016.00550']]},
+  {it:'Monitoreo del error', m:'La ERN codifica un error de predicción de refuerzo (dopaminérgico mesencefálico) sobre el ACC: discrepancia entre acción ejecutada y resultado esperado.', refs:[['Holroyd & Coles 2002 · Psychol Rev','10.1037/0033-295X.109.4.679']]},
+  {it:'Control inhibitorio', m:'Supresión de políticas prepotentes minimizando la sorpresa esperada (active inference). Mecanismo plausible; falta literatura PP específica.', refs:[]},
+  {it:'Pruebas neurocognitivas', m:'Las tareas frontales (WCST, Stroop) operacionalizan el fallo en el ajuste de precisión: el error refleja incapacidad de actualizar el modelo ante señales negativas.', refs:[['Shallice & Burgess 1991 · Brain','10.1093/brain/114.2.727']]}
+ ],
+ 9:[
+  {it:'Experiencia del pensamiento', m:'Los contenidos mentales emergen de inferencia activa sobre causas del input interno; el pensamiento intrusivo = prediction error de alta precisión no atenuado.', refs:[['Sterzer et al. 2018 · Biol Psychiatry','10.1016/j.biopsych.2018.05.015']]},
+  {it:'Experiencia vivida', m:'La Stimmung/tono de fondo refleja el estado global de precisión perceptual; alterar el balance prior/likelihood cambia la textura cualitativa de la experiencia.', refs:[['Leptourgos et al. 2020 · Schizophr Bull','10.1093/schbul/sbaa117']]},
+  {it:'Experiencia del yo', m:'El self mínimo emerge del modelo generativo del cuerpo; la agencia depende de atenuar la reaferencia por copia eferente. El fallo de atenuación → pasividad / control externo.', refs:[['Limanowski & Blankenburg 2013 · Front Hum Neurosci','10.3389/fnhum.2013.00547'], ['Leptourgos et al. 2020 · Schizophr Bull','10.1093/schbul/sbaa117']]},
+  {it:'Mentalización', m:'Inferencia predictiva de segundo orden sobre estados mentales ajenos: el cerebro invierte un modelo generativo de las acciones del otro para inferir sus creencias/intenciones.', refs:[['Sterzer et al. 2018 · Biol Psychiatry','10.1016/j.biopsych.2018.05.015']]},
+  {it:'Autoevaluación', m:'Inferencia metacognitiva bayesiana sobre el propio rendimiento; el vmPFC actualiza la creencia de autoeficacia según el historial de errores de predicción.', refs:[['Stephan et al. 2016 · Front Hum Neurosci','10.3389/fnhum.2016.00550']]},
+  {it:'Simulación a futuro', m:'Proyección prospectiva con el modelo generativo: hipocampo + DMN recombinan fragmentos episódicos para simular estados futuros y reducir la incertidumbre esperada.', refs:[['Conti & Irish 2021 · Trends Cogn Sci','10.1016/j.tics.2021.01.009']]}
+ ],
+ 10:[
+  {it:'Regulación metacognitiva', m:'Inferencia de segundo orden sobre la precisión del propio modelo: estima la confiabilidad de sus predicciones y reajusta la ponderación de precisión.', refs:[['Heinz et al. 2019 · Schizophr Bull','10.1093/schbul/sby154']]},
+  {it:'Organización conductual', m:'La jerarquía generativa multiescala coordina políticas motoras anidadas; la desorganización surge cuando errores de alta precisión en niveles intermedios rompen la coherencia temporal.', refs:[['Heinz et al. 2019 · Schizophr Bull','10.1093/schbul/sby154'], ['Sterzer et al. 2016 · Front Hum Neurosci','10.3389/fnhum.2016.00502']]},
+  {it:'Regulación emocional', m:'La reapreciación modifica priors de alto nivel sobre el significado del estímulo, bajando la precisión de las señales interoceptivas de alarma y actualizando el modelo afectivo.', refs:[['Chester et al. 2024 · J Eat Disord','10.1186/s40337-024-01010-2'], ['Paulus 2025 · Curr Top Behav Neurosci','10.1007/7854_2024_519']]},
+  {it:'Approach-evitación', m:'La selección de política minimiza la expected free energy: approach maximiza información epistémica; evitación minimiza la sorpresa esperada ante estados aversivos.', refs:[['Smith et al. 2021 · J Psychiatry Neurosci','10.1503/jpn.200032']]},
+  {it:'Riesgo', m:'Bajo carga alostática la precisión migra de redes ejecutivas a circuitos de supervivencia (triage alostático); la tolerancia al riesgo refleja el balance epistémico/pragmático según el estado homeostático.', refs:[['Kelley et al. 2025 · Neurosci Biobehav Rev','10.1016/j.neubiorev.2025.106419']]}
+ ],
+};
+
+function theoryHTML(n){
+  const rows=THEORY[n]; if(!rows) return '';
+  const link=(c,u)=>{ if(!u) return c; const href = u.startsWith('PMID:')?'https://pubmed.ncbi.nlm.nih.gov/'+u.slice(5):'https://doi.org/'+u; return `<a href="${href}" target="_blank" rel="noopener">${c}</a>`; };
+  const body=rows.map(r=>`<tr><td><b>${r.it}</b></td><td>${r.m}</td><td>${r.refs.length?r.refs.map(x=>link(x[0],x[1])).join(' · '):'<span style="color:var(--muted)">base por extender</span>'}</td></tr>`).join('');
+  return `<details class="sec"><summary style="color:var(--accent)">Base teórica · procesamiento predictivo</summary><div class="sec-body"><table><thead><tr><th>Ítem</th><th>Mecanismo (predictive processing)</th><th>Referencias</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -883,6 +952,8 @@ NETS.filter(o=>o.n===4).forEach(net=>{
       <thead><tr><th>Ítem</th><th>Sustrato</th><th>Fuente</th><th>Fortaleza</th></tr></thead>
       <tbody>${net.map.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td class="frt">${frtTag(r[3])}</td></tr>`).join('')}</tbody>
     </table></div></details>
+
+    ${theoryHTML(net.n)}
 
     ${scoreHTML(net.n)}
 
