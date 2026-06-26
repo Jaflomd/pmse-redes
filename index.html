@@ -541,7 +541,7 @@ const NMAP = {
   {it:'Signos neurológicos blandos', hitop:'—', dsm5:0, esc:'NES · Heidelberg NSS'}
  ],
  7:[
-  {it:'Contenido del pensamiento', hitop:'Unusual beliefs · Disorganised thought', dsm5:13, esc:'PANSS P1/P6/G9 · SAPS Delusions · PSYRATS-DEL', esp:'Thought Disorder'},
+  {it:'Contenido del pensamiento', hitop:'Unusual beliefs · Disorganised thought', dsm5:14, esc:'PANSS P1/P6/G9 · SAPS Delusions · PSYRATS-DEL', esp:'Thought Disorder'},
   {it:'Integración sensorial', hitop:'Unusual experiences', dsm5:4, esc:'SAPS Hallucin. · PANSS P3 · PSYRATS-AH'},
   {it:'Interocepción', hitop:'Health anxiety · Physical panic · GI distress · Muscle tension', dsm5:26, esc:'EASE d3 · CDS · PID-5 Cogn-Percept · HAM-A somático'},
   {it:'Nocicepción', hitop:'Sexual pain · Muscle tension · Headaches', dsm5:4, esc:'AMDP dolor · PID-5 Somatic · PANSS G1'},
@@ -558,7 +558,7 @@ const NMAP = {
   {it:'Experiencia vivida', hitop:'Dissociation · Traumatic intrusions', dsm5:2, esc:'EASE d1/d4 · CDS · AMDP despers.'},
   {it:'Experiencia del yo', hitop:'Passivity · Despersonalización', dsm5:3, esc:'EASE d3 · SAPS Passivity · AMDP yo · PID-5 Psychoticism'},
   {it:'Mentalización', hitop:'Lack of empathy · Callousness', dsm5:3, esc:'MCCB Social Cog. · CAINS/BNSS MAP-Social · PANSS G12', esp:'Detachment'},
-  {it:'Autoevaluación', hitop:'Guilt/shame proneness · Body image · Depressed mood', dsm5:10, esc:'HAM-D 2 · MADRS 9 · BDI cognitivo · EASE hiperreflex.', esp:'Distress'},
+  {it:'Autoevaluación', hitop:'Guilt/shame proneness · Body image · Depressed mood', dsm5:11, esc:'HAM-D 2 · MADRS 9 · BDI cognitivo · EASE hiperreflex.', esp:'Distress'},
   {it:'Simulación a futuro', hitop:'Depressed mood / loss of pleasure', dsm5:2, esc:'PSWQ · BNSS/CAINS MAP-Antic. · MADRS 9'}
  ],
  10:[
@@ -673,7 +673,7 @@ const DSM = {
  ],
  5:[
   {it:'Motivación/drive (wanting+vigor)', n:15, d:'ZMQRF_110 Abandono de actividades importantes · ZMQRF_171 Craving de sustancias · ZMQRF_172 Uso de sustancias pese a problemas relacionales · ZMQRF_173 Uso de sustancias en situaciones de riesgo físico · ZMQRF_174 Uso de sustancias pese a daño en salud · ZMQRF_296 Pérdida de interés en actividades · ZMQRF_453 Consumo de sustancias mayor al planeado · ZMQRF_454 Uso de sustancias por más tiempo del planeado · ZMQRF_455 Deseo de reducir consumo de sustancias · ZMQRF_456 Tiempo excesivo en uso de sustancias · ZMQRF_595 Falta de motivación para tareas cotidianas · ZMQRF_659 Energía o actividad excesiva · ZMQRF_662 Fatiga/baja energía · ZMQRF_672 Incapacidad de reducir consumo de sustancias · ZMQRF_673 Absorción excesiva en planificación'},
-  {it:'Tono hedónico (liking)', n:4, d:'ZMQRF_111 Incapacidad de experimentar emociones positivas · ZMQRF_63 Anhedonia/falta de placer vital · ZMQRF_665 Pérdida de interés en actividades placenteras · ZMQRF_667 Disminución del placer vital'},
+  {it:'Tono hedónico (liking)', n:5, d:'ZMQRF_111 Incapacidad de experimentar emociones positivas · ZMQRF_63 Anhedonia/falta de placer vital · ZMQRF_665 Pérdida de interés en actividades placenteras · ZMQRF_667 Disminución del placer vital · Zhiranhedonia No disfrutar la vida (anhedonia)'},
   {it:'Frustración', n:6, d:'ZMQRF_291 Irritabilidad · ZMQRF_316 Enojo/ira · ZMQRF_432 Susceptibilidad/irritación fácil · ZMQRF_632 Resentimiento · ZMQRF_658 Enojo ante pequeñas cosas · ZMQRF_663 Pérdida de control del temperamento'}
  ],
  6:[
@@ -684,9 +684,9 @@ const DSM = {
   {it:'Signos neurológicos blandos', n:0, d:'—'}
  ],
  7:[
-  {it:'Contenido del pensamiento', n:13, d:'ZMQRF_35 Pensamiento idiosincrático · ZMQRF_375 Creencias negativas del mundo · ZMQRF_507 Creencia de ser atacado · ZMQRF_518 Transmisión del pensamiento · ZMQRF_55 Delirio erotomaníaco · ZMQRF_56 Delirio de grandiosidad · ZMQRF_57 Celos delirantes (infidelidad) · ZMQRF_58 Creencia somática delirante · ZMQRF_59 Creencia bizarra extrema · ZMQRF_594 Creencia resistente a evidencia · ZMQRF_599 Recuerdos intrusivos traumáticos · ZMQRF_638 Pensamiento extraño referido por otros · ZMQRF_642 Delirio persecutorio'},
+  {it:'Contenido del pensamiento', n:14, d:'ZMQRF_35 Pensamiento idiosincrático · ZMQRF_375 Creencias negativas del mundo · ZMQRF_507 Creencia de ser atacado · ZMQRF_518 Transmisión del pensamiento · ZMQRF_55 Delirio erotomaníaco · ZMQRF_56 Delirio de grandiosidad · ZMQRF_57 Celos delirantes (infidelidad) · ZMQRF_58 Creencia somática delirante · ZMQRF_59 Creencia bizarra extrema · ZMQRF_594 Creencia resistente a evidencia · ZMQRF_599 Recuerdos intrusivos traumáticos · ZMQRF_638 Pensamiento extraño referido por otros · ZMQRF_642 Delirio persecutorio · Zhirfearweight Miedo a ganar peso'},
   {it:'Integración sensorial', n:4, d:'ZMQRF_254 Experiencia perceptual inusual · ZMQRF_287 Alucinaciones en vigilia · ZMQRF_515 Distorsión perceptual de objetos · ZMQRF_519 Experiencias inexplicables'},
-  {it:'Interocepción', n:25, d:'ZMQRF_105 Reacción física a trauma · ZMQRF_115 Preocupación excesiva por salud · ZMQRF_116 Miedo a enfermedad grave · ZMQRF_155 Vaginismo (tensión pélvica) · ZMQRF_326 Sensibilidad/tumefacción mamaria · ZMQRF_328 Distensión abdominal · ZMQRF_337 Palpitaciones/latidos irregulares · ZMQRF_340 Sudoración sin esfuerzo · ZMQRF_341 Temblores · ZMQRF_342 Disnea (falta de aire) · ZMQRF_343 Sensación de ahogo · ZMQRF_344 Dolor/malestar torácico · ZMQRF_345 Náusea · ZMQRF_347 Mareo/lipotimia · ZMQRF_348 Escalofríos · ZMQRF_349 Sensación de calor corporal · ZMQRF_350 Parestesias (hormigueo/entumecimiento) · ZMQRF_362 Tensión muscular · ZMQRF_380 Nerviosismo somático · ZMQRF_384 Catastrofización de síntomas físicos · ZMQRF_385 Ansiedad por salud física · ZMQRF_386 Autochequeo corporal frecuente · ZMQRF_634 Inestabilidad/sensación de desmayo · ZMQRF_664 Sensación de sofocación · ZMQRF_81 Síntomas físicos por separación'},
+  {it:'Interocepción', n:26, d:'ZMQRF_105 Reacción física a trauma · ZMQRF_115 Preocupación excesiva por salud · ZMQRF_116 Miedo a enfermedad grave · ZMQRF_155 Vaginismo (tensión pélvica) · ZMQRF_326 Sensibilidad/tumefacción mamaria · ZMQRF_328 Distensión abdominal · ZMQRF_337 Palpitaciones/latidos irregulares · ZMQRF_340 Sudoración sin esfuerzo · ZMQRF_341 Temblores · ZMQRF_342 Disnea (falta de aire) · ZMQRF_343 Sensación de ahogo · ZMQRF_344 Dolor/malestar torácico · ZMQRF_345 Náusea · ZMQRF_347 Mareo/lipotimia · ZMQRF_348 Escalofríos · ZMQRF_349 Sensación de calor corporal · ZMQRF_350 Parestesias (hormigueo/entumecimiento) · ZMQRF_362 Tensión muscular · ZMQRF_380 Nerviosismo somático · ZMQRF_384 Catastrofización de síntomas físicos · ZMQRF_385 Ansiedad por salud física · ZMQRF_386 Autochequeo corporal frecuente · ZMQRF_634 Inestabilidad/sensación de desmayo · ZMQRF_664 Sensación de sofocación · ZMQRF_81 Síntomas físicos por separación · Zhirheartrace Palpitaciones (pánico)'},
   {it:'Nocicepción', n:4, d:'ZMQRF_153 Dolor génito-pélvico en coito · ZMQRF_327 Dolor/rigidez músculo-articular · ZMQRF_346 Dolor/malestar abdominal · ZMQRF_460 Cefaleas'},
   {it:'Regulación atencional', n:2, d:'ZMQRF_224 Distracción fácil · ZMQRF_538 Pérdida de foco por distractores'}
  ],
@@ -701,7 +701,7 @@ const DSM = {
   {it:'Experiencia vivida', n:2, d:'ZMQRF_372 Flashbacks de evento traumático · ZMQRF_591 Desrealización'},
   {it:'Experiencia del yo', n:3, d:'ZMQRF_351 Despersonalización · ZMQRF_516 Pensamientos controlados por otros · ZMQRF_517 Robo de pensamientos por otros'},
   {it:'Mentalización', n:3, d:'ZMQRF_167 Indiferencia ante daño a otros · ZMQRF_523 Indiferencia ante sentimientos ajenos · ZMQRF_524 Desinterés por problemas de otros'},
-  {it:'Autoevaluación', n:10, d:'ZMQRF_108 Cogniciones distorsionadas sobre trauma · ZMQRF_318 Baja autoestima · ZMQRF_335 Miedo a la evaluación negativa · ZMQRF_373 Creencias negativas sobre sí mismo · ZMQRF_405 Distorsión imagen corporal · ZMQRF_553 Autoestima ligada al peso · ZMQRF_554 Culpa o vergüenza por hiperfagia · ZMQRF_571 Culpa desproporcionada · ZMQRF_614 Vergüenza por cantidad comida · ZMQRF_679 Culpa sin conducta incorrecta'},
+  {it:'Autoevaluación', n:11, d:'ZMQRF_108 Cogniciones distorsionadas sobre trauma · ZMQRF_318 Baja autoestima · ZMQRF_335 Miedo a la evaluación negativa · ZMQRF_373 Creencias negativas sobre sí mismo · ZMQRF_405 Distorsión imagen corporal · ZMQRF_553 Autoestima ligada al peso · ZMQRF_554 Culpa o vergüenza por hiperfagia · ZMQRF_571 Culpa desproporcionada · ZMQRF_614 Vergüenza por cantidad comida · ZMQRF_679 Culpa sin conducta incorrecta · Zhirworthless Sentimiento de inutilidad'},
   {it:'Simulación a futuro', n:2, d:'ZMQRF_319 Desesperanza · ZMQRF_505 Sentido de inutilidad existencial'}
  ],
  10:[
@@ -825,7 +825,7 @@ synth.innerHTML=`
   </ul>
   <div class="section-h" style="margin-top:18px">Cobertura nosológica (crosswalks)</div>
   <ul class="ev">
-    <li><b>DSM-5:</b> 331 síntomas únicos del instrumento → <b>319 con hogar en el pMSE (96%)</b> · 12 GAP (eje de adicción: 10 ítems de uso/tolerancia/abstinencia + 2 de bajo peso corporal). <span class="src">— Table S1, abn0001125</span></li>
+    <li><b>DSM-5:</b> 331 síntomas únicos del instrumento → <b>317 mapeados a nodo (96%)</b>, mostrados síntoma por síntoma en cada red. GAP: eje de adicción (uso/tolerancia/abstinencia) + bajo peso corporal — fuera del pMSE. <span class="src">— Table S1, abn0001125</span></li>
     <li><b>HiTOP:</b> clusters empíricos mapeados <b>por síntoma</b> (nivel fino, sourced); espectros de nivel superior (Detachment, Antagonismo, Distress, Thought Disorder, Disinhibición…) solo en algunos ítems vía crosswalk de escalas — cobertura parcial a nivel espectro.</li>
     <li><b>RDoC:</b> colapso 10 redes → 6 dominios (ver dominio por red arriba). Huecos que el pMSE cubre y RDoC no: contenido/juicio de realidad, fenomenología del yo, nocicepción, regulación/insight.</li>
     <li><b>Escalas clínicas:</b> cada ítem cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc. (crosswalk de escalas).</li>
