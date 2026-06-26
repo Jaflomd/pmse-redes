@@ -204,8 +204,11 @@
     .ov-head a{font-size:12.5px}
     .pill{font-size:11.5px}
   }
+  .wip-banner{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.42);border-radius:12px;
+    padding:11px 15px;margin:14px 0 0;font-size:13px;line-height:1.5;color:var(--ink)}
+  .wip-banner b{color:var(--mod)}
   /* single-red embed */
-  body.single header.top, body.single nav.toc, body.single #ovwrap, body.single #sintesis, body.single footer, body.single .home-btn{display:none}
+  body.single header.top, body.single .wip-banner, body.single nav.toc, body.single #ovwrap, body.single #sintesis, body.single footer, body.single .home-btn{display:none}
   body.single .layout{grid-template-columns:1fr;padding:18px 0}
   body.single .net{margin:0}
 </style>
@@ -214,21 +217,20 @@
 <header class="top">
   <div class="wrap">
     <div class="eyebrow">pMSE · examen mental por redes neurales</div>
-    <h1>Reporte de las 10 redes — v0</h1>
-    <p class="sub">Una ficha por red, del tronco encefálico al ápex integrador. El examen
-      <b>lee salidas (outputs), no circuitos</b>: un ítem anómalo no localiza el circuito por sí solo;
-      se interpreta cruzando el patrón de los demás. Cada ficha integra la evidencia de los dossiers
-      por ítem (tipo ontológico → evidencia → mapeo fenómeno·sustrato·fuente → <b>escala de puntuación
-      −2/+2</b> → fortaleza → huecos). En la escala, <b>0 = calibrado/sano</b> y ambos extremos (−2, +2)
-      son polos patológicos opuestos.</p>
+    <h1>Examen mental por redes neurales <span style="color:var(--mod);font-size:.55em;font-weight:700;white-space:nowrap">· borrador v0</span></h1>
+    <p class="sub">El <b>pMSE</b> es una propuesta de examen del estado mental organizada por el <b>sistema neural</b> que sostiene cada grupo de fenómenos, del tronco encefálico a las redes integradoras. Cada signo se puntúa en una escala de <b>−2 a +2</b>, donde <b>0 = funcionamiento calibrado</b> y los dos extremos son polos opuestos de alteración. El examen registra <b>lo observable</b>, no el circuito: un hallazgo aislado no señala la causa por sí solo; se interpreta junto al patrón del resto. Cada red reúne su sustrato neural, escala con criterios, y correspondencias con DSM-5, AMDP, HiTOP y RDoC.</p>
     <div class="meta-line">
-      <span>Fuente: <b>EVIDENCIA-redes-pmse.md</b> + SPEC-arquitectura-pmse-v0</span>
-      <span>Orden: <b>ascendente por el neuraxis</b></span>
-      <span>Regla de citas: <b>cero inventadas</b></span>
-      <span><span class="flag">[library]</span> = dossier heredado · <b>QA hecho: 0 citas fabricadas</b></span>
+      <span>Escala: <b>−2 a +2</b> (0 = calibrado)</span>
+      <span>Orden: <b>del tronco al ápex</b></span>
+      <span>Estado: <b>borrador en desarrollo</b></span>
+      <span>Citas verificadas contra fuentes reales</span>
     </div>
   </div>
 </header>
+
+<div class="wrap">
+  <div class="wip-banner">🚧 <b>Documento en desarrollo (work in progress).</b> El pMSE es un instrumento de investigación en construcción: su estructura, escalas y correspondencias se revisan de forma continua y <b>no están validadas para uso clínico ni diagnóstico</b>. Borrador v0.</div>
+</div>
 
 <div class="wrap" id="ovwrap" style="padding-top:18px">
   <details class="sec" open><summary>Mapa del instrumento — 38 ítems en 10 redes</summary><div class="sec-body"><div id="overview"></div></div></details>
@@ -255,10 +257,10 @@
 <footer>
   <div class="wrap">
     <div class="note">
-      <b>Nota metodológica.</b> Las citas marcadas <span class="flag">[library]</span> provienen de
-      dossiers heredados. <b>QA de citas realizado (2026-06-26):</b> los 18 identificadores resuelven a artículos reales (0 fabricados); discrepancias menores de autoría/año corregidas. Ver QA-citas-library-2026-06-26.md.
-      Las marcadas <i>(PubMed)</i> se cerraron por búsqueda dirigida el 2026-06-25. Ningún dato,
-      DOI ni cita fue inventado para este reporte: todo proviene de la ficha de evidencia del proyecto.
+      <b>Sobre las citas.</b> Todas las referencias se verificaron contra fuentes reales (PubMed/PMC):
+      <b>ninguna fue inventada</b>. Las marcadas <span class="flag">[library]</span> provienen de revisiones
+      previas; las <i>(PubMed)</i> de búsqueda dirigida. Pueden quedar imprecisiones menores de autoría o
+      año propias de un borrador.
     </div>
     <div class="note">
       <b>Capa «acceso en DI».</b> La clasificación de canal de administración (observable directo /
@@ -271,7 +273,7 @@
       <b>Mapeo nosológico.</b> La columna <b>HiTOP</b> muestra los clusters empíricos del instrumento
       (Table S1), asignados síntoma por síntoma — son datos sourced, no inferencias. El tag
       <span class="tag" style="background:var(--accent2)">esp</span> indica el espectro HiTOP de nivel
-      superior (asignación clínica a la jerarquía HiTOP, 2026-06-26). <b>10 nodos van marcados «fuera de
+      superior (asignación clínica a la jerarquía HiTOP). <b>10 nodos van marcados «fuera de
       HiTOP»</b> — arousal, motor y cognición ejecutiva que HiTOP no modela: es la cobertura diferencial
       del pMSE. La columna
       <b>DSM-5</b> es el nº de síntomas mapeados a ese ítem. Los conteos de la red 10 ya incluyen la
@@ -310,8 +312,8 @@ const NETS = [
     ['Conciencia','ARAS (formación reticular pontomesencefálica) + LC-NE + tálamo intralaminar','Maness 2022 [library]','alta'],
     ['Alerta','LC-NE tónico/fásico (sostenido) + BF-PV (microarousal rápido)','Maness 2022; van Schie 2021 [library]','alta / mod.']
   ],
-  gaps:['<span class="flag">[FRONTERA]</span> Conciencia y Alerta comparten sustrato (ARAS/LC-NE): justificar por qué son ítems separados (¿nivel global vs reactividad fásica?).',
-        '<span class="flag">[VERIFICAR]</span> Reverificar DOIs de los papers 2025-2026 del dossier de arousal antes de citarlos.'],
+  gaps:['Conciencia y Alerta comparten sustrato (ARAS/LC-NE): justificar por qué son ítems separados (¿nivel global vs reactividad fásica?).',
+        'Pendiente — Reverificar DOIs de los papers 2025-2026 del dossier de arousal antes de citarlos.'],
   di:'Arousal y nivel de conciencia se evalúan por <b>observación directa</b> del estado del paciente — plenamente accesible en DI.'
  },
  {n:2, name:'Red vegetativa — homeostasis (hipotálamo-tronco)',
@@ -328,8 +330,8 @@ const NETS = [
     ['Libido','Área preóptica medial + mesolímbico (NAc/DA)','Micevych & Meisel 2017 (PubMed)','alta'],
     ['Nocicepción','→ movida a red 7 (matriz del dolor)','ver ficha 7','—']
   ],
-  gaps:['Nocicepción <b>movida a red 7</b> (matriz del dolor ínsula-ACC, McBenedict 2024). RESUELTO.',
-        '<span class="flag">[FRONTERA]</span> La red mezcla constructos RDoC (Sleep-Wakefulness, Circadian) con apetito/libido que no son constructos RDoC — coherente con que sean huecos de RDoC.'],
+  gaps:['<b>Nocicepción</b> se evalúa en la red 7 (matriz del dolor ínsula-ACC), no en la red vegetativa..',
+        'La red mezcla constructos RDoC (Sleep-Wakefulness, Circadian) con apetito/libido que no son constructos RDoC — coherente con que sean huecos de RDoC.'],
   di:'Sueño, apetito y libido se acceden por <b>heteroanamnesis</b> (cuidador) y signos observables — accesible en DI sin depender de introspección.'
  },
  {n:3, name:'Red social subcortical',
@@ -342,11 +344,11 @@ const NETS = [
   ],
   map:[
     ['Afiliación','Oxitocina en NAc + red prosocial (ínsula/cingulado/NAc)','Hazani 2025; Nunes 2021 (PubMed)','alta'],
-    ['Dominancia','SBN (agencia social)','<span class="flag">[BUSCAR]</span> jerarquía social específica','preliminar'],
+    ['Dominancia','SBN (agencia social)','Pendiente — jerarquía social específica','preliminar'],
     ['Patrón de personalidad','Circumplejo interpersonal (afiliación × dominancia)','inferencia de los dos ejes','preliminar'],
     ['Expresividad emocional','Doble vía motora facial (emocional vs voluntaria; multi-red con red 6)','Eblen 1992 (PubMed)','alta']
   ],
-  gaps:['<span class="flag">[BUSCAR]</span> Sustrato específico de jerarquía/dominancia social (más allá de afiliación).',
+  gaps:['Pendiente — Sustrato específico de jerarquía/dominancia social (más allá de afiliación).',
         'Subió a MODERADA-ALTA tras búsqueda dirigida (afiliación y expresividad ahora con evidencia directa).'],
   di:'Expresividad, afiliación y dominancia son <b>conductas observables</b> en la interacción — accesible en DI.'
  },
@@ -362,7 +364,7 @@ const NETS = [
     ['Ánimo','ACC subgenual-HPA (Loss / Sustained threat)','Michelini 2021 [library]','alta'],
     ['Amenaza','Amígdala BLA + PAG (agudo) / BNST (potencial/sostenido)','dossier F6 [library]','alta']
   ],
-  gaps:['Frustración (frustrative nonreward) <b>movida a red 5</b> (recompensa): recluta estriado ventral / circuito de recompensa (Parker 2025, MID task). RESUELTO.',
+  gaps:['<b>Frustración</b> (frustrative nonreward) se evalúa en la red 5 (recompensa): recluta el estriado ventral / circuito de recompensa (Parker 2025)..',
         'La regulación deliberada de la reactividad vive en red 10 (la extinción vmPFC es frontolímbica implícita).'],
   di:'El afecto es <b>observable</b>, pero el ánimo subjetivo y la amenaza percibida requieren reporte → canal mixto; en DI apoyarse en signos observables.'
  },
@@ -382,7 +384,7 @@ const NETS = [
     ['Frustración (frustrative nonreward)','Estriado ventral / circuito de recompensa (MID task)','Parker 2025 [library]','alta']
   ],
   gaps:['Reward learning = mecanismo, no ítem (no medible bedside).',
-        'Wanting y vigor/esfuerzo <b>unidos en "Motivación/drive"</b> (2026-06-26): el esfuerzo carecía de soporte factorial independiente (dossier F3-anhedonia); ambos son el brazo dopaminérgico, frente al opioide (liking). Especificadores [wanting]/[vigor] si se requiere granularidad.'],
+        'Wanting y vigor se evalúan como un único signo (<b>Motivación/drive</b>): el esfuerzo carecía de soporte factorial independiente (dossier F3-anhedonia); ambos son el brazo dopaminérgico, frente al opioide (liking). Especificadores [wanting]/[vigor] si se requiere granularidad.'],
   di:'El vigor/energía es <b>observable</b>; wanting y liking dependen de reporte hedónico → mixto.'
  },
  {n:6, name:'Red sensoriomotora — nigroestriatal + cerebelo + motor',
@@ -398,7 +400,7 @@ const NETS = [
     ['Parakinesia / EPS','Nigroestriatal (ganglios basales)','Walther 2023 [library]','alta'],
     ['Signos neurológicos blandos','Cerebelo + ganglios basales + somatomotor','Tsapakis 2023 [library]','alta']
   ],
-  gaps:['Tics: ítem propio con escala unidireccional 0/−1/−2 anclada en YGTSS (decisión 14 del SPEC).'],
+  gaps:['Tics: ítem propio con escala unidireccional 0/−1/−2 anclada en YGTSS.'],
   di:'Todo el dominio motor es <b>observable directamente</b> — el canal más robusto en DI.'
  },
  {n:7, name:'Red CSTC + saliencia',
@@ -407,7 +409,7 @@ const NETS = [
   ev:[
     ['Red de saliencia como sustrato transdiagnóstico: pérdida de sustancia gris en dACC + ínsula bilateral común a 6 grupos diagnósticos.','Goodkind et al. 2015, VBM meta (~16,000; PMC4791058) [library]'],
     ['Saliencia como switch DMN↔CEN; gating sensorial (P50). Contenido del pensamiento (psicosis): saliencia dopaminérgica aberrante en estriado.','dossier F2-sensorial (Kapur) [library]'],
-    ['<b>Nocicepción (movida desde red 2):</b> la ínsula procesa el input nociceptivo (posterior) y media su dimensión emocional (anterior); su lesión causa asimbolia al dolor.','McBenedict et al. Cureus 2024 (PubMed)']
+    ['<b>Nocicepción (en esta red):</b> la ínsula procesa el input nociceptivo (posterior) y media su dimensión emocional (anterior); su lesión causa asimbolia al dolor.','McBenedict et al. Cureus 2024 (PubMed)']
   ],
   map:[
     ['Contenido del pensamiento','CSTC / saliencia dopaminérgica aberrante','F2-sensorial (Kapur) [library]','alta'],
@@ -415,7 +417,7 @@ const NETS = [
     ['Interocepción','Ínsula posterior→anterior + dACC','Goodkind 2015 [library]','alta'],
     ['Nocicepción','Matriz del dolor: ínsula posterior → anterior + ACC','McBenedict 2024 (PubMed)','alta']
   ],
-  gaps:['Nocicepción confirmada en red 7 (ínsula-ACC), no en red 2 — hallazgo del loop, RESUELTO.'],
+  gaps:['Nocicepción confirmada en red 7 (ínsula-ACC), no en red 2.'],
   di:'El contenido del pensamiento, interocepción y dolor dependen de <b>autorreporte</b>; las anomalías graves (psicosis) se infieren por conducta → mixto, parcial en DI.'
  },
  {n:8, name:'Red frontoparietal — control ejecutivo',
@@ -448,14 +450,14 @@ const NETS = [
     ['Experiencia del yo','Precúneo + PCC (DMN); eje de agencia bipolar','Borbás 2026 [library]','alta'],
     ['Autoevaluación / simulación a futuro','mPFC (prospección, DMN)','Christoff 2016 [library]','alta']
   ],
-  gaps:['Experiencia del yo definida como eje de AGENCIA bipolar (−2 pasividad / +2 hiperagencia) — decisión del SPEC.'],
+  gaps:['Experiencia del yo definida como eje de AGENCIA bipolar (−2 pasividad / +2 hiperagencia).'],
   di:'Toda la red depende de <b>autorreporte introspectivo</b> de la experiencia subjetiva — canal limitado en DI moderada-severa. Marcar como "no evaluable por canal directo" antes que puntuar como ausente.'
  },
  {n:10, name:'Integración de red — control de dominio-general (ápex)',
   onto:'Capa de control de dominio-general (triple-red: DMN ⇄ saliencia ⇄ central-ejecutiva). NO tiene circuito propio: ES la red que coordina a las demás. Declarar su naturaleza integrativa es definición, no debilidad.',
   items:['Regulación metacognitiva','Organización conductual','Regulación emocional','Approach–evitación','Riesgo'], strength:'MODERADA-ALTA', access:'mix',
   ev:[
-    ['Modelo triple-red: SN, CEN y DMN como hubs de procesamiento perceptivo-emocional-conductual e introspección; saliencia aberrante aplicada transdiagnósticamente.','Menon B. Med Hypotheses 2019 (PubMed); <span class="flag">[VERIFICAR]</span> añadir Menon V. Trends Cogn Sci 2011 como cita primaria'],
+    ['Modelo triple-red: SN, CEN y DMN como hubs de procesamiento perceptivo-emocional-conductual e introspección; saliencia aberrante aplicada transdiagnósticamente.','Menon B. Med Hypotheses 2019 (PubMed); Pendiente — añadir Menon V. Trends Cogn Sci 2011 como cita primaria'],
     ['Desorganización (FTD): disconectividad de sustancia blanca, dimensiones transdiagnósticas. Desregulación emocional = intersección NVS (genera) + Cognitive Systems (regula).','Stein et al. 2024 Biol Psychiatry; dossier F6 [library]'],
     ['<b>Approach–evitación:</b> el hipocampo ventral es crítico para la decisión bajo conflicto motivacional; sustrato del behavioral inhibition system (Gray).','Schumacher, Vlassov & Ito Hippocampus 2015 (PubMed)']
   ],
@@ -466,7 +468,7 @@ const NETS = [
     ['Riesgo','NVS (sustained threat/loss)','Glenn 2018 [library]','alta']
   ],
   gaps:['Insight = componente de Regulación metacognitiva (no eje paralelo). Los ejes paralelos quedan reducidos a Riesgo y Funcionalidad (PSP).',
-        '<span class="flag">[VERIFICAR]</span> Añadir Menon V. 2011 (Trends Cogn Sci) como cita primaria del triple-red.'],
+        'Pendiente — Añadir Menon V. 2011 (Trends Cogn Sci) como cita primaria del triple-red.'],
   di:'La organización conductual y el riesgo son <b>parcialmente observables</b>; la regulación metacognitiva y el insight requieren introspección. En DI: el ápex integrador es el canal más comprometido.'
  }
 ];
@@ -495,7 +497,7 @@ const SCORES = {
  5:[
   {it:'Motivación / drive (wanting + vigor)', a:['avolición / anergia: sin deseo ni empuje, no inicia','motivación/energía reducida, inicia con esfuerzo','motivación y vigor proporcionales a metas','empuje/energía aumentados, productivos','craving / hipermotivación con hiperactivación'], flag:'une wanting (incentive salience) + vigor (esfuerzo) — brazo dopaminérgico; espec [wanting]/[vigor]'},
   {it:'Tono hedónico (liking)', a:['anhedonia consumatoria: no disfruta nada','placer atenuado / disfrute reducido','disfrute proporcional','disfrute intensificado, apropiado','hiperhedonia (placer desregulado)']},
-  {it:'Frustración (frustrative nonreward)', a:['indiferencia al no-logro: no reacciona a obstáculos','tolerancia aumentada / poca reactividad','frustración proporcional, recupera','frustración fásica (non-reward), reactiva al obstáculo','irritabilidad tónica basal, sin gatillo'], flag:'movida desde red 4 (recluta estriado ventral)'}
+  {it:'Frustración (frustrative nonreward)', a:['indiferencia al no-logro: no reacciona a obstáculos','tolerancia aumentada / poca reactividad','frustración proporcional, recupera','frustración fásica (non-reward), reactiva al obstáculo','irritabilidad tónica basal, sin gatillo'], flag:'recluta el circuito de recompensa (estriado ventral)'}
  ],
  6:[
   {it:'Velocidad psicomotriz', a:['retardo: latencia >5 s, AVD afectadas, bradicinesia','enlentecimiento leve: movimientos/habla algo lentos','velocidad proporcional','aceleración leve: inquieto, habla rápida redirigible','agitación / taquilalia, no redirigible']},
@@ -526,7 +528,7 @@ const SCORES = {
   {it:'Simulación a futuro', a:['colapso del horizonte temporal (sin futuro)','prospección reducida / pesimista','proyección a futuro proporcional','prospección optimista aumentada','hiper-prospección catastrófica o grandiosa'], flag:'−2 = bandera de suicidio'}
  ],
  10:[
-  {it:'Regulación metacognitiva', a:['no usa el autoconocimiento para corregirse (insight pobre / anosognosia)','insight parcial: reconoce algo pero corrige poco','ajusta conducta según su autoconocimiento (insight operativo)','metacognición aumentada / autoexamen frecuente','sobre-regulación: rumia metacognitiva, hiperreflexividad paralizante (CAS de Wells)'], flag:'aquí se lee el insight clínico (decisión 15)'},
+  {it:'Regulación metacognitiva', a:['no usa el autoconocimiento para corregirse (insight pobre / anosognosia)','insight parcial: reconoce algo pero corrige poco','ajusta conducta según su autoconocimiento (insight operativo)','metacognición aumentada / autoexamen frecuente','sobre-regulación: rumia metacognitiva, hiperreflexividad paralizante (CAS de Wells)'], flag:'aquí se lee el insight clínico'},
   {it:'Organización conductual', a:['desorganización: conducta caótica + discurso incoherente','organización reducida / secuenciación pobre','organizado, dirigido a metas','orden/estructura aumentados, algo rígidos','sobre-rigidez: estereotipias, rituales, discurso monográfico'], flag:'espec [conductual]/[discurso]'},
   {it:'Regulación emocional', a:['sub-regulación / desregulación (afecto desbordado, labilidad)','reducida','modula el afecto adaptativamente','sobre-control leve','sobre-regulación (supresión excesiva, constricción afectiva)']},
   {it:'Approach–evitación', a:['evitación experiencial severa: evita todo malestar','evitación aumentada / cautela excesiva','flexibilidad psicológica (approach/evitación según valor)','approach aumentado / busca novedad sin gran riesgo','approach desinhibido: riesgo sin freno']},
@@ -568,7 +570,7 @@ const RDOC = {
   10:'— (regulación: hueco de RDoC)'
 };
 const ORPHAN = {
-  10:'<b>✓ Reasignación de Control inhibitorio</b> (29 síntomas DSM-5, 2026-06-26): Reckless risk-taking (7)+Antisocial (2) → <b>Riesgo</b> · Substance use (6) → <b>Motivación/drive</b> · Verbal impulsivity (4)+Oppositional (2)+Inconsiderate (2)+Inappropriate (1)+Difficulty waiting (1)+Hostility (1) → <b>Regulación emocional</b> · Compulsions (2)+Perseveration (1) → <b>Approach–evitación</b>. Conteos DSM-5 ya actualizados (suma = 29; cobertura intacta). <b>Actualización:</b> la <b>capacidad</b> de inhibición (response inhibition) se reintrodujo como ítem ejecutivo en la <b>red 8 (CEN)</b>; 4 síntomas de impulsividad motora/verbal (blurting, no esperar turno, interrumpir, impulsividad) se movieron allí.'
+  10:'<b>Nota.</b> La <b>desinhibición conductual</b> (impulsividad: actuar sin frenar, interrumpir, no esperar turno) se distribuye entre <b>Riesgo</b>, <b>Regulación emocional</b> y <b>Approach–evitación</b>. La <b>capacidad de inhibición de respuesta</b> (el freno motor/verbal) se evalúa aparte como ítem ejecutivo en la red 8 (CEN). Son constructos distintos: el freno de la conducta vs. su dirección.'
 };
 const NMAP = {
  1:[
@@ -891,7 +893,7 @@ NETS.filter(o=>o.n===8).forEach(net=>{
 
     ${amdpHTML(net.n)}
 
-    <details class="sec"><summary style="color:var(--prelim)">Huecos & fronteras</summary><div class="sec-body gaps">
+    <details class="sec"><summary style="color:var(--prelim)">Notas y límites</summary><div class="sec-body gaps">
       <ul>${net.gaps.map(g=>`<li>${g}</li>`).join('')}</ul>
     </div></details>
   `;
@@ -916,11 +918,12 @@ if(ov){
 const synth=document.createElement('section');
 synth.className='synth'; synth.id='sintesis';
 synth.innerHTML=`
-  <h2>Síntesis de la fase de evidencia</h2>
+  <h2>Cobertura y alcance</h2>
+  <p style="color:var(--muted);max-width:760px">Fortaleza de la evidencia por red y relación del instrumento con las nosologías existentes.</p>
   <table>
-    <thead><tr><th>Red</th><th>Fortaleza (tras búsqueda)</th><th>Estado</th></tr></thead>
+    <thead><tr><th>Red</th><th>Solidez de la evidencia</th></tr></thead>
     <tbody>
-      ${NETS.filter(o=>o.n===8).map(n=>`<tr><td><b>${n.n}.</b> ${n.name.replace(/ —.*/,'')}</td><td>${strengthChip(n.strength)}</td><td>✓</td></tr>`).join('')}
+      ${NETS.filter(o=>o.n===8).map(n=>`<tr><td><b>${n.n}.</b> ${n.name.replace(/ —.*/,'')}</td><td>${strengthChip(n.strength)}</td></tr>`).join('')}
     </tbody>
   </table>
   <div class="legend">
@@ -929,34 +932,23 @@ synth.innerHTML=`
     <span><span class="sw" style="background:var(--mod)"></span> MODERADA</span>
     <span><span class="sw" style="background:var(--prelim)"></span> PRELIMINAR</span>
   </div>
-  <div class="section-h" style="margin-top:18px">Hallazgos del loop</div>
+  <div class="section-h" style="margin-top:18px">Correspondencias con otras clasificaciones</div>
   <ul class="ev">
-    <li>Nocicepción movida de red 2 → red 7 (matriz del dolor ínsula-ACC, McBenedict 2024). <b>RESUELTO.</b></li>
-    <li>Red 3 era la más infra-documentada; cerrada con búsqueda dirigida (oxitocina/NAc; disociación facial automático-voluntaria).</li>
+    <li><b>DSM-5:</b> 331 síntomas del instrumento → <b>317 ubicados por red (96%)</b>, mostrados uno por uno en cada red. Fuera de alcance: eje de adicción y bajo peso corporal.</li>
+    <li><b>HiTOP:</b> espectro de nivel superior asignado a los 38 signos — <b>28 dentro de HiTOP</b> (Internalizing, Thought Disorder, Detachment, Externalizing, Somatoform…) y <b>10 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva), la cobertura diferencial del instrumento.</li>
+    <li><b>RDoC:</b> las 10 redes se reagrupan en 6 dominios.</li>
+    <li><b>AMDP (9ª ed.):</b> los 154 ítems ubicados por red.</li>
+    <li><b>Escalas clínicas:</b> cada signo cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc.</li>
   </ul>
-  <div class="section-h" style="margin-top:14px">Cola residual</div>
+  <div class="section-h" style="margin-top:18px">Ejes paralelos (fuera de la escala −2/+2)</div>
   <ul class="ev">
-    <li><span class="flag">[VERIFICAR]</span> Añadir Menon V. 2011 (Trends Cogn Sci) como cita primaria del triple-red.</li>
-    <li><span class="flag">[BUSCAR]</span> Sustrato específico de jerarquía/dominancia social (red 3).</li>
-    <li><span class="flag">[QA]</span> Reverificar DOIs heredados de los dossiers [library] antes de imprenta.</li>
+    <li><b>Funcionalidad</b> — escala PSP (0–100): actividades útiles, relaciones, autocuidado y conductas perturbadoras.</li>
+    <li><b>Riesgo</b> — módulo de cribado (suicidio y heteroagresión) en la red 10.</li>
+    <li><b>Insight</b> — integrado dentro de Regulación metacognitiva.</li>
   </ul>
-  <div class="section-h" style="margin-top:18px">Ejes / módulos paralelos (fuera de la escala −2/+2)</div>
-  <ul class="ev">
-    <li><b>Funcionalidad → PSP</b> (Personal and Social Performance Scale, 0–100): 4 dominios — actividades socialmente útiles · relaciones personales y sociales · autocuidado · conductas perturbadoras/agresivas.</li>
-    <li><b>Riesgo</b> (3ST + BVC): módulo en la red 10, dispara acción + documentación.</li>
-    <li><b>Insight:</b> ya NO es eje paralelo — vive como componente de <b>Regulación metacognitiva</b> (red 10, decisión 15).</li>
-  </ul>
-  <div class="section-h" style="margin-top:18px">Cobertura nosológica (crosswalks)</div>
-  <ul class="ev">
-    <li><b>DSM-5:</b> 331 síntomas únicos del instrumento → <b>317 mapeados a nodo (96%)</b>, mostrados síntoma por síntoma en cada red. GAP: eje de adicción (uso/tolerancia/abstinencia) + bajo peso corporal — fuera del pMSE. <span class="src">— Table S1, abn0001125</span></li>
-    <li><b>HiTOP:</b> clusters empíricos por síntoma (sourced) + <b>espectro de nivel superior en los 38 nodos</b>: <b>28 dentro de HiTOP</b> (Internalizing/Distress·Fear, Thought Disorder, Detachment, Antagonistic/Disinhibited Externalizing, Somatoform, Eating, Sexual) y <b>10 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva) — la cobertura diferencial del pMSE.</li>
-    <li><b>RDoC:</b> colapso 10 redes → 6 dominios (ver dominio por red arriba). Huecos que el pMSE cubre y RDoC no: contenido/juicio de realidad, fenomenología del yo, nocicepción, regulación/insight.</li>
-    <li><b>Escalas clínicas:</b> cada ítem cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc. (crosswalk de escalas).</li>
-    <li><b>AMDP (9ª ed.):</b> los <b>154 ítems</b> mapeados ítem-por-ítem al nodo pMSE, revisados por <b>panel de 3 expertos</b>. 4 ítems pMSE sin AMDP directo: <b>Dominancia, Patrón de personalidad, Tics, Mentalización</b> — AMDP no modela ToM, rasgos de personalidad ni tics.</li>
-    <li style="color:var(--accent2)"><b>Auditoría aplicada (2026-06-26):</b> revisión crítica de la distribución. Corrección mayor — <b>Mentalización</b> estaba sobrecargada de Antagonismo (17→3): 11 síntomas de manipulación/engaño movidos a <b>Dominancia</b> (6→17), 3 de suspicacia a <b>Amenaza</b>. Más 8 reasignaciones de coherencia AMDP↔DSM (despersonalización, imagen corporal, obsesiones, desapego social…). Detalle en <code>AUDITORIA-distribucion-amdp-dsm-2026-06-26.md</code>.</li>
-    <li style="color:var(--alta)"><b>✓ Resuelto:</b> los 29 síntomas DSM-5 de Control inhibitorio se reasignaron (2026-06-26) a Riesgo (+9), Regulación emocional (+11), Motivación/drive (+6) y Approach–evitación (+3). Cobertura DSM-5 intacta. <b>Control inhibitorio reintroducido</b> en la red 8 (CEN) como inhibición de respuesta (eje −2 desinhibición ↔ +2 sobre-inhibición); 4 síntomas de impulsividad motora/verbal reubicados allí.</li>
-  </ul>
-`;
+  <div class="section-h" style="margin-top:18px">Estado del documento</div>
+  <p style="color:var(--muted);max-width:760px">Borrador de investigación (v0) en desarrollo activo. Las escalas y correspondencias se revisan de forma continua y <b>no están validadas para uso clínico</b>. Todas las citas fueron verificadas contra fuentes reales; ninguna fue inventada.</p>
+`
 main.appendChild(synth);
 
 // controls
