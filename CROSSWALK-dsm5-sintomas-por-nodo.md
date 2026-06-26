@@ -69,28 +69,42 @@
 - `ZMQRF_626` Supresión de expresión emocional
 - `ZMQRF_67` Expresión emocional desinhibida
 
-**Afiliación** (11):
+**Afiliación** (14):
 
 - `ZMQRF_193` Agresividad u hostilidad interpersonal
 - `ZMQRF_376` Desapego o alienación social
 - `ZMQRF_434` Culpa a otros por errores propios
 - `ZMQRF_499_V4` Preferencia por la soledad
+- `ZMQRF_506` Preferencia de soledad sobre vínculo romántico
+- `ZMQRF_511` Distanciamiento social activo
 - `ZMQRF_512` Rechazo a compartir con otros
 - `ZMQRF_520` Búsqueda de atención de otros
 - `ZMQRF_521` Ansia de atención
 - `ZMQRF_522` Conducta de llamar la atención
 - `ZMQRF_580` Provocación deliberada a otros
+- `ZMQRF_637` Rechazo activo de relaciones románticas
 - `ZMQRF_649` Desinterés en hacer amigos
 - `ZMQRF_74` Conflictos y discusiones frecuentes
 
-**Dominancia** (6):
+**Dominancia** (17):
 
+- `ZMQRF_441` Mentir para evitar obligaciones
+- `ZMQRF_442` Mentir para obtener beneficios
 - `ZMQRF_500` Conducta moldeada por demandas ajenas
 - `ZMQRF_501` Obediencia sumisa a otros
+- `ZMQRF_525` Inventar historias para obtener beneficios
+- `ZMQRF_526` Trampa para obtener ventaja
+- `ZMQRF_527` Usar a otros para fines propios
+- `ZMQRF_528` Distorsionar la verdad en beneficio propio
 - `ZMQRF_529` Creencia de ser más importante
 - `ZMQRF_530` Sentimiento de superioridad sobre otros
 - `ZMQRF_531` Sentido de merecimiento especial
 - `ZMQRF_532` Percepción de inferioridad en otros
+- `ZMQRF_533` Manipulación para lograr objetivos
+- `ZMQRF_534` Halagos con fines manipuladores
+- `ZMQRF_535` Habilidad para engañar a otros
+- `ZMQRF_536` Facilidad para aprovecharse de otros
+- `ZMQRF_542` Promesas sin intención de cumplir
 
 **Patrón de personalidad** — _sin síntoma DSM-5_
 
@@ -103,7 +117,7 @@
 - `ZMQRF_295` Estado de ánimo deprimido
 - `ZMQRF_504` Visión desolada de la vida
 
-**Amenaza** (36):
+**Amenaza** (40):
 
 - `ZMQRF_104` Angustia ante recuerdos traumáticos
 - `ZMQRF_154` Preocupación por dolor genital en el coito
@@ -124,9 +138,13 @@
 - `ZMQRF_358` Ansiedad en multitudes
 - `ZMQRF_359` Ansiedad fuera del hogar sin compañía
 - `ZMQRF_360` Dificultad para controlar preocupaciones
+- `ZMQRF_374` Creencias negativas sobre los demás
 - `ZMQRF_378` Nerviosismo
 - `ZMQRF_379` Preocupación persistente
 - `ZMQRF_498` Conductas desesperadas para evitar abandono
+- `ZMQRF_508` Vigilancia ante engaño o daño ajeno
+- `ZMQRF_509` Sentirse tratado injustamente
+- `ZMQRF_510` Desconfianza hacia amigos
 - `ZMQRF_564` Ansiedad social situacional
 - `ZMQRF_600` Hipervigilancia ante el peligro
 - `ZMQRF_612` Agitación ansiosa
@@ -213,16 +231,13 @@
 
 ## Red 7
 
-**Contenido del pensamiento** (17):
+**Contenido del pensamiento** (13):
 
 - `ZMQRF_35` Pensamiento idiosincrático
 - `ZMQRF_375` Creencias negativas del mundo
-- `ZMQRF_405` Distorsión imagen corporal
 - `ZMQRF_507` Creencia de ser atacado
-- `ZMQRF_510` Desconfianza hacia amigos
 - `ZMQRF_518` Transmisión del pensamiento
 - `ZMQRF_55` Delirio erotomaníaco
-- `ZMQRF_553` Autoestima ligada al peso
 - `ZMQRF_56` Delirio de grandiosidad
 - `ZMQRF_57` Celos delirantes (infidelidad)
 - `ZMQRF_58` Creencia somática delirante
@@ -231,7 +246,6 @@
 - `ZMQRF_599` Recuerdos intrusivos traumáticos
 - `ZMQRF_638` Pensamiento extraño referido por otros
 - `ZMQRF_642` Delirio persecutorio
-- `ZMQRF_92` Pensamientos/impulsos intrusivos
 
 **Integración sensorial** (4):
 
@@ -296,7 +310,9 @@
 - `ZMQRF_677` Dificultad inusual para pensar o concentrarse
 - `ZMQRF_70` Dificultad para pensar o concentrarse
 
-**Monitoreo del error** — _sin síntoma DSM-5_
+**Monitoreo del error** (1):
+
+- `ZMQRF_92` Pensamientos/impulsos intrusivos
 
 **Pruebas neurocognitivas** (3):
 
@@ -311,43 +327,31 @@
 - `ZMQRF_292` Presión para seguir hablando
 - `ZMQRF_294` Pensamientos acelerados
 
-**Experiencia vivida** (3):
+**Experiencia vivida** (2):
 
-- `ZMQRF_351` Despersonalización
 - `ZMQRF_372` Flashbacks de evento traumático
 - `ZMQRF_591` Desrealización
 
-**Experiencia del yo** (2):
+**Experiencia del yo** (3):
 
+- `ZMQRF_351` Despersonalización
 - `ZMQRF_516` Pensamientos controlados por otros
 - `ZMQRF_517` Robo de pensamientos por otros
 
-**Mentalización** (17):
+**Mentalización** (3):
 
 - `ZMQRF_167` Indiferencia ante daño a otros
-- `ZMQRF_374` Creencias negativas sobre los demás
-- `ZMQRF_441` Mentir para evitar obligaciones
-- `ZMQRF_442` Mentir para obtener beneficios
-- `ZMQRF_508` Vigilancia ante engaño o daño ajeno
-- `ZMQRF_509` Sentirse tratado injustamente
 - `ZMQRF_523` Indiferencia ante sentimientos ajenos
 - `ZMQRF_524` Desinterés por problemas de otros
-- `ZMQRF_525` Inventar historias para obtener beneficios
-- `ZMQRF_526` Trampa para obtener ventaja
-- `ZMQRF_527` Usar a otros para fines propios
-- `ZMQRF_528` Distorsionar la verdad en beneficio propio
-- `ZMQRF_533` Manipulación para lograr objetivos
-- `ZMQRF_534` Halagos con fines manipuladores
-- `ZMQRF_535` Habilidad para engañar a otros
-- `ZMQRF_536` Facilidad para aprovecharse de otros
-- `ZMQRF_542` Promesas sin intención de cumplir
 
-**Autoevaluación** (8):
+**Autoevaluación** (10):
 
 - `ZMQRF_108` Cogniciones distorsionadas sobre trauma
 - `ZMQRF_318` Baja autoestima
 - `ZMQRF_335` Miedo a la evaluación negativa
 - `ZMQRF_373` Creencias negativas sobre sí mismo
+- `ZMQRF_405` Distorsión imagen corporal
+- `ZMQRF_553` Autoestima ligada al peso
 - `ZMQRF_554` Culpa o vergüenza por hiperfagia
 - `ZMQRF_571` Culpa desproporcionada
 - `ZMQRF_614` Vergüenza por cantidad comida
@@ -396,22 +400,20 @@
 - `ZMQRF_654` Habla excesiva inapropiada
 - `ZMQRF_73` Cambios de humor bruscos
 
-**Approach-evitación** (20):
+**Approach-evitación** (18):
 
 - `ZMQRF_106` Evitación de recuerdos traumáticos
 - `ZMQRF_107` Evitación de disparadores traumáticos
+- `ZMQRF_194` Impulsividad generalizada
 - `ZMQRF_255` Huida para evitar responsabilidades
 - `ZMQRF_325` Sensación de pérdida de control
 - `ZMQRF_329` Negativa/resistencia a salir
 - `ZMQRF_332` Negativa a dormir fuera de casa
 - `ZMQRF_333` Necesidad de presencia para dormir
 - `ZMQRF_414` Comer en aislamiento
-- `ZMQRF_506` Preferencia de soledad sobre vínculo romántico
-- `ZMQRF_511` Distanciamiento social activo
 - `ZMQRF_574` Evitación de esfuerzo cognitivo sostenido
 - `ZMQRF_585` Evitación de situaciones sociales
 - `ZMQRF_587` Evitación de atención médica
-- `ZMQRF_637` Rechazo activo de relaciones románticas
 - `ZMQRF_682` Compulsiones reductoras de ansiedad
 - `ZMQRF_83` Evitación fóbica
 - `ZMQRF_86` Evitación de situaciones de pánico
@@ -419,13 +421,12 @@
 - `ZMQRF_89` Dependencia de acompañante en situaciones fóbicas
 - `ZMQRF_94` Compulsiones ante pensamiento intrusivo
 
-**Riesgo** (21):
+**Riesgo** (20):
 
 - `ZMQRF_112` Conductas autodestructivas
 - `ZMQRF_164` Deseos de venganza/daño a otros
 - `ZMQRF_165` Inicio de peleas físicas
 - `ZMQRF_166` Robo encubierto
-- `ZMQRF_194` Impulsividad generalizada
 - `ZMQRF_303` Pensamientos sobre la muerte
 - `ZMQRF_435` Amenazas/intimidación a otros
 - `ZMQRF_437` Daño físico deliberado a otros
