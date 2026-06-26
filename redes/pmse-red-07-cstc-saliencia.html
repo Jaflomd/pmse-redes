@@ -963,6 +963,19 @@ function macroHTML(n){
   return `<details class="sec"><summary style="color:var(--accent2)">Mapeo a escalas amplias <span class="muted-note">· BPRS · DSM-5 · NPI · CPRS</span></summary><div class="sec-body"><table><thead><tr><th>Ítem</th><th>BPRS</th><th>DSM-5 X-Cutting</th><th>NPI</th><th>CPRS</th></tr></thead><tbody>${body}</tbody></table></div></details>`;
 }
 
+// ---------- rationale (lógica de diseño · voz de Javier) ----------
+const RATIONALE = {
+ 3:`<p><b>Afiliación y dominancia = los dos ejes del circumplejo interpersonal</b> (Leary 1957; Kiesler 1983): toda conducta social se organiza en dos ejes ortogonales — <b>agencia</b> (dominancia: quién conduce) y <b>comunión</b> (afiliación: la temperatura de la díada). El pMSE los convierte en scores ordinales <i>bedside</i>, en tiempo real, sin cuestionario.</p>
+<p><b>Son coordenadas de estado, no rasgos.</b> El paciente no «tiene» dominancia ni afiliación como atributos fijos: los <i>produce</i> en la relación, aquí, con este entrevistador, en este contexto. Por eso se puntúan por lo observable en la díada (turnos, interrupciones, calidez/frialdad del cuarto), no por la historia de personalidad.</p>
+<p><b>El patrón de personalidad es el cruce, no un ítem.</b> El perfil interpersonal emerge de leer dominancia × afiliación juntas — dominar sin hostilidad es posible; ser sumiso y hostil también. Por eso «patrón de personalidad» no es un eje puntuable aparte: es lo que resulta del plano afiliación × dominancia (esto justifica haberlo quitado como ítem).</p>
+<p><b>Expresividad emocional es un output, no un eje del circumplejo.</b> La review transdiagnóstica de síntomas negativos (Strauss & Cohen 2017) separa un factor <b>volicional</b> (avolición, anhedonia, asociabilidad) de uno <b>expresivo</b> (afecto aplanado, alogia). El afecto aplanado es la <i>producción</i> reducida de señal emocional en rostro, voz y gestos — un canal de salida, no un rasgo interpersonal. Aparece en 19+ condiciones (esquizofrenia, depresión, TEA, Parkinson…): no es específico de la red social, por eso se marca <b>multi-red</b>. Vive aquí como el output de señalización afectiva de la conducta social (RDoC: producción de comunicación facial/no-facial), pero su sustrato motor cruza a la red 6 (vía motora facial).</p>
+<p class="src">— Lógica de diseño de Javier. Circumplejo (P1×P2): Leary 1957; Kiesler 1983. Síntomas negativos como output transdiagnóstico: Strauss & Cohen 2017, Schizophr Bull, doi:10.1093/schbul/sbx066.</p>`
+};
+function rationaleHTML(n){
+  const r=RATIONALE[n]; if(!r) return '';
+  return `<details class="sec" open><summary style="color:var(--mod)">Rationale · por qué estos ítems <span class="muted-note">— lógica de diseño</span></summary><div class="sec-body rationale">${r}</div></details>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -1006,6 +1019,8 @@ NETS.filter(o=>o.n===7).forEach(net=>{
     <div class="pills">${net.items.map(i=>`<span class="pill item">${i}</span>`).join('')}</div>
 
     <div class="di-note"><b>Acceso en DI:</b> ${net.di}</div>
+
+    ${rationaleHTML(net.n)}
 
     <details class="sec" open><summary>Evidencia de existencia</summary><div class="sec-body">
     <ul class="ev">${net.ev.map(([t,s])=>`<li>${t}<br><span class="src">— ${s}</span></li>`).join('')}</ul></div></details>
