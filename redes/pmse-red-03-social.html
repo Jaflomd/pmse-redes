@@ -1092,6 +1092,23 @@ function rationaleHTML(n){
   return `<details class="sec" open><summary style="color:var(--mod)">Rationale · por qué estos ítems <span class="muted-note">— lógica de diseño</span></summary><div class="sec-body rationale">${r}</div></details>`;
 }
 
+// ---------- validez predictiva (capa precision-psychiatry, por ítem) ----------
+const VALIDEZ = {
+ 3:`<p class="muted-note" style="margin-top:0">El "patrón de personalidad" no es un ítem puntuable: es el <b>cruce Afiliación × Dominancia</b> (circumplejo de Leary/Kiesler). Su validez predictiva se realiza en la <b>relación médico/terapeuta-paciente</b>, que predice adherencia y desenlace; nivel de evidencia entre paréntesis.</p>
+<table>
+<thead><tr><th>Eje</th><th>Tratamiento</th><th>Pronóstico</th><th>Diferenciador / precisión</th></tr></thead>
+<tbody>
+<tr><td><b>Patrón interpersonal (Afiliación × Dominancia)</b></td><td>La alianza terapéutica predice desenlace de forma robusta (r=0.278; 295 estudios, &gt;30.000 pacientes); en medicina, la mala comunicación médico-paciente conlleva <b>19% más no-adherencia</b> y entrenar comunicación sube la adherencia (odds 1.62) <span class="src">(meta-análisis + RCT)</span></td><td>La alianza predice desenlace incluso en poblaciones difíciles: TEPT (r=−0.34) y tratamiento familiar de jóvenes (r=0.18) <span class="src">(meta-análisis)</span></td><td><b>El estilo del paciente define la postura relacional óptima:</b> pacientes muy dominantes se benefician de una relación <b>no recíproca</b> en dominancia, los sumisos de <b>complementariedad</b>; la complementariedad en afiliación predice mejor alianza <span class="src">(RCT, análisis de superficie de respuesta)</span></td></tr>
+</tbody>
+</table>
+<p><b>Lectura precision-psychiatry de la red 3.</b> El patrón interpersonal sirve de un modo distinto a las otras redes: no predice "qué fármaco", sino la <b>calidad de la relación</b> que predice adherencia y desenlace — y tu eje Afiliación × Dominancia se vuelve una guía accionable para ajustar la postura del clínico al paciente (dominante→no reciprocidad; sumiso→complementariedad; refrenar el "tirón" de la hostilidad beneficia la alianza). Límite: efectos de tamaño moderado y mayormente correlacionales.</p>
+<p class="src">— Capa de validez predictiva (Javier, 2026-06-27); citas verificadas vía PubMed. <b>Alianza→desenlace:</b> Flückiger et al. 2018 doi:10.1037/pst0000172; Howard et al. 2021 doi:10.1002/cpp.2642; Welmers-van de Poll et al. 2018 doi:10.1007/s10567-017-0249-y. <b>Relación médico-paciente→adherencia:</b> Zolnierek &amp; DiMatteo 2009 doi:10.1097/MLR.0b013e31819a5acc; Fuertes et al. 2016 doi:10.1080/08964289.2015.1122569; Bennett &amp; Fuertes et al. 2010 doi:10.1016/j.pec.2010.08.005. <b>Circumplejo en la díada:</b> Gómez Penedo et al. 2020 doi:10.1037/cou0000528; Altenstein et al. 2013 doi:10.1037/a0032800; Thomas, Hopwood et al. 2013 doi:10.1037/a0034277.</p>`,
+};
+function validezHTML(n){
+  const v=VALIDEZ[n]; if(!v) return '';
+  return `<details class="sec" open><summary style="color:var(--alta)">Validez predictiva <span class="muted-note">— ¿sirve para precision psychiatry?</span></summary><div class="sec-body">${v}</div></details>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -1150,6 +1167,8 @@ NETS.filter(o=>o.n===3).forEach(net=>{
     ${theoryHTML(net.n)}
 
     ${scoreHTML(net.n)}
+
+    ${validezHTML(net.n)}
 
     ${nmapHTML(net.n)}
 
