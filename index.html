@@ -216,7 +216,7 @@
     <h1>Examen mental por redes neurales <span style="color:var(--mod);font-size:.55em;font-weight:700;white-space:nowrap">· borrador v0</span></h1>
     <p class="sub">El <b>pMSE</b> es una propuesta de examen del estado mental organizada por el <b>sistema neural</b> que sostiene cada grupo de fenómenos, del tronco encefálico a las redes integradoras. Cada signo se puntúa en una escala de <b>−2 a +2</b>, donde <b>0 = funcionamiento calibrado</b> y los dos extremos son polos opuestos de alteración. El examen registra <b>lo observable</b>, no el circuito: un hallazgo aislado no señala la causa por sí solo; se interpreta junto al patrón del resto. Cada red reúne su sustrato neural, escala con criterios, y correspondencias con DSM-5, AMDP, HiTOP y RDoC.</p>
     <div class="meta-line">
-      <span>Escala: <b>−2 a +2</b> (0 = calibrado)</span>
+      <span>Escala: <b>−2/+2 → migrando a −4/+4</b> (0 = calibrado)</span>
       <span>Orden: <b>del tronco al ápex</b></span>
       <span>Estado: <b>borrador en desarrollo</b></span>
       <span>Citas verificadas contra fuentes reales</span>
@@ -226,6 +226,28 @@
 
 <div class="wrap">
   <div class="wip-banner">🚧 <b>Documento en desarrollo (work in progress).</b> El pMSE es un instrumento de investigación en construcción: su estructura, escalas y correspondencias se revisan de forma continua y <b>no están validadas para uso clínico ni diagnóstico</b>. Borrador v0.</div>
+</div>
+
+<div class="wrap" style="padding-top:18px">
+  <details class="sec"><summary style="color:var(--alta)">Cómo se puntúa el pMSE <span class="muted-note">— fundamentación del scoring</span></summary><div class="sec-body">
+  <p>El pMSE puntúa cada signo en un <b>eje bipolar</b> con <b>0 = funcionamiento calibrado</b> y dos polos opuestos de alteración (hipo ↔ hiper). El scoring está <b>migrando de 5 niveles (−2/+2) a 9 niveles (−4 a +4)</b> con anclas conductuales y normativas. Esta es la lógica y su evidencia.</p>
+  <table>
+  <thead><tr><th>Nivel</th><th>Significado</th><th>Anclaje normativo</th></tr></thead>
+  <tbody>
+  <tr><td><b>0</b></td><td>calibrado / sano</td><td>media poblacional</td></tr>
+  <tr><td><b>±1</b></td><td>ligeramente elevado, dentro de lo normal</td><td>~1 DE</td></tr>
+  <tr><td><b>±2</b></td><td><b>dudoso / incertidumbre clínica</b> (limbo)</td><td>zona intermedia</td></tr>
+  <tr><td><b>±3</b></td><td>clínicamente alterado</td><td>~2 DE</td></tr>
+  <tr><td><b>±4</b></td><td>severo</td><td>~p99</td></tr>
+  </tbody>
+  </table>
+  <p><b>Por qué bipolar con 0 central.</b> El juicio humano es <i>referencia-dependiente</i>: evaluamos respecto a un punto de referencia, no en valor absoluto (prospect theory, Kahneman &amp; Tversky 1979). El 0 = sano es ese punto desde el que se leen las desviaciones hipo/hiper.</p>
+  <p><b>Por qué 9 niveles y no 5.</b> Las escalas de 2–4 puntos rinden pobre en fiabilidad, validez y poder discriminativo; los índices suben hasta ~7 niveles (Preston &amp; Colman 2000). Los 9 niveles (−4/+4) caen en el rango óptimo; por encima de 10–11 el test-retest empeora.</p>
+  <p><b>Por qué anclas conductuales y normativas, no números sueltos.</b> El efecto de <b>anclaje</b> hace que cualquier referencia mostrada arrastre el juicio (Tversky &amp; Kahneman 1974): bien usado mejora la fiabilidad, mal usado sesga. Además el juicio en escalas es <b>relacional</b> — depende del rango y la frecuencia de casos que el evaluador ha visto (range-frequency, Parducci), lo que explica la deriva entre clínicos. La defensa es anclar en la <b>población</b> (percentil/DE), no en «según mi experiencia». Y porque la <b>calibración humana es pobre</b> incluso en expertos: la predicción estadística supera a la clínica (Grove et al. 2000) y la sobreconfianza persiste con la experiencia.</p>
+  <p><b>Por qué el ±2 es «incertidumbre» y no «un poco patológico».</b> La categoría intermedia de una escala puede ser <b>no-ordenada</b> («no sé / dudoso»), con estatus propio distinto del gradiente (Cohn &amp; Huggins-Manley 2019). Nombrar explícitamente la zona de duda es más honesto que forzar un sí/no — y es justo donde la fiabilidad entre evaluadores colapsa.</p>
+  <p><b>Implicación.</b> El pMSE usa al clínico para lo que hace bien (<i>observar y describir</i> el signo) y ancla el <i>cuánto</i> en normas y anclas conductuales. Los ítems unidireccionales (psicosis, motores, signos neurológicos blandos) usan 0→4; los ejes regulatorios usan el bipolar −4/+4.</p>
+  <p class="src">— Fundamentación del scoring (Javier, 2026-06-27). <b>Psicometría:</b> número de niveles Preston &amp; Colman 2000 doi:10.1016/s0001-6918(99)00050-5; opciones de respuesta Gries 2018 doi:10.1186/s41687-018-0056-3; anclas conductuales (BARS) Holland 2022 doi:10.1080/10872981.2022.2070940; categoría intermedia Cohn &amp; Huggins-Manley 2019 doi:10.1177/0013164419861143; juicio clínico vs estadístico Grove et al. 2000 (Psychol Assess, PMID 10752360; sin DOI registrado). <b>Economía conductual:</b> anclaje y heurísticas Tversky &amp; Kahneman 1974 (Science) doi:10.1126/science.185.4157.1124; reference-dependence / prospect theory Kahneman &amp; Tversky 1979 (Econometrica); range-frequency Parducci (Category judgment: a range-frequency model); sobreconfianza / calibración Brenner et al. 1996 (Organ Behav Hum Decis Process). <b>Nota:</b> las tablas de scoring de cada red migran progresivamente de −2/+2 a −4/+4.</p>
+  </div></details>
 </div>
 
 <div class="wrap" style="padding-top:18px">
