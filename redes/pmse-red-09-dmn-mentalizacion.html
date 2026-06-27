@@ -233,7 +233,7 @@
 </div>
 
 <div class="wrap" id="ovwrap" style="padding-top:18px">
-  <details class="sec" open><summary>Mapa del instrumento — 37 ítems en 10 redes</summary><div class="sec-body"><div id="overview"></div></div></details>
+  <details class="sec" open><summary>Mapa del instrumento — 38 ítems en 10 redes</summary><div class="sec-body"><div id="overview"></div></div></details>
 </div>
 
 <div class="wrap">
@@ -317,14 +317,16 @@ const NETS = [
  },
  {n:2, name:'Red vegetativa — homeostasis (hipotálamo-tronco)',
   onto:'Circuito homeostático central (hipotálamo + núcleos del tronco autonómico). Mezcla de marcapasos (NSQ), switch de estado (VLPO↔orexina) y ejes neuroendocrinos.',
-  items:['Sueño y ritmo circadiano','Apetito e ingesta','Libido'], strength:'ALTA', access:'mix',
+  items:['Sueño','Ritmo circadiano','Apetito e ingesta','Libido'], strength:'ALTA', access:'mix',
   ev:[
-    ['<b>Sueño/circadiano (ALTA):</b> interfaz sueño-circadiano como sistema integrado; orexina/hipocretina como nodo integrador; sustratos (crónico→ACC subgenual↓ + amígdala-hipocampo↑).','Meyer PNAS 2024; Knez 2022; Reimann JAMA Psychiatry 2025; Baglioni Psychol Bull 2016 [library]'],
+    ['<b>Sueño (Proceso S — ALTA):</b> regulación homeostática (presión de sueño) sobre el switch VLPO↔sistema de arousal, estabilizado por orexina/hipocretina; la alteración de continuidad del sueño es un desbalance transdiagnóstico del arousal.','Borbély 2016 J Sleep Res; Saper 2005 Nature; Scammell 2017 Neuron; Baglioni 2016 Psychol Bull (PubMed)'],
+    ['<b>Ritmo circadiano (Proceso C — ALTA):</b> reloj maestro en el núcleo supraquiasmático (SCN), resincronizado por luz/melatonina; la disrupción circadiana y el ánimo se relacionan de forma bidireccional.','Borbély 2016 J Sleep Res; Walker 2020 Transl Psychiatry (PubMed)'],
     ['<b>Apetito (ALTA):</b> núcleo arcuato como integrador — NPY/AgRP (orexigénico) vs POMC/CART (anorexigénico); leptina/grelina/insulina señalan estado energético.','Sobrino Crespo Front Endocrinol 2014; Stark Mol Cell Endocrinol 2012 (PubMed)'],
     ['<b>Libido (ALTA):</b> doble circuito — hipotálamo (ARH→MPN→VMH, consumatorio) + mesolímbico (NAc/DA, deseo), convergiendo en el área preóptica medial. Replica la lógica wanting vs consumatorio.','Micevych & Meisel Front Syst Neurosci 2017 (PubMed)']
   ],
   map:[
-    ['Sueño/circadiano','NSQ (timing) + VLPO↔orexina (switch) + interfaz','Meyer 2024; Knez 2022 [library]','alta'],
+    ['Sueño (cantidad · Proceso S)','Presión homeostática + switch VLPO↔orexina (sueño-vigilia)','Saper 2005; Scammell 2017; Borbély 2016 (PubMed)','alta'],
+    ['Ritmo circadiano (fase · Proceso C)','SCN (marcapasos) + melatonina/luz','Borbély 2016; Walker 2020 (PubMed)','alta'],
     ['Apetito','ARC (NPY/AgRP vs POMC) + leptina/grelina','Sobrino Crespo 2014; Stark 2012 (PubMed)','alta'],
     ['Libido','Área preóptica medial + mesolímbico (NAc/DA)','Micevych & Meisel 2017 (PubMed)','alta'],
     ['Nocicepción','→ movida a red 7 (matriz del dolor)','ver ficha 7','—']
@@ -480,7 +482,8 @@ const SCORES = {
   {it:'Alerta', a:['hipoarousal: tono basal bajo, latencia >5 s, se duerme en entrevista','arousal reducido: enlentecido, latencia 2–5 s, requiere reorientación','arousal proporcional: tono basal y reactividad fásica adecuados','hiperarousal leve: tono alto o sobresalto fácil, redirigible','hiperarousal sostenido: tono alto no redirigible, taquilalia, no se mantiene sentado'], flag:'distinguir tono basal (tónico) de la reactividad al estímulo (fásico); separar de psicomotor, atención y afecto'}
  ],
  2:[
-  {it:'Sueño y ritmo circadiano', a:['hipersomnia marcada (>10 h) o somnolencia diurna invalidante','tendencia a dormir de más / despertar difícil, leve','6–9 h reparador, fase alineada','insomnio leve o fase algo retrasada, sin disfunción diurna','insomnio severo <4 h / ↓necesidad de sueño / fase muy retrasada o sundowning']},
+  {it:'Sueño', a:['hipersomnia marcada (>10 h) o somnolencia diurna invalidante','tendencia a dormir de más / despertar difícil','6–9 h reparador','insomnio leve, sin disfunción diurna','insomnio severo (<4 h) / ↓necesidad de sueño'], flag:'Proceso S (homeostático): cantidad / presión de sueño'},
+  {it:'Ritmo circadiano', a:['fase muy adelantada (lark extremo / despertar precoz)','fase algo adelantada','fase alineada al ciclo luz-oscuridad','fase algo retrasada','fase muy retrasada (búho / DSPD)'], flag:'Proceso C (circadiano): fase / timing. Ritmo irregular, invertido o sundowning = desorganización'},
   {it:'Apetito', a:['restricción severa (<500 kcal/ARFID) o ↓peso >10%','apetito/ingesta por debajo de lo habitual','apetito e ingesta estables','apetito aumentado / picoteo, sin atracón','atracón / pica / purga']},
   {it:'Libido', a:['alibido / anhedonia sexual completa','deseo sexual reducido respecto al baseline','libido proporcional al baseline','deseo sexual aumentado, sin daño','hipersexualidad / parafilia con daño o pérdida de control']}
  ],
@@ -577,7 +580,8 @@ const NMAP = {
   {it:'Alerta', hitop:'Hypervigilance', dsm5:1, esc:'AMDP Vigilanz · PANSS Excitement(+) · MADRS Lassitude(−)'}
  ],
  2:[
-  {it:'Sueño y ritmo circadiano', hitop:'Insomnia · Decreased need for sleep · Fatigue', dsm5:5, esc:'PSQI · ISI · HAM-D 4-6 · YMRS 4'},
+  {it:'Sueño', hitop:'Insomnia · Decreased need for sleep · Fatigue', dsm5:5, esc:'PSQI · ISI · HAM-D 4-6 · YMRS 4'},
+  {it:'Ritmo circadiano', hitop:'—', dsm5:0, esc:'MEQ · MCTQ · actigrafía · DLMO'},
   {it:'Apetito e ingesta', hitop:'Overeating · Appetite loss · Purging · Restricted intake', dsm5:17, esc:'IDS/QIDS · EDE-Q · HAM-D 12'},
   {it:'Libido', hitop:'Low sexual interest · Low responsiveness', dsm5:16, esc:'ASEX · CSFQ · HAM-D 14'}
  ],
@@ -635,7 +639,8 @@ const NMAP = {
 const SPECTRUM = {
  'Conciencia':'fuera de HiTOP · arousal',
  'Alerta':'fuera de HiTOP · arousal',
- 'Sueño y ritmo circadiano':'Internalizing (transdiagnóstico)',
+ 'Sueño':'Internalizing (transdiagnóstico)',
+ 'Ritmo circadiano':'fuera de HiTOP · circadiano',
  'Apetito e ingesta':'Eating Pathology',
  'Libido':'Sexual Problems',
  'Expresividad emocional':'Detachment',
@@ -694,7 +699,8 @@ const AMDP = {
   {it:'Alerta', n:1, a:'105 Cansancio'}
  ],
  2:[
-  {it:'Sueño y ritmo circadiano', n:8, a:'089 Empeoramiento matutino · 090 Empeoramiento vespertino · 091 Mejoría vespertina · 101 Dificultad para conciliar el sueño · 102 Sueño interrumpido · 103 Sueño acortado · 104 Despertar matutino precoz · ZS1 Parasomnias'},
+  {it:'Sueño', n:5, a:'101 Dificultad para conciliar el sueño · 102 Sueño interrumpido · 103 Sueño acortado · 104 Despertar matutino precoz · ZS1 Parasomnias'},
+  {it:'Ritmo circadiano', n:3, a:'089 Empeoramiento matutino · 090 Empeoramiento vespertino · 091 Mejoría vespertina'},
   {it:'Apetito e ingesta', n:3, a:'106 Apetito disminuido · 107 Apetito excesivo · 108 Sed excesiva'},
   {it:'Libido', n:3, a:'109 Libido disminuida · ZS2 Libido aumentada · ZS3 Disfunciones sexuales'}
  ],
@@ -764,7 +770,8 @@ const DSM = {
   {it:'Alerta', n:1, d:'ZMQRF_113 Sobresalto exagerado'}
  ],
  2:[
-  {it:'Sueño y ritmo circadiano', n:5, d:'ZMQRF_301 Insomnio de inicio/mantenimiento · ZMQRF_567 Sueño inquieto e insatisfactorio · ZMQRF_593 Pesadillas sobre evento traumático · ZMQRF_631 Somnolencia diurna excesiva · ZMQRF_660 Menor necesidad de sueño'},
+  {it:'Sueño', n:5, d:'ZMQRF_301 Insomnio de inicio/mantenimiento · ZMQRF_567 Sueño inquieto e insatisfactorio · ZMQRF_593 Pesadillas sobre evento traumático · ZMQRF_631 Somnolencia diurna excesiva · ZMQRF_660 Menor necesidad de sueño'},
+  {it:'Ritmo circadiano', n:0, d:'—'},
   {it:'Apetito e ingesta', n:17, d:'ZMQRF_125 Purgación con laxantes/diuréticos · ZMQRF_297 Pérdida de peso significativa · ZMQRF_298 Ganancia de peso significativa · ZMQRF_299 Hiporexia · ZMQRF_300 Apetito aumentado · ZMQRF_317 Sobreingesta · ZMQRF_323 Antojos de alimentos específicos · ZMQRF_404 Conductas para evitar peso · ZMQRF_407 Restricción alimentaria (dieta) · ZMQRF_408 Ayuno para control de peso · ZMQRF_409 Ejercicio excesivo compulsivo · ZMQRF_410 Atracón con pérdida de control · ZMQRF_411 Vómito autoinducido · ZMQRF_412 Ingesta acelerada · ZMQRF_413 Comer hasta saciedad incómoda · ZMQRF_565 Comer sin hambre · ZMQRF_661 Apetito disminuido'},
   {it:'Libido', n:16, d:'ZMQRF_144_V4 Anorgasmia o anejaculación · ZMQRF_145 Dificultad para alcanzar excitación · ZMQRF_146 Dificultad para mantener excitación · ZMQRF_147_V4 Orgasmos menos intensos · ZMQRF_148 Desinterés en actividad sexual · ZMQRF_149 Iniciación de actividad sexual · ZMQRF_150 Ausencia de placer sexual · ZMQRF_151 Excitación ante material erótico · ZMQRF_152_V4 Sensaciones corporales durante sexo · ZMQRF_156 Eyaculación/orgasmo prematuro · ZMQRF_428 Orgasmo o eyaculación retardados · ZMQRF_429 Erección insuficiente o sequedad vaginal · ZMQRF_566 Pensamientos o fantasías sexuales · ZMQRF_578 Falta de interés en relaciones sexuales · ZMQRF_589_V4 Dificultades físicas en el coito · ZMQRF_616 Indiferencia a avances sexuales de pareja'}
  ],
@@ -833,7 +840,8 @@ const THEORY = {
   {it:'Alerta', m:'Arousal = precisión global (gain): la neuromodulación (NE/ACh) regula la ganancia que pondera los prediction errors; más alerta = más precisión a los errores ascendentes.', refs:[['Hesselmann et al. 2010 · PLoS ONE','10.1371/journal.pone.0009926'], ['Barrett & Simmons 2015 · Nat Rev Neurosci','10.1038/nrn3950']]}
  ],
  2:[
-  {it:'Sueño y ritmo circadiano', m:'NREM recalibra sinapsis (reduce complejidad del modelo minimizando free energy); REM prueba el modelo contra simulaciones internas; el circadiano impone priors temporales de precisión esperada.', refs:[['Hobson, Hong & Friston 2014 · Front Psychol','10.3389/fpsyg.2014.01133'], ['Censi et al. 2026 · Prog Neurobiol','10.1016/j.pneurobio.2026.102939']]},
+  {it:'Sueño', m:'NREM recalibra sinapsis (reduce la complejidad del modelo minimizando free energy); REM prueba el modelo generativo contra simulaciones internas.', refs:[['Hobson, Hong & Friston 2014 · Front Psychol','10.3389/fpsyg.2014.01133'], ['Censi et al. 2026 · Prog Neurobiol','10.1016/j.pneurobio.2026.102939']]},
+  {it:'Ritmo circadiano', m:'El reloj circadiano impone priors temporales de precisión esperada (cuándo conviene atender, dormir o comer), modulando la ganancia a lo largo del ciclo de 24 h.', refs:[['Hobson, Hong & Friston 2014 · Front Psychol','10.3389/fpsyg.2014.01133']]},
   {it:'Apetito e ingesta', m:'Hambre = prediction error alostático interoceptivo: priors sobre glucosa/nutrientes vs. señal visceral; la discrepancia motiva ingesta (active inference para minimizar free energy corporal).', refs:[['Barrett & Simmons 2015 · Nat Rev Neurosci','10.1038/nrn3950'], ['Tschantz et al. 2022 · Biol Psychol','10.1016/j.biopsycho.2022.108266']]},
   {it:'Libido', m:'Inferencia alostática sobre estados de necesidad hedónica/reproductiva (priors hormonales + señales interoceptivas). Marco general; falta literatura PP específica.', refs:[]}
  ],
@@ -901,7 +909,8 @@ const MACRO = {
   {it:'Alerta', b:'—', x:'VIII Sueño (parc.)', np:'11 Sueño (parc.)', cp:'Lasitud / fatigabilidad'}
  ],
  2:[
-  {it:'Sueño y ritmo circadiano', b:'—', x:'VIII Problemas de sueño', np:'11 Sueño / nocturno', cp:'Sueño reducido'},
+  {it:'Sueño', b:'—', x:'VIII Problemas de sueño', np:'11 Sueño / nocturno', cp:'Sueño reducido'},
+  {it:'Ritmo circadiano', b:'—', x:'—', np:'11 Conducta nocturna (parc.)', cp:'—'},
   {it:'Apetito e ingesta', b:'—', x:'V Somático (parc.)', np:'12 Apetito / alimentación', cp:'Apetito reducido'},
   {it:'Libido', b:'—', x:'—', np:'—', cp:'Interés sexual ↓/↑'}
  ],
@@ -970,7 +979,12 @@ const RATIONALE = {
 <p><b>Es un eje hipo-hiper transdiagnóstico.</b> Hay <b>hipoarousal</b> (p. ej. TDAH, somnolencia diurna) e <b>hiperarousal</b> fraccionado en subtipos por trastorno (ansiedad, insomnio, TEPT, manía; Bresser 2026). Por eso es dominio propio (RDoC <i>Arousal and Regulatory Systems</i>), separable del nivel de conciencia.</p>
 <p><b>Por qué van juntas en la red 1.</b> Ambas cuelgan del eje tronco-LC/ARAS, pero se distinguen: conciencia = el <i>nivel</i> global (¿el sistema está encendido?); arousal = la <i>ganancia/reactividad</i> (¿a qué volumen y con qué respuesta?). El <i>contenido</i> de la conciencia —percepción, pensamiento, afecto— vive en las otras redes.</p>
 <p class="src">— Lógica de diseño de Javier (garden: arousal tónico-fásico; fenotipos clínicos de arousal). Conciencia, sin consenso de naturaleza: Seth & Bayne 2022, doi:10.1038/s41583-022-00587-4; Cogitate 2025, doi:10.1038/s41586-025-08888-1. Con consenso de alteraciones: Giacino 2018, doi:10.1212/WNL.0000000000005926; Kondziella 2020, doi:10.1111/ene.14151. Arousal: Aston-Jones & Cohen 2005, doi:10.1146/annurev.neuro.28.061604.135709; Feld & Feige 2021, doi:10.1007/s00115-021-01160-7; Bresser 2026, doi:10.1016/j.eclinm.2026.103810.</p>`,
- 2:`<p><b>Apetito e ingesta.</b> El apetito es un <b>drive homeostático regulado</b>, no un sí/no: el núcleo arcuato integra grelina↑ (hambre) vs leptina/insulina↓ (saciedad) por la vía <b>AgRP↔POMC</b>, con la <b>orexina</b> como hub hacia vigilancia y motivación. Por eso es un <b>eje bipolar</b>: restricción/hipofagia ↔ saciedad ↔ hiperfagia/atracón.</p>
+ 2:`<p><b>Sueño y ritmo circadiano = dos procesos, dos ejes.</b> El modelo de dos procesos (Borbély 2016) separa el <b>Proceso S</b> (homeostático: presión de sueño, <i>cantidad</i>) del <b>Proceso C</b> (circadiano: <i>fase/timing</i>). Por eso el pMSE los puntúa como <b>dos ejes distintos</b>, no como uno solo.</p>
+<p><b>Sueño (Proceso S).</b> Eje de cantidad/presión: hipersomnia ↔ insomnio. Sustrato: presión homeostática sobre el switch VLPO↔sistema de arousal, estabilizado por orexina (Saper 2005; Scammell 2017). La alteración de continuidad del sueño es un <b>desbalance transdiagnóstico del arousal</b> (Baglioni 2016).</p>
+<p><b>Ritmo circadiano (Proceso C).</b> Eje de fase: adelanto ↔ retraso (0 = alineado al ciclo luz-oscuridad). Sustrato: reloj maestro SCN + melatonina/luz. La disrupción circadiana y el ánimo se relacionan de forma <b>bidireccional</b> (Walker 2020). Ritmo irregular, invertido o <i>sundowning</i> = desorganización, no solo desplazamiento.</p>
+<p><b>Ambos son signo, no causa.</b> Hipersomnia, insomnio o desfase apuntan hacia abajo (depresión, manía, demencia, fármacos, condición médica). El score registra el eje; la causa se lee del patrón.</p>
+<p class="src">— Lógica de diseño de Javier. Modelo de dos procesos: Borbély et al. 2016 J Sleep Res (doi:10.1111/jsr.12371). Switch sueño-vigilia: Saper 2005 Nature (doi:10.1038/nature04284); Scammell 2017 Neuron (doi:10.1016/j.neuron.2017.01.014). Transdiagnóstico: Baglioni 2016 Psychol Bull (doi:10.1037/bul0000053); Walker 2020 Transl Psychiatry (doi:10.1038/s41398-020-0694-0).</p>
+<p><b>Apetito e ingesta.</b> El apetito es un <b>drive homeostático regulado</b>, no un sí/no: el núcleo arcuato integra grelina↑ (hambre) vs leptina/insulina↓ (saciedad) por la vía <b>AgRP↔POMC</b>, con la <b>orexina</b> como hub hacia vigilancia y motivación. Por eso es un <b>eje bipolar</b>: restricción/hipofagia ↔ saciedad ↔ hiperfagia/atracón.</p>
 <p><b>No es el espectro de trastornos alimentarios.</b> El TCA (anorexia, bulimia, BED, ARFID) es un patrón <b>multi-red</b>: apetito/ingesta (esta red) + imagen corporal (F4.contenido) + control inhibitorio (F5.regulación) + drive. Anorexia ≠ Apetito −2: es restricción <i>más</i> imagen corporal distorsionada <i>más</i> regla corporal. El ítem puntúa la dimensión ingesta; el trastorno se lee del patrón.</p>
 <p><b>La dirección del cambio apunta a la causa.</b> El signo de apetito es «punta del iceberg»: en depresión, apetito↓ vs apetito↑ marcan pathophysiologías distintas (cortisol/estriado ventral vs inmunometabólico). El score registra el eje; la etiología se especifica.</p>
 <p class="src">— Lógica de diseño de Javier. Modelo homeostático: Andermann & Lowell 2017 Neuron (doi:10.1016/j.neuron.2017.06.014); Müller 2015 Mol Metab (grelina); Sakurai 2014 Nat Rev Neurosci (orexina); Morton 2006 Nature. Marcador transdiagnóstico: Simmons 2020 Mol Psychiatry (doi:10.1038/s41380-018-0093-6).</p>
@@ -1099,7 +1113,7 @@ synth.innerHTML=`
   <div class="section-h" style="margin-top:18px">Correspondencias con otras clasificaciones</div>
   <ul class="ev">
     <li><b>DSM-5:</b> 331 síntomas del instrumento → <b>317 ubicados por red (96%)</b>, mostrados uno por uno en cada red. Fuera de alcance: eje de adicción y bajo peso corporal.</li>
-    <li><b>HiTOP:</b> espectro de nivel superior asignado a los 37 signos — <b>27 dentro de HiTOP</b> (Internalizing, Thought Disorder, Detachment, Externalizing, Somatoform…) y <b>10 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva), la cobertura diferencial del instrumento.</li>
+    <li><b>HiTOP:</b> espectro de nivel superior asignado a los 38 signos — <b>27 dentro de HiTOP</b> (Internalizing, Thought Disorder, Detachment, Externalizing, Somatoform…) y <b>11 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva, circadiano), la cobertura diferencial del instrumento.</li>
     <li><b>RDoC:</b> las 10 redes se reagrupan en 6 dominios.</li>
     <li><b>AMDP (9ª ed.):</b> los 154 ítems ubicados por red.</li>
     <li><b>Escalas clínicas:</b> cada signo cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc.</li>
