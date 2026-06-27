@@ -441,7 +441,7 @@ const NETS = [
  },
  {n:9, name:'Red de modo por defecto (DMN) + mentalización',
   onto:'Red de conectividad funcional (DMN: mPFC, PCC/precúneo, TPJ, polo temporal) + red de mentalización cortical (la segunda "red social", distinta de la red 3).',
-  items:['Experiencia del pensamiento','Experiencia vivida','Experiencia del yo','Mentalización','Autoevaluación','Simulación a futuro'], strength:'ALTA', access:'intro',
+  items:['Experiencia del pensamiento','Experiencia del yo','Autoevaluación','Mentalización','Cognición social','Memoria autobiográfica','Simulación a futuro'], strength:'ALTA', access:'intro',
   ev:[
     ['Red de mentalización núcleo confirmada: TPJ, precúneo, mPFC.','Borbás et al. 2026, fMRI desarrollo (N=181; PMC12920907) [library]'],
     ['Déficit de mentalización transdiagnóstico (SZ g=−0.96; BPD g=−0.61; ASD g=−0.50).','Tsui, Lo & Chan 2025, NMA (89 estudios, N=9,038; PMC12816936) [library]'],
@@ -529,11 +529,12 @@ const SCORES = {
  ],
  9:[
   {it:'Experiencia del pensamiento', a:['bloqueo / vacío (Gedankenabreißen), pobreza marcada','enlentecimiento / empobrecimiento del flujo','flujo de pensamiento proporcional','aceleración leve del pensar','presión / crowding (Gedankendrängen)']},
-  {it:'Experiencia vivida', a:['desrealización/despersonalización + discontinuidad biográfica','extrañeza/irrealidad leve, continuidad conservada','realidad y continuidad del vivir','intensificación/sobre-significación leve del entorno','Wahnstimmung + narrativa sobre-significada']},
+  {it:'Memoria autobiográfica', a:['flashback / re-experimentación involuntaria (el pasado invade el presente)','intrusiones leves / recuerdos involuntarios ocasionales','memoria autobiográfica veraz, de acceso voluntario','relleno leve de lagunas / imprecisión','confabulación: recuerdo fabricado vivido como real'], flag:'eje = etiquetado de realidad/tiempo del recuerdo; pueden coexistir → puntúa el polo predominante'},
   {it:'Experiencia del yo (agencia)', a:['pasividad: inserción/robo/influencia, no es fuente','sentido de agencia reducido / extrañeza del yo','self como fuente de sus actos y pensamientos','agencia aumentada / hiperreflexividad leve','hiper-agencia: control activo, omnipotencia del pensamiento'], flag:'espec ipseicos [hiperreflexividad]/[despersonalización]'},
   {it:'Mentalización', a:['hipomentalización: falla de ToM, no infiere estados ajenos','mentalización reducida / literal','mentalización proporcional','hipermentalización leve / sobre-interpreta intenciones','hipermentalización: lectura paranoide de intenciones']},
   {it:'Autoevaluación', a:['culpa / autodescalificación nuclear (mala valoración de sí)','autovaloración negativa / inseguridad','autoevaluación calibrada / proporcional','autovaloración positiva elevada','autoevaluación grandiosa / sobrevalorada']},
-  {it:'Simulación a futuro', a:['colapso del horizonte temporal (sin futuro)','prospección reducida / pesimista','proyección a futuro proporcional','prospección optimista aumentada','hiper-prospección catastrófica o grandiosa'], flag:'−2 = bandera de suicidio'}
+  {it:'Simulación a futuro', a:['colapso del horizonte temporal (sin futuro)','prospección reducida / pesimista','proyección a futuro proporcional','prospección optimista aumentada','hiper-prospección catastrófica o grandiosa'], flag:'−2 = bandera de suicidio · pregunta directriz: «dime 3 cosas buenas que esperas del futuro» (Future Thinking Task)'},
+  {it:'Cognición social', note:'<b>Sonda bedside de cognición social (cada prueba 0/−1/−2 hacia déficit):</b><table><thead><tr><th>Prueba</th><th>0</th><th>−1</th><th>−2</th></tr></thead><tbody><tr><td>Hinting Task (5 viñetas · ToM)</td><td>5/5</td><td>3–4/5</td><td>≤2/5</td></tr><tr><td>ER-40 (8 caras · emoción)</td><td>7–8/8</td><td>5–6/8</td><td>≤4/8</td></tr></tbody></table><b>Guía de medición:</b><br><b>Hinting Task (teoría de la mente):</b> lee 5 viñetas cortas donde un personaje insinúa algo de forma indirecta; el paciente infiere la intención real; 1 punto por inferencia correcta.<br><b>ER-40 (reconocimiento de emoción):</b> muestra 8 fotos de rostros (alegría, tristeza, ira, miedo, asco, sorpresa, neutral); el paciente nombra la emoción; cuenta aciertos.<br><i>Anclaje: BB-SCOPE (Halverson 2022). El Hinting es la mejor prueba de ToM por psicometría (SCOPE); el ER-40 es la prueba breve estándar de reconocimiento de emoción.</i>'}
  ],
  10:[
   {it:'Regulación metacognitiva', a:['no usa el autoconocimiento para corregirse (insight pobre / anosognosia)','insight parcial: reconoce algo pero corrige poco','ajusta conducta según su autoconocimiento (insight operativo)','metacognición aumentada / autoexamen frecuente','sobre-regulación: rumia metacognitiva, hiperreflexividad paralizante (CAS de Wells)'], flag:'aquí se lee el insight clínico'},
@@ -631,7 +632,7 @@ const NMAP = {
  ],
  9:[
   {it:'Experiencia del pensamiento', hitop:'Verbal impulsivity · Anxious arousal', dsm5:2, esc:'SANS Alogia · SAPS FTD · PANSS N5/N7 · EASE d2', esp:'Thought Disorder'},
-  {it:'Experiencia vivida', hitop:'Dissociation · Traumatic intrusions', dsm5:2, esc:'EASE d1/d4 · CDS · AMDP despers.'},
+  {it:'Memoria autobiográfica', hitop:'Dissociation · Traumatic intrusions', dsm5:2, esc:'EASE d1/d4 · CDS · AMDP despers.'},
   {it:'Experiencia del yo', hitop:'Passivity · Despersonalización', dsm5:3, esc:'EASE d3 · SAPS Passivity · AMDP yo · PID-5 Psychoticism'},
   {it:'Mentalización', hitop:'Lack of empathy · Callousness', dsm5:3, esc:'MCCB Social Cog. · CAINS/BNSS MAP-Social · PANSS G12', esp:'Detachment'},
   {it:'Autoevaluación', hitop:'Guilt/shame proneness · Body image · Depressed mood', dsm5:11, esc:'HAM-D 2 · MADRS 9 · BDI cognitivo · EASE hiperreflex.', esp:'Distress'},
@@ -680,7 +681,7 @@ const SPECTRUM = {
  'Control inhibitorio':'Disinhibited Ext.',
  'Pruebas neurocognitivas':'fuera de HiTOP · cognición',
  'Experiencia del pensamiento':'Thought Disorder',
- 'Experiencia vivida':'Thought Disorder · disociación',
+ 'Memoria autobiográfica':'Thought Disorder · disociación',
  'Experiencia del yo':'Thought Disorder',
  'Mentalización':'Detachment',
  'Autoevaluación':'Internalizing · Distress',
@@ -758,7 +759,7 @@ const AMDP = {
  ],
  9:[
   {it:'Experiencia del pensamiento', n:10, a:'015 Pensamiento inhibido · 017 Pensamiento circunstancial · 018 Pensamiento restringido · 019 Pensamiento perseverativo · 020 Rumiación · 021 Pensamiento acelerado · 022 Fuga de ideas · 023 Pensamiento tangencial · 024 Bloqueo del pensamiento · ZP02 Aceleración del pensamiento'},
-  {it:'Experiencia vivida', n:6, a:'004 Expansión de la consciencia · 014 Paramnesias · 033 Humor delirante · 053 Desrealización · 059 Perplejidad · 060 Sentimiento de pérdida de sentimientos'},
+  {it:'Memoria autobiográfica', n:6, a:'004 Expansión de la consciencia · 014 Paramnesias · 033 Humor delirante · 053 Desrealización · 059 Perplejidad · 060 Sentimiento de pérdida de sentimientos'},
   {it:'Experiencia del yo', n:7, a:'054 Despersonalización · 055 Difusión del pensamiento · 056 Robo del pensamiento · 057 Inserción del pensamiento · 058 Otros sentimientos de influencia ajena · 131 Síntomas de conversión · ZP06 Sonorización del pensamiento'},
   {it:'Mentalización', n:0, a:'—'},
   {it:'Autoevaluación', n:5, a:'071 Sentimientos de insuficiencia · 072 Autoestima exagerada · 073 Sentimientos de culpa · ZP08 Trastorno de la imagen corporal · ZP09 Sentimientos de vergüenza'},
@@ -833,7 +834,7 @@ const DSM = {
  ],
  9:[
   {it:'Experiencia del pensamiento', n:2, d:'ZMQRF_292 Presión para seguir hablando · ZMQRF_294 Pensamientos acelerados'},
-  {it:'Experiencia vivida', n:2, d:'ZMQRF_372 Flashbacks de evento traumático · ZMQRF_591 Desrealización'},
+  {it:'Memoria autobiográfica', n:2, d:'ZMQRF_372 Flashbacks de evento traumático · ZMQRF_591 Desrealización'},
   {it:'Experiencia del yo', n:3, d:'ZMQRF_351 Despersonalización · ZMQRF_516 Pensamientos controlados por otros · ZMQRF_517 Robo de pensamientos por otros'},
   {it:'Mentalización', n:3, d:'ZMQRF_167 Indiferencia ante daño a otros · ZMQRF_523 Indiferencia ante sentimientos ajenos · ZMQRF_524 Desinterés por problemas de otros'},
   {it:'Autoevaluación', n:11, d:'ZMQRF_108 Cogniciones distorsionadas sobre trauma · ZMQRF_318 Baja autoestima · ZMQRF_335 Miedo a la evaluación negativa · ZMQRF_373 Creencias negativas sobre sí mismo · ZMQRF_405 Distorsión imagen corporal · ZMQRF_553 Autoestima ligada al peso · ZMQRF_554 Culpa o vergüenza por hiperfagia · ZMQRF_571 Culpa desproporcionada · ZMQRF_614 Vergüenza por cantidad comida · ZMQRF_679 Culpa sin conducta incorrecta · Zhirworthless Sentimiento de inutilidad'},
@@ -905,7 +906,7 @@ const THEORY = {
  ],
  9:[
   {it:'Experiencia del pensamiento', m:'Los contenidos mentales emergen de inferencia activa sobre causas del input interno; el pensamiento intrusivo = prediction error de alta precisión no atenuado.', refs:[['Sterzer et al. 2018 · Biol Psychiatry','10.1016/j.biopsych.2018.05.015']]},
-  {it:'Experiencia vivida', m:'La Stimmung/tono de fondo refleja el estado global de precisión perceptual; alterar el balance prior/likelihood cambia la textura cualitativa de la experiencia.', refs:[['Leptourgos et al. 2020 · Schizophr Bull','10.1093/schbul/sbaa117']]},
+  {it:'Memoria autobiográfica', m:'Inferencia sobre el origen temporal/realidad del recuerdo (subsistema MTL del DMN + filtro orbitofrontal): el flashback es un prior sensorial involuntario sobre-pesado que se vive como presente; la confabulación es el fallo del filtro de realidad que no descarta trazas no-actuales.', refs:[['Schnider 2003 · Nat Rev Neurosci','10.1038/nrn1179'], ['Bourne et al. 2012 · Psychol Med','10.1017/S0033291712002358']]},
   {it:'Experiencia del yo', m:'El self mínimo emerge del modelo generativo del cuerpo; la agencia depende de atenuar la reaferencia por copia eferente. El fallo de atenuación → pasividad / control externo.', refs:[['Limanowski & Blankenburg 2013 · Front Hum Neurosci','10.3389/fnhum.2013.00547'], ['Leptourgos et al. 2020 · Schizophr Bull','10.1093/schbul/sbaa117']]},
   {it:'Mentalización', m:'Inferencia predictiva de segundo orden sobre estados mentales ajenos: el cerebro invierte un modelo generativo de las acciones del otro para inferir sus creencias/intenciones.', refs:[['Sterzer et al. 2018 · Biol Psychiatry','10.1016/j.biopsych.2018.05.015']]},
   {it:'Autoevaluación', m:'Inferencia metacognitiva bayesiana sobre el propio rendimiento; el vmPFC actualiza la creencia de autoeficacia según el historial de errores de predicción.', refs:[['Stephan et al. 2016 · Front Hum Neurosci','10.3389/fnhum.2016.00550']]},
@@ -978,7 +979,7 @@ const MACRO = {
  ],
  9:[
   {it:'Experiencia del pensamiento', b:'15 Desorganización conceptual', x:'VII Psicosis (parc.)', np:'—', cp:'Pensamiento disgregado / Fuga de ideas / Presión del habla'},
-  {it:'Experiencia vivida', b:'—', x:'XI Disociación', np:'—', cp:'Desrealización/Despersonalización · Incapacidad de sentir'},
+  {it:'Memoria autobiográfica', b:'—', x:'XI Disociación', np:'—', cp:'Desrealización/Despersonalización · Incapacidad de sentir'},
   {it:'Experiencia del yo', b:'11 Contenido inusual (pasividad)', x:'VII Psicosis · XI Disociación', np:'—', cp:'Sentirse controlado / Ideas de posesión'},
   {it:'Mentalización', b:'—', x:'—', np:'—', cp:'—'},
   {it:'Autoevaluación', b:'5 Culpa', x:'I Depresión (parc.)', np:'—', cp:'Pensamientos pesimistas'},
@@ -1085,7 +1086,19 @@ const RATIONALE = {
 <p><b>+2 = hiper-interocepción (somatización):</b> cada señal corporal se amplifica y se vive como anomalía o amenaza — pánico interoceptivo (palpitación → catástrofe), ansiedad por salud, autochequeo; señal/error interoceptivo sobre-ponderado.</p>
 <p><b>0 = calibrada:</b> registra las señales corporales de forma proporcional, sin ignorarlas ni amplificarlas.</p>
 <p><b>Subsume la somatización;</b> el <i>pánico interoceptivo</i> (la falsa alarma corporal) es el signo aquí — la respuesta de amenaza que desencadena vive en Amenaza (red 4). <i>(La interocepción se evalúa por tres modalidades —precisión, sensibilidad, conciencia metacognitiva; Garfinkel 2015— pero son formas de medir, no polos del ítem.)</i></p>
-<p class="src">— Inferencia interoceptiva: Seth & Friston 2016 Philos Trans R Soc B (doi:10.1098/rstb.2016.0007); Seth 2013 Trends Cogn Sci (doi:10.1016/j.tics.2013.09.007). Modalidades de medición: Garfinkel et al. 2015 Biol Psychol (doi:10.1016/j.biopsycho.2014.11.004).</p>`
+<p class="src">— Inferencia interoceptiva: Seth & Friston 2016 Philos Trans R Soc B (doi:10.1098/rstb.2016.0007); Seth 2013 Trends Cogn Sci (doi:10.1016/j.tics.2013.09.007). Modalidades de medición: Garfinkel et al. 2015 Biol Psychol (doi:10.1016/j.biopsycho.2014.11.004).</p>`,
+ 9:`<p><b>Red 9 = el sistema por defecto (DMN) leído por sus tres subsistemas.</b> El DMN se fracciona (Andrews-Hanna 2010) en un <b>núcleo midline/self</b> (PCC + mPFC anterior), un <b>subsistema dorsomedial/otro</b> (dmPFC, TPJ) y un <b>subsistema temporal-medial/escena</b> (hipocampo, MTL) que construye escenas desde memoria —pasado y futuro—. Los 7 ítems se ordenan por ese eje; el mecanismo común es la codificación predictiva del self (priors infra↔sobre-ponderados).</p>
+<p style="color:var(--accent2);font-weight:700;margin-top:14px">· Subsistema SELF (núcleo midline) ·</p>
+<p><b>Experiencia del pensamiento = agencia del pensar.</b> ¿El pensamiento se vive como propio y controlado? El <i>forward model</i> genera la copia eferente que da el sentido de agencia; su fallo produce pasividad. −2 = pensamiento ajeno / insertado / robado; +2 = difusión / <i>broadcasting</i> (Frith 2005).</p>
+<p><b>Experiencia del yo = agencia del self (eje bipolar).</b> −2 pasividad (priors infra-ponderados: no se vive como fuente de sus actos) ↔ +2 hiper-agencia (priors sobre-ponderados: omnipotencia del pensamiento, control activo). El self mínimo / ipseidad (Sass &amp; Parnas, EASE) es <b>especificador unidireccional</b>, no polo. Marco predictivo del self: Humpston &amp; Broome 2020.</p>
+<p><b>Autoevaluación = juicio sobre sí.</b> Procesamiento autorreferencial en estructuras de línea media (mPFC, cíngulo subgenual). −2 desvalorización / culpa (sgPFC–DMN hiperconectada, rumiación; Hamilton 2015) ↔ +2 grandiosidad (mPFC↓ en manía; Herold 2017).</p>
+<p style="color:var(--accent2);font-weight:700;margin-top:14px">· Subsistema OTHER (dorsomedial) ·</p>
+<p><b>Mentalización = inferir estados mentales (lectura clínica).</b> Red dmPFC + TPJ bilateral (Schurz 2014, meta-análisis). −2 hipomentalización (TEA, síntomas negativos) ↔ +2 hipermentalización (sobre-atribución de intenciones: paranoia, TLP; Sharp 2011).</p>
+<p><b>Cognición social = la prueba estructurada de la mentalización (bedside).</b> Operacionaliza el ítem anterior con desempeño: <b>Hinting Task</b> (5 viñetas; ToM verbal, la mejor por psicometría — la única que pasó SCOPE en primer episodio) + <b>ER-40</b> (8 caras; reconocimiento de emoción). Anclado en BB-SCOPE (Halverson 2022). Su relación con Mentalización es la misma que Metacontrol ↔ Pruebas neurocognitivas en red 8: <i>rating</i> clínico vs test estructurado.</p>
+<p style="color:var(--accent2);font-weight:700;margin-top:14px">· Subsistema ESCENA/MEMORIA (temporal medial) ·</p>
+<p><b>Memoria autobiográfica = etiquetado de realidad/tiempo del recuerdo</b> (antes «Experiencia vivida»; el <i>Stimmung</i>/desrealización se movió a red 7, que ya lo cubre). El subsistema MTL construye la escena desde memoria (Andrews-Hanna 2010; Philippi 2015). −2 = <b>flashback</b> (recuerdo involuntario sensorial que invade el presente; amígdala-límbico; Bourne 2012) ↔ +2 = <b>confabulación</b> (recuerdo fabricado vivido como real; fallo del filtrado orbitofrontal de realidad; Schnider 2003). El unificador es Schnider: «adaptación del pensamiento a la realidad en curso» — un mismo eje con dos fallas (pasado-como-presente / no-real-como-real). Pueden coexistir; se puntúa el polo predominante.</p>
+<p><b>Simulación a futuro = prospección.</b> El mismo subsistema MTL proyectado al futuro: la contraparte temporal de la memoria autobiográfica. −2 = colapso del horizonte (no construye futuro positivo) → <b>desesperanza</b>, bandera de riesgo suicida ↔ +2 = prospección catastrófica / sobre-anticipación (rumiación ansiosa). <b>Pregunta directriz bedside:</b> «dime 3 cosas buenas que esperas del futuro» — la <i>falta de futuro positivo</i> (no el exceso de negativo) marca la desesperanza (Future Thinking Task; MacLeod &amp; Byrne 1996; MacLeod 2005).</p>
+<p class="src">— Lit-search 2026-06-27; SPEC decisión 11 (act.). Subsistemas DMN: Andrews-Hanna et al. 2010 Neuron (doi:10.1016/j.neuron.2010.02.005). Agencia/self: Frith 2005 (doi:10.1016/j.crvi.2004.10.012); Sass &amp; Parnas 2003 (doi:10.1093/oxfordjournals.schbul.a007017); Humpston &amp; Broome 2020 Lancet Psychiatry (doi:10.1016/S2215-0366(20)30007-9). Autoevaluación: Hamilton 2015 Biol Psychiatry (doi:10.1016/j.biopsych.2015.02.020); Herold 2017 (doi:10.1016/j.jad.2017.04.065). Mentalización: Schurz et al. 2014 Neurosci Biobehav Rev (doi:10.1016/j.neubiorev.2014.01.009); Sharp 2011 (doi:10.1016/j.jaac.2011.01.017). Cognición social: Pinkham et al. 2018 Schizophr Bull (doi:10.1093/schbul/sbx117); Halverson et al. 2022 J Psychiatr Res (doi:10.1016/j.jpsychires.2022.03.017). Memoria autobiográfica: Philippi 2015 SCAN (doi:10.1093/scan/nsu070); Bourne, Mackay &amp; Holmes 2012 Psychol Med (doi:10.1017/S0033291712002358); Schnider 2003 Nat Rev Neurosci (doi:10.1038/nrn1179). Prospección: MacLeod &amp; Byrne 1996 J Abnorm Psychol (doi:10.1037/0021-843x.105.2.286); MacLeod et al. 2005 Br J Clin Psychol (doi:10.1348/014466505X35704).</p>`
 };
 function rationaleHTML(n){
   const r=RATIONALE[n]; if(!r) return '';
