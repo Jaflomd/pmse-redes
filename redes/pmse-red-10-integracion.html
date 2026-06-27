@@ -356,13 +356,13 @@ const NETS = [
   onto:'Circuito amigdalino + red de saliencia. Bien delimitado anatómicamente. Separación fear (rápido, estímulo-específico, amígdala) vs distress (lento, contextual, ACC-HPA).',
   items:['Ánimo','Amenaza'], strength:'ALTA', access:'mix',
   ev:[
-    ['RDoC Negative Valence define cinco constructos disociables: Acute Threat (BLA, PAG), Potential Threat (BNST), Sustained Threat (ACC-HPA), Loss, Frustrative Nonreward.','síntesis dossier F6 [library]'],
-    ['Mapeo RDoC NVS → HiTOP (Acute Threat→Fear; Sustained Threat + Loss→Distress).','Michelini et al. 2021 (PMC8165014) [library]'],
-    ['NVS (esp. sustained threat/loss) predice conducta suicida.','Glenn et al. 2018 (PMC5760472) [library]']
+    ['<b>Amenaza:</b> el miedo fásico (pánico, agudo, estímulo-específico → amígdala BLA/PAG) y la ansiedad sostenida (difusa, anticipatoria → BNST) son modos disociables de un mismo sistema; la amígdala extendida (Ce+BST) los integra.','Davis et al. 2010 Neuropsychopharmacology; Fox et al. 2015 Trends Neurosci; Tovote et al. 2015 Nat Rev Neurosci (PubMed)'],
+    ['<b>Ánimo (ÉPIC):</b> el ánimo representa el «momentum» de los outcomes — cuánto difieren de lo esperado (error de predicción) — y sesga la percepción de los outcomes siguientes.','Eldar et al. 2016 Trends Cogn Sci (PubMed)'],
+    ['NVS (esp. sustained threat / loss) predice conducta suicida.','Glenn et al. 2018 (PMC5760472) [library]']
   ],
   map:[
-    ['Ánimo','ACC subgenual-HPA (Loss / Sustained threat)','Michelini 2021 [library]','alta'],
-    ['Amenaza','Amígdala BLA + PAG (agudo) / BNST (potencial/sostenido)','dossier F6 [library]','alta']
+    ['Ánimo','ACC subgenual-HPA (Loss / Sustained); error de predicción de outcomes','Eldar 2016 (PubMed); Michelini 2021 [library]','alta'],
+    ['Amenaza','Amígdala BLA + PAG (agudo/pánico) / BNST (sostenido/ansiedad) — amígdala extendida','Davis 2010; Fox 2015 (PubMed)','alta']
   ],
   gaps:['<b>Frustración</b> (frustrative nonreward) se evalúa en la red 5 (recompensa): recluta el estriado ventral / circuito de recompensa (Parker 2025)..',
         'La regulación deliberada de la reactividad vive en red 10 (la extinción vmPFC es frontolímbica implícita).'],
@@ -494,7 +494,7 @@ const SCORES = {
  ],
  4:[
   {it:'Ánimo', a:['depresión: todo vivido como no-logro, anhedonia del ánimo','ánimo bajo / subdepresivo, reactividad conservada','eutímico: rastrea outcomes, reactivo proporcional','ánimo elevado/expansivo leve, aún reactivo','euforia/manía desacoplada del logro o disforia sostenida']},
-  {it:'Amenaza', a:['hiporespuesta defensiva: no registra amenaza real','ansiedad/reactividad por debajo de lo esperable','respuesta de amenaza proporcional, recupera','ansiedad/hipervigilancia elevada, redirigible','pánico activo o worry multidominio sostenido, no redirigible'], flag:'[agudo] (amígdala) vs [sostenido] (BNST)'}
+  {it:'Amenaza', a:['temerario: hiporrespuesta defensiva, no registra la amenaza real','reactividad de amenaza por debajo de lo esperable','respuesta de amenaza proporcional, recupera','hipervigilancia/reactividad elevada, redirigible','respuesta excesiva no redirigible: pánico (agudo) o worry multidominio sostenido'], flag:'Especificador del modo: [agudo/fásico = pánico, amígdala-PAG] vs [sostenido/anticipatorio = ansiedad, BNST]'}
  ],
  5:[
   {it:'Motivación / drive (wanting + vigor)', a:['avolición / anergia: sin deseo ni empuje, no inicia','motivación/energía reducida, inicia con esfuerzo','motivación y vigor proporcionales a metas','empuje/energía aumentados, productivos','craving / hipermotivación con hiperactivación'], flag:'une wanting (incentive salience) + vigor (esfuerzo) — brazo dopaminérgico; espec [wanting]/[vigor]'},
@@ -997,7 +997,12 @@ const RATIONALE = {
 <p><b>Son coordenadas de estado, no rasgos.</b> El paciente no «tiene» dominancia ni afiliación como atributos fijos: los <i>produce</i> en la relación, aquí, con este entrevistador, en este contexto. Por eso se puntúan por lo observable en la díada (turnos, interrupciones, calidez/frialdad del cuarto), no por la historia de personalidad.</p>
 <p><b>El patrón de personalidad es el cruce, no un ítem.</b> El perfil interpersonal emerge de leer dominancia × afiliación juntas — dominar sin hostilidad es posible; ser sumiso y hostil también. Por eso «patrón de personalidad» no es un eje puntuable aparte: es lo que resulta del plano afiliación × dominancia (esto justifica haberlo quitado como ítem).</p>
 <p><b>Expresividad emocional es un output, no un eje del circumplejo.</b> La review transdiagnóstica de síntomas negativos (Strauss & Cohen 2017) separa un factor <b>volicional</b> (avolición, anhedonia, asociabilidad) de uno <b>expresivo</b> (afecto aplanado, alogia). El afecto aplanado es la <i>producción</i> reducida de señal emocional en rostro, voz y gestos — un canal de salida, no un rasgo interpersonal. Aparece en 19+ condiciones (esquizofrenia, depresión, TEA, Parkinson…): no es específico de la red social, por eso se marca <b>multi-red</b>. Vive aquí como el output de señalización afectiva de la conducta social (RDoC: producción de comunicación facial/no-facial), pero su sustrato motor cruza a la red 6 (vía motora facial).</p>
-<p class="src">— Lógica de diseño de Javier. Circumplejo (P1×P2): Leary 1957; Kiesler 1983. Síntomas negativos como output transdiagnóstico: Strauss & Cohen 2017, Schizophr Bull, doi:10.1093/schbul/sbx066.</p>`
+<p class="src">— Lógica de diseño de Javier. Circumplejo (P1×P2): Leary 1957; Kiesler 1983. Síntomas negativos como output transdiagnóstico: Strauss & Cohen 2017, Schizophr Bull, doi:10.1093/schbul/sbx066.</p>`,
+ 4:`<p><b>Ánimo = ÉPIC (afecto como error de predicción).</b> El ánimo rastrea cuánto difieren los <i>outcomes</i> recientes de lo esperado — «mood as momentum» (Eldar 2016): eutimia = rastreo proporcional; depresión = todo vivido como no-logro; manía = euforia desacoplada del logro. Sustrato: ACC subgenual–HPA (Loss / sustained).</p>
+<p><b>Amenaza = eje bipolar de respuesta defensiva.</b> −2 = <b>temerario</b> (hiporrespuesta: no registra la amenaza real); 0 = respuesta proporcional que recupera; +2 = respuesta excesiva no redirigible. Ambos polos son patológicos.</p>
+<p><b>Ansiedad y pánico = especificadores del modo, no ejes aparte.</b> La amígdala extendida (Ce+BST) integra dos modos de respuesta (Davis 2010; Fox 2015): <b>[agudo / fásico]</b> = pánico/miedo estímulo-específico (amígdala BLA → PAG) y <b>[sostenido / anticipatorio]</b> = ansiedad/worry difuso (BNST). La ansiedad es un especificador de <b>Amenaza</b>, no de Ánimo.</p>
+<p><b>Ánimo y Amenaza son disociables:</b> valencia/outcome (ÉPIC) vs respuesta a amenaza (amígdala extendida). Coocurren como distress internalizante, pero se puntúan por separado.</p>
+<p class="src">— Lógica de diseño de Javier (modelo ÉPIC). Ánimo: Eldar et al. 2016 Trends Cogn Sci (doi:10.1016/j.tics.2015.07.010). Amenaza: Davis et al. 2010 Neuropsychopharmacology (doi:10.1038/npp.2009.109); Fox et al. 2015 Trends Neurosci (doi:10.1016/j.tins.2015.03.002); Tovote et al. 2015 Nat Rev Neurosci (doi:10.1038/nrn3945).</p>`
 };
 function rationaleHTML(n){
   const r=RATIONALE[n]; if(!r) return '';
