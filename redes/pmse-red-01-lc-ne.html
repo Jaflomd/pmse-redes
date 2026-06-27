@@ -480,7 +480,7 @@ const NETS = [
 // ---------- scoring scales (−2 / +2) — fuente: SCORING-MAESTRO-pmse-v0.md ----------
 const SCORES = {
  1:[
-  {it:'Conciencia', a:['estupor / coma (sin respuesta o solo a estímulo intenso)','obnubilación / somnolencia (vigilancia disminuida, enlentecido)','vigilia clara, lúcido y orientado','hipervigilancia (vigilancia y lucidez aumentadas, campo íntegro)','expansión de la conciencia (vivencia intensificada: más alerta, vívido e intenso; drogas, manía, meditación)'], flag:'fluctuación del nivel — compuesto a especificar (no es un polo)'},
+  {it:'Conciencia', scaleDown:['vigilia lúcida (despierto, orientado, atención sostenida)','obnubilación leve (despierta fácil, algo enlentecido)','letargo / somnolencia marcada (requiere estímulo repetido)','estupor (solo responde a estímulo intenso o doloroso)','coma (sin respuesta ni al dolor, no despertable)'], flag:'eje UNIPOLAR de nivel de conciencia (0 → −4), anclado en Glasgow / disorders of consciousness (Giacino 2018, Kondziella 2020). La hipervigilancia se puntúa en Alerta (red 1); la expansión vivencial en Experiencia vivida (red 9)'},
   {it:'Alerta', a:['hipoarousal: tono basal bajo, latencia >5 s, se duerme en entrevista','arousal reducido: enlentecido, latencia 2–5 s, requiere reorientación','arousal proporcional: tono basal y reactividad fásica adecuados','hiperarousal leve: tono alto o sobresalto fácil, redirigible','hiperarousal sostenido: tono alto no redirigible, taquilalia, no se mantiene sentado'], flag:'distinguir tono basal (tónico) de la reactividad al estímulo (fásico); separar de psicomotor, atención y afecto'}
  ],
  2:[
@@ -555,6 +555,13 @@ function scoreHTML(n){
       const labs=['0','1','2','3','4'];
       const lh=`<div class="scrow head"><div></div>${labs.map((l,i)=>`<div class="scol s04-${i}">${l}</div>`).join('')}</div>`;
       const cells=r.scale04.map((v,i)=>`<div class="scell s04-${i}" data-lvl="${labs[i]}">${v}</div>`).join('');
+      const fl = r.flag?`<div class="sflag">⚑ ${r.flag}</div>`:'';
+      return `${lh}<div class="scrow"><div class="it">${r.it}</div>${cells}</div>${fl}`;
+    }
+    if(r.scaleDown){
+      const labs=['0','−1','−2','−3','−4'];
+      const lh=`<div class="scrow head"><div></div>${labs.map((l,i)=>`<div class="scol s04-${i}">${l}</div>`).join('')}</div>`;
+      const cells=r.scaleDown.map((v,i)=>`<div class="scell s04-${i}" data-lvl="${labs[i]}">${v}</div>`).join('');
       const fl = r.flag?`<div class="sflag">⚑ ${r.flag}</div>`:'';
       return `${lh}<div class="scrow"><div class="it">${r.it}</div>${cells}</div>${fl}`;
     }
