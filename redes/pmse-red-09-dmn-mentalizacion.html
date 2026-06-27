@@ -632,7 +632,7 @@ const NMAP = {
  ],
  9:[
   {it:'Experiencia del pensamiento', hitop:'Verbal impulsivity · Anxious arousal', dsm5:2, esc:'SANS Alogia · SAPS FTD · PANSS N5/N7 · EASE d2', esp:'Thought Disorder'},
-  {it:'Memoria autobiográfica', hitop:'Dissociation · Traumatic intrusions', dsm5:2, esc:'EASE d1/d4 · CDS · AMDP despers.'},
+  {it:'Memoria autobiográfica', hitop:'Traumatic intrusions', dsm5:1, esc:'AMDP paramnesias · flashback (−2) / confabulación (+2)'},
   {it:'Experiencia del yo', hitop:'Passivity · Despersonalización', dsm5:3, esc:'EASE d3 · SAPS Passivity · AMDP yo · PID-5 Psychoticism'},
   {it:'Mentalización', hitop:'Lack of empathy · Callousness', dsm5:3, esc:'MCCB Social Cog. · CAINS/BNSS MAP-Social · PANSS G12', esp:'Detachment'},
   {it:'Autoevaluación', hitop:'Guilt/shame proneness · Body image · Depressed mood', dsm5:11, esc:'HAM-D 2 · MADRS 9 · BDI cognitivo · EASE hiperreflex.', esp:'Distress'},
@@ -759,8 +759,8 @@ const AMDP = {
  ],
  9:[
   {it:'Experiencia del pensamiento', n:10, a:'015 Pensamiento inhibido · 017 Pensamiento circunstancial · 018 Pensamiento restringido · 019 Pensamiento perseverativo · 020 Rumiación · 021 Pensamiento acelerado · 022 Fuga de ideas · 023 Pensamiento tangencial · 024 Bloqueo del pensamiento · ZP02 Aceleración del pensamiento'},
-  {it:'Memoria autobiográfica', n:6, a:'004 Expansión de la consciencia · 014 Paramnesias · 033 Humor delirante · 053 Desrealización · 059 Perplejidad · 060 Sentimiento de pérdida de sentimientos'},
-  {it:'Experiencia del yo', n:7, a:'054 Despersonalización · 055 Difusión del pensamiento · 056 Robo del pensamiento · 057 Inserción del pensamiento · 058 Otros sentimientos de influencia ajena · 131 Síntomas de conversión · ZP06 Sonorización del pensamiento'},
+  {it:'Memoria autobiográfica', n:1, a:'014 Paramnesias'},
+  {it:'Experiencia del yo', n:8, a:'004 Expansión de la consciencia · 054 Despersonalización · 055 Difusión del pensamiento · 056 Robo del pensamiento · 057 Inserción del pensamiento · 058 Otros sentimientos de influencia ajena · 131 Síntomas de conversión · ZP06 Sonorización del pensamiento'},
   {it:'Mentalización', n:0, a:'—'},
   {it:'Autoevaluación', n:5, a:'071 Sentimientos de insuficiencia · 072 Autoestima exagerada · 073 Sentimientos de culpa · ZP08 Trastorno de la imagen corporal · ZP09 Sentimientos de vergüenza'},
   {it:'Simulación a futuro', n:1, a:'064 Desesperanza'}
@@ -834,7 +834,7 @@ const DSM = {
  ],
  9:[
   {it:'Experiencia del pensamiento', n:2, d:'ZMQRF_292 Presión para seguir hablando · ZMQRF_294 Pensamientos acelerados'},
-  {it:'Memoria autobiográfica', n:2, d:'ZMQRF_372 Flashbacks de evento traumático · ZMQRF_591 Desrealización'},
+  {it:'Memoria autobiográfica', n:1, d:'ZMQRF_372 Flashbacks de evento traumático'},
   {it:'Experiencia del yo', n:3, d:'ZMQRF_351 Despersonalización · ZMQRF_516 Pensamientos controlados por otros · ZMQRF_517 Robo de pensamientos por otros'},
   {it:'Mentalización', n:3, d:'ZMQRF_167 Indiferencia ante daño a otros · ZMQRF_523 Indiferencia ante sentimientos ajenos · ZMQRF_524 Desinterés por problemas de otros'},
   {it:'Autoevaluación', n:11, d:'ZMQRF_108 Cogniciones distorsionadas sobre trauma · ZMQRF_318 Baja autoestima · ZMQRF_335 Miedo a la evaluación negativa · ZMQRF_373 Creencias negativas sobre sí mismo · ZMQRF_405 Distorsión imagen corporal · ZMQRF_553 Autoestima ligada al peso · ZMQRF_554 Culpa o vergüenza por hiperfagia · ZMQRF_571 Culpa desproporcionada · ZMQRF_614 Vergüenza por cantidad comida · ZMQRF_679 Culpa sin conducta incorrecta · Zhirworthless Sentimiento de inutilidad'},
@@ -979,7 +979,7 @@ const MACRO = {
  ],
  9:[
   {it:'Experiencia del pensamiento', b:'15 Desorganización conceptual', x:'VII Psicosis (parc.)', np:'—', cp:'Pensamiento disgregado / Fuga de ideas / Presión del habla'},
-  {it:'Memoria autobiográfica', b:'—', x:'XI Disociación', np:'—', cp:'Desrealización/Despersonalización · Incapacidad de sentir'},
+  {it:'Memoria autobiográfica', b:'—', x:'XI Disociación (intrusiones)', np:'—', cp:'Recuerdos intrusivos / Confabulación'},
   {it:'Experiencia del yo', b:'11 Contenido inusual (pasividad)', x:'VII Psicosis · XI Disociación', np:'—', cp:'Sentirse controlado / Ideas de posesión'},
   {it:'Mentalización', b:'—', x:'—', np:'—', cp:'—'},
   {it:'Autoevaluación', b:'5 Culpa', x:'I Depresión (parc.)', np:'—', cp:'Pensamientos pesimistas'},
