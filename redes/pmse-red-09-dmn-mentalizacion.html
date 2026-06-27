@@ -370,7 +370,7 @@ const NETS = [
  },
  {n:5, name:'Red de recompensa (valencia positiva)',
   onto:'Vía dopaminérgica mesolímbica + circuito funcional de recompensa. Integra dos subsistemas disociables: dopaminérgico (wanting/vigor/learning) y opioide (liking).',
-  items:['Motivación / drive (wanting + vigor)','Tono hedónico (liking)','Frustración (frustrative nonreward)'], strength:'ALTA', access:'mix',
+  items:['Anticipación (wanting)','Tono hedónico (liking)','Frustración (frustrative nonreward)'], strength:'ALTA', access:'mix',
   ev:[
     ['Descomposición wanting / liking / learning.','Berridge & Robinson (PMC5171207) [library]'],
     ['Coste del esfuerzo depende de ACC dorsal (su lesión elimina la disposición al esfuerzo sin afectar el liking).','Treadway & Zald 2011 [library]'],
@@ -379,12 +379,12 @@ const NETS = [
     ['Frustrative nonreward → circuito de recompensa (MID task).','Parker et al. 2025, ABCD, N=5,923 [library]']
   ],
   map:[
-    ['Motivación / drive (wanting + vigor)','DA mesolímbica VTA→NAc (incentive salience) + DA tónica / ACC dorsal (esfuerzo)','Berridge & Robinson; Treadway & Zald [library]','alta'],
+    ['Anticipación (wanting)','DA mesolímbica VTA→NAc (incentive salience) + DA tónica / ACC dorsal (esfuerzo)','Berridge & Robinson; Treadway & Zald [library]','alta'],
     ['Tono hedónico (liking)','Opioides NAc shell / pálido ventral','Berridge & Robinson [library]','alta'],
     ['Frustración (frustrative nonreward)','Estriado ventral / circuito de recompensa (MID task)','Parker 2025 [library]','alta']
   ],
   gaps:['Reward learning = mecanismo, no ítem (no medible bedside).',
-        'Wanting y vigor se evalúan como un único signo (<b>Motivación/drive</b>): el esfuerzo carecía de soporte factorial independiente (dossier F3-anhedonia); ambos son el brazo dopaminérgico, frente al opioide (liking). Especificadores [wanting]/[vigor] si se requiere granularidad.'],
+        'La evidencia separa robustamente <b>wanting/anticipatorio</b> (ítem Anticipación) de <b>liking/consummatorio</b> (ítem Tono) — TEPS, DARS. El <b>vigor/esfuerzo</b> no tiene soporte factorial independiente (dossier F3-anhedonia): entra como especificador de Anticipación, no como ítem.'],
   di:'El vigor/energía es <b>observable</b>; wanting y liking dependen de reporte hedónico → mixto.'
  },
  {n:6, name:'Red sensoriomotora — nigroestriatal + cerebelo + motor',
@@ -497,7 +497,7 @@ const SCORES = {
   {it:'Amenaza', a:['temerario: hiporrespuesta defensiva, no registra la amenaza real','reactividad de amenaza por debajo de lo esperable','respuesta de amenaza proporcional, recupera','hipervigilancia/reactividad elevada, redirigible','respuesta excesiva no redirigible: pánico (agudo) o worry multidominio sostenido'], flag:'Especificador del modo: [agudo/fásico = pánico, amígdala-PAG] vs [sostenido/anticipatorio = ansiedad, BNST]'}
  ],
  5:[
-  {it:'Motivación / drive (wanting + vigor)', a:['avolición / anergia: sin deseo ni empuje, no inicia','motivación/energía reducida, inicia con esfuerzo','motivación y vigor proporcionales a metas','empuje/energía aumentados, productivos','craving / hipermotivación con hiperactivación'], flag:'une wanting (incentive salience) + vigor (esfuerzo) — brazo dopaminérgico; espec [wanting]/[vigor]'},
+  {it:'Anticipación (wanting)', a:['avolición / anergia: sin deseo ni empuje, no inicia','motivación/energía reducida, inicia con esfuerzo','motivación y vigor proporcionales a metas','empuje/energía aumentados, productivos','craving / hipermotivación con hiperactivación'], flag:'wanting / incentive salience (brazo dopaminérgico VTA→NAc); especificador [vigor/esfuerzo] = salida conductual, no factor independiente (dossier F3-anhedonia)'},
   {it:'Tono hedónico (liking)', a:['anhedonia consumatoria: no disfruta nada','placer atenuado / disfrute reducido','disfrute proporcional','disfrute intensificado, apropiado','hiperhedonia (placer desregulado)']},
   {it:'Frustración (frustrative nonreward)', a:['indiferencia al no-logro: no reacciona a obstáculos','tolerancia aumentada / poca reactividad','frustración proporcional, recupera','frustración fásica (non-reward), reactiva al obstáculo','irritabilidad tónica basal, sin gatillo'], flag:'recluta el circuito de recompensa (estriado ventral)'}
  ],
@@ -595,7 +595,7 @@ const NMAP = {
   {it:'Amenaza', hitop:'Fear & phobic anxiety · Anxious arousal · Suspiciousness', dsm5:40, esc:'HAM-A · STAI State · PANSS P6/G4'}
  ],
  5:[
-  {it:'Motivación / drive (wanting + vigor)', hitop:'Avolition · Substance use · Euphoric mood(+) · Fatigue', dsm5:15, esc:'TEPS Antic. · BNSS/CAINS MAP · SANS Avolition · YMRS Energy(+)'},
+  {it:'Anticipación (wanting)', hitop:'Avolition · Substance use · Euphoric mood(+) · Fatigue', dsm5:15, esc:'TEPS Antic. · BNSS/CAINS MAP · SANS Avolition · YMRS Energy(+)'},
   {it:'Tono hedónico (liking)', hitop:'Depressed mood / loss of pleasure · Avolition', dsm5:5, esc:'BNSS Anhedonia-Consum. · CAINS · BDI 4'},
   {it:'Frustración (frustrative nonreward)', hitop:'Irritability · Suspiciousness & resentment', dsm5:6, esc:'YMRS Irritability · PANSS G14/P7 · PID-5 Hostility', esp:'Antagonismo'}
  ],
@@ -648,7 +648,7 @@ const SPECTRUM = {
  'Dominancia':'Antagonistic Ext.',
  'Ánimo':'Internalizing · Distress',
  'Amenaza':'Internalizing · Fear',
- 'Motivación / drive (wanting + vigor)':'Detachment (−) / Mania (+)',
+ 'Anticipación (wanting)':'Detachment (−) / Mania (+)',
  'Tono hedónico (liking)':'Detachment · anhedonia',
  'Frustración (frustrative nonreward)':'Antagonistic Ext.',
  'Velocidad psicomotriz':'fuera de HiTOP · motor',
@@ -714,7 +714,7 @@ const AMDP = {
   {it:'Amenaza', n:5, a:'027 Suspicacia · 029 Fobias · 065 Ansiedad · 069 Inquietud interior · ZP01 Crisis de angustia'}
  ],
  5:[
-  {it:'Motivación/drive (wanting+vigor)', n:4, a:'062 Pérdida sentida de vitalidad · 080 Falta de impulso · 081 Inhibición del impulso · 082 Impulso aumentado'},
+  {it:'Anticipación (wanting)', n:4, a:'062 Pérdida sentida de vitalidad · 080 Falta de impulso · 081 Inhibición del impulso · 082 Impulso aumentado'},
   {it:'Tono hedónico (liking)', n:0, a:'—'},
   {it:'Frustración', n:1, a:'068 Irritabilidad'}
  ],
@@ -785,7 +785,7 @@ const DSM = {
   {it:'Amenaza', n:41, d:'ZMQRF_104 Angustia ante recuerdos traumáticos · ZMQRF_154 Preocupación por dolor genital en el coito · ZMQRF_304 Tensión nerviosa o estado de alerta · ZMQRF_305 Miedo a que ocurra algo terrible · ZMQRF_306 Miedo a perder el control · ZMQRF_321 Ansiedad · ZMQRF_322 Tensión · ZMQRF_330 Miedo o evitación de estar solo · ZMQRF_331 Temor a separarse de figura de apego · ZMQRF_336 Oleada súbita de miedo intenso · ZMQRF_352 Miedo a morir · ZMQRF_353 Miedo a ser desbordado y perder control · ZMQRF_354 Ansiedad en transporte público · ZMQRF_355 Ansiedad en espacios abiertos · ZMQRF_356 Ansiedad en espacios cerrados · ZMQRF_357 Ansiedad en filas o colas · ZMQRF_358 Ansiedad en multitudes · ZMQRF_359 Ansiedad fuera del hogar sin compañía · ZMQRF_360 Dificultad para controlar preocupaciones · ZMQRF_374 Creencias negativas sobre los demás · ZMQRF_378 Nerviosismo · ZMQRF_379 Preocupación persistente · ZMQRF_498 Conductas desesperadas para evitar abandono · ZMQRF_508 Vigilancia ante engaño o daño ajeno · ZMQRF_509 Sentirse tratado injustamente · ZMQRF_510 Desconfianza hacia amigos · ZMQRF_564 Ansiedad social situacional · ZMQRF_593 Pesadillas sobre evento traumático · ZMQRF_600 Hipervigilancia ante el peligro · ZMQRF_612 Agitación ansiosa · ZMQRF_633 Preocupación generalizada por múltiples eventos · ZMQRF_76 Angustia al alejarse del hogar · ZMQRF_77 Angustia al separarse de figura de apego · ZMQRF_78 Preocupación por pérdida de figura de apego · ZMQRF_79 Miedo a separación accidental de figura de apego · ZMQRF_80 Pesadillas de separación · ZMQRF_82 Fobia específica a objeto o situación · ZMQRF_84 Aguantar situaciones temidas con miedo intenso · ZMQRF_85 Permanencia en situaciones sociales ansiógenas · ZMQRF_87 Miedo a no poder escapar ni recibir ayuda · ZMQRF_90 Permanencia en situaciones de imposible escape'}
  ],
  5:[
-  {it:'Motivación/drive (wanting+vigor)', n:15, d:'ZMQRF_110 Abandono de actividades importantes · ZMQRF_171 Craving de sustancias · ZMQRF_172 Uso de sustancias pese a problemas relacionales · ZMQRF_173 Uso de sustancias en situaciones de riesgo físico · ZMQRF_174 Uso de sustancias pese a daño en salud · ZMQRF_296 Pérdida de interés en actividades · ZMQRF_453 Consumo de sustancias mayor al planeado · ZMQRF_454 Uso de sustancias por más tiempo del planeado · ZMQRF_455 Deseo de reducir consumo de sustancias · ZMQRF_456 Tiempo excesivo en uso de sustancias · ZMQRF_595 Falta de motivación para tareas cotidianas · ZMQRF_659 Energía o actividad excesiva · ZMQRF_662 Fatiga/baja energía · ZMQRF_672 Incapacidad de reducir consumo de sustancias · ZMQRF_673 Absorción excesiva en planificación'},
+  {it:'Anticipación (wanting)', n:15, d:'ZMQRF_110 Abandono de actividades importantes · ZMQRF_171 Craving de sustancias · ZMQRF_172 Uso de sustancias pese a problemas relacionales · ZMQRF_173 Uso de sustancias en situaciones de riesgo físico · ZMQRF_174 Uso de sustancias pese a daño en salud · ZMQRF_296 Pérdida de interés en actividades · ZMQRF_453 Consumo de sustancias mayor al planeado · ZMQRF_454 Uso de sustancias por más tiempo del planeado · ZMQRF_455 Deseo de reducir consumo de sustancias · ZMQRF_456 Tiempo excesivo en uso de sustancias · ZMQRF_595 Falta de motivación para tareas cotidianas · ZMQRF_659 Energía o actividad excesiva · ZMQRF_662 Fatiga/baja energía · ZMQRF_672 Incapacidad de reducir consumo de sustancias · ZMQRF_673 Absorción excesiva en planificación'},
   {it:'Tono hedónico (liking)', n:5, d:'ZMQRF_111 Incapacidad de experimentar emociones positivas · ZMQRF_63 Anhedonia/falta de placer vital · ZMQRF_665 Pérdida de interés en actividades placenteras · ZMQRF_667 Disminución del placer vital · Zhiranhedonia No disfrutar la vida (anhedonia)'},
   {it:'Frustración', n:6, d:'ZMQRF_291 Irritabilidad · ZMQRF_316 Enojo/ira · ZMQRF_432 Susceptibilidad/irritación fácil · ZMQRF_632 Resentimiento · ZMQRF_658 Enojo ante pequeñas cosas · ZMQRF_663 Pérdida de control del temperamento'}
  ],
@@ -855,7 +855,7 @@ const THEORY = {
   {it:'Amenaza', m:'Señal interoceptiva amplificada en ínsula anterior: prior de estado corporal aversivo inminente con precisión aumentada; la ansiedad baja el umbral de detección de amenaza.', refs:[['Paulus & Stein 2006 · Biol Psychiatry','10.1016/j.biopsych.2006.03.042'], ['Barrett et al. 2016 · Philos Trans R Soc B','10.1098/rstb.2016.0011']]}
  ],
  5:[
-  {it:'Motivación / drive (wanting + vigor)', m:'Wanting = reward prediction error dopaminérgico; su magnitud escala la precisión a señales de recompensa, amplificando el drive hacia acciones de alto valor esperado.', refs:[['Schultz et al. 1997 · Science','10.1126/science.275.5306.1593'], ['Berridge & Robinson 2016 · Am Psychol','10.1037/amp0000059']]},
+  {it:'Anticipación (wanting)', m:'Wanting = reward prediction error dopaminérgico; su magnitud escala la precisión a señales de recompensa, amplificando el drive hacia acciones de alto valor esperado.', refs:[['Schultz et al. 1997 · Science','10.1126/science.275.5306.1593'], ['Berridge & Robinson 2016 · Am Psychol','10.1037/amp0000059']]},
   {it:'Tono hedónico (liking)', m:'Liking = valor afectivo del estado consumatorio (sistemas opioides), disociado del RPE dopaminérgico que gobierna el wanting. Anhedonia = atenuación asimétrica del RPE positivo.', refs:[['Berridge & Robinson 2016 · Am Psychol','10.1037/amp0000059'], ['Rothkirch et al. 2017 · Brain','10.1093/brain/awx025']]},
   {it:'Frustración', m:'RPE negativo (pausa dopaminérgica) al omitirse recompensa esperada: la violación de la predicción activa circuitos aversivos y agitación (frustrative nonreward).', refs:[['Schultz 2019 · F1000Research','10.12688/f1000research.19793.1']]}
  ],
@@ -924,7 +924,7 @@ const MACRO = {
   {it:'Amenaza', b:'2 Ansiedad · 19 Tensión', x:'IV Ansiedad', np:'5 Ansiedad', cp:'Tensión interna / Preocupación / Fobias'}
  ],
  5:[
-  {it:'Motivación / drive (wanting + vigor)', b:'17 Retraimiento (parc.)', x:'—', np:'7 Apatía / indiferencia', cp:'Lasitud / fatigabilidad'},
+  {it:'Anticipación (wanting)', b:'17 Retraimiento (parc.)', x:'—', np:'7 Apatía / indiferencia', cp:'Lasitud / fatigabilidad'},
   {it:'Tono hedónico (liking)', b:'—', x:'I Depresión (anhedonia)', np:'7 Apatía', cp:'Incapacidad de sentir'},
   {it:'Frustración', b:'6 Hostilidad', x:'II Ira', np:'9 Irritabilidad / labilidad', cp:'Sentimientos hostiles'}
  ],
@@ -1002,7 +1002,13 @@ const RATIONALE = {
 <p><b>Amenaza = eje bipolar de respuesta defensiva.</b> −2 = <b>temerario</b> (hiporrespuesta: no registra la amenaza real); 0 = respuesta proporcional que recupera; +2 = respuesta excesiva no redirigible. Ambos polos son patológicos.</p>
 <p><b>Ansiedad y pánico = especificadores del modo, no ejes aparte.</b> La amígdala extendida (Ce+BST) integra dos modos de respuesta (Davis 2010; Fox 2015): <b>[agudo / fásico]</b> = pánico/miedo estímulo-específico (amígdala BLA → PAG) y <b>[sostenido / anticipatorio]</b> = ansiedad/worry difuso (BNST). La ansiedad es un especificador de <b>Amenaza</b>, no de Ánimo.</p>
 <p><b>Ánimo y Amenaza son disociables:</b> valencia/outcome (ÉPIC) vs respuesta a amenaza (amígdala extendida). Coocurren como distress internalizante, pero se puntúan por separado.</p>
-<p class="src">— Lógica de diseño de Javier (modelo ÉPIC). Ánimo: Eldar et al. 2016 Trends Cogn Sci (doi:10.1016/j.tics.2015.07.010). Amenaza: Davis et al. 2010 Neuropsychopharmacology (doi:10.1038/npp.2009.109); Fox et al. 2015 Trends Neurosci (doi:10.1016/j.tins.2015.03.002); Tovote et al. 2015 Nat Rev Neurosci (doi:10.1038/nrn3945).</p>`
+<p class="src">— Lógica de diseño de Javier (modelo ÉPIC). Ánimo: Eldar et al. 2016 Trends Cogn Sci (doi:10.1016/j.tics.2015.07.010). Amenaza: Davis et al. 2010 Neuropsychopharmacology (doi:10.1038/npp.2009.109); Fox et al. 2015 Trends Neurosci (doi:10.1016/j.tins.2015.03.002); Tovote et al. 2015 Nat Rev Neurosci (doi:10.1038/nrn3945).</p>`,
+ 5:`<p><b>Dos factores robustos + un especificador.</b> La evidencia (TEPS, DARS) separa limpio dos dimensiones de recompensa: <b>anticipación</b> (wanting, el futuro que tira) y <b>tono</b> (liking, el placer al llegar). El <b>vigor/esfuerzo</b> (drive) es clínicamente real pero <i>no</i> emerge como factor independiente — entra como <b>especificador</b>, no como ítem.</p>
+<p><b>Anticipación (wanting).</b> El prior de recompensa: cuánto tira el futuro antes de que ocurra, y si se corrige cuando la realidad no coincide. Sustrato: DA mesolímbica VTA→NAc (incentive salience; reward prediction error). +2 = el prior no se corrige (craving). Especificador <b>[vigor/esfuerzo]</b>: la salida conductual (avolición ↔ hiperactividad) — se lee por conducta, no por motivación sentida (apatía ≠ anhedonia).</p>
+<p><b>Tono hedónico (liking).</b> El placer consumatorio: si algo gusta cuando ya está ocurriendo. Sustrato: opioides en NAc shell / pálido ventral. Disociado del wanting dopaminérgico.</p>
+<p><b>Frustración (frustrative nonreward).</b> La reactividad a la omisión de la recompensa esperada (estriado ventral); distinta de wanting y liking.</p>
+<p><b>Por qué importa.</b> Tono intacto + anticipación plana → activación conductual. Wanting alto + liking en descenso → perfil opuesto. La «anhedonia» clásica los fundía; separarlos cambia la intervención.</p>
+<p class="src">— Lógica de diseño de Javier (cluster-opener f3-motivación). Wanting/liking: Berridge & Robinson 2016 (doi:10.1037/amp0000059); reward prediction error: Schultz et al. 1997 (doi:10.1126/science.275.5306.1593). Soporte factorial anticipatorio/consummatorio (no del esfuerzo): dossier F3-anhedonia (TEPS, DARS).</p>`
 };
 function rationaleHTML(n){
   const r=RATIONALE[n]; if(!r) return '';
