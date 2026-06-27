@@ -1092,6 +1092,23 @@ function rationaleHTML(n){
   return `<details class="sec" open><summary style="color:var(--mod)">Rationale · por qué estos ítems <span class="muted-note">— lógica de diseño</span></summary><div class="sec-body rationale">${r}</div></details>`;
 }
 
+// ---------- validez predictiva (capa precision-psychiatry, por ítem) ----------
+const VALIDEZ = {
+ 1:`<p class="muted-note" style="margin-top:0">¿La posición en el eje de arousal predice <b>tratamiento</b>, <b>pronóstico</b> o <b>diferencia</b> poblaciones? El arousal es un eje <b>transdiagnóstico</b> (RDoC Arousal/Regulatory Systems), no propiedad de un diagnóstico; nivel de evidencia entre paréntesis.</p>
+<table>
+<thead><tr><th>Ítem</th><th>Tratamiento</th><th>Pronóstico</th><th>Diferenciador / subtipos</th></tr></thead>
+<tbody>
+<tr><td><b>Alerta (arousal)</b></td><td>Inestabilidad de arousal (VIGALL) predijo respuesta a metilfenidato en piloto, pero el confirmatorio (VIP-ADHD) <b>no replicó</b>; en cambio, un biomarcador EEG transdiagnóstico de hipoarousal (Brainmarker-III/beta frontal) predice remisión a <b>MPH (TDAH)</b> y a <b>antidepresivos (depresión)</b> en datasets independientes <span class="src">(piloto + / confirmatorio − / biomarcador replicado n&gt;1300)</span></td><td>Integridad del locus coeruleus (neuromelanina-MRI) predice declive cognitivo, pTau217, atrofia y síntomas neuropsiquiátricos en Alzheimer <span class="src">(cohorte AD)</span></td><td>Marco de regulación de la vigilancia: arousal inestable (TDAH/manía, autorregulado por hiperactividad) vs hiperestable (depresión); el polo hiper se fracciona en aprehensión ansiosa vs arousal autonómico <span class="src">(modelo + revisiones RDoC)</span></td></tr>
+</tbody>
+</table>
+<p><b>Lectura precision-psychiatry de la red 1.</b> El arousal es el caso más limpio de la tesis del pMSE: un eje neural que cruza el DSM (RDoC Arousal/Regulatory Systems) y empieza a guiar tratamiento — el metilfenidato estabiliza la vigilancia (explica el polo −2), y un biomarcador de arousal transdiagnóstico predice remisión a MPH y a antidepresivos. Fuerte en pronóstico (LC-NE) y como marco de subtipos; límite: ningún biomarcador es estándar clínico todavía, y la predicción por VIGALL falló en confirmatorio.</p>
+<p class="src">— Capa de validez predictiva (Javier, 2026-06-27); citas verificadas vía PubMed. <b>Marco:</b> Hegerl &amp; Hensch 2012 doi:10.1016/j.neubiorev.2012.10.008; Yager &amp; Feinstein 2017 doi:10.4088/JCP.15nr10476; Sharp et al. 2015 doi:10.1016/j.ijpsycho.2015.07.001. <b>Tratamiento:</b> Strauß 2019 doi:10.1007/s00406-019-01085-y; Strauß 2020 (VIP-ADHD) doi:10.1016/j.euroneuro.2020.12.003; Meijs &amp; Arns 2024 doi:10.1016/j.bpsc.2024.07.027. <b>Pronóstico:</b> David et al. 2025 doi:10.1002/alz.70749.</p>`,
+};
+function validezHTML(n){
+  const v=VALIDEZ[n]; if(!v) return '';
+  return `<details class="sec" open><summary style="color:var(--alta)">Validez predictiva <span class="muted-note">— ¿sirve para precision psychiatry?</span></summary><div class="sec-body">${v}</div></details>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -1150,6 +1167,8 @@ NETS.filter(o=>o.n===1).forEach(net=>{
     ${theoryHTML(net.n)}
 
     ${scoreHTML(net.n)}
+
+    ${validezHTML(net.n)}
 
     ${nmapHTML(net.n)}
 
