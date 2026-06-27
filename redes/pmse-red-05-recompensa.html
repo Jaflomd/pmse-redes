@@ -1092,6 +1092,25 @@ function rationaleHTML(n){
   return `<details class="sec" open><summary style="color:var(--mod)">Rationale · por qué estos ítems <span class="muted-note">— lógica de diseño</span></summary><div class="sec-body rationale">${r}</div></details>`;
 }
 
+// ---------- validez predictiva (capa precision-psychiatry, por ítem) ----------
+const VALIDEZ = {
+ 5:`<p class="muted-note" style="margin-top:0">¿La posición en el eje de cada ítem predice <b>respuesta a tratamiento</b>, <b>pronóstico</b> o <b>diferencia</b> trastornos/subtipos? Lógica de validadores de Robins &amp; Guze aplicada ítem a ítem; nivel de evidencia entre paréntesis.</p>
+<table>
+<thead><tr><th>Ítem</th><th>Tratamiento</th><th>Pronóstico</th><th>Diferenciador</th></tr></thead>
+<tbody>
+<tr><td><b>Anticipación (<i>wanting</i>)</b></td><td>Moderador con RCT: el cambio temprano en sensibilidad a recompensa predice respuesta a escitalopram/aripiprazol (CAN-BIND); dominio-diana de ketamina <span class="src">(RCT/cohorte)</span></td><td>La pérdida de interés aumenta en los meses previos a conducta suicida (STEP-BD) <span class="src">(cohorte prospectiva)</span></td><td><i>Effort-based decision-making</i> objetiva el déficit motivacional y correlaciona con síntomas negativos/funcionalidad <span class="src">(transversal + revisión)</span></td></tr>
+<tr><td><b>Frustración (<i>frustrative nonreward</i>)</b></td><td>Diana de CBT de exposición; aún <b>sin RCT de respuesta farmacológica</b> validado <span class="src">(revisión mecanística)</span></td><td><b>Fuerte:</b> la irritabilidad crónica predice depresión, ODD y deterioro funcional <span class="src">(cohortes longitudinales + meta-análisis)</span></td><td>Disocia fásica (→TDAH) vs tónica; crónica→depresión unipolar vs episódica→bipolar; <i>flag</i> de subtipo inflamatorio (PCR). No separa DMDD de ODD <span class="src">(variable latente, DTI, UK Biobank)</span></td></tr>
+<tr><td><b>Tono hedónico (<i>liking</i>)</b></td><td>Predictor independiente de no-respuesta/resistencia (GSRD); diana <b>opioide kappa</b> (aticaprant) distinta de la dopaminérgica — eficacia aún no probada <span class="src">(cohorte n=1294 + clase emergente)</span></td><td>Fuerte: asociado a curso más severo, más episodios, suicidio, hospitalización <span class="src">(cohorte n=1294)</span></td><td>Consumatorio (OFC) disociable de anticipatorio (ACC) a nivel neural; valida separar <i>liking</i> de <i>wanting</i> <span class="src">(MRI multimodal)</span></td></tr>
+</tbody>
+</table>
+<p><b>Lectura precision-psychiatry de la red 5.</b> Cada ítem aporta un <i>tipo distinto</i> de validez predictiva: <i>wanting</i> es el moderador de tratamiento más sólido (RCT), frustración pesa en pronóstico y diferenciación de curso, y <i>liking</i> señala una <b>diana farmacológica propia</b> (opioide kappa vs dopamina). El déficit consumatorio vs anticipatorio se disocia neuralmente — justifica puntuarlos como ítems separados.</p>
+<p class="src">— Capa de validez predictiva (Javier, 2026-06-27); citas verificadas vía PubMed. <b>Wanting:</b> Allen 2018 doi:10.1017/S0033291718002441; Medeiros 2024 doi:10.1038/s41398-024-03180-8; Johnston 2023 doi:10.1038/s41386-023-01632-1; Ballard 2016 doi:10.1111/bdi.12397; Green 2015 doi:10.1093/schbul/sbv071; Culbreth 2017 doi:10.1016/j.cobeha.2017.12.003. <b>Frustración:</b> Kircanski 2019 doi:10.1016/j.brat.2019.04.007; Dougherty 2013 doi:10.1016/j.jaac.2013.09.007; Vidal-Ribas &amp; Stringaris 2018 doi:10.1002/da.22810; Cardinale 2021 doi:10.1016/j.jaac.2020.11.022; Hodgdon 2021 doi:10.1002/dev.22167; Krieger 2013 doi:10.1590/1516-4446-2013-S107; Linke 2019 doi:10.1016/j.jaac.2019.05.035; Milaneschi 2021 doi:10.1038/s41380-021-01188-w; Birkle 2016 doi:10.1024/1422-4917/a000496. <b>Liking:</b> Luca 2024 doi:10.1093/ijnp/pyae055; Hampsey 2024 doi:10.1080/14728214.2024.2345645; Bailey &amp; Husbands 2018 doi:10.1042/NS20170145; Liu 2020 doi:10.1016/j.pscychresns.2020.111239; Ho 2014 doi:10.1080/00223891.2014.940625.</p>`,
+};
+function validezHTML(n){
+  const v=VALIDEZ[n]; if(!v) return '';
+  return `<details class="sec" open><summary style="color:var(--alta)">Validez predictiva <span class="muted-note">— ¿sirve para precision psychiatry?</span></summary><div class="sec-body">${v}</div></details>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -1150,6 +1169,8 @@ NETS.filter(o=>o.n===5).forEach(net=>{
     ${theoryHTML(net.n)}
 
     ${scoreHTML(net.n)}
+
+    ${validezHTML(net.n)}
 
     ${nmapHTML(net.n)}
 
