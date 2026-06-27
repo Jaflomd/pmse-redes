@@ -233,7 +233,7 @@
 </div>
 
 <div class="wrap" id="ovwrap" style="padding-top:18px">
-  <details class="sec" open><summary>Mapa del instrumento — 38 ítems en 10 redes</summary><div class="sec-body"><div id="overview"></div></div></details>
+  <details class="sec" open><summary>Mapa del instrumento — 40 ítems en 10 redes</summary><div class="sec-body"><div id="overview"></div></div></details>
 </div>
 
 <div class="wrap">
@@ -389,7 +389,7 @@ const NETS = [
  },
  {n:6, name:'Red sensoriomotora — nigroestriatal + cerebelo + motor',
   onto:'Circuito nigroestriatal (ganglios basales) + circuito cerebeloso-tálamo-cortical. Territorio que HiTOP no captura (ventaja diferencial del instrumento).',
-  items:['Velocidad psicomotriz','Parakinesia','Tics','Síntomas extrapiramidales','Signos neurológicos blandos'], strength:'ALTA', access:'obs',
+  items:['Velocidad psicomotriz','Parakinesia','Tics','Síntomas extrapiramidales (agudos)','Discinesia (tardía)','Acatisia','Signos neurológicos blandos'], strength:'ALTA', access:'obs',
   ev:[
     ['Catatonia: locus neural en loops cortico-estriado-tálamo-cerebelosos.','Walther & Heckers NEJM 2023;389:1797; Duque 2024 (PMC11006573) [library]'],
     ['Enlentecimiento psicomotor en MDD: desacople SMN-frontal + desregulación dopaminérgica (conectividad ↔ mapas D1/D2 r=−0.492).','Liang et al. 2025 Psychol Med (PMC12527541) [library]'],
@@ -505,7 +505,9 @@ const SCORES = {
   {it:'Velocidad psicomotriz', a:['retardo: latencia >5 s, AVD afectadas, bradicinesia','enlentecimiento leve: movimientos/habla algo lentos','velocidad proporcional','aceleración leve: inquieto, habla rápida redirigible','agitación / taquilalia, no redirigible']},
   {it:'Parakinesia', note:'<b>3 subtipos, cada uno 0/−1/−2</b> (ventana: entrevista o últimos 7 días). <b>Iterativa</b>: 0 ausente · −1 sutil/intermitente · −2 recurrente/difícil de interrumpir (estereotipias, perseveraciones, verbigeración, ecolalia). <b>Odd/bizarra</b>: 0 proporcional · −1 gesto/postura rara breve · −2 bizarra clara o sostenida (mannerisms, grimacing, posturas raras). <b>Volicional/automática</b>: 0 agencia motora normal · −1 leve/ambiguo · −2 claro/reproducible (obediencia automática, mitgehen/mitmachen, ambitendencia, flexibilidad cérea, catalepsia, grasp reflex).'},
   {it:'Tics', a:[null,null,'ausentes','leves (ocasionales, simples, suprimibles)','marcados (frecuentes/casi continuos, complejos, no suprimibles, con interferencia)'], note:'<b>Unidireccional 0/+1/+2</b> anclado en YGTSS (frecuencia · intensidad · complejidad · supresibilidad · interferencia). Espec [motor]/[vocal-fónico] · [simple]/[complejo].'},
-  {it:'Síntomas extrapiramidales', a:[null,null,'ausentes','leves','marcados'], note:'<b>Unidireccional 0/+1/+2.</b> Incluye acatisia. Anclas: Simpson-Angus (parkinsonismo) · BARS (acatisia) · AIMS (discinesia). Espec [parkinsonismo]/[acatisia]/[discinesia]/[distonía].'},
+  {it:'Síntomas extrapiramidales (agudos)', a:[null,null,'ausentes','leves','marcados'], note:'<b>Unidireccional 0/+1/+2.</b> EPS agudos por bloqueo D2, reversibles: parkinsonismo, distonía, temblor. Ancla: Simpson-Angus. Espec [parkinsonismo]/[distonía]/[temblor]. Tx: anticolinérgicos / ↓dosis.'},
+  {it:'Discinesia (tardía)', a:[null,null,'ausente','leve (orofacial intermitente)','marcada (generalizada o interferente)'], note:'<b>Unidireccional 0/+1/+2.</b> Síndrome tardío por supersensibilidad D2 crónica; oro-buco-lingual; frecuentemente irreversible. Ancla: AIMS. Tx: inhibidores VMAT2 (valbenazina/deutetrabenazina); los anticolinérgicos la EMPEORAN.'},
+  {it:'Acatisia', a:[null,null,'ausente','leve (urgencia interna, inquietud redirigible)','marcada (urgencia disfórica intensa, no puede quedarse quieto)'], note:'<b>Unidireccional 0/+1/+2.</b> Urgencia interna disfórica de moverse (moverse alivia); puede existir sin movimiento visible. Se confunde con ansiedad / agitación psicótica / empeoramiento → no escalar el fármaco. Ancla: BARS.'},
   {it:'Signos neurológicos blandos', a:[null,null,'ausentes','sutiles (1–2 signos)','marcados (múltiples dominios)'], note:'<b>Unidireccional 0/+1/+2.</b> Especificador <b>[autonómico]</b> para signos vegetativos (sialorrea, seborrea, sudoración) — AMDP 110, 123.'}
  ],
  7:[
@@ -603,7 +605,9 @@ const NMAP = {
   {it:'Velocidad psicomotriz', hitop:'Psychomotor retardation · Hyperactivity · Fidgeting', dsm5:10, esc:'MADRS/HAM-D 8 · PANSS G7 · MCCB Speed'},
   {it:'Parakinesia', hitop:'Catatonia · Disorganised motor behaviour', dsm5:10, esc:'AIMS · NES overflow · Heidelberg NSS'},
   {it:'Tics', hitop:'—', dsm5:0, esc:'YGTSS'},
-  {it:'Síntomas extrapiramidales', hitop:'—', dsm5:0, esc:'Simpson-Angus · BARS · AIMS'},
+  {it:'Síntomas extrapiramidales (agudos)', hitop:'—', dsm5:0, esc:'Simpson-Angus'},
+  {it:'Discinesia (tardía)', hitop:'—', dsm5:0, esc:'AIMS'},
+  {it:'Acatisia', hitop:'—', dsm5:0, esc:'BARS'},
   {it:'Signos neurológicos blandos', hitop:'—', dsm5:0, esc:'NES · Heidelberg NSS'}
  ],
  7:[
@@ -654,7 +658,9 @@ const SPECTRUM = {
  'Velocidad psicomotriz':'fuera de HiTOP · motor',
  'Parakinesia':'fuera de HiTOP · motor',
  'Tics':'fuera de HiTOP · motor',
- 'Síntomas extrapiramidales':'fuera de HiTOP · motor/iatrogénico',
+ 'Síntomas extrapiramidales (agudos)':'fuera de HiTOP · motor/iatrogénico',
+ 'Discinesia (tardía)':'fuera de HiTOP · motor/iatrogénico',
+ 'Acatisia':'fuera de HiTOP · motor/iatrogénico',
  'Signos neurológicos blandos':'fuera de HiTOP · neurológico',
  'Contenido del pensamiento':'Thought Disorder',
  'Integración sensorial':'Thought Disorder',
@@ -722,7 +728,9 @@ const AMDP = {
   {it:'Velocidad psicomotriz', n:4, a:'016 Pensamiento enlentecido · 083 Agitación motora · 087 Mutismo · 088 Logorrea'},
   {it:'Parakinesia', n:2, a:'084 Paracinesia · 085 Manierismos'},
   {it:'Tics', n:0, a:'—'},
-  {it:'Síntomas extrapiramidales', n:5, a:'132 Rigidez muscular · 134 Temblor · 135 Discinesia aguda · 136 Hipocinesia · 137 Acatisia'},
+  {it:'Síntomas extrapiramidales (agudos)', n:3, a:'132 Rigidez muscular · 134 Temblor · 136 Hipocinesia'},
+  {it:'Discinesia (tardía)', n:1, a:'135 Discinesia'},
+  {it:'Acatisia', n:1, a:'137 Acatisia'},
   {it:'Signos neurológicos blandos', n:6, a:'110 Hipersalivación · 123 Seborrea · 133 Hipotonía muscular · 138 Ataxia · 139 Nistagmo · 140 Parestesias'}
  ],
  7:[
@@ -793,7 +801,9 @@ const DSM = {
   {it:'Velocidad psicomotriz', n:10, d:'ZMQRF_272 Movimientos repetitivos de manos/pies · ZMQRF_273 Inquietud motora en asiento · ZMQRF_274 Abandono inapropiado del asiento · ZMQRF_275 Actividad motora inapropiada al contexto · ZMQRF_276 Inquietud/agitación interna · ZMQRF_277 Incapacidad de estar quieto en ocio · ZMQRF_278 Hiperactividad motora persistente · ZMQRF_598 Movimientos sin propósito/agitación psicomotriz · ZMQRF_676 Enlentecimiento observado por otros · ZMQRF_69 Enlentecimiento psicomotor subjetivo'},
   {it:'Parakinesia', n:9, d:'ZMQRF_129 Muecas faciales involuntarias · ZMQRF_289_V4 Mutismo/incapacidad de hablar · ZMQRF_40 Movimientos estereotipados incontrolables · ZMQRF_41 Ecolalia/repetición automática del habla · ZMQRF_584 Ecopraxia/copia involuntaria de movimientos · ZMQRF_597 Movimientos percibidos como extraños por otros · ZMQRF_64 Catatonia/inmovilidad y falta de respuesta · ZMQRF_65 Rigidez corporal con resistencia al reposicionamiento · ZMQRF_66_V4 Postura rígida con no-responsividad al entorno'},
   {it:'Tics', n:0, d:'—'},
-  {it:'Síntomas extrapiramidales', n:0, d:'—'},
+  {it:'Síntomas extrapiramidales (agudos)', n:0, d:'—'},
+  {it:'Discinesia (tardía)', n:0, d:'—'},
+  {it:'Acatisia', n:0, d:'—'},
   {it:'Signos neurológicos blandos', n:0, d:'—'}
  ],
  7:[
@@ -863,7 +873,8 @@ const THEORY = {
   {it:'Velocidad psicomotriz', m:'El vigor del movimiento depende del RPE dopaminérgico escalado al coste energético; la reducción tónica de DA sesga el coste/beneficio → lentitud sin perder precisión.', refs:[['Mazzoni et al. 2007 · J Neurosci','10.1523/JNEUROSCI.0264-07.2007'], ['Schultz 2019 · F1000Research','10.12688/f1000research.19793.1']]},
   {it:'Parakinesia', m:'Fallo en la supresión de priors motores competitivos: la precisión de predicciones propioceptivas no cancela modelos motores alternativos → movimientos parásitos.', refs:[['Joseph, Adams et al. 2026 · Brain','10.1093/brain/awag064']]},
   {it:'Tics', m:'Actualización aberrante de creencias sobre la predictibilidad de cues sensoriomotores: el modelo generativo no se ajusta al cambio de contingencias → asociaciones estímulo-respuesta inflexibles.', refs:[['Schüller et al. 2025 · Brain Commun','10.1093/braincomms/fcaf458']]},
-  {it:'Síntomas extrapiramidales', m:'Disfunción sensoriomotora nuclear (no solo iatrogénica): fallo de integración de señales predictivas descendentes sobre el sistema motor estriado-cortical.', refs:[['Hirjak et al. 2025 · Schizophr Res','10.1016/j.schres.2025.09.021'], ['Joseph, Adams et al. 2026 · Brain','10.1093/brain/awag064']]},
+  {it:'Síntomas extrapiramidales (agudos)', m:'Bloqueo D2 agudo: hipodopaminergia nigroestriatal que desbalancea el control motor estriado-cortical (reversible).', refs:[['Hirjak et al. 2025 · Schizophr Res','10.1016/j.schres.2025.09.021']]},
+  {it:'Discinesia (tardía)', m:'Plasticidad maladaptativa por bloqueo D2 crónico (supersensibilidad/upregulación): el sistema motor sobre-corrige la ganancia dopaminérgica perdida.', refs:[['Waln & Jankovic 2013 · Tremor Other Hyperkinet Mov','10.7916/D88P5Z71']]},
   {it:'Signos neurológicos blandos', m:'Integración sensoriomotora alterada del neurodesarrollo: fallo crónico en la calibración de modelos propioceptivo-visuo-vestibulares (corollary discharge persistente).', refs:[['Brown, Friston & Bestmann 2011 · Front Psychol','10.3389/fpsyg.2011.00218'], ['Hirjak et al. 2025 · Schizophr Res','10.1016/j.schres.2025.09.021']]}
  ],
  7:[
@@ -932,7 +943,9 @@ const MACRO = {
   {it:'Velocidad psicomotriz', b:'18 Retardo motor · 23 Hiperactividad', x:'—', np:'10 Conducta motora aberrante', cp:'Lentitud / Hiperactividad (obs)'},
   {it:'Parakinesia', b:'24 Manierismos y posturas', x:'—', np:'10 Conducta motora aberrante', cp:'Manierismos/posturas · Mov. involuntarios'},
   {it:'Tics', b:'—', x:'—', np:'10 (parc.)', cp:'Movimientos involuntarios'},
-  {it:'Síntomas extrapiramidales', b:'—', x:'—', np:'—', cp:'Mov. involuntarios / Tensión muscular'},
+  {it:'Síntomas extrapiramidales (agudos)', b:'—', x:'—', np:'—', cp:'Tensión muscular / Rigidez'},
+  {it:'Discinesia (tardía)', b:'—', x:'—', np:'—', cp:'Movimientos involuntarios (orofaciales)'},
+  {it:'Acatisia', b:'—', x:'—', np:'—', cp:'Inquietud / acatisia'},
   {it:'Signos neurológicos blandos', b:'—', x:'—', np:'—', cp:'—'}
  ],
  7:[
@@ -1025,7 +1038,13 @@ const RATIONALE = {
 <p><b>Qué es.</b> Movimiento o sonido súbito, rápido, no rítmico, recurrente, parcialmente suprimible, precedido por una <i>urge</i> premonitoria y seguido de alivio (y rebote tras supresión). Motor o vocal, simple o complejo.</p>
 <p><b>La fenomenología lo separa:</b> no es discinesia (irregular, sin urge), temblor (rítmico), distonía (postura sostenida), parakinesia catatónica (sin urge/supresión), compulsión (organizada por regla/miedo) ni estereotipia autocalmante. La clave: <b>urge + supresibilidad + rebote</b>.</p>
 <p><b>Eje unidireccional (0/+1/+2, solo polo patológico).</b> Sustrato: circuito cortico-estriado-tálamo-cortical / ganglios basales, función dopaminérgica anómala (Tourette). Especificadores: [motor]/[vocal], [urge], [supresibilidad], [neurodesarrollo], [funcional].</p>
-<p class="src">— Lógica de diseño de Javier (subcapítulo nm-tic). Comorbilidad neurodesarrollo/TDAH: Hirschtritt et al. 2015 JAMA Psychiatry (doi:10.1001/jamapsychiatry.2014.2650). Sustrato: Albin & Mink 2006 Trends Neurosci (doi:10.1016/j.tins.2006.01.001).</p>`
+<p class="src">— Lógica de diseño de Javier (subcapítulo nm-tic). Comorbilidad neurodesarrollo/TDAH: Hirschtritt et al. 2015 JAMA Psychiatry (doi:10.1001/jamapsychiatry.2014.2650). Sustrato: Albin & Mink 2006 Trends Neurosci (doi:10.1016/j.tins.2006.01.001).</p>
+<hr class="rat-sep">
+<p><b>EPS, Discinesia y Acatisia: ¿psiquismo o fármaco?</b> Los tres comparten el sistema dopaminérgico nigroestriatal que los fármacos perturban. Pregunta de cabecera: ¿lo que observo pertenece al paciente o al fármaco que prescribí? El error es leer el cuerpo por el diagnóstico previo; la consecuencia, prescribir en el idioma equivocado.</p>
+<p><b>Síntomas extrapiramidales (agudos).</b> Parkinsonismo, distonía y temblor por <b>bloqueo D2 agudo</b> (hipodopaminergia); reversibles. Tx: anticolinérgicos / ↓dosis. Ancla: Simpson-Angus.</p>
+<p><b>Discinesia (tardía) — ítem propio.</b> Mismo circuito, mecanismo <b>opuesto</b>: supersensibilidad D2 crónica por bloqueo prolongado; oro-buco-lingual; frecuentemente <b>irreversible</b>. Se separa porque el tratamiento es opuesto: los <b>anticolinérgicos la EMPEORAN</b>; se trata con <b>inhibidores VMAT2</b> (valbenazina/deutetrabenazina). Confundirla con EPS agudo = daño iatrogénico. Mayor riesgo con antipsicóticos de 1ª generación (Carbon 2018). Ancla: AIMS.</p>
+<p><b>Acatisia — ítem propio.</b> La «invisible»: <b>urgencia interna disfórica</b> de moverse (moverse alivia, quedarse quieto desespera); puede existir <b>sin movimiento visible</b>. Se confunde con ansiedad, agitación psicótica o empeoramiento del cuadro → el error grave es <b>escalar el fármaco causante</b>. Discriminador: ¿moverse alivia? Ancla: BARS.</p>
+<p class="src">— Lógica de diseño de Javier (cluster-opener nm-eps-movimiento). Síndrome tardío / discinesia: Waln & Jankovic 2013 Tremor Other Hyperkinet Mov (doi:10.7916/D88P5Z71); riesgo FGA &gt; SGA: Carbon et al. 2018 World Psychiatry (doi:10.1002/wps.20579).</p>`
 };
 function rationaleHTML(n){
   const r=RATIONALE[n]; if(!r) return '';
@@ -1141,7 +1160,7 @@ synth.innerHTML=`
   <div class="section-h" style="margin-top:18px">Correspondencias con otras clasificaciones</div>
   <ul class="ev">
     <li><b>DSM-5:</b> 331 síntomas del instrumento → <b>317 ubicados por red (96%)</b>, mostrados uno por uno en cada red. Fuera de alcance: eje de adicción y bajo peso corporal.</li>
-    <li><b>HiTOP:</b> espectro de nivel superior asignado a los 38 signos — <b>27 dentro de HiTOP</b> (Internalizing, Thought Disorder, Detachment, Externalizing, Somatoform…) y <b>11 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva, circadiano), la cobertura diferencial del instrumento.</li>
+    <li><b>HiTOP:</b> espectro de nivel superior asignado a los 40 signos — <b>27 dentro de HiTOP</b> (Internalizing, Thought Disorder, Detachment, Externalizing, Somatoform…) y <b>13 «fuera de HiTOP»</b> (arousal, motor, cognición ejecutiva, circadiano), la cobertura diferencial del instrumento.</li>
     <li><b>RDoC:</b> las 10 redes se reagrupan en 6 dominios.</li>
     <li><b>AMDP (9ª ed.):</b> los 154 ítems ubicados por red.</li>
     <li><b>Escalas clínicas:</b> cada signo cruzado a BNSS, PANSS, PID-5, MADRS/HAM-D, MCCB, Y-BOCS, EASE, AMDP, NES, etc.</li>
