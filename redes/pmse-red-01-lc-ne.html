@@ -107,6 +107,9 @@
   .c-2{background:#f87171}.c-1{background:#fb923c}.c0{background:#4ade80}.cp1{background:#fb923c}.cp2{background:#f87171}
   .scol.s04-0{background:#4ade80}.scol.s04-1{background:#a3e635}.scol.s04-2{background:#fbbf24}.scol.s04-3{background:#fb923c}.scol.s04-4{background:#f87171}
   .scell.s04-0{border-left:3px solid #4ade80}.scell.s04-1{border-left:3px solid #a3e635}.scell.s04-2{border-left:3px solid #fbbf24}.scell.s04-3{border-left:3px solid #fb923c}.scell.s04-4{border-left:3px solid #f87171}
+  .scrow.r9{grid-template-columns:148px repeat(9,1fr)}
+  .scol.b9-m4{background:#f87171}.scol.b9-m3{background:#fb923c}.scol.b9-m2{background:#fbbf24}.scol.b9-m1{background:#a3e635}.scol.b9-0{background:#4ade80}.scol.b9-p1{background:#a3e635}.scol.b9-p2{background:#fbbf24}.scol.b9-p3{background:#fb923c}.scol.b9-p4{background:#f87171}
+  .scell.b9-m4{border-left:3px solid #f87171}.scell.b9-m3{border-left:3px solid #fb923c}.scell.b9-m2{border-left:3px solid #fbbf24}.scell.b9-m1{border-left:3px solid #a3e635}.scell.b9-0{border-left:3px solid #4ade80}.scell.b9-p1{border-left:3px solid #a3e635}.scell.b9-p2{border-left:3px solid #fbbf24}.scell.b9-p3{border-left:3px solid #fb923c}.scell.b9-p4{border-left:3px solid #f87171}
   .sflag{font-size:11px;color:var(--mod);margin:2px 0 2px 4px}
   .snote{font-size:12px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);
     border-radius:8px;padding:9px 11px;margin:6px 0}
@@ -114,7 +117,7 @@
   .snote table{margin:6px 0 0}
   .snote td,.snote th{padding:4px 8px;font-size:11.5px}
   @media (max-width:680px){
-    .scrow{grid-template-columns:1fr;gap:3px}
+    .scrow,.scrow.r9{grid-template-columns:1fr;gap:3px}
     .scrow.head{display:none}
     .scell.empty{display:none}
     .scell::before{content:attr(data-lvl);font-weight:800;margin-right:7px;color:var(--accent)}
@@ -481,7 +484,7 @@ const NETS = [
 const SCORES = {
  1:[
   {it:'Conciencia', scaleDown:['vigilia lúcida (despierto, orientado, atención sostenida)','obnubilación leve (despierta fácil, algo enlentecido)','letargo / somnolencia marcada (requiere estímulo repetido)','estupor (solo responde a estímulo intenso o doloroso)','coma (sin respuesta ni al dolor, no despertable)'], flag:'eje UNIPOLAR de nivel de conciencia (0 → −4), anclado en Glasgow / disorders of consciousness (Giacino 2018, Kondziella 2020). La hipervigilancia se puntúa en Alerta (red 1); la expansión vivencial en Experiencia vivida (red 9)'},
-  {it:'Alerta', a:['hipoarousal: tono basal bajo, latencia >5 s, se duerme en entrevista','arousal reducido: enlentecido, latencia 2–5 s, requiere reorientación','arousal proporcional: tono basal y reactividad fásica adecuados','hiperarousal leve: tono alto o sobresalto fácil, redirigible','hiperarousal sostenido: tono alto no redirigible, taquilalia, no se mantiene sentado'], flag:'distinguir tono basal (tónico) de la reactividad al estímulo (fásico); separar de psicomotor, atención y afecto'}
+  {it:'Alerta', a9:['tono mínimo, hiporreactividad extrema, apenas se activa ante estímulo (despierto pero «apagado»)','hipoarousal claro: embotamiento, hiporreactividad sensorial/autonómica marcada, somnolencia diurna','tono bajo notable, hiporreactivo, latencia de respuesta aumentada','tranquilo/relajado, reactividad algo baja (normal)','arousal proporcional: tono basal y reactividad fásica adecuados','alerta vivaz, algo tenso (normal)','sobresalto fácil, cuesta relajarse, reactividad sensorial algo alta','hipervigilancia sostenida + hiperreactividad sensorial/autonómica (sobresalto, taquicardia, sudoración), irritable, no se relaja','hiperarousal extremo no redirigible: hipervigilancia + activación autonómica intensa (sudomotora/somática) + sobresalto exagerado'], flag:'eje BIPOLAR de tono/ganancia de arousal (−4 hipoarousal ↔ +4 hiperarousal); NO es agitación psicomotriz (red 6) ni nivel de vigilia (Conciencia). El hiperarousal se disecó en 7 dimensiones (Bresser 2026, EClinicalMedicine, doi:10.1016/j.eclinm.2026.103810). Anclaje: RASS/OSLA (tónico), pupilometría/EDA (fásico)'}
  ],
  2:[
   {it:'Sueño', a:['hipersomnia marcada (>10 h) o somnolencia diurna invalidante','tendencia a dormir de más / despertar difícil','6–9 h reparador','insomnio leve, sin disfunción diurna','sueño muy reducido (<4 h) — especificar con/sin distrés'], flag:'Proceso S (homeostático): cantidad / presión de sueño. Especificador [con distrés = insomnio, necesidad intacta / sin distrés = ↓necesidad de sueño, manía]. Especificador [parasomnia / pesadillas]: evento REM/NREM, no es un polo; pesadillas traumáticas → Amenaza (red 4)'},
@@ -564,6 +567,14 @@ function scoreHTML(n){
       const cells=r.scaleDown.map((v,i)=>`<div class="scell s04-${i}" data-lvl="${labs[i]}">${v}</div>`).join('');
       const fl = r.flag?`<div class="sflag">⚑ ${r.flag}</div>`:'';
       return `${lh}<div class="scrow"><div class="it">${r.it}</div>${cells}</div>${fl}`;
+    }
+    if(r.a9){
+      const labs=['−4','−3','−2','−1','0','+1','+2','+3','+4'];
+      const cls=['b9-m4','b9-m3','b9-m2','b9-m1','b9-0','b9-p1','b9-p2','b9-p3','b9-p4'];
+      const lh=`<div class="scrow head r9"><div></div>${cls.map((c,i)=>`<div class="scol ${c}">${labs[i]}</div>`).join('')}</div>`;
+      const cells=r.a9.map((v,i)=>`<div class="scell ${cls[i]}${i===4?' lvl0':''}" data-lvl="${labs[i]}">${v}</div>`).join('');
+      const fl = r.flag?`<div class="sflag">⚑ ${r.flag}</div>`:'';
+      return `${lh}<div class="scrow r9"><div class="it">${r.it}</div>${cells}</div>${fl}`;
     }
     if(!r.a){ return `<div class="snote"><b>${r.it}.</b> ${r.note}</div>`; }
     const cells = r.a.map((v,i)=> v
