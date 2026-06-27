@@ -1092,6 +1092,22 @@ function rationaleHTML(n){
   return `<details class="sec" open><summary style="color:var(--mod)">Rationale · por qué estos ítems <span class="muted-note">— lógica de diseño</span></summary><div class="sec-body rationale">${r}</div></details>`;
 }
 
+const VALIDEZ = {
+ 6:`<p class="muted-note" style="margin-top:0">¿Los <b>signos neurológicos blandos</b> (NSS: integración sensorial, coordinación motora y secuenciación motora compleja / Luria) predicen <b>tratamiento</b>, <b>pronóstico</b> o <b>diferencian</b> poblaciones? Foco: NSS como <b>endofenotipo de neurodesarrollo</b>; nivel de evidencia entre paréntesis.</p>
+<table>
+<thead><tr><th>Ítem</th><th>Tratamiento</th><th>Pronóstico</th><th>Diferenciador / transdiagnóstico</th></tr></thead>
+<tbody>
+<tr><td><b>Signos neurológicos blandos</b> (sensorial · coordinación · secuenciación/Luria)</td><td>Dirección floja: los NSS son <b>rasgo estable</b> que <b>no responde a antipsicóticos</b> ni predice mejoría en esquizofrenia; la modificabilidad depende del trastorno — en <b>TDAH el metilfenidato sí los reduce</b> (21/26 ítems, independiente de dosis y de la mejoría del TDAH) <span class="src">(cohorte 12 m n=133 + estudio pre-post TDAH)</span></td><td>El componente de <b>planificación/secuenciación</b> (enlentecimiento psicomotor = Luria) predice transición en alto riesgo y se liga a vulnerabilidad genética; los NSS están presentes <b>antes</b> de la transición a psicosis, aunque el NSS agregado no siempre discrimina a los convertidores <span class="src">(review + cohorte ARMS n=53)</span></td><td><b>Endofenotipo de neurodesarrollo:</b> 73% de pacientes con esquizofrenia fuera del rango de sanos, distintos de síntomas/cognición; <b>familiares</b> de primer grado intermedios y segregan con la enfermedad (d=0.97). Marcan el <b>eje de neurodesarrollo</b>: cargados en esquizofrenia, <b>bipolar</b> (d=1.14), <b>TEA</b>, <b>TDAH</b> y TOC, pero <b>ausentes en depresión unipolar y TEPT</b> — el NSS enruta al polo neurodesarrollo y descarta el afectivo/estrés puro <span class="src">(meta-análisis múltiples + caso-control)</span></td></tr>
+</tbody>
+</table>
+<p><b>Lectura precision-psychiatry de la red 6.</b> Los signos neurológicos blandos se comportan como <b>endofenotipo de neurodesarrollo</b>, no como marcador de estado: su validez es sobre todo <b>discriminante</b> — separan el eje de neurodesarrollo (esquizofrenia, bipolar, TEA, TDAH) del afectivo/estrés puro (depresión unipolar, TEPT, donde son normales) —, parcial en <b>pronóstico</b> (la secuenciación/Luria predice transición a psicosis) y <b>floja en tratamiento</b> (rasgo estable que no responde a antipsicóticos, salvo reducción con metilfenidato en TDAH). Es la versión motora de la regla del pMSE <i>lee el signo, no asumas la causa</i>: la presencia de NSS apunta a neurodesarrollo, su ausencia lo descarta. Límite: la mayoría de la evidencia usa NSS <b>agregado</b>; la subescala de secuenciación aislada está menos estudiada.</p>
+<p class="src">— Capa de validez predictiva (Javier, 2026-06-27); citas verificadas vía PubMed. <b>Endofenotipo/diferenciador:</b> Chan 2009 doi:10.1093/schbul/sbp011; Chan 2010 doi:10.1016/j.neubiorev.2009.11.012; Bora 2018 doi:10.1016/j.euroneuro.2018.08.006; Zhao 2012 doi:10.1016/j.pnpbp.2012.12.006. <b>Pronóstico:</b> Osborne 2020 doi:10.1016/j.bionps.2020.100016; Tamagni 2013 doi:10.1016/j.psychres.2013.06.016. <b>Tratamiento:</b> Fountoulakis 2019 doi:10.1080/08039488.2019.1649724; Hrtanek 2015 doi:10.4306/pi.2015.12.4.545. <b>Transdiagnóstico:</b> TEA Razjouyan 2025 doi:10.22037/ijcn.v19i1.44589; TOC Poncelet 2023 (Tijdschr Psychiatr, sin DOI registrado); TEPT Gurvits 2002 doi:10.1016/s0165-1781(02)00026-4.</p>`,
+};
+function validezHTML(n){
+  const v=VALIDEZ[n]; if(!v) return '';
+  return `<details class="sec" open><summary style="color:var(--alta)">Validez predictiva <span class="muted-note">— ¿sirve para precision psychiatry?</span></summary><div class="sec-body">${v}</div></details>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -1150,6 +1166,8 @@ NETS.filter(o=>o.n===6).forEach(net=>{
     ${theoryHTML(net.n)}
 
     ${scoreHTML(net.n)}
+
+    ${validezHTML(net.n)}
 
     ${nmapHTML(net.n)}
 
