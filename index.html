@@ -366,13 +366,14 @@ const NETS = [
     ['<b>Sueño (Proceso S — ALTA):</b> regulación homeostática (presión de sueño) sobre el switch VLPO↔sistema de arousal, estabilizado por orexina/hipocretina; la alteración de continuidad del sueño es un desbalance transdiagnóstico del arousal.','Borbély 2016 J Sleep Res; Saper 2005 Nature; Scammell 2017 Neuron; Baglioni 2016 Psychol Bull (PubMed)'],
     ['<b>Ritmo circadiano (Proceso C — ALTA):</b> reloj maestro en el núcleo supraquiasmático (SCN), resincronizado por luz/melatonina; la disrupción circadiana y el ánimo se relacionan de forma bidireccional.','Borbély 2016 J Sleep Res; Walker 2020 Transl Psychiatry (PubMed)'],
     ['<b>Apetito (ALTA):</b> núcleo arcuato como integrador — NPY/AgRP (orexigénico) vs POMC/CART (anorexigénico); leptina/grelina/insulina señalan estado energético.','Sobrino Crespo Front Endocrinol 2014; Stark Mol Cell Endocrinol 2012 (PubMed)'],
-    ['<b>Libido (ALTA):</b> doble circuito — hipotálamo (ARH→MPN→VMH, consumatorio) + mesolímbico (NAc/DA, deseo), convergiendo en el área preóptica medial. Replica la lógica wanting vs consumatorio.','Micevych & Meisel Front Syst Neurosci 2017 (PubMed)']
+    ['<b>Libido (ALTA):</b> doble circuito — hipotálamo (ARH→MPN→VMH, consumatorio) + mesolímbico (NAc/DA, deseo), convergiendo en el área preóptica medial. Replica la lógica wanting vs consumatorio.','Micevych & Meisel Front Syst Neurosci 2017; Pfaus 2009 J Sex Med; Pfaus 2021 CNS Spectr (PubMed)'],
+    ['<b>Libido en salud mental (eje bipolar):</b> polo − (hipolibido) — disfunción sexual en 56% de la esquizofrenia (pérdida de libido 41%) y 27–39% por antidepresivos; polo + (hiperlibido) — hipersexualidad transdiagnóstica (manía, levodopa, sustancias) vía dopamina/recompensa.','Korchia 2023 JAMA Psychiatry; Williams 2006 J Clin Psychiatry; Asiff 2018 Curr Drug Targets (PubMed)']
   ],
   map:[
     ['Sueño (cantidad · Proceso S)','Presión homeostática + switch VLPO↔orexina (sueño-vigilia)','Saper 2005; Scammell 2017; Borbély 2016 (PubMed)','alta'],
     ['Ritmo circadiano (fase · Proceso C)','SCN (marcapasos) + melatonina/luz','Borbély 2016; Walker 2020 (PubMed)','alta'],
     ['Apetito','ARC (NPY/AgRP vs POMC) + leptina/grelina','Sobrino Crespo 2014; Stark 2012 (PubMed)','alta'],
-    ['Libido','Área preóptica medial + mesolímbico (NAc/DA)','Micevych & Meisel 2017 (PubMed)','alta'],
+    ['Libido','Área preóptica medial (MC4R→DA) + mesolímbico (NAc/DA); excitación vs inhibición serotoninérgica','Pfaus 2009; Pfaus 2021; Micevych & Meisel 2017 (PubMed)','alta'],
     ['Nocicepción','→ movida a red 7 (matriz del dolor)','ver ficha 7','—']
   ],
   gaps:['<b>Nocicepción</b> se evalúa en la red 7 (matriz del dolor ínsula-ACC), no en la red vegetativa..',
@@ -924,7 +925,7 @@ const THEORY = {
   {it:'Sueño', m:'NREM recalibra sinapsis (reduce la complejidad del modelo minimizando free energy); REM prueba el modelo generativo contra simulaciones internas.', refs:[['Hobson, Hong & Friston 2014 · Front Psychol','10.3389/fpsyg.2014.01133'], ['Censi et al. 2026 · Prog Neurobiol','10.1016/j.pneurobio.2026.102939']]},
   {it:'Ritmo circadiano', m:'El reloj circadiano impone priors temporales de precisión esperada (cuándo conviene atender, dormir o comer), modulando la ganancia a lo largo del ciclo de 24 h.', refs:[['Hobson, Hong & Friston 2014 · Front Psychol','10.3389/fpsyg.2014.01133']]},
   {it:'Apetito e ingesta', m:'Hambre = prediction error alostático interoceptivo: priors sobre glucosa/nutrientes vs. señal visceral; la discrepancia motiva ingesta (active inference para minimizar free energy corporal).', refs:[['Barrett & Simmons 2015 · Nat Rev Neurosci','10.1038/nrn3950'], ['Tschantz et al. 2022 · Biol Psychol','10.1016/j.biopsycho.2022.108266']]},
-  {it:'Libido', m:'Inferencia alostática sobre estados de necesidad hedónica/reproductiva (priors hormonales + señales interoceptivas). Marco general; falta literatura PP específica.', refs:[]}
+  {it:'Libido', m:'Doble control excitación/inhibición (Pfaus): sistema excitatorio (DA incertohipotalámica + mesolímbica, melanocortinas/MC4R en área preóptica medial, oxitocina, NE) vs inhibitorio (serotonina, opioides, endocannabinoides). El deseo es el balance entre ambos sobre priors hormonales e interoceptivos.', refs:[['Pfaus 2009 · J Sex Med','10.1111/j.1743-6109.2009.01309.x'], ['Pfaus 2021 · CNS Spectr','10.1017/S109285292100002X']]}
  ],
  3:[
   {it:'Expresividad emocional', m:'Output de active inference: el cerebro genera acción motora (facial/vocal) para minimizar el error entre el afecto inferido y sus señales, con priors culturales (emoción construida).', refs:[['Barrett 2017 · Soc Cogn Affect Neurosci','10.1093/scan/nsw154'], ['Barrett & Satpute 2017 · Neurosci Lett','10.1016/j.neulet.2017.07.045']]},
