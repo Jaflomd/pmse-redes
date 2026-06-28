@@ -1317,6 +1317,30 @@ function validezHTML(n){
   return `<details class="sec" open><summary style="color:var(--alta)">Validez predictiva <span class="muted-note">— ¿sirve para precision psychiatry?</span></summary><div class="sec-body">${v}</div></details>`;
 }
 
+// ---------- capa: modelos convergentes (crosswalks re-anclados 2026-06-28) ----------
+const MODELOS = {
+ 1:[{m:'RDoC',s:'Arousal',it:'Alerta',a:'CONFIRMADO'},{m:'Gray RST',s:'Arousal del BIS',it:'Alerta',a:'COHERENTE'}],
+ 2:[{m:'RDoC',s:'Circadian + Sleep-Wakefulness',it:'Sueño / Ritmo',a:'CONFIRMADO'},{m:'Panksepp',s:'LUST',it:'Libido',a:'CONFIRMADO'}],
+ 3:[{m:'Panksepp',s:'CARE',it:'Afiliación',a:'CONFIRMADO'},{m:'Panksepp',s:'RAGE',it:'Dominancia',a:'COHERENTE'},{m:'Panksepp',s:'PANIC/GRIEF (BNST)',it:'Afiliación',a:'COHERENTE'},{m:'RDoC',s:'Affiliation / Social Communication',it:'Afiliación',a:'CONFIRMADO'},{m:'Cloninger',s:'Reward Dependence',it:'Afiliación',a:'CONFIRMADO'},{m:'Cloninger',s:'Cooperativeness',it:'Afiliación',a:'CONFIRMADO'}],
+ 4:[{m:'Panksepp',s:'FEAR',it:'Amenaza',a:'CONFIRMADO'},{m:'Panksepp',s:'PANIC/GRIEF (ACC sg)',it:'Ánimo',a:'CONFIRMADO'},{m:'Gray RST',s:'FFFS',it:'Amenaza',a:'CONFIRMADO'},{m:'Cloninger',s:'Harm Avoidance',it:'Amenaza / Ánimo',a:'CONFIRMADO'},{m:'RDoC',s:'Negative Valence (Threat / Loss)',it:'Amenaza / Ánimo',a:'CONFIRMADO'},{m:'Berridge',s:'Learning → ánimo (Eldar)',it:'Ánimo',a:'CONFIRMADO'},{m:'Yeo-17',s:'Default B (sgACC)',it:'Ánimo',a:'CONFIRMADO'}],
+ 5:[{m:'Berridge',s:'WANTING',it:'Anticipación',a:'CONFIRMADO'},{m:'Berridge',s:'LIKING',it:'Tono hedónico',a:'CONFIRMADO'},{m:'Panksepp',s:'SEEKING',it:'Anticipación',a:'CONFIRMADO'},{m:'Gray RST',s:'BAS',it:'Anticipación',a:'CONFIRMADO'},{m:'Cloninger',s:'Novelty Seeking',it:'Anticipación',a:'CONFIRMADO'},{m:'RDoC',s:'Positive Valence + Frustrative Nonreward',it:'Anticipación / Frustración',a:'CONFIRMADO'}],
+ 6:[{m:'Yeo-17',s:'Somatomotor A',it:'Velocidad / Coordinación',a:'CONFIRMADO'},{m:'RDoC',s:'Motor Actions / Sensorimotor Dynamics',it:'Coordinación / Integración sensorial',a:'CONFIRMADO'},{m:'Yeo-17',s:'Visual Central / Peripheral',it:'Integración sensorial',a:'COHERENTE'}],
+ 7:[{m:'Yeo-17',s:'Salience/Ventral Attention A',it:'Regulación atencional / Interocepción',a:'CONFIRMADO'},{m:'RDoC',s:'Attention / Perception',it:'Regulación atencional',a:'CONFIRMADO'},{m:'Yeo-17',s:'Salience/Ventral Attention B',it:'Regulación atencional',a:'COHERENTE'},{m:'Gray RST',s:'BIS (atención al riesgo)',it:'Regulación atencional',a:'COHERENTE'}],
+ 8:[{m:'Yeo-17',s:'Control A (FPCN)',it:'Metacontrol / Pruebas NC',a:'CONFIRMADO'},{m:'RDoC',s:'Cognitive Control / Working Memory',it:'Metacontrol / Pruebas NC',a:'CONFIRMADO'},{m:'Yeo-17',s:'Dorsal Attention A',it:'Pruebas neurocognitivas',a:'CONFIRMADO'}],
+ 9:[{m:'Yeo-17',s:'Default A',it:'Experiencia del yo / Memoria autobiográfica',a:'CONFIRMADO'},{m:'Yeo-17',s:'Temporoparietal / Limbic B',it:'Mentalización',a:'CONFIRMADO'},{m:'RDoC',s:'Declarative Memory / Self / Agency',it:'Experiencia del yo / Memoria autobiográfica',a:'CONFIRMADO'},{m:'Cloninger',s:'Cooperativeness / Self-Transcendence',it:'Mentalización / Experiencia del yo',a:'COHERENTE'}],
+ 10:[{m:'Gray RST',s:'BIS',it:'Approach–evitación / Riesgo',a:'CONFIRMADO'},{m:'Cloninger',s:'Self-Directedness',it:'Regulación metacognitiva',a:'CONFIRMADO'},{m:'RDoC',s:'Approach Motivation / Effort',it:'Approach–evitación',a:'CONFIRMADO'},{m:'Yeo-17',s:'Control B',it:'Approach–evitación / Regulación emocional',a:'CONFIRMADO'},{m:'Yeo-17',s:'Control C',it:'Regulación metacognitiva',a:'COHERENTE'},{m:'Berridge',s:'Vigor (downstream)',it:'Organización conductual',a:'COHERENTE'}]
+};
+const MODELO_NIVEL = {'CONFIRMADO':'var(--alta)','COHERENTE':'var(--mod)','TENSIÓN':'var(--prelim)'};
+function modelosHTML(n){
+  const rows = MODELOS[n]; if(!rows || !rows.length) return '';
+  const body = rows.map(r=>`<tr><td><b>${r.m}</b></td><td>${r.s}</td><td>${r.it}</td><td class="frt"><span class="tag" style="background:${MODELO_NIVEL[r.a]||'var(--mod)'}">${r.a}</span></td></tr>`).join('');
+  return `<details class="sec"><summary style="color:var(--alta)">Modelos convergentes <span class="muted-note">— qué teoría de redes ancla aquí</span></summary><div class="sec-body">
+    <table><thead><tr><th>Modelo</th><th>Sistema / constructo</th><th>Ítem-ancla</th><th>Anclaje</th></tr></thead>
+    <tbody>${body}</tbody></table>
+    <p class="src" style="margin-top:8px"><b>CONFIRMADO</b> = el sustrato o la cita del propio HTML lo respalda · <b>COHERENTE</b> = consistente, no explícito · <b>TENSIÓN</b> = el modelo clasifica distinto. Mapeo inferencial; fuente: crosswalks re-anclados 2026-06-28 (Yeo-17, Panksepp, Berridge, Gray RST, Cloninger, RDoC).</p>
+  </div></details>`;
+}
+
 // ---------- render ----------
 const main = document.getElementById('main');
 const tocList = document.getElementById('tocList');
@@ -1377,6 +1401,8 @@ NETS.forEach(net=>{
     ${scoreHTML(net.n)}
 
     ${validezHTML(net.n)}
+
+    ${modelosHTML(net.n)}
 
     ${nmapHTML(net.n)}
 
