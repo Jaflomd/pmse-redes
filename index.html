@@ -451,17 +451,18 @@ const NETS = [
  },
  {n:7, name:'Red CSTC + saliencia',
   onto:'Circuito cortico-estriado-tálamo-cortical + red de saliencia (ínsula anterior + dACC como switch interno/externo).',
-  items:['Contenido del pensamiento','Integración sensorial','Interocepción','Nocicepción','Regulación atencional'], strength:'ALTA', access:'mix',
+  items:['Contenido del pensamiento','Integración sensorial','Interocepción','Dolor / nocicepción','Regulación atencional'], strength:'ALTA', access:'mix',
   ev:[
     ['Red de saliencia como sustrato transdiagnóstico: pérdida de sustancia gris en dACC + ínsula bilateral común a 6 grupos diagnósticos.','Goodkind et al. 2015, VBM meta (~16,000; PMC4791058) [library]'],
     ['Saliencia como switch DMN↔CEN; gating sensorial (P50). Contenido del pensamiento (psicosis): saliencia dopaminérgica aberrante en estriado.','dossier F2-sensorial (Kapur) [library]'],
-    ['<b>Nocicepción (en esta red):</b> la ínsula procesa el input nociceptivo (posterior) y media su dimensión emocional (anterior); su lesión causa asimbolia al dolor.','McBenedict et al. Cureus 2024 (PubMed)']
+    ['<b>Nocicepción (en esta red):</b> la ínsula procesa el input nociceptivo (posterior) y media su dimensión emocional (anterior); su lesión causa asimbolia al dolor.','McBenedict et al. Cureus 2024 (PubMed)'],
+    ['<b>Dolor y salud mental (comorbilidad e importancia):</b> relación bidireccional con mecanismos neurales compartidos; el dolor predice depresión incidente con dosis-respuesta (UK Biobank N=431k, con Mendelian randomization) y eleva el riesgo suicida; 1 de cada 3 jóvenes con dolor crónico cumple criterios de ansiedad.','Hooten 2016 Mayo Clin Proc; Bair 2003 Arch Intern Med; Jiang 2025 Sci Adv; Dudeney 2024 JAMA Pediatr (PubMed)']
   ],
   map:[
     ['Contenido del pensamiento','CSTC / saliencia dopaminérgica aberrante','F2-sensorial (Kapur) [library]','alta'],
     ['Integración sensorial','Saliencia + gating talámico (P50)','F2-sensorial [library]','alta'],
     ['Interocepción','Ínsula posterior→anterior + dACC','Goodkind 2015 [library]','alta'],
-    ['Nocicepción','Matriz del dolor: ínsula posterior → anterior + ACC','McBenedict 2024 (PubMed)','alta']
+    ['Dolor / nocicepción','Matriz del dolor: ínsula posterior → anterior + ACC; comorbilidad bidireccional con salud mental','Hooten 2016; Bair 2003; McBenedict 2024 (PubMed)','alta']
   ],
   gaps:['Nocicepción confirmada en red 7 (ínsula-ACC), no en red 2.'],
   di:'El contenido del pensamiento, interocepción y dolor dependen de <b>autorreporte</b>; las anomalías graves (psicosis) se infieren por conducta → mixto, parcial en DI.'
@@ -562,7 +563,7 @@ const SCORES = {
   {it:'Contenido del pensamiento', scale04:['Normal','Idea fija o preocupación','Obsesiones o rumiaciones','Idea sobrevalorada o creencia inusual','Delusión'], flag:'escala dimensional de convicción 0→4 (sustituye −2/+2 para este ítem)'},
   {it:'Integración sensorial', a9:['desrealización severa: prior retirado, mundo crudo e irreal, despersonalización perceptiva','desrealización clínica: percepción aplanada/extraña sostenida','percepción algo extraña/distante — ¿fatiga/estado o desrealización?','percepción levemente apagada o hiporreactiva (normal)','percepción calibrada (balance prior↔evidencia)','percepción algo intensa/vívida o hipervigilante (normal)','experiencias perceptivas anómalas aisladas (PLE/ilusiones) — ¿subclínico?','PLE marcadas / ilusiones frecuentes / hipervigilancia perceptiva','alucinación formada (prior domina; voces u otras modalidades)'], flag:'eje = balance prior↔evidencia. Especificadores: [prior inestable] (percepción fluctuante) · [reactividad sensorial hiper/hipo] (factores separados). Cruzar F7.testing (juicio de realidad).'},
   {it:'Interocepción', a9:['hipo-interocepción severa / alexisomia: no registra señales corporales (hambre, fatiga, palpitaciones)','conciencia corporal marcadamente reducida, desconexión somática','poco atento al cuerpo — ¿estilo o hipo-interocepción?','algo poco registrador de señales corporales (normal)','interocepción calibrada','algo atento/sensible a señales corporales (normal)','preocupación corporal fluctuante — ¿normal o amplificación?','hiper-interocepción: amplifica señales, ansiedad por la salud, somatización','hiper-interocepción invalidante / pánico interoceptivo, somatización severa'], flag:'eje = ponderación de la señal interoceptiva (atenuada ↔ amplificada). Subsume somatización; el pánico interoceptivo → cruzar Amenaza (red 4).'},
-  {it:'Nocicepción', a9:['hipoalgesia severa / asimbolia al dolor: no reacciona a estímulo nocivo','umbral de dolor marcadamente elevado, hiporreactividad clara','registra poco el dolor — ¿estoico o hipoalgesia?','umbral de dolor algo alto (normal)','percepción del dolor proporcional','algo sensible al dolor (normal)','dolor algo desproporcionado o difuso — ¿amplificación normal o clínica?','hiperalgesia / dolor desproporcionado, catastrofización','dolor central, difuso y catastrofizado, invalidante']},
+  {it:'Dolor / nocicepción', a9:['hipoalgesia severa / asimbolia al dolor: no reacciona a estímulo nocivo','umbral de dolor marcadamente elevado, hiporreactividad clara','registra poco el dolor — ¿estoico o hipoalgesia?','umbral de dolor algo alto (normal)','percepción del dolor proporcional','algo sensible al dolor (normal)','dolor algo desproporcionado o difuso — ¿amplificación normal o clínica?','hiperalgesia / dolor desproporcionado, catastrofización','dolor central, difuso y catastrofizado, invalidante']},
   {it:'Regulación atencional', a9:['saliencia aberrante severa: atención capturada por estímulos irrelevantes, no filtra','distractibilidad marcada: no sostiene el foco, salta de estímulo','algo distraído últimamente — ¿normal o gating alterado?','atención algo dispersa (normal)','asignación calibrada: atiende lo relevante, suelta lo irrelevante','foco algo persistente/absorto (normal)','cuesta desenganchar a ratos — ¿concentración o rigidez?','foco «sticky»: hiperfoco perseverativo, cuesta desenganchar','sobre-fijación extrema: atención pegada, no redirigible'], flag:'frontera con Metacontrol (red 8): aquí gating bottom-up, allá control top-down'}
  ],
  8:[
@@ -678,7 +679,7 @@ const NMAP = {
   {it:'Contenido del pensamiento', hitop:'Unusual beliefs · Disorganised thought', dsm5:14, esc:'PANSS P1/P6/G9 · SAPS Delusions · PSYRATS-DEL', esp:'Thought Disorder'},
   {it:'Integración sensorial', hitop:'Unusual experiences', dsm5:4, esc:'SAPS Hallucin. · PANSS P3 · PSYRATS-AH'},
   {it:'Interocepción', hitop:'Health anxiety · Physical panic · GI distress · Muscle tension', dsm5:26, esc:'EASE d3 · CDS · PID-5 Cogn-Percept · HAM-A somático'},
-  {it:'Nocicepción', hitop:'Sexual pain · Muscle tension · Headaches', dsm5:4, esc:'AMDP dolor · PID-5 Somatic · PANSS G1'},
+  {it:'Dolor / nocicepción', hitop:'Sexual pain · Muscle tension · Headaches', dsm5:4, esc:'AMDP dolor · PID-5 Somatic · PANSS G1'},
   {it:'Regulación atencional', hitop:'Cognitive difficulties', dsm5:2, esc:'MCCB Attention · PANSS G11 · PID-5 Distractibility'}
  ],
  8:[
@@ -805,7 +806,7 @@ const AMDP = {
   {it:'Contenido del pensamiento', n:17, a:'033 Humor delirante (Wahnstimmung) · 059 Perplejidad · 034 Percepción delirante · 035 Ideas delirantes repentinas · 036 Ideas delirantes · 037 Delirios sistematizados · 039 Delirios de referencia · 040 Delirios de persecución · 041 Delirios de celos · 042 Delirios de culpa · 043 Delirios de ruina · 044 Delirios hipocondríacos · 045 Delirios de grandiosidad · 046 Otros delirios · 074 Sentimientos de empobrecimiento · ZP03 Ideas de referencia · ZP10 Ideas sobrevaloradas'},
   {it:'Integración sensorial', n:7, a:'047 Ilusiones · 048 Alucinaciones auditivas verbales · 049 Otras alucinaciones auditivas · 050 Alucinaciones visuales · 051 Alucinaciones corporales · 052 Alucinaciones olfativas y gustativas · 053 Desrealización (−2)'},
   {it:'Interocepción', n:17, a:'028 Hipocondría · 111 Boca seca · 112 Náuseas · 113 Vómitos · 114 Molestias gástricas · 115 Estreñimiento · 116 Diarrea · 117 Dificultad respiratoria · 118 Mareos · 119 Palpitaciones · 121 Visión borrosa · 122 Sudoración aumentada · 124 Dificultades de micción · 125 Dificultades menstruales · 128 Pesadez en las piernas · 129 Sofocos · 130 Escalofríos'},
-  {it:'Nocicepción', n:3, a:'120 Dolor cardíaco · 126 Presión cefálica · 127 Dolor de espalda'},
+  {it:'Dolor / nocicepción', n:3, a:'120 Dolor cardíaco · 126 Presión cefálica · 127 Dolor de espalda'},
   {it:'Regulación atencional', n:1, a:'003 Estrechamiento de la consciencia'}
  ],
  8:[
@@ -880,7 +881,7 @@ const DSM = {
   {it:'Contenido del pensamiento', n:14, d:'ZMQRF_35 Pensamiento idiosincrático · ZMQRF_375 Creencias negativas del mundo · ZMQRF_507 Creencia de ser atacado · ZMQRF_518 Transmisión del pensamiento · ZMQRF_55 Delirio erotomaníaco · ZMQRF_56 Delirio de grandiosidad · ZMQRF_57 Celos delirantes (infidelidad) · ZMQRF_58 Creencia somática delirante · ZMQRF_59 Creencia bizarra extrema · ZMQRF_594 Creencia resistente a evidencia · ZMQRF_599 Recuerdos intrusivos traumáticos · ZMQRF_638 Pensamiento extraño referido por otros · ZMQRF_642 Delirio persecutorio · Zhirfearweight Miedo a ganar peso'},
   {it:'Integración sensorial', n:5, d:'ZMQRF_254 Experiencia perceptual inusual · ZMQRF_287 Alucinaciones en vigilia · ZMQRF_515 Distorsión perceptual de objetos · ZMQRF_519 Experiencias inexplicables · ZMQRF_591 Desrealización'},
   {it:'Interocepción', n:26, d:'ZMQRF_105 Reacción física a trauma · ZMQRF_115 Preocupación excesiva por salud · ZMQRF_116 Miedo a enfermedad grave · ZMQRF_155 Vaginismo (tensión pélvica) · ZMQRF_326 Sensibilidad/tumefacción mamaria · ZMQRF_328 Distensión abdominal · ZMQRF_337 Palpitaciones/latidos irregulares · ZMQRF_340 Sudoración sin esfuerzo · ZMQRF_341 Temblores · ZMQRF_342 Disnea (falta de aire) · ZMQRF_343 Sensación de ahogo · ZMQRF_344 Dolor/malestar torácico · ZMQRF_345 Náusea · ZMQRF_347 Mareo/lipotimia · ZMQRF_348 Escalofríos · ZMQRF_349 Sensación de calor corporal · ZMQRF_350 Parestesias (hormigueo/entumecimiento) · ZMQRF_362 Tensión muscular · ZMQRF_380 Nerviosismo somático · ZMQRF_384 Catastrofización de síntomas físicos · ZMQRF_385 Ansiedad por salud física · ZMQRF_386 Autochequeo corporal frecuente · ZMQRF_634 Inestabilidad/sensación de desmayo · ZMQRF_664 Sensación de sofocación · ZMQRF_81 Síntomas físicos por separación · Zhirheartrace Palpitaciones (pánico)'},
-  {it:'Nocicepción', n:4, d:'ZMQRF_153 Dolor génito-pélvico en coito · ZMQRF_327 Dolor/rigidez músculo-articular · ZMQRF_346 Dolor/malestar abdominal · ZMQRF_460 Cefaleas'},
+  {it:'Dolor / nocicepción', n:4, d:'ZMQRF_153 Dolor génito-pélvico en coito · ZMQRF_327 Dolor/rigidez músculo-articular · ZMQRF_346 Dolor/malestar abdominal · ZMQRF_460 Cefaleas'},
   {it:'Regulación atencional', n:2, d:'ZMQRF_224 Distracción fácil · ZMQRF_538 Pérdida de foco por distractores'}
  ],
  8:[
@@ -952,7 +953,7 @@ const THEORY = {
   {it:'Contenido del pensamiento', m:'Priors hiperprecisos generan prediction errors con saliencia aberrante; el delirio es la inferencia que mejor minimiza esa energía libre ante señales dopaminérgicas desreguladas.', refs:[['Kapur 2003 · Am J Psychiatry','10.1176/appi.ajp.160.1.13'], ['Sterzer et al. 2018 · Biol Psychiatry','10.1016/j.biopsych.2018.05.015']]},
   {it:'Integración sensorial', m:'Percepción = inferencia bayesiana (priors × evidencia ponderados por precisión); el desbalance produce alucinación (prior domina) o desrealización (evidencia domina / prior retirado).', refs:[['Friston 2010 · Nat Rev Neurosci','10.1038/nrn2787'], ['Sterzer et al. 2018 · Biol Psychiatry','10.1016/j.biopsych.2018.05.015'], ['Powers, Mathys & Corlett 2017 · Science','10.1126/science.aan3458']]},
   {it:'Interocepción', m:'La ínsula implementa inferencia interoceptiva activa: predicciones viscerales descendentes; los errores interoceptivos no suprimidos son la base del afecto y del self corporal.', refs:[['Seth & Friston 2016 · Philos Trans R Soc B','10.1098/rstb.2016.0007'], ['Seth 2013 · Trends Cogn Sci','10.1016/j.tics.2013.09.007']]},
-  {it:'Nocicepción', m:'El dolor es inferencia activa: predicciones descendentes del estado nociceptivo; expectativas de dolor hiperprecisas o errores no cancelados amplifican el dolor (placebo/nocebo, dolor crónico).', refs:[['Büchel et al. 2014 · Neuron','10.1016/j.neuron.2014.02.042'], ['Friston & Kiebel 2009 · Philos Trans R Soc B','10.1098/rstb.2008.0300']]},
+  {it:'Dolor / nocicepción', m:'El dolor es inferencia activa: predicciones descendentes del estado nociceptivo; expectativas de dolor hiperprecisas o errores no cancelados amplifican el dolor (placebo/nocebo, dolor crónico).', refs:[['Büchel et al. 2014 · Neuron','10.1016/j.neuron.2014.02.042'], ['Friston & Kiebel 2009 · Philos Trans R Soc B','10.1098/rstb.2008.0300']]},
   {it:'Regulación atencional', m:'La atención = optimización de la precisión (ganancia) asignada a prediction errors específicos: atender un canal eleva la precisión de sus errores en la jerarquía. El eje son dos fallos de esa ganancia — precisión infra-asignada (distractibilidad, −2) vs precisión sobre-asignada y no liberada (fijación «sticky», +2).', refs:[['Feldman & Friston 2010 · Front Hum Neurosci','10.3389/fnhum.2010.00215'], ['Friston 2010 · Nat Rev Neurosci','10.1038/nrn2787'], ['Friston & Kiebel 2009 · Philos Trans R Soc B','10.1098/rstb.2008.0300']]}
  ],
  8:[
@@ -1025,7 +1026,7 @@ const MACRO = {
   {it:'Contenido del pensamiento', b:'11 Contenido inusual · 9 Suspicacia', x:'VII Psicosis', np:'1 Delirios', cp:'Ideas de persecución / grandiosas / otros delirios'},
   {it:'Integración sensorial', b:'10 Alucinaciones', x:'VII Psicosis', np:'2 Alucinaciones', cp:'Voces comentadoras / Aluc. auditivas-visuales'},
   {it:'Interocepción', b:'1 Preocupación somática', x:'V Síntomas somáticos', np:'—', cp:'Hipocondría / Disturbios autonómicos'},
-  {it:'Nocicepción', b:'1 Preocupación somática (parc.)', x:'V Somático', np:'—', cp:'Dolores y molestias'},
+  {it:'Dolor / nocicepción', b:'1 Preocupación somática (parc.)', x:'V Somático', np:'—', cp:'Dolores y molestias'},
   {it:'Regulación atencional', b:'22 Distractibilidad', x:'—', np:'—', cp:'Distractibilidad / Dif. concentración'}
  ],
  8:[
