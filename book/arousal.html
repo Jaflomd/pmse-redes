@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+<title>pMSE Book · Arousal (Network 1)</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --ink:#e8eaf0; --muted:#9aa3b2;
+    --line:#2a2f3a; --accent:#6ea8fe; --accent2:#7ee0c0;
+    --neg:#f87171; --pos:#7ee0c0; --warn:#fb923c; --ok:#4ade80;
+    --chip:#222838; --shadow:0 1px 0 rgba(255,255,255,.03), 0 8px 24px rgba(0,0,0,.35);
+    --maxw:880px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f6f7fb; --panel:#ffffff; --panel2:#f0f2f8; --ink:#1a1d26; --muted:#5a6473;
+           --line:#e2e6ee; --chip:#eef1f8; --neg:#dc2626; --pos:#0f9b78; --warn:#c2620a; --ok:#15803d;
+           --shadow:0 1px 2px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.08); }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .back{display:inline-block;margin:18px 0 0;font-size:13px;color:var(--muted)}
+  header.top{padding:14px 0 22px;border-bottom:1px solid var(--line);background:
+    radial-gradient(1200px 300px at 50% -120px, rgba(110,168,254,.10), transparent);}
+  .eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--accent);font-weight:700}
+  h1{margin:.2em 0 .12em;font-size:34px;letter-spacing:-.015em}
+  .substrate{color:var(--muted);font-size:14px}
+  .substrate b{color:var(--ink)}
+  .callout{margin:22px 0 6px;padding:16px 20px;border-left:3px solid var(--accent);
+    background:var(--panel);border-radius:0 12px 12px 0;font-size:17px;font-style:italic;box-shadow:var(--shadow)}
+  main{padding:8px 0 70px}
+  h2.sec{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);
+    font-weight:700;margin:34px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  p{margin:12px 0}
+  .prov{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:1px 7px;border-radius:6px;white-space:nowrap}
+  .prov.est{color:#06281c;background:var(--ok)}
+  .prov.inf{color:#2a1602;background:var(--warn)}
+  .axes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+  .axis{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+  .axis.neg{border-top:3px solid var(--neg)}
+  .axis.pos{border-top:3px solid var(--pos)}
+  .axis h3{margin:0 0 8px;font-size:15px}
+  .axis .pole{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .axis.neg .pole{color:var(--neg)} .axis.pos .pole{color:var(--pos)}
+  .umbrella{display:inline-block;margin:6px 0;font-weight:700}
+  .axis .sub{color:var(--muted);font-size:13.5px}
+  .reg{background:var(--panel2);border:1px dashed var(--line);border-radius:12px;padding:14px 16px;margin:14px 0}
+  .reg .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin-bottom:4px}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  th.neg,td.neg-c{color:var(--ink)} th.neg{color:var(--neg)} th.pos{color:var(--pos)}
+  .ff{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:14px}
+  .vlabel{font-weight:700;color:var(--ink)}
+  .caution{margin-top:14px;padding:14px 16px;border-left:3px solid var(--warn);background:var(--panel);border-radius:0 12px 12px 0}
+  .refs{font-size:13.5px;color:var(--muted)}
+  .refs li{margin:8px 0}
+  .refs .flag{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--warn);
+    background:rgba(251,146,60,.10);padding:1px 5px;border-radius:4px}
+  footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--muted);font-size:12.5px}
+  @media (max-width:640px){ .axes{grid-template-columns:1fr} h1{font-size:28px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← pMSE · the ten networks</a>
+</div>
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">pMSE Book · Part II · Network 1</div>
+    <h1>Arousal</h1>
+    <div class="substrate"><b>LC-NE / ARAS</b> &middot; substrate: locus coeruleus–norepinephrine + ascending reticular activating system &middot; classical term: arousal / vigilance</div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="callout">
+  Arousal is the brain's global activation level — the gain set by the locus coeruleus–norepinephrine system and the ascending reticular activating system. Its negative pole is hypoarousal (stupor, somnolence, shutdown); its positive pole is hyperarousal (startle, agitation, sustained over-alertness). It is intensity, not content.
+</div>
+
+<main>
+  <h2 class="sec">Definition</h2>
+  <p>We score arousal, the global level of bodily activation set by Network 1 — the locus coeruleus–norepinephrine (LC-NE) system and the ascending reticular activating system (ARAS), with thalamic, hypothalamic orexin/histamine, and autonomic contributions. The <b>calibrated function</b> (the healthy midpoint) is a patient who is awake, available, and activated in proportion to context. Within each pole we read three aspects of the same substrate: where the baseline sits (<b>tonic level</b>), how sharply it reacts to input (<b>phasic reactivity</b>) — the tonic/phasic distinction drawn from the LC-NE literature (Aston-Jones &amp; Cohen, 2005; Feld &amp; Feige, 2021) — and how stably it holds across the interview (<b>regulation</b>).</p>
+  <p>Arousal is <b>not unitary</b>: multiple neuromodulatory systems converge on cortical arousal on different timescales — basal-forebrain parvalbumin neurons produce rapid <i>microarousals</i>, while LC-NE and basal-forebrain acetylcholine act more slowly but sustain vigilance (Maness et al., 2022). Functionally, arousal can be read as the brain's global <i>precision</i>, or gain — the weight given to incoming prediction errors (Barrett &amp; Simmons, 2015). We use <i>arousal</i> in a deliberately bedside sense — observable activation, intensity rather than content — not as a single biological assay.</p>
+  <p>It does <b>not</b> capture its neighbors. It is not <b>Consciousness</b> (Network 1: clarity of the sensorium, not its intensity — a patient can be hyperaroused yet clear, or hypoaroused yet interpretable — and the disorders-of-consciousness literature treats it as its own graded level: Giacino et al., 2018; Kondziella et al., 2020); not <b>Threat</b> (Network 4: the affective meaning of danger, not the activation it rides on); not <b>Anticipation/drive</b> (Network 5: activation becomes drive only when goal-directed); not <b>Psychomotor speed</b> (Network 6: tempo of output, not global gain); and not <b>Sleep</b> (Network 2: a temporal pattern, not the present state).</p>
+
+  <h2 class="sec">The two axes</h2>
+  <div class="axes">
+    <div class="axis neg">
+      <div class="pole">Negative axis · hypofunction</div>
+      <h3>Hypoarousal</h3>
+      <p>When LC-NE/ARAS output falls, the system cannot reach or sustain threshold; the bedside read is hypoarousal.</p>
+      <p><span class="umbrella">Umbrella: hypoarousal</span><br><span class="sub">→ somnolence, obtundation, lethargy, and <b>stupor</b> — a state of minimal reactivity (Berrios, 1981), classically divided into depressive, catatonic, and manic stupor. In manic stupor, inner activation runs high while observable reactivity collapses — the dissociation that is why we score <i>observable</i> arousal as its own layer.</span></p>
+      <p><span class="prov est">established</span> the substrate. <span class="prov inf">pMSE inference</span> treating full stupor as a <b>composite</b> (low observable arousal + abolished drive [Network 5] + motor immobility [Network 6]), which we decompose rather than score as one sign.</p>
+    </div>
+    <div class="axis pos">
+      <div class="pole">Positive axis · hyperfunction</div>
+      <h3>Hyperarousal</h3>
+      <p>When gain is high, any input — a noise, a glance, a memory — is amplified; the bedside read is hyperarousal.</p>
+      <p><span class="umbrella">Umbrella: hyperarousal</span><br><span class="sub">→ sub-terms that remain <i>global</i>: sustained over-activation, exaggerated startle, and global hypervigilance/scanning. The seven empirically separable subtypes — anxious, somatic, sensitive, sleep-related, irritable, vigilant, sudomotor (Bresser et al., 2026) — are real but <b>redistribute to neighbor items</b> (see False friends); arousal keeps only the global level.</span></p>
+      <p><span class="prov est">established</span> the substrate &amp; the seven-dimension structure. <span class="prov inf">pMSE inference</span> keeping only the global level here and redistributing the subtypes.</p>
+    </div>
+  </div>
+  <div class="reg">
+    <div class="h">Across the poles — regulation</div>
+    Level alone does not separate every syndrome. The vigilance regulation model holds that <b>stability over time</b> carries diagnostic weight: mania is modeled as unstable arousal that falls rapidly and is countered with restlessness and sensation-seeking, whereas depression is modeled as tonically high, rigidly sustained vigilance (Hegerl &amp; Hensch, 2014). Two patients can share a high positive-pole level and differ entirely in regulation. We treat the specific mood-disorder predictions as a model under test, not settled fact.
+  </div>
+
+  <h2 class="sec">Assessment &amp; cross-walk</h2>
+  <p><b>Assessment.</b> For the <b style="color:var(--neg)">negative pole</b>: does the patient stay awake without stimulation? response latency and rousability; posture, tone, drowsiness. For the <b style="color:var(--pos)">positive pole</b>: startle, scanning, reactivity to noise/light/waiting, and modulability — "let's slow the breathing" — can they bring it down? For <b>both</b>: does the activation have a goal, a fear, or is it just level? (redirect to Network 5/4/6 if so). Score the observable current state plus recent examples.</p>
+  <table>
+    <thead><tr><th>Framework</th><th class="neg">Negative pole (hypoarousal)</th><th class="pos">Positive pole (hyperarousal)</th></tr></thead>
+    <tbody>
+      <tr><td>DSM-5-TR</td><td>psychomotor retardation; hypersomnolence</td><td>psychomotor agitation; hypervigilance</td></tr>
+      <tr><td>ICD-11</td><td>stupor; fatigue</td><td>psychomotor agitation; startle</td></tr>
+      <tr><td>RDoC</td><td>Arousal &amp; Regulatory Systems (low end)</td><td>Arousal &amp; Regulatory Systems (high end)</td></tr>
+      <tr><td>HiTOP</td><td>lassitude; somnolence</td><td>hypervigilance; restlessness</td></tr>
+      <tr><td>AMDP</td><td>diminished vigilance; fatigue</td><td>agitation; logorrhea (only when global activation)</td></tr>
+    </tbody>
+  </table>
+  <div class="ff">
+    <b>False friends.</b> Fear/anxiety → <b>Threat</b> (Network 4). Goal-directed activity → <b>Anticipation/drive</b> (Network 5). Purposeless motor restlessness → <b>Psychomotor speed</b> (Network 6)/akathisia. Altered clarity → <b>Consciousness</b> (Network 1). Insomnia as a pattern → <b>Sleep</b> (Network 2). The seven hyperarousal subtypes redistribute: anxious &amp; irritable → Threat (Network 4); somatic &amp; sudomotor → autonomic signals; sensitive → Interoception (Network 7); sleep-related → Sleep (Network 2); vigilant → Threat plus vigilant attention. Arousal keeps only the global level.
+  </div>
+
+  <h2 class="sec">Validity</h2>
+  <p><span class="vlabel">Construct.</span> Arousal indexes a single observable layer — global activation — distinct from clarity (Consciousness), affect (Threat), and tempo (Psychomotor). Its <b>bidirectionality is itself a claim</b>: the most comprehensive transdiagnostic arousal instrument to date, the 27-item Transdiagnostic Hyperarousal Dimensions Questionnaire (THDQ), is <b>unipolar</b> — it scores seven hyperarousal dimensions from 0 (absence) to 4, with no hypoarousal pole, and its expert panel explicitly set catatonia aside as outside the construct (Bresser et al., 2026). The negative axis of this item fills precisely the pole the field's best instrument leaves empty.</p>
+  <p><span class="vlabel">Convergent (plausible).</span> The poles should track autonomic measures, actigraphy, and hyperarousal scales. <span class="vlabel">Divergent.</span> Arousal should separate from Threat and from Consciousness; a hyperaroused, non-fearful, clear patient is the test case.</p>
+  <p><span class="vlabel">Predictive.</span> The negative pole appears in hypoactive delirium, melancholia, catatonia, and intoxication; the positive pole in anxiety, PTSD, mania, insomnia, stimulant use, and psychosis — by different mechanisms, so one diagnosis can carry opposite arousal profiles. At the level of the arousal <i>system</i> — not yet the bedside item — the prognostic signal is already real: a transdiagnostic EEG signature of frontal beta indexing hypoarousal and impulse control predicted remission to methylphenidate in ADHD and to antidepressants in depression across independent datasets (Meijs et al., 2024), and locus coeruleus integrity on neuromelanin-sensitive MRI predicted plasma pTau217, cortical atrophy, and cognitive decline in Alzheimer's disease (David et al., 2025). <span class="prov inf">pMSE inference</span> whether the <b>bedside two-pole read</b> inherits that weight is still open — and a caution holds, since some arousal-based treatment-prediction signals have failed confirmatory replication.</p>
+
+  <h2 class="sec">Limitations &amp; future</h2>
+  <p>The item compresses a multidimensional construct into two observable poles; it will not, on its own, distinguish anxious from somatic from sensory hyperarousal — by design, those redistribute to other items. Reliability of the two-pole reading is undetermined and is the first validation target, alongside convergence with autonomic and actigraphic measures, and the eventual question of whether the tonic, phasic, and regulation aspects deserve separate documentation.</p>
+  <div class="caution"><b>Standing caution:</b> this is a formulation, not a validated biomarker — a bedside read of system gain, not a physiological assay.</div>
+
+  <h2 class="sec">References</h2>
+  <ul class="refs">
+    <li>Aston-Jones, G., &amp; Cohen, J. D. (2005). An integrative theory of locus coeruleus–norepinephrine function. <i>Annual Review of Neuroscience, 28</i>, 403–450. <a href="https://doi.org/10.1146/annurev.neuro.28.061604.135709">doi</a></li>
+    <li>Barrett, L. F., &amp; Simmons, W. K. (2015). Interoceptive predictions in the brain. <i>Nature Reviews Neuroscience, 16</i>(7), 419–429. <a href="https://doi.org/10.1038/nrn3950">doi</a></li>
+    <li>Berrios, G. E. (1981). Stupor: A conceptual history. <i>Psychological Medicine, 11</i>(4), 677–688. <a href="https://doi.org/10.1017/S0033291700041179">doi</a></li>
+    <li>Bresser, T., et al. (2026). Hyperarousal transdiagnostically dissected. <i>eClinicalMedicine, 94</i>, 103810. <a href="https://doi.org/10.1016/j.eclinm.2026.103810">doi</a></li>
+    <li>David, M. C. B., et al. (2025). Catecholaminergic nucleus integrity and Alzheimer's pathology, symptoms, and progression. <i>Alzheimer's &amp; Dementia, 21</i>(10), e70749. <a href="https://doi.org/10.1002/alz.70749">doi</a></li>
+    <li>Feld, &amp; Feige. (2021). <span class="flag">⟦authors &amp; title to confirm⟧</span>. <i>Der Nervenarzt.</i> <a href="https://doi.org/10.1007/s00115-021-01160-7">doi</a></li>
+    <li>Giacino, J. T., et al. (2018). Practice guideline update: Disorders of consciousness. <i>Neurology, 91</i>(10), 450–460. <a href="https://doi.org/10.1212/WNL.0000000000005926">doi</a></li>
+    <li>Hegerl, U., &amp; Hensch, T. (2014). The vigilance regulation model of affective disorders and ADHD. <i>Neuroscience &amp; Biobehavioral Reviews, 44</i>, 45–57. <a href="https://doi.org/10.1016/j.neubiorev.2012.10.008">doi</a></li>
+    <li>Kondziella, D., et al. (2020). EAN guideline on coma and disorders of consciousness. <i>European Journal of Neurology, 27</i>(5), 741–756. <a href="https://doi.org/10.1111/ene.14151">doi</a></li>
+    <li>Maness, E. B., et al. (2022). Role of the locus coeruleus and basal forebrain in arousal and attention. <i>Brain Research Bulletin, 188</i>, 47–58. <a href="https://doi.org/10.1016/j.brainresbull.2022.07.014">doi</a></li>
+    <li>Meijs, H., et al. (2024). A deep learning-derived transdiagnostic signature indexing hypoarousal and impulse control. <i>Biological Psychiatry: CNNI, 10</i>(6), 587–596. <a href="https://doi.org/10.1016/j.bpsc.2024.07.027">doi</a></li>
+  </ul>
+</main>
+</div>
+<footer>
+  <div class="wrap">pMSE Book · Part II · Network 1 — Arousal · two-axis neuroscience-based model · draft for editorial review. Citations verified via PubMed except where flagged ⟦⟧. This is a formulation, not a validated biomarker.</div>
+</footer>
+</body>
+</html>
